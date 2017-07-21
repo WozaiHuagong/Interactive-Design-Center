@@ -1,0 +1,51 @@
+<?php TPL::output('admin/global/header.tpl.htm'); ?>
+<?php TPL::output('admin/global/nav_menu.tpl.htm'); ?>
+
+<div class="aw-content-wrap">
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#list" data-toggle="tab"><?php _e('充值管理列表'); ?></a></li>
+                </ul>
+            </h3>
+        </div>
+        <div class="mod-body tab-content">
+            <div class="tab-pane active" id="list">
+                <div class="table-responsive">
+                <?php if ($this->list) { ?>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>充值时间</th>
+                                <th><?php _e('用户'); ?></th>
+                                <th><?php _e('充值类型'); ?></th>
+                                <th><?php _e('充值金额'); ?></th>
+                                <th><?php _e('订单号'); ?></th>
+                                <th><?php _e('支付宝流水'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->list AS $key => $val) { ?>
+                            <tr>
+                                <td><?php echo date('Y-m-d H:i', $val['pay_time']); ?></td>
+                                <td><a href="people/<?php echo $val['user_info']['url_token']; ?>" target="_blank"><?php echo $val['user_info']['user_name']; ?></a></td>
+                                <td><?php if($val['type'] == 1){echo '广告';}else{echo '打赏';} ?></td>
+                                <td><?php echo $val['cash']/100; ?></td>
+                                <td><?php echo $val['order_id']; ?></td>
+                                <td><?php echo $val['terrace_id']; ?></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
+                </div>
+                <div class="mod-table-foot">
+                    <?php echo $this->pagination; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php TPL::output('admin/global/footer.tpl.htm'); ?>

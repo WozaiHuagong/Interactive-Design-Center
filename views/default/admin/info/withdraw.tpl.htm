@@ -1,0 +1,53 @@
+<?php TPL::output('admin/global/header.tpl.htm'); ?>
+<?php TPL::output('admin/global/nav_menu.tpl.htm'); ?>
+
+<div class="aw-content-wrap">
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#list" data-toggle="tab"><?php _e('提现管理列表'); ?></a></li>
+                </ul>
+            </h3>
+        </div>
+        <div class="mod-body tab-content">
+            <div class="tab-pane active" id="list">
+                <div class="table-responsive">
+                <?php if ($this->list) { ?>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>申请时间</th>
+                                <th><?php _e('用户'); ?></th>
+                                <th><?php _e('提现类型'); ?></th>
+                                <th><?php _e('提现金额'); ?></th>
+                                <th><?php _e('状态'); ?></th>
+                                <th><?php _e('订单号'); ?></th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->list AS $key => $val) { ?>
+                            <tr>
+                                <td><?php echo date('Y-m-d H:i', $val['add_time']); ?></td>
+                                <td><a href="people/<?php echo $val['user_info']['url_token']; ?>" target="_blank"><?php echo $val['user_info']['user_name']; ?></a></td>
+                                <td><?php if($val['type'] == 1){echo '广告';}else{echo '打赏';} ?></td>
+                                <td><?php echo $val['cash']/100; ?></td>
+                                <td><?php if($val['status'] == 'wait'){ ?>审核中<?php }elseif($val['status'] == 'ok'){ ?>已处理<?php }elseif($val['status'] == 'close'){ ?>关闭<?php } ?></td>
+                                <td><?php echo $val['order_id']; ?></td>
+                                <td><a href="admin/info/withdraw_info/<?php echo $val['id']; ?>">详情</a></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
+                </div>
+                <div class="mod-table-foot">
+                    <?php echo $this->pagination; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php TPL::output('admin/global/footer.tpl.htm'); ?>

@@ -1,0 +1,157 @@
+<?php TPL::output('global/header_meta.tpl.htm'); ?>
+
+<body>
+
+<?php if ($this->user_id AND $this->user_info['email'] AND !$this->user_info['valid_email'] AND get_setting('register_valid_type') != 'N') { ?>
+<div class="aw-email-verify">
+	<div class="container text-center">
+		<a onclick="AWS.ajax_request(G_BASE_URL + '/account/ajax/send_valid_mail/');"><?php _e('您的邮箱 %s 还未验证, 点击这里重新发送验证邮件', $this->user_info['email']); ?></a>
+	</div>
+</div>
+<?php } ?>
+<style type="text/css" media="screen">
+	.logo-line a,.logo-line a:hover { color: #FFF; }
+</style>
+<header class="clearfix">
+	<div class="logo-line">
+		<div class="center-wrap">
+			<div class="title-wrap">
+				<h1><a href="<?php echo base_url(); ?>" title="<?php _e('采集'); ?>"><?php _e('采集'); ?></a></h1>
+			</div>
+			<div class="login-wrap">
+				<?php if ( !$this->user_id) { ?>
+				<a class="btn btn-primary login-bt" href="account/login/"><?php _e('登录'); ?></a>
+				<?php if (get_setting('register_type') == 'open') { ?><a class="btn btn-success regist-bt" href="account/register/"><?php _e('注册'); ?></a><?php } ?>
+				<?php }else{ ?>
+				<a href="people/<?php echo $this->user_info['url_token']; ?>" class="aw-user-nav-dropdown">
+					<img class="user-head-s" alt="<?php echo $this->user_info['user_name']; ?>" src="<?php echo get_avatar_url($this->user_info['uid'], 'mid'); ?>" />
+					<?php if ($this->user_info['inbox_unread'] != 0 OR $this->user_info['notification_unread'] != 0) {?>
+					<span class="badge badge-important"><?php echo $this->user_info['inbox_unread']+$this->user_info['notification_unread'];?></span>
+					<?php } ?>
+
+				</a>
+				<!-- 用户功能列表 -->
+				<ul>
+					<li><a href="inbox/"><i class="icon-inbox"></i> <?php _e('私信'); ?></a></li>
+					<li><a href="account/setting/profile/"><i class="icon-setting"></i> <?php _e('设置'); ?></a></li>
+					<?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
+					<li><a href="admin/"><i class="icon icon-job"></i> <?php _e('管理'); ?></a></li>
+					<?php } ?>
+					<li><a href="account/logout/"><i class="icon-logout"></i> <?php _e('退出'); ?></a></li>
+					<?php if ($this->user_id) { ?>
+					<li style="position:relative">
+						<a href="notifications/" class="<?php if ($_GET['app'] == 'notifications') { ?>active<?php } ?>"><i class="icon icon-bell"></i> <?php _e('通知'); ?><span class="badge badge-important" style="display:none" id="notifications_unread"><?php echo $this->user_info['notification_unread']; ?></span></a>
+
+						<div class="aw-dropdown pull-right hidden-xs">
+							<div class="mod-body">
+								<ul id="header_notification_list"></ul>
+							</div>
+							<div class="mod-footer">
+								<a href="notifications/"><?php _e('查看全部'); ?></a>
+							</div>
+						</div>
+					</li>
+					<?php } ?>
+				</ul>
+				<?php } ?>
+			</div>
+			<div class="global-title"><img src="/static/images/shi.png"></div>
+		</div>
+	</div>
+	<nav class="clearfix">
+		<div class="nav-wrap">
+			<ul>
+				<li class="<?php if (!$_GET['app'] OR $_GET['app'] == 'explore') { ?>menu_current_item<?php } ?>">
+					<a href="<?php echo base_url(); ?>"><?php _e('首页'); ?></a>
+				</li>
+				<li><a class="<?php if ($_GET['app'] == 'question') { ?>menu_current_item<?php } ?>" href="question/"><?php _e('问答'); ?></a></li>
+				<li><a class="<?php if ($_GET['app'] == 'sortout') { ?>menu_current_item<?php } ?>" href="sortout/"><?php _e('整理'); ?></a></li>
+				<li><a class="<?php if ($_GET['app'] == 'prize') { ?>menu_current_item<?php } ?>" href="javascript:;"><?php _e('有奖'); ?></a></li>
+				<li><a class="<?php if ($_GET['app'] == 'article') { ?>menu_current_item<?php } ?>" href="article/"><?php _e('文章'); ?></a></li>
+				<li><a class="<?php if ($_GET['app'] == 'info') { ?>menu_current_item<?php } ?>" href="info/"><?php _e('广而告'); ?></a></li>
+				<li><a class="<?php if ($_GET['app'] == 'topic') { ?>menu_current_item<?php } ?>" href="topic/"><?php _e('聚焦'); ?></a></li>
+			</ul>
+		</div>
+		<!-- 搜索框 -->
+		<div class="aw-search-box  hidden-xs hidden-sm pull-right search-wrap">
+			<form class="navbar-search" action="search/" id="global_search_form" method="post">
+				<input class="form-control search-query" type="text" placeholder="<?php _e('搜索'); ?>" autocomplete="off" name="q" id="aw-search-query" />
+				<span title="<?php _e('搜索'); ?>" id="global_search_btns" onClick="$('#global_search_form').submit();"><i class="icon icon-search"></i></span>
+				<div class="aw-dropdown">
+					<div class="mod-body">
+						<p class="title"><?php _e('输入关键字进行搜索'); ?></p>
+						<ul class="aw-dropdown-list collapse"></ul>
+						<p class="search"><span><?php _e('搜索'); ?>:</span><a onClick="$('#global_search_form').submit();"></a></p>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<form method="post" action="publish/">
+			<?php if ($this->topic_info['topic_title']) { ?>
+			<input type="hidden" value="<?php echo $this->topic_info['topic_title']; ?>" name="topics[]" />
+			<?php } ?>
+			<a class="btn btn-success pull-right" onclick="$(this).parents('form').submit();"><?php _e('提问'); ?></a>
+		</form>
+
+		<form method="post" action="publish/article/">
+			<?php if ($this->topic_info['topic_title']) { ?>
+			<input type="hidden" value="<?php echo $this->topic_info['topic_title']; ?>" name="topics[]" />
+			<?php } ?>
+			<a class="btn btn-success pull-right" onclick="$(this).parents('form').submit();"><?php _e('发文'); ?></a>
+		</form>
+
+		<a class="btn btn-success pull-right" href="javascript:;"><?php _e('有奖'); ?></a>
+		<a class="btn btn-success pull-right" href="publish/ad/"><?php _e('发广告'); ?></a>
+	</nav>
+	<div class="fixed-nav">
+		<nav>
+			<div class="nav-wrap">
+				<ul>
+					<li class="<?php if (!$_GET['app'] OR $_GET['app'] == 'explore') { ?>menu_current_item<?php } ?>">
+						<a href="<?php echo base_url(); ?>"><?php _e('首页'); ?></a>
+					</li>
+					<li><a class="<?php if ($_GET['app'] == 'question') { ?>menu_current_item<?php } ?>" href="question/"><?php _e('问答'); ?></a></li>
+					<li><a class="<?php if ($_GET['app'] == 'sortout') { ?>menu_current_item<?php } ?>" href="sortout/"><?php _e('整理'); ?></a></li>
+					<li><a class="<?php if ($_GET['app'] == 'prize') { ?>menu_current_item<?php } ?>" href="javascript:;"><?php _e('有奖'); ?></a></li>
+					<li><a class="<?php if ($_GET['app'] == 'article') { ?>menu_current_item<?php } ?>" href="article/"><?php _e('文章'); ?></a></li>
+					<li><a class="<?php if ($_GET['app'] == 'info') { ?>menu_current_item<?php } ?>" href="info/"><?php _e('广而告'); ?></a></li>
+					<li><a class="<?php if ($_GET['app'] == 'topic') { ?>menu_current_item<?php } ?>" href="topic/"><?php _e('聚焦'); ?></a></li>
+				</ul>
+			</div>
+			<div class="search-wrap pull-right aw-search-box hidden-xs hidden-sm">
+				<form class="navbar-search" action="search/" id="global_search_form_fxd" method="post">
+					<input class="form-control search-query" type="text" placeholder="<?php _e('搜索'); ?>" autocomplete="off" name="q" id="aw-search-query-fxd" />
+					<span title="<?php _e('搜索'); ?>" id="global_search_btns2" onClick="$('#global_search_form_fxd').submit();"><i class="icon icon-search"></i></span>
+					<div class="aw-dropdown">
+						<div class="mod-body">
+							<p class="title"><?php _e('输入关键字进行搜索'); ?></p>
+							<ul class="aw-dropdown-list collapse"></ul>
+							<p class="search"><span><?php _e('搜索'); ?>:</span><a onClick="$('#global_search_form_fxd').submit();"></a></p>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<?php if ($this->user_id) { ?>
+			<form method="post" action="publish/">
+				<?php if ($this->topic_info['topic_title']) { ?>
+				<input type="hidden" value="<?php echo $this->topic_info['topic_title']; ?>" name="topics[]" />
+				<?php } ?>
+				<a class="btn btn-success pull-right" onclick="$(this).parents('form').submit();"><?php _e('提问'); ?></a>
+			</form>
+
+			<form method="post" action="publish/article/">
+				<?php if ($this->topic_info['topic_title']) { ?>
+				<input type="hidden" value="<?php echo $this->topic_info['topic_title']; ?>" name="topics[]" />
+				<?php } ?>
+				<a class="btn btn-success pull-right" onclick="$(this).parents('form').submit();"><?php _e('发文'); ?></a>
+			</form>
+			<?php } ?>
+
+			<a class="btn btn-success pull-right" href="javascript:;"><?php _e('有奖'); ?></a>
+			<a class="btn btn-success pull-right" href="publish/ad/"><?php _e('发广告'); ?></a>
+		</nav>
+	</div>
+</header>
+

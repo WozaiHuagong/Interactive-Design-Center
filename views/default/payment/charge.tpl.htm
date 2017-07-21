@@ -1,0 +1,57 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="publish">
+    <div class="content clearfix">
+        <div class="left">
+            <h2><?php echo $this->crumb_name; ?></h2>
+            <form action="payment/ajax/save_charge/" method="post" id="question_form" onsubmit="return false;">
+                <input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
+                <input type="hidden" name="type" value="<?php echo $_GET['type']; ?>" />
+                <div class="mod-body">
+                    <div class="pay-way">
+                        <div><?php _e('选择充值方式'); ?>:</div>
+                        <div class="pay-way-selector">
+                            <a href="javascript:;" class="pay-way-weixin" data-id="weixin">
+                                <div class="money-box-inner"><input type="checkbox" checked disabled><i class="icon icon-alipay"></i>支付宝</div>
+                            </a>
+                            <a href="javascript:;" class="pay-way-weixin disabled" data-id="weixin">
+                                <div class="money-box-inner"><input type="checkbox" disabled><i class="icon icon-wechat"></i>微信支付</div>
+                            </a>
+                        </div>
+                    </div>
+                    <label><?php _e('输入充值金额'); ?>:</label>
+                    <div class="aw-mod aw-editor-box" style="margin-bottom: 10px;">
+                        <div class="mod-head input-group">
+                            <input type="text" name="cash" placeholder="1-10000" class="form-control" />
+                            <span class="input-group-addon">
+                                元
+                            </span>
+                        </div>
+                        <p class="text-muted small">每次充值金额不可低于1元</p>
+                    </div>
+                </div>
+                <div class="bt-wrap">
+                    <a class="btn btn-large btn-success btn-publish-submit" onclick="AWS.ajax_post($('#question_form')); return false;">立即充值</a>
+                    <a class="btn btn-large btn-default btn-publish-submit"  onclick="window.history.go(-1);">取消</a>
+                </div>
+            </form>
+        </div>
+        <!-- 侧边栏 -->
+        <div class="right">
+            <!-- 文章发起指南 -->
+            <div class="aw-mod publish-help">
+                <div class="mod-head">
+                    <h3><?php _e('充值说明'); ?></h3>
+                </div>
+                <div class="mod-body">
+                    <p><b>• <?php _e('广告充值'); ?>:</b> 广告充值只能在广告中消费</p>
+                    <p><b>• <?php _e('打赏充值'); ?>:</b> 打赏充值只能在打赏中使用</p>
+                    <p><b>• <?php _e('充值来源'); ?>:</b> 目前只支持支付宝充值</p>
+                </div>
+            </div>
+            <!-- end 文章发起指南 -->
+        </div>
+        <!-- end 侧边栏 -->
+    </div>
+</section>
+
+<?php TPL::output('global/footer.tpl.htm'); ?>

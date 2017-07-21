@@ -1,0 +1,51 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="personal spec-person">
+    <div class="content clearfix">
+        <div class="left">
+            <div class="classify-line clearfix">
+                <div class="pull-left mod-head">
+                    <h3 id="main_title">我的广告</h3>
+                </div>
+            </div>
+            <div class="content-wrap">
+                <table class="img-text-wrap clearfix table">
+                    <thead>
+                    <th>广告名称</th>
+                    <th>已消耗金额</th>
+                    <th>广告状态</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                    </thead>
+                    <tbody>
+                    <?php if($this->list){ ?>
+                    <?php foreach($this->list as $key => $val){ ?>
+                    <tr>
+                        <td><a href="info/<?php echo $val['id']; ?>"><?php echo $val['title']; ?></a></td>
+                        <td><?php echo number_format($val['has_cash']/100, 2); ?></td>
+                        <td><?php if($val['status'] == -1){echo '下架';}elseif($val['status'] == 0){echo '审核中';}elseif($val['status'] == -2 OR $this->user_info['ad_cash'] < (get_setting('ad_click_cash')*100)){echo '欠费下架';}else{ ?>
+                            <span>正常</span>
+                            <a class="text-color-999" href="javascript:;" onclick="if(confirm('你确定要下架吗')){AWS.ajax_request('<?php echo get_js_url('info/ajax/offline_ad/'); ?>', 'id=<?php echo $val['id']; ?>')}"><i class="icon icon-delete"></i>下架</a>
+                            <?php } ?></td>
+                        <td><?php echo date('Y-m-d H:i', $val['add_time']); ?></td>
+                        <td><a href="home/ad_click/ad_id-<?php echo $val['id']; ?>">计费明细</a> </td>
+                    </tr>
+                    <?php } ?>
+                    <?php }else{ ?>
+                        <tr>
+                            <td colspan="5">您没有投放广告</td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- 侧边栏 -->
+        <div class="right sidelist">
+            <?php TPL::output('block/finance_menu.tpl.htm'); ?>
+        </div>
+        <!-- end 侧边栏 -->
+    </div>
+</section>
+
+
+<?php TPL::output('global/footer.tpl.htm'); ?>

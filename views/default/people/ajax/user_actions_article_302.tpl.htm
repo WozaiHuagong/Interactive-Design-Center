@@ -1,0 +1,16 @@
+<?php if (is_array($this->article_list)) {
+?>
+<?php
+foreach ($this->article_list AS $key => $val) { ?>	
+<li class="clearfix">
+	<div class="title pull-left">
+		<a href="sortout/<?php echo $val['id']; ?>" target="_blank">
+			<p class="quest"><?php echo $val['title']; ?>
+				<i class="icon2-coin-dollar"> </i>
+			</p> 
+		</a> 
+	</div>
+	<div class="date pull-right"><?php echo date_friendly($val['add_time']); ?></div>
+</li>
+<?php } ?>
+<?php } ?>

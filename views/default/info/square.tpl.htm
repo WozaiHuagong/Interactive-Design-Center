@@ -1,0 +1,19 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+
+<div class="main">
+	<section class="second-section clearfix ad-content">
+		<section class="ad-tips">
+			注: 这是说明文字...
+		</section>
+		<section class="img-text-wrap clearfix"><div class="ad-list" id="article_list"></div></section>
+		<p class="load-more" id="article_more" data-page="0">
+			<span><?php _e('更多'); ?></span>
+		</p>
+	</section>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		AWS.load_list_view(G_BASE_URL + '/info/ajax/list/uid-<?php echo $_GET['uid']; ?>__select-<?php echo $_GET['select']; ?>__location-<?php echo $_GET['location']; ?>__select_uid-<?php echo $_GET['select_uid']; ?>__item_id-<?php echo $_GET['item_id']; ?>', $('#article_more'), $('#article_list'));
+	});
+</script>
+<?php TPL::output('global/footer.tpl.htm'); ?>

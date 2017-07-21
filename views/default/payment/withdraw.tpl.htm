@@ -1,0 +1,82 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="publish">
+    <div class="content clearfix">
+        <div class="left">
+            <h2><?php echo $this->crumb_name; ?></h2>
+            <?php if (!$this->user_info['verified']) { ?>
+            <div class="alert alert-notice">提现需要认证,请先认证再申请提现,<a href="account/setting/verify/">点击前往认证</a></div>
+            <br>
+            <?php } ?>
+            <form action="payment/ajax/save_withdraw/" method="post" id="question_form" onsubmit="return false;">
+                <input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
+                <input type="hidden" name="type" value="<?php echo $_GET['type']; ?>" />
+                <div class="mod-body">
+                    <?php if($this->cash < 1){ ?>
+                        <div class="alert alert-error">
+                            <div class="alert-inner">
+                                <strong>用户余额不足!</strong>
+                                <hr class="hr">
+                                <small class="text-muted">您的账户余额不足,无法进行提现操作。</small>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <label><?php _e('转出到'); ?>:</label>
+                    <div class="aw-mod aw-editor-box" style="margin-bottom: 10px;">
+                        <div class="mod-head input-group">
+                            <span class="input-group-addon">
+                                支付宝账号
+                            </span>
+                            <input type="text" name="pay_account" class="form-control" />
+                        </div>
+                        <div class="mod-head input-group">
+                            <span class="input-group-addon">
+                                支付宝姓名
+                            </span>
+                            <input type="text" name="pay_name" class="form-control" />
+                        </div>
+                        <p class="text-muted small">请准确输入您的支付宝账号,因支付宝账号填写错误导致金额不到账,网站概不负责</p>
+                    </div>
+                    <label><?php _e('提现金额'); ?>:</label>
+                    <div class="aw-mod aw-editor-box" style="margin-bottom: 10px;">
+                        <div class="mod-head input-group">
+                            <input type="text" name="cash" placeholder="1-10000" class="form-control" value="<?php echo $this->cash; ?>" />
+                            <span class="input-group-addon">
+                                元
+                            </span>
+                        </div>
+                        <p class="text-muted small">本次最大提现金额为 <?php echo $this->cash; ?> 元</p>
+                    </div>
+                    <label><?php _e('备注(选填)'); ?>:</label>
+                    <div class="aw-mod" style="margin-bottom: 10px;">
+                        <div class="mod-head">
+                            <input type="text" name="info" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <?php if($this->cash >= 1){ ?>
+                <div class="bt-wrap">
+                    <a class="btn btn-large btn-success btn-publish-submit" onclick="AWS.ajax_post($('#question_form')); return false;">立即提现</a>
+                    <a class="btn btn-large btn-default btn-publish-submit"  onclick="window.history.go(-1);">取消</a>
+                </div>
+                <?php } ?>
+            </form>
+        </div>
+        <!-- 侧边栏 -->
+        <div class="right">
+            <!-- 文章发起指南 -->
+            <div class="aw-mod publish-help">
+                <div class="mod-head">
+                    <h3><?php _e('提现说明'); ?></h3>
+                </div>
+                <div class="mod-body">
+                    <p><b>• <?php _e('提现方式'); ?>:</b> 目前仅支持支付宝账号提现</p>
+                    <p><b>• <?php _e('提现问题'); ?>:</b> 准确输入您的支付宝账号,因支付宝账号填写错误导致金额不到账,网站概不负责</p>
+                </div>
+            </div>
+            <!-- end 文章发起指南 -->
+        </div>
+        <!-- end 侧边栏 -->
+    </div>
+</section>
+
+<?php TPL::output('global/footer.tpl.htm'); ?>

@@ -1,0 +1,99 @@
+<?php TPL::output('admin/global/header.tpl.htm'); ?>
+<?php TPL::output('admin/global/nav_menu.tpl.htm'); ?>
+
+<div class="aw-content-wrap">
+    <form action="admin/ajax/save_settings/" id="settings_form" method="post" onsubmit="return false" enctype="multipart/form-data">
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <span class="pull-left"><?php _e('财务设置'); ?></span>
+
+                <span class="pull-right"><a href="javascript:;" onclick="AWS.ajax_post($('#settings_form'));" class="btn btn-xs btn-primary mod-site-save"><?php _e('快速保存'); ?></a></span>
+            </h3>
+        </div>
+        <div class="tab-content mod-content">
+            <table class="table table-striped">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <span class="col-sm-4 col-xs-3 control-label"><?php _e('打赏提现手续费'); ?>:</span>
+                            <div class="col-sm-5 col-xs-8 input-group">
+                                <input type="text" class="form-control" name="shang_withdraw_percent" value="<?php echo $this->setting['shang_withdraw_percent']; ?>">
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <span class="col-sm-4 col-xs-3 control-label"><?php _e('广告提现手续费'); ?>:</span>
+                            <div class="col-sm-5 col-xs-8 input-group">
+                                <input type="text" class="form-control" name="ad_withdraw_percent" value="<?php echo $this->setting['ad_withdraw_percent']; ?>">
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <span class="col-sm-4 col-xs-3 control-label"><?php _e('广告点击扣费'); ?>:</span>
+                            <div class="col-sm-5 col-xs-8 input-group">
+                                <input type="text" class="form-control" name="ad_click_cash" value="<?php echo $this->setting['ad_click_cash']; ?>">
+                                <span class="input-group-addon">元</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <span class="col-sm-4 col-xs-3 control-label">有实际打赏参数X:</span>
+                            <div class="col-sm-5 col-xs-8 input-group">
+                                <input type="text" class="form-control" name="shang_x" value="<?php echo $this->setting['shang_x']; ?>">
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <span class="col-sm-4 col-xs-3 control-label">无实际打赏参数Y:</span>
+                            <div class="col-sm-5 col-xs-8 input-group">
+                                <input type="text" class="form-control" name="shang_y" value="<?php echo $this->setting['shang_y']; ?>">
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <span class="col-sm-4 col-xs-3 control-label">整理文章打赏参数W:</span>
+                            <div class="col-sm-5 col-xs-8 input-group">
+                                <input type="text" class="form-control" name="shang_w" value="<?php echo $this->setting['shang_w']; ?>">
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-content mod-content mod-one-btn">
+            <div class="center-block">
+                <input type="button" value="<?php _e('保存设置'); ?>" class="btn btn-primary" onclick="AWS.ajax_post($('#settings_form'));" />
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+<script>
+    $(function(){
+        $('.mod-input-file').change(function(){
+            $(this).next('.filetext').text($(this).val());
+        });
+    })
+</script>
+<?php TPL::output('admin/global/footer.tpl.htm'); ?>

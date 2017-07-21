@@ -1,0 +1,193 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+
+<div class="main">
+    <section id="article_box" class="second-section clearfix">
+        <div class="ad-content aw-article-content">
+            <div class="question-box">
+                <?php if($this->ad['status'] == 0){ ?>
+                <div class="alert alert-info">该内容正在审核中,只有您和管理员可以看到</div>
+                <?php } ?>
+                <div class="title-line clearfix">
+                    <h2 class="pull-left"><?php echo $this->ad['title']; ?></h2>
+                </div>
+                <div class="s-title clearfix">
+                    <div class="date pull-left"><?php echo date_friendly($this->ad['add_time'], 604800, 'Y-m-d'); ?></div>
+                    <div class="bt-line--- pull-right">
+                        <span class="edit">
+                            <?php if ($this->ad['uid'] == $this->user_id OR $this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
+                            <a class="text-color-999" href="javascript:;" onclick="if(confirm('你确定要下架吗')){AWS.ajax_request('<?php echo get_js_url('info/ajax/offline_ad/'); ?>', 'id=<?php echo $this->ad['id']; ?>')}"><i class="icon icon-delete"></i>下架</a>
+                            <a class="text-color-999" href="publish/ad/<?php echo $this->ad['id']; ?>"><i class="icon icon-edit"></i> <?php _e('编辑'); ?> </a>
+                            <?php } ?>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="sort-content">
+                    <p class="text-center"><img src="<?php echo get_ad_thumb($this->ad['thumb']); ?>"></p>
+                    <div class="ad-description">
+                        <?php
+                        $content = html_entity_decode($this->ad['description']);
+                        echo $content;
+                        ?>
+                    </div>
+                    <div class="text-center">
+                        <div class="collected collect btn btn-primary btn-xs">
+                            <a class="<?php if ($val['vote_info']['rating'] == 1) { ?> active<?php } ?>" onclick="AWS.User.info_vote($(this), <?php echo $this->ad['id']; ?>, 1)"><i class="icon icon-agree"></i> <b><?php echo $this->ad['agree_count']; ?></b> <?php if ($this->ad['vote_info']['rating'] == 1) { ?><?php _e('我已赞'); ?><?php } else { ?><?php _e('赞'); ?><?php } ?></a>
+                        </div>
+                        <div class="share btn btn-xs btn-success">
+                            <i class="icon-share"></i>分享
+                            <!-- 分享列表 -->
+                            <div class="share-dropdown">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;" onclick="AWS.User.share_out({webid: 'tsina', content: $(this).parents('.aw-question-detail').find('.markitup-box')});">
+                                            <i class="icon-weibo"></i> 微博
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" onclick="AWS.User.share_out({webid: 'qzone', content: $(this).parents('.aw-question-detail')});">
+                                            <i class="icon-qzone"></i> QZONE
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" onclick="AWS.User.share_out({webid: 'weixin', content: $(this).parents('.aw-question-detail')});">
+                                            <i class="icon-wechat"></i> 微信
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr">
+                <div class="ad-link-box">
+                    <div class="col-sm-3">
+                        <img width="100%" src="<?php echo get_ad_thumb($this->ad['link_thumb']); ?>" style="width:100%">
+                        <p style="text-align:center">广告外链地址: <a href="<?php echo $this->ad['link']; ?>"><?php echo $this->ad['link']; ?></a></p>
+                    </div>
+                    <div class="col-sm-9 link-report">
+                        <ul>
+                            <li><a href="javascript:;" onclick="AWS.dialog('report', {item_type:'info', item_id:<?php echo $this->ad['id']; ?>, item_value: '有病毒, '})"><i class="icon icon-disagree"></i>有病毒<span class="report-num"><?php echo $this->ad['has_virus']; ?></span></a></li>
+                            <li><a href="javascript:;" onclick="AWS.dialog('report', {item_type:'info', item_id:<?php echo $this->ad['id']; ?>, item_value: '有恶意广告, '})"><i class="icon icon-disagree"></i>有恶意广告<span class="report-num"><?php echo $this->ad['has_ad']; ?></span></a></li>
+                            <li><a href="javascript:;" onclick="AWS.dialog('report', {item_type:'info', item_id:<?php echo $this->ad['id']; ?>, item_value: '非法用途, '})"><i class="icon icon-disagree"></i>非法用途<span class="report-num"><?php echo $this->ad['has_illegal']; ?></span></a></li>
+                            <li><a href="javascript:;" onclick="AWS.dialog('report', {item_type:'info', item_id:<?php echo $this->ad['id']; ?>, item_value: ''})" class="btn btn-default"><i class="icon icon-report"></i>举报</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="hr">
+                <div class="mod-footer">
+                    <?php if ($this->ad['vote_users']) { ?>
+                    <div class="aw-article-voter">
+                        <?php foreach ($this->ad['vote_users'] AS $key => $val) { ?>
+                        <a href="people/<?php echo $val['url_token']; ?>" class="voter aw-user-name" data-id="<?php echo $val['uid']; ?>" data-toggle="tooltip" data-placement="right" data-original-title="<?php echo $val['user_name']; ?>"><img alt="<?php echo $val['user_name']; ?>" src="<?php echo get_avatar_url($val['uid'], 'mid'); ?>" /></a>
+                        <?php } ?>
+                        <!--<a class="more-voters">...</a>-->
+                    </div>
+                    <?php } ?>
+                </div>
+                <div class="foot clearfix">
+                    <h2><?php _e('%s 个评论', $this->ad['comment_count']); ?></h2>
+                </div>
+            </div>
+
+            <!-- 评论 -->
+            <div class="aw-mod reply-box">
+                <div class="mod-body aw-feed-list">
+                    <?php if ($this->comments) { ?>
+
+                        <?php foreach ($this->comments AS $key => $val) { ?>
+                        <div class="reply-item aw-item" id="answer_list_<?php echo $val['id']; ?>">
+                            <div class="reply-top mod-head">
+                                <a class="aw-user-img aw-border-radius-5" data-id="<?php echo $val['uid']; ?>" href="people/<?php echo $val['user_info']['url_token']; ?>">
+                                    <img src="<?php echo get_avatar_url($val['uid'], 'mid'); ?>" alt="<?php echo $val['user_info']['user_name']; ?>" />
+                                </a>
+                                <p>
+                                    <a href="people/<?php echo $val['user_info']['url_token']; ?>"><?php echo $val['user_info']['user_name']; ?></a><?php if ($val['at_user_info']) { ?> <?php _e('回复'); ?> <a href="people/<?php echo $val['at_user_info']['url_token']; ?>"><?php echo $val['at_user_info']['user_name']; ?></a><?php } ?>
+                                </p>
+                            </div>
+                            <div class="reply-content mod-body">
+                                <div class="markitup-box">
+                                    <?php echo nl2br($val['message']); ?>
+                                </div>
+                            </div>
+                            <div class="reply-bottom mod-footer">
+                                <div class="reply-mod meta">
+                                    <div class="bt-line clearfix">
+                                        <?php if ($this->user_id) { ?>
+                                            <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
+                                            <div class="c_delete pull-left text-color-999" onclick="AWS.dialog('confirm', {'message' : '<?php _e('确认删除?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/info/ajax/remove_comment/', 'comment_id=<?php echo $val['id']; ?>');});"><i class="icon icon-trash"></i> <?php _e('删除'); ?></div>
+                                            <?php } ?>
+
+                                        <?php } ?>
+                                        <div class="date">
+                                            <span class="pull-right text-color-999"><?php echo date_friendly($val['add_time']); ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
+            </div>
+            <!-- end 文章评论 -->
+
+            <!-- 回复编辑器 -->
+            <div class="aw-mod aw-article-replay-box">
+                <a name="answer_form"></a>
+                <?php if (!$this->user_id) { ?>
+                <p align="center"><?php _e('要回复请先<a href="account/login/">登录</a>或<a href="account/register/">注册</a>'); ?></p>
+                <?php } else { ?>
+                <form action="info/ajax/save_comment/" onsubmit="return false;" method="post" id="answer_form">
+                <input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
+                <input type="hidden" name="ad_id" value="<?php echo $this->ad['id']; ?>" />
+                <div class="mod-head">
+                    <a href="people/" class="aw-user-name" data-id="<?php echo $this->user_info['uid']; ?>"><img alt="<?php echo $this->user_info['user_name']; ?>" src="<?php echo get_avatar_url($this->user_info['uid'], 'mid'); ?>" /></a>
+                </div>
+                <div class="mod-body">
+                    <textarea rows="3" name="message" id="comment_editor" class="form-control autosize" placeholder="写下你的评论..." ></textarea>
+                </div>
+                <div class="mod-footer clearfix">
+                    <a href="javascript:;" onclick="AWS.ajax_post($('#answer_form'), AWS.ajax_processer, 'reply');" class="btn btn-normal btn-success pull-right btn-submit btn-reply"><?php _e('回复'); ?></a>
+                    <?php if ($this->human_valid) { ?>
+                    <em class="auth-img pull-right"><img src="" onclick="this.src = G_BASE_URL + '/account/captcha/' + Math.floor(Math.random() * 10000);" id="captcha" /></em>
+                    <input class="pull-right form-control" type="text" name="seccode_verify" placeholder="<?php _e('验证码'); ?>" />
+                    <?php } ?>
+                </div>
+                </form>
+                <?php } ?>
+            </div>
+            <!-- end 回复编辑器 -->
+        </div>
+    </section>
+</div>
+<style type="text/css" media="screen">
+    .alert-box {
+        bottom: 0 !important;
+        display: none;
+        /* left: 0 !important; */
+        outline: 0 none !important;
+        overflow: hidden !important;
+        position: fixed !important;
+        right: 0 !important;
+        /* top: 0 !important; */
+        z-index: 1050 !important;
+        background: none !important;
+        border: none !important;
+        border-radius: 0;
+        box-shadow: none !important;
+    }
+    #favorite_form .btn,#answer_form .btn,#answer_list_1 .btn { padding: 0;  }
+</style>
+<script type="text/javascript">
+    var ANSWER_EDIT_TIME = <?php echo get_setting('answer_edit_time'); ?>;
+    $(document).ready(function () {
+        if ($('.aw-article-vote.disabled').length)
+        {
+            $('.aw-article-vote.disabled a').attr('onclick', '');
+        }
+        AWS.at_user_lists('#wmd-input');
+        AWS.Init.init_article_comment_box($('.aw-article-comment'));
+    });
+</script>
+<?php TPL::output('global/footer.tpl.htm'); ?>

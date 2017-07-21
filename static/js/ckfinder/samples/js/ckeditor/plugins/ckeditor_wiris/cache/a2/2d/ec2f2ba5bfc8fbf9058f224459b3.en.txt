@@ -1,0 +1,1 @@
+A c c equals square root of A c c minus x squared end root plus A c c minus y squared plus A c c minus z squared

@@ -1,0 +1,50 @@
+<?php if ($this->article_list) { ?>
+<?php foreach($this->article_list as $key => $val) { ?>
+<div class="item clearfix wow animated fadeInUp" data-wow-delay="0.3s">
+	<div class="item-text">
+		<div class="title-line clearfix">
+			<h2>
+				<?php
+					$link = get_home_single_info( $val['title'],$val['parent_id'],'link'); 
+				?>
+				<a href="<?php echo $link; ?>"><?php echo get_home_single_info( $val['title'],$val['parent_id'],'title' ); ?></a>
+			</h2>
+			<span class="bt-wrap">
+				<a href="javascript:;"><?php echo get_home_type_name($val['parent_id']); ?></a>
+			</span>
+            <span class="pull-right item-avatar">
+                <?php
+                    echo get_home_single_info( $val['title'],$val['parent_id'],'image' );
+                ?>
+            </span>
+		</div>
+		<div class="text-line">
+		<?php
+			$content = get_home_single_info( $val['title'],$val['parent_id'],'content' );
+			$content = FORMAT::parse_attachs(nl2br(FORMAT::parse_bbcode($content)));
+
+			preg_match_all('/<img[^>]*src="([^"]+)"[^>]*>/i', htmlspecialchars_decode($content), $matches);
+
+			$content = stripslashes($content);
+			$content = html_entity_decode($content); 
+			$content = strip_tags($content);
+			echo trim(cjk_substr($content, 0, 70, 'UTF-8', '...'), "\r\n\t");
+			//显示图片
+            if(count($matches[0])){
+                echo '<div class="item-attaches">';
+                foreach($matches[0] as $k => $item){
+                    if($k > 2){break;}
+                    echo '<div class="attach-item">' . $item . '</div>';
+                }
+                echo '</div>';
+            }
+		?>	
+		</p>
+		<?php 
+			echo get_home_single_info( $val['title'],$val['parent_id'],'meta' ); 
+		?>
+	</div>
+</div>
+	</div>
+<?php } ?>
+<?php } ?>

@@ -1,0 +1,40 @@
+<?php if (is_array($this->list)) { ?>
+<?php foreach ($this->list AS $key => $val) { ?>	
+<div class="media">
+	<div class="media-body">
+		<div class="media-middle"><?php echo cjk_substr(strip_tags(htmlspecialchars_decode($val['answer_info']['answer_content'])), 0, 120, 'UTF-8', '...'); ?></div>
+		<h4 class="media-heading"><a href="<?php echo $val['link']; ?>">《<?php echo $val['title']; ?>》</a></h4>
+		<div class="media-bottom aw-flex">
+			<?php
+            //打赏
+            if($val['shang_cash']){
+            $shang_list = AWS_APP::model('sortout')->fetch_all('shang', 'item_type = \'answer\' AND item_id = ' . $val['answer_info']['answer_id']);
+			if(count($shang_list)){
+			?>
+			<span class="aw-flex__item">
+				<?php
+            foreach($shang_list as $k => $v){
+				if($k > 2){
+					echo '等' . count($shang_list) . '人';break;
+				}
+				$v['user_info'] = AWS_APP::model('account')->get_user_info_by_uid($v['uid']);
+				?>
+				<a href="people/<?php echo $v['user_info']['url_token']; ?>"><?php echo $v['user_info']['user_name']; ?></a>、
+				<?php
+            }
+        ?>
+				打赏了你
+			</span>
+			<?php
+            }
+            }
+        ?>
+			<span class="aw-flex__item"><?php echo $val['question_info']['comment_count']; ?> 人评论</span>
+			<span class="aw-flex__item">广告</span>
+			<span class="aw-flex__item">量比1.3</span>
+			<span class="aw-flex__item"><?php echo date_friendly($val['answer_info']['add_time']); ?></span>
+		</div>
+	</div>
+</div>
+<?php } ?>
+<?php } ?>

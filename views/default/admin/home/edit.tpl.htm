@@ -1,0 +1,86 @@
+<?php TPL::output('admin/global/header.tpl.htm'); ?>
+<?php TPL::output('admin/global/nav_menu.tpl.htm'); ?>
+
+<div class="aw-content-wrap">
+	<form action="admin/ajax/update_carousel/" id="category_form" method="post" onsubmit="return false">
+	<input type="hidden" name="carousel_id" value="<?php echo $this->category['id']; ?>" />
+	<div class="mod">
+		<div class="mod-head">
+			<h3>
+				<span class="pull-left"><?php _e('轮播图管理编辑'); ?></span>
+			</h3>
+		</div>
+		<div class="tab-content mod-content">
+			<table class="table table-striped">
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('顺序号'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								<input class="form-control" type="text" name="show_index" value="<?php echo $this->category['show_index']; ?>" />
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('图片'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+							<img src="<?php echo $this->category['url'];?>">
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('大标题'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								<input class="form-control" type="text" name="title" value="<?php echo $this->category['title']; ?>" />
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('小标题'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								<input class="form-control" type="text" name="content" value="<?php echo $this->category['content']; ?>" />
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('状态'); ?>:</span>
+							<div class="col-sm-6 col-xs-8">
+								<div class="btn-group mod-btn">
+									<label type="button" class="btn mod-btn-color">
+										<input type="radio" name="status" value="1"<?php if ($this->category['status']) { ?> checked="checked"<?php } ?> /> <?php _e('启用'); ?>
+									</label>
+
+									<label type="button" class="btn mod-btn-color">
+										<input type="radio" name="status" value="0"<?php if (!$this->category['status']) { ?> checked="checked"<?php } ?> /> <?php _e('停用'); ?>
+									</label>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tfoot>
+				<tr>
+					<td>
+						<input type="button" value="<?php _e('保存设置'); ?>" class="btn btn-primary center-block" onclick="AWS.ajax_post($('#category_form'));" />
+					</td>
+				</tr>
+				</tfoot>
+			</table>
+		</div>
+		</div>
+	</form>
+</div>
+
+<?php TPL::output('admin/global/footer.tpl.htm'); ?>

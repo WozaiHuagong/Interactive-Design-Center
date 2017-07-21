@@ -1,0 +1,66 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="personal spec-person per-info">
+	<div class="content clearfix">
+		<div class="left">
+			<?php TPL::output('account/setting/setting_header.tpl.htm'); ?>
+			
+			<form class="form-horizontal" action="account/ajax/modify_password/" method="post" id="setting_form">
+				<div class="content-wrap clearfix">
+					<div class="left-ct pull-left">
+						<p class="title">修改密码</p>
+						<div class="spec-content changepsw">
+							<dl class="clearfix">
+								<dt><label class="control-label" for="input-password-old"><?php _e('当前密码'); ?></label></dt>
+								<dd>
+									<input type="password" class="form-control" id="input-password-old" name="old_password" />
+								</dd>
+							</dl>
+							<dl class="clearfix">
+								<dt><label class="control-label" for="input-password-new"><?php _e('新的密码'); ?></label></dt>
+								<dd>
+								    <input type="password" class="form-control" id="input-password-new" name="password" />
+								</dd>
+							</dl> 
+							<dl class="clearfix">
+								<dt><label class="control-label" for="input-password-re-new"><?php _e('确认密码'); ?></label></dt>
+								<dd>
+								    <input type="password" class="form-control" id="input-password-re-new" name="re_password" />
+								</dd>
+							</dl>
+						</div>
+					</div>
+					<div class="bt-wrap clearfix">
+						<a href="javascript:;" class="btn btn-normal btn-success save clearfix" onclick="AWS.ajax_post($('#setting_form'));"><?php _e('保存'); ?></a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="right">
+			 <?php TPL::output('block/sidebar_menu.tpl.htm'); ?>
+		</div>
+	</div>
+</section>
+<style type="text/css" media="screen">
+    .alert-box {
+        bottom: 0 !important;
+        display: none;
+        /* left: 0 !important; */
+        outline: 0 none !important;
+        overflow: hidden !important;
+        position: fixed !important;
+        right: 0 !important;
+        /* top: 0 !important; */
+        z-index: 1050 !important;
+        background: none !important;
+        border: none !important;
+        border-radius: 0;
+        box-shadow: none !important;
+    }
+    #favorite_form .btn,#answer_form .btn,#answer_list_1 .btn { padding: 0;  }
+    .bt-line a { color: #fff; }
+    .btn-gray { background-color: #26b3a5; }
+    .btn-gray:hover { background-color: #666; }
+    .topic-tag .text,.topic-tag .close { background-color: #7ac58b !important; }
+</style>
+<?php TPL::output('account/setting/setting_footer.tpl.htm'); ?>
+<?php TPL::output('global/footer.tpl.htm'); ?>

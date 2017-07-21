@@ -1,0 +1,41 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="personal spec-person">
+    <div class="content clearfix">
+        <div class="left">
+            <div class="classify-line clearfix">
+                <div class="pull-left mod-head">
+                    <h3 id="main_title">我的广告 : <a class="small text-muted" href="info/<?php echo $this->ad['id']; ?>"><?php echo $this->ad['title']; ?></a></h3>
+                </div>
+            </div>
+            <div class="content-wrap">
+                <table class="img-text-wrap clearfix table">
+                    <thead>
+                        <th>时间</th>
+                        <th><?php _e('点击'); ?></th>
+                        <th><?php _e('位置'); ?></th>
+                        <th><?php _e('来源'); ?></th>
+                        <th><?php _e('展示'); ?></th>
+                        <th><?php _e('广告名称'); ?></th>
+                        <th>费用</th>
+                    </thead>
+                    <tbody class="finance-list table" id="article_list"></tbody>
+                </table>
+                <p class="load-more" id="article_more" data-page="0">
+                    <span><?php _e('更多'); ?></span>
+                </p>
+            </div>
+        </div>
+        <!-- 侧边栏 -->
+        <div class="right sidelist">
+            <?php TPL::output('block/finance_menu.tpl.htm'); ?>
+        </div>
+        <!-- end 侧边栏 -->
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        AWS.load_list_view(G_BASE_URL + '/home/ajax/ad_click/ad_id-<?php echo $this->ad['id']; ?>', $('#article_more'), $('#article_list'));
+    });
+</script>
+<?php TPL::output('global/footer.tpl.htm'); ?>

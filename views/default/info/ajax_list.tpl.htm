@@ -1,0 +1,17 @@
+<?php foreach($this->list as $key => $val){ ?>
+<div class="col-sm-4 ad-item">
+    <a href="<?php echo get_ad_url(null, $this->user_id, $val); ?>" target="_blank" rel="nofollow">
+        <img src="<?php echo get_ad_thumb($val['thumb']); ?>">
+        <div class="info-title"><?php echo $val['title']; ?></div>
+    </a>
+    <?php if($_GET['select'] OR ($this->user_id == $val['uid'] OR $this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'])){ ?>
+    <div class="ad-control">
+        <?php if($_GET['select']){ ?>
+        <a href="javascript:;" onclick="AWS.ajax_request('<?php echo get_js_url('/info/ajax/select_ad/'); ?>', 'location=<?php echo $_GET['location']; ?>&select_uid=<?php echo $_GET['select_uid']; ?>&item_id=<?php echo $_GET['item_id']; ?>&ad_id=<?php echo $val['id']; ?>');" class="btn btn-info">选它</a>
+        <?php }else{ ?>
+        <a href="javascript:;" onclick="AWS.ajax_request('<?php echo get_js_url('/info/ajax/offline_ad/'); ?>', 'id=<?php echo $val['id']; ?>');" class="btn btn-info">下架</a>
+        <?php } ?>
+    </div>
+    <?php } ?>
+</div>
+<?php } ?>

@@ -1,0 +1,119 @@
+<?php TPL::output('admin/global/header.tpl.htm'); ?>
+<?php TPL::output('admin/global/nav_menu.tpl.htm'); ?>
+
+<div class="aw-content-wrap">
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <span class="pull-left"><?php _e('轮播图管理'); ?></span>
+            </h3>
+        </div>
+
+        <div class="tab-content mod-body">
+            <div class="alert alert-success collapse error_message"></div>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th><?php _e('顺序号'); ?></th>
+                        <th><?php _e('图片'); ?></th>
+                        <th><?php _e('大标题'); ?></th>
+                        <th><?php _e('小标题'); ?></th>
+                        <th><?php _e('操作'); ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <form id="category_form" action="admin/ajax/save_home_sort/" method="post" onsubmit="return false">
+                    <?php foreach ($this->list AS $key => $val) { ?>
+                    <tr>
+                        <td>
+                            <?php echo $val['show_index']; ?>
+                        </td>
+                        <td >
+                            <img src="<?php echo $val['url']; ?>" >
+                        </td>
+                        <td>
+                            <?php echo $val['title']; ?>
+                        </td>
+                        <td>
+                            <?php echo $val['content']; ?>
+                        </td>
+                        <td >
+                            <a href="admin/home/edit/carousel_id-<?php echo $val['id']; ?>" data-toggle="tooltip" class="icon icon-edit md-tip" title="<?php _e('编辑'); ?>"></a>
+                            <a onclick="AWS.ajax_request(G_BASE_URL + '/admin/ajax/remove_carousel/', 'carousel_id=<?php echo $val['id'];?>');" data-toggle="tooltip" class="icon icon-trash md-tip" title="<?php _e('删除'); ?>"></a>
+                            <?php if ($val['id'] != $this->list[0]['id']) { ?>
+                            <a href="/admin/home/move_up/id-<?php echo $val['id']; ?>">上移 </a>
+                            <?php }else{ ?>
+                            <a disabled="true">上移 </a>
+                            <?php } ?>
+                            <?php if ($val['id'] != (end($this->list)['id'])) { ?>
+                            <a href="/admin/home/move_down/id-<?php echo $val['id']; ?>">下移 </a>
+                            <?php }else{ ?>
+                            <a disabled="true">上移 </a>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                    </form>
+                    </tbody>
+                    <tfoot class="mod-foot-center">
+                    <form id="add_carousel_form" action="admin/ajax/save_carousel/" method="post" onsubmit="return false" enctype="multipart/form-data">
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" name="show_index" />
+                        </td>
+                        <td>
+                            <input type="file" name="file" class="btn btn-default" accept="image/png,image/gif,image/jpg,image/jpeg">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="title" />
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="content" />
+                        </td>
+                        <td>
+                             <button onclick="AWS.ajax_post($('#add_carousel_form'));" class="btn-primary btn" <?php echo (count($this->list) >= 4)?'disabled':'';?>><?php _e('添加轮播图'); ?></button>
+                        </td>
+                    </tr>
+                    </form>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input.sort-action').keyup(function () {
+            if ($(this).val() != '')
+            {
+                AWS.ajax_post($('#category_form'), AWS.ajax_processer, 'error_message');
+            }
+        });
+
+        var json = '';
+
+        $.each($('#target-category option').toArray(), function (i, e)
+        {
+            if (i >= 1)
+            {
+                json += ',';
+            }
+
+            json += "{'title':'" + $(e).text() + "', 'id':'" + $(e).val() + "'}";
+        });
+
+
+        $('.move').click(function()
+        {
+            AWS.dialog('adminCategoryMove', {'option':eval('[' + json + ']'), 'name':'分类移动','from_id':'#settings_form'});
+            $('.from-category').val($(this).attr('data-id'));
+            $('.aw-category-move-box .col-md-12').prepend('<p>将 <b>' + $(this).attr('data-name') + '</b> 的内容批量移动到</p>');
+        });
+    });
+</script>
+
+<?php TPL::output('admin/global/footer.tpl.htm'); ?>

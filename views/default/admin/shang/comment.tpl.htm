@@ -1,0 +1,107 @@
+<?php TPL::output('admin/global/header.tpl.htm'); ?>
+<?php TPL::output('admin/global/nav_menu.tpl.htm'); ?>
+
+<div class="aw-content-wrap">
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#list" data-toggle="tab"><?php _e('评论打赏'); ?></a></li>
+                    <li><a href="#search" data-toggle="tab"><?php _e('搜索'); ?></a></li>
+                </ul>
+            </h3>
+        </div>
+        <div class="mod-body tab-content">
+            <div class="tab-pane active" id="list">
+                <div class="table-responsive">
+                    <?php if ($this->list) { ?>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>打赏时间</th>
+                            <th><?php _e('打赏用户'); ?></th>
+                            <th><?php _e('被打赏用户'); ?></th>
+                            <th><?php _e('打赏金额'); ?></th>
+                            <th><?php _e('评论'); ?></th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($this->list AS $key => $val) { ?>
+                        <tr>
+                            <td><?php echo date('Y-m-d H:i', $val['add_time']); ?></td>
+                            <td><a href="people/<?php echo $val['from_user']['url_token']; ?>" target="_blank"><?php echo $val['from_user']['user_name']; ?></a></td>
+                            <td><a href="people/<?php echo $val['user_info']['url_token']; ?>" target="_blank"><?php echo $val['user_info']['user_name']; ?></a></td>
+                            <td><?php echo $val['cash']/100; ?></td>
+                            <td><?php echo $val['title']; ?>  <a href="<?php echo $val['link']; ?>"><?php echo $val['info']['title']; ?></a></td>
+                            <td>-</td>
+                        </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                    <?php } ?>
+                </div>
+                <div class="mod-table-foot">
+                    <?php echo $this->pagination; ?>
+                </div>
+            </div>
+            <div class="tab-pane" id="search">
+                <form method="post" onsubmit="return false;" id="search_form" class="form-horizontal" role="form">
+
+                    <input name="action" type="hidden" value="search" />
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><?php _e('类型'); ?>:</label>
+
+                        <div class="col-sm-5 col-xs-8">
+                            <label>全部<input type="radio" value="0" name="type" /></label>
+                            <label>文章评论<input type="radio" value="article_comment" name="type" /></label>
+                            <label>整理文章评论<input type="radio" value="sortout_comment" name="type" /></label>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><?php _e('被打赏用户UID或用户名'); ?>:</label>
+
+                        <div class="col-sm-5 col-xs-8">
+                            <input class="form-control" type="text" value="<?php echo rawurldecode($_GET['uid']); ?>" name="uid" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><?php _e('打赏用户UID或用户名'); ?>:</label>
+
+                        <div class="col-sm-5 col-xs-8">
+                            <input class="form-control" type="text" value="<?php echo rawurldecode($_GET['from_uid']); ?>" name="from_uid" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-3 control-label"><?php _e('时间段'); ?>:</label>
+
+                        <div class="col-sm-6 col-xs-9">
+                            <div class="row">
+                                <div class="col-xs-11  col-sm-5 mod-double">
+                                    <input type="text" class="form-control mod-data" value="<?php echo base64_decode($_GET['start_date']); ?>" name="start_date" />
+                                    <i class="icon icon-date"></i>
+                                </div>
+                                <span class="mod-symbol col-xs-1 col-sm-1">
+                                -
+                                </span>
+                                <div class="col-xs-11 col-sm-5">
+                                    <input type="text" class="form-control mod-data" value="<?php echo base64_decode($_GET['end_date']); ?>" name="end_date" />
+                                    <i class="icon icon-date"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-5 col-xs-8">
+                            <button type="button" onclick="AWS.ajax_post($('#search_form'));" class="btn btn-primary"><?php _e('搜索'); ?></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php TPL::output('admin/global/footer.tpl.htm'); ?>

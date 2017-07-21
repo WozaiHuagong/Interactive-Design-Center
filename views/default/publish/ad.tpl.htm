@@ -1,0 +1,179 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="publish">
+    <div class="content ad-content clearfix">
+        <div class="ad-publisher">
+            <form action="publish/ajax/save_ad/" method="post" id="question_form" onsubmit="return false;" class="form-horizontal">
+                <input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
+                <input type="hidden" name="attach_access_key" value="<?php echo $this->attach_access_key; ?>" />
+                <input type="hidden" name="ad_id" id="ad_id" value="<?php echo $this->ad['id']; ?>" />
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><font color="red">※</font> 入口标题:</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="title" value="<?php echo $this->ad['title']; ?>" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 control-label" style="margin-top: 50px;"><font color="red">※</font> 入口图片:
+                        <p><span class="small text-muted">图片大小为16:9,上传的图片会被裁剪成450*280。支持 jpg、gif、png 等格式的图片,图片不能超过1M</span></p>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="hidden" name="thumb" id="ad-thumb" value="<?php echo $this->ad['thumb']; ?>">
+                        <div class="head-wrap">
+                            <img class="aw-border-radius-5" src="<?php echo get_ad_thumb($this->ad['thumb']); ?>?rand=<?php echo rand(1, 999); ?>" alt="" id="avatar_src" />
+                        </div>
+                        <div class="btn-upload">
+                            <a class="btn btn-default" id="avatar_uploader" href="javascript:;"><?php _e('上传图片'); ?></a>
+                            <span id="avatar_uploading_status" class="collapse"><i class="aw-loading"></i> <?php _e('文件上传中...'); ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group aw-editor-box">
+                    <div class="text-center" style="margin-bottom: 10px;"><font color="red">※</font> 内容编辑:</div>
+                    <div>
+                        <div class="mod-head">
+                            <div class="wmd-panel">
+                                <textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="10" name="description"><?php echo $this->ad['description']; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="mod-body">
+                            <p class="text-color-999"><span class="pull-right" id="question_detail_message">&nbsp;</span></p>
+                            <?php if (get_setting('upload_enable') == 'Y' AND get_setting('advanced_editor_enable' == 'Y')) { ?>
+                            <div class="aw-upload-box">
+                                <a class="btn btn-default">上传附件</a>
+                                <div class="upload-container"><ul class="upload-list"></ul></div>
+                                <span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('允许的附件文件类型'); ?>: <?php echo get_setting('allowed_upload_types'); ?></span>
+                            </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><input type="checkbox" name="has_link" value="1" id="has_link">&nbsp;&nbsp;链接地址:</label>
+                    <div class="col-sm-8 ad-more-info" style="display: none;">
+                        <input type="text" name="link" value="<?php echo $this->ad['link']; ?>" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group ad-more-info" style="display: none;">
+                    <label class="col-sm-2 control-label">链接快照:</label>
+                    <div class="col-sm-8">
+                        <input type="hidden" name="link_thumb" id="link-thumb" value="<?php echo $this->ad['link_thumb']; ?>">
+                        <div class="head-wrap">
+                            <img class="aw-border-radius-5" src="<?php echo get_ad_thumb($this->ad['link_thumb']); ?>?rand=<?php echo rand(1, 999); ?>" alt="" id="avatar_src2" />
+                        </div>
+                        <div class="btn-upload">
+                            <a class="btn btn-default" id="avatar_uploader2" href="javascript:;"><?php _e('上传图片'); ?></a>
+                            <span id="avatar_uploading_status2" class="collapse"><i class="aw-loading"></i> <?php _e('文件上传中...'); ?></span>
+                        </div>
+                        <p class="text-center">注: <font color="red">※</font>为必选项, 选择链接地址则必须上传链接地址快照</p>
+                    </div>
+                </div>
+                <div class="bt-wrap text-center">
+                    <a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发布'); ?></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<style type="text/css" media="screen">
+    .modal {
+        bottom: 0 !important;
+        display: none;
+        /* left: 0 !important; */
+        outline: 0 none !important;
+        overflow: hidden !important;
+        position: fixed !important;
+        right: 0 !important;
+        /* top: 0 !important; */
+        z-index: 1050 !important;
+        background: none !important;
+        border: none !important;
+        border-radius: 0;
+        box-shadow: none !important;
+    }
+    #aw_edit_topic_title         { margin-bottom: 10px; }
+    .publish .left .bt-wrap .btn { padding: 0;         }
+    .btn-upload{margin-top: 10px;}
+</style>
+<script type="text/javascript">
+    var ATTACH_ACCESS_KEY = '<?php echo $this->attach_access_key; ?>';
+    var PUBLISH_TYPE = 'ad';
+
+    $(document).ready(function () {
+        if ($('#question_id').length)
+        {
+            ITEM_ID = $('#question_id').val();
+        }
+        else if ($('#article_id').length)
+        {
+            ITEM_ID = $('#article_id').val();
+        }
+        else
+        {
+            ITEM_ID = '';
+        }
+
+        // 判断是否开启ck编辑器
+        if (G_ADVANCED_EDITOR_ENABLE == 'Y')
+        {
+            // 初始化编辑器
+            //var editor = CKEDITOR.replace( 'wmd-input' );
+            if ( typeof CKEDITOR !== 'undefined' ) {
+                CKEDITOR.addCss( 'img {max-width:100%; height: auto;} .cke_dialog_ui_hbox_last{ display:none; }' );
+                var editor = CKEDITOR.replace( 'wmd-input', {
+                    extraPlugins: 'uploadimage,image2,ckeditor_wiris,wecenterimage,wecenterlink',
+                    removePlugins: 'image,enterkey,elementspath,tabletools',
+                    height:350
+                });
+                CKFinder.setupCKEditor( editor );
+            } else {
+                document.getElementById( 'wmd-input' ).innerHTML = '<div class="tip-a tip-a-alert">This sample requires working Internet connection to load CKEditor from CDN.</div>'
+            }
+        }
+
+        if (ATTACH_ACCESS_KEY != '' && $('.aw-upload-box').length)
+        {
+            if (G_ADVANCED_EDITOR_ENABLE == 'Y')
+            {
+                var fileupload = new FileUpload('attach', '.aw-editor-box .aw-upload-box .btn', '.aw-editor-box .aw-upload-box .upload-container', G_BASE_URL + '/publish/ajax/attach_upload/id-' + PUBLISH_TYPE + '__attach_access_key-' + ATTACH_ACCESS_KEY, {
+                    'editor' : editor
+                });
+            }
+            else {
+                var fileupload = new FileUpload('attach', '.aw-editor-box .aw-upload-box .btn', '.aw-editor-box .aw-upload-box .upload-container', G_BASE_URL + '/publish/ajax/attach_upload/id-' + PUBLISH_TYPE + '__attach_access_key-' + ATTACH_ACCESS_KEY, {
+                    'editor' : $('.wmd-input')
+                });
+            }
+        }
+
+        if (ITEM_ID && G_UPLOAD_ENABLE == 'Y' && ATTACH_ACCESS_KEY != '')
+        {
+            if ($(".aw-upload-box .upload-list").length) {
+                $.post(G_BASE_URL + '/publish/ajax/' + PUBLISH_TYPE + '_attach_edit_list/', PUBLISH_TYPE + '_id=' + ITEM_ID, function (data) {
+                    if (data['err']) {
+                        return false;
+                    } else {
+                        if (data['rsm']['attachs'])
+                        {
+                            $.each(data['rsm']['attachs'], function (i, v) {
+                                fileupload.setFileList(v);
+                            });
+                        }
+                    }
+                }, 'json');
+            }
+        }
+
+        var fileUpload2 = new FileUpload('avatar', $('#avatar_uploader'), $('#avatar_src'), G_BASE_URL + '/publish/ajax/ad_upload/type-ad', {'loading_status' : '#avatar_uploading_status'}, function(result){$('#ad-thumb').val(result.data)});
+        var fileUpload3 = new FileUpload('avatar2', $('#avatar_uploader2'), $('#avatar_src2'), G_BASE_URL + '/publish/ajax/ad_upload/type-link', {'loading_status' : '#avatar_uploading_status2'}, function(result){$('#link-thumb').val(result.data)});
+
+        $('#has_link').on('change', function(){
+            if($(this).is(':checked')){
+                $('.ad-more-info').show();
+            }else{
+                $('.ad-more-info').hide();
+            }
+        });
+    });
+</script>
+
+<?php TPL::output('global/footer.tpl.htm'); ?>

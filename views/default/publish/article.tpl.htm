@@ -1,0 +1,115 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="publish">
+	<div class="content clearfix">
+		<div class="left">
+			<h2>发文</h2>
+			<form action="publish/ajax/<?php if ($this->article_info['id']) { ?>modify<?php } else { ?>publish<?php } ?>_article/" method="post" id="question_form" onsubmit="return false;">
+				<input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
+				<input type="hidden" name="attach_access_key" value="<?php echo $this->attach_access_key; ?>" />
+				<input type="hidden" name="article_id" id="article_id" value="<?php echo $this->article_info['id']; ?>" />
+					<div class="mod-body">
+						<label><?php _e('文章标题'); ?>:</label>
+						<input type="text" name="title" value="<?php echo $this->article_info['title']; ?>" class="form-control" />
+						<label><?php _e('摘要或职称'); ?>:</label>
+						<input type="text" name="summary" value="<?php echo $this->article_info['summary']; ?>" class="form-control" />
+						<label><?php _e('文章内容'); ?>:</label>
+						<div class="aw-mod aw-editor-box" style="margin-bottom: 10px;">
+							<div class="mod-head">
+								<div class="wmd-panel">
+									<textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="15" name="message"><?php echo $this->article_info['message']; ?></textarea>
+						        </div>
+							</div>
+							<div class="mod-body">
+								<p class="text-color-999"><span class="pull-right" id="question_detail_message">&nbsp;</span></p>
+								<?php if (get_setting('upload_enable') == 'Y' AND get_setting('advanced_editor_enable' == 'Y')) { ?>
+								<div class="aw-upload-box">
+									<a class="btn btn-default">上传附件</a>
+									<div class="upload-container"></div>
+									<span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('允许的附件文件类型'); ?>: <?php echo get_setting('allowed_upload_types'); ?></span>
+								</div>
+								<?php } ?>
+							</div>
+						</div>
+						<div >
+						<label for="classify">分类：</label>
+							<select name="category_id" id="classify" class="form-control">
+								<option value="0">- <?php _e('请选择分类'); ?> -</option>
+								<?php if ($this->article_topic_list) { ?>
+									<?php echo $this->article_topic_list; ?>
+								<?php } ?>
+								<!-- 其他类的value值固定为0 -->
+<!-- 								<option value="0">其他</option> -->
+							</select>
+						</div>
+<!-- 						<div>
+							<?php 
+								$is_original = $this->article_info['is_original'].'==='; 
+								$is_award  = $this->article_info['is_award'];
+							?>
+							<input <?php if( $is_original == 1 || $is_award == 1 ){ ?> checked="checked" <?php } ?> type="checkbox" value="1" name="original" id="original"> <b>原创声明</b>
+						</div> -->
+						<?php if ($this->article_info['topic_title'] == '行业精英'){ ?>
+						<div class="form-group">
+						    <label for="show_index">展示顺序号</label>
+						    <input type="text" class="form-control" id="show_index" placeholder="展示顺序号" name="show_index" value="<?php echo $this->article_info['show_index'];?>">
+						</div>
+						<?php }?>
+
+						<?php if ($this->human_valid) { ?>
+						<div class="aw-auth-img clearfix">
+							<em class="auth-img pull-right"><img src="" onclick="this.src = G_BASE_URL + '/account/captcha/' + Math.floor(Math.random() * 10000);" id="captcha"  /></em>
+							<input class="pull-right form-control" type="text" name="seccode_verify" placeholder="验证码" />
+						</div>
+						<?php } ?>
+					</div>
+					<div class="bt-wrap">
+						<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发起'); ?></a>
+					</div>
+			</form>
+		</div>
+		<!-- 侧边栏 -->
+		<div class="right">
+			<!-- 文章发起指南 -->
+			<div class="aw-mod publish-help">
+				<div class="mod-head">
+					<h3><?php _e('文章发起指南'); ?></h3>
+				</div>
+				<div class="mod-body">
+					<p><b>• <?php _e('文章标题'); ?>:</b> <?php _e('请用准确的语言描述您发布的文章思想'); ?></p>
+					<p><b>• <?php _e('文章补充'); ?>:</b> <?php _e('新增研究项目时，附件为列表页显示的图片，同时第一张附件作为封面图在首页和列表页显示；新增行业精英时,第一个附件为人物头像与封面'); ?></p>
+<!-- 					<p><b>• <?php _e('选择话题'); ?>:</b> <?php _e('选择一个或者多个合适的话题, 让您发布的文章得到更多有相同兴趣的人参与. 所有人可以在您发布文章之后添加和编辑该文章所属的话题'); ?></p> -->
+				</div>
+			</div>
+			<!-- end 文章发起指南 -->
+			<!-- 广告位 -->
+			<?php echo get_ad(ad_class::L_PUBLISH_ARTICLE, 0, 0, $this->user_info); ?>
+		</div>
+		<!-- end 侧边栏 -->
+	</div>
+</section>
+<style type="text/css" media="screen">
+	.modal {
+	    bottom: 0 !important;
+	    display: none;
+	    /* left: 0 !important; */
+	    outline: 0 none !important;
+	    overflow: hidden !important;
+	    position: fixed !important;
+	    right: 0 !important;
+	    /* top: 0 !important; */
+	    z-index: 1050 !important;
+	    background: none !important;
+	    border: none !important;
+	    border-radius: 0;
+	    box-shadow: none !important;
+	}
+	#aw_edit_topic_title         { margin-bottom: 10px; }
+	.publish .left .bt-wrap .btn { padding: 0;         }
+</style>
+<script type="text/javascript">
+	var ATTACH_ACCESS_KEY = '<?php echo $this->attach_access_key; ?>';
+	var CATEGORY_ID = <?php echo $this->article_info['category_id']; ?>;
+	var PUBLISH_TYPE = 'article';
+</script>
+
+<?php TPL::output('global/footer.tpl.htm'); ?>

@@ -1,0 +1,56 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<div class="main">
+	<?php //TPL::output('block/content_nav_menu.tpl.htm'); ?>
+	<section class="first-section">
+		<img src="<?php echo get_setting('upload_url') . get_setting('sortout_thumb'); ?>">
+	</section>
+	<section class="second-section clearfix">
+		<div class="left-slide pull-right">
+			<div class="item">
+				<p>
+					<span class="item-title">真·是·悬赏</span>
+					<span class="more"><a href="sortout/shang-1/">MORE</a></span>
+				</p>
+				<ol>
+					<?php
+						foreach ($this->hot_articles AS $hot_list) {
+					$uinfo = get_user_info($hot_list['uid']);
+					?>
+					<li>
+						<p class="major-title">
+							<a href="sortout/<?php echo $hot_list['id']; ?>"><?php echo $hot_list['title']; ?></a>
+						</p>
+						<p class="article-desc">
+							<span><i class="icon-contact"></i>&nbsp;<?php echo $uinfo['user_name']; ?></span>
+							<span><i class="icon icon-topic"></i>&nbsp;<?php echo $hot_list['comments']; ?></span>
+							<span><i class="icon icon-favor"></i>100</span>
+						</p>
+					</li>
+					<?php } ?>
+				</ol>
+			</div>
+			<!-- 广告位 -->
+			<?php echo get_ad(ad_class::L_SORTOUT_LIST_1, 0, 0, $this->user_info); ?>
+			<!-- 广告位 -->
+			<?php echo get_ad(ad_class::L_SORTOUT_LIST_2, 0, 0, $this->user_info); ?>
+			<!-- 广告位 -->
+			<?php echo get_ad(ad_class::L_SORTOUT_LIST_3, 0, 0, $this->user_info); ?>
+		</div>
+		<div class="right-slide">
+			<section class="img-text-wrap clearfix">
+				<div id="article_list"></div>
+				
+			</section>
+			<p  id="article_more" data-page="0">
+	           	<span><?php _e('更多'); ?></span>
+	        </p>
+		</div>
+		<!-- end 侧边栏 -->
+	</section>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		AWS.load_list_view(G_BASE_URL + '/sortout/ajax/list/<?php if($_GET['shang']) echo 'shang'.'-1'?>', $('#article_more'), $('#article_list'));
+	});
+</script>
+<?php TPL::output('global/footer.tpl.htm'); ?>

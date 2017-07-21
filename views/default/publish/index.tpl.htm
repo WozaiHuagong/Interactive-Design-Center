@@ -1,0 +1,125 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="publish">
+	<div class="content clearfix">
+		
+		<div class="left">
+			<h2>提问</h2>
+			<form action="publish/ajax/<?php if ($this->question_info['question_id']) { ?>modify<?php } else { ?>publish<?php } ?>_question/" method="post" id="question_form" onsubmit="return false;">
+				<input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
+				<input type="hidden" name="attach_access_key" value="<?php echo $this->attach_access_key; ?>" />
+				<input type="hidden" name="question_id" id="question_id" value="<?php echo $this->question_info['question_id']; ?>" />
+				<input type="hidden" name="ask_user_id" value="<?php echo $_POST['ask_user_id']; ?>" />
+				<label for="question_contents"><?php _e('问题标题'); ?>:</label>
+				<input type="text" placeholder="<?php _e('问题标题'); ?>..." name="question_content" id="question_contents" value="<?php echo $this->question_info['question_content']; ?>" class="form-control" />
+				<label for="wmd-input"><?php _e('问题内容'); ?>:</label>
+				<div class="aw-mod aw-editor-box" style="margin-bottom: 10px;">
+					<div class="mod-head">
+						<div class="wmd-panel">
+							<textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="15" name="question_detail">
+								<?php echo $this->question_info['question_detail']; ?>
+							</textarea>
+						</div>
+					</div>
+					<div class="mod-body">
+						<span class="pull-right text-color-999" id="question_detail_message">&nbsp;</span>
+						<?php if (get_setting('upload_enable') == 'Y') { ?>
+						<div class="aw-upload-box">
+							<a class="btn btn-default">上传附件</a>
+							<div class="upload-container"></div>
+							<span class="text-color-999 aw-upload-tips hidden-xs">
+								<?php _e('允许'); ?>:
+								<?php echo get_setting('allowed_upload_types'); ?></span>
+						</div>
+						<?php } ?>
+					</div>
+				</div>
+				<label for="thankMoney">赏金:</label><br>
+				<input placeholder="<?php _e('请输入赏金'); ?>..." type="text" value="<?php echo $this->shang['cash']/100; ?>" name="thankmoney" id="thankMoney" class="form-control">
+				<input type="checkbox" <?php if($this->question_info['question_free'] == 1){ echo 'checked="checked"'; } ?> value="1" name="free_question"> <b>免费提问</b><br>
+				<label for="question_contents"><?php _e('输入关键字'); ?>:</label>
+				<input type="text" placeholder="多个关键词请用空格隔开..." name="tag" value="<?php echo $this->question_info['tag']; ?>" class="form-control" />
+				<div>
+					<label for="classify">选择分类：</label>
+					<select name="category_id" id="classify" class="form-control">
+
+						<option value="0">- <?php _e('请选择分类'); ?> -</option>
+						<?php if ($this->question_topic_list) echo $this->question_topic_list; ?>
+					</select>
+				</div>
+				<?php if ($this->human_valid) { ?>
+				<div class="aw-auth-img clearfix">
+					<input class="form-control pull-right" type="text" name="seccode_verify" placeholder="验证码" /> 
+					<em class="auth-img pull-right">
+						<img src="" onclick="this.src = G_BASE_URL + '/account/captcha/' + Math.floor(Math.random() * 10000);" id="captcha"  />
+					</em> 
+				</div>
+				<?php } ?>
+				<?php if (!$this->question_info['question_id']){ ?>
+				<label class="clearfix">
+					<input type="checkbox" value="1" name="use_y" <?php if (!$this->question_info['use_y'] && $this->user_info['y_permission'] < 1) { ?> disabled<?php }else{ ?> checked<?php } ?>/> 使用Y权限
+				</label>
+				<?php } ?>
+				<div class="text-center">
+					<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发起'); ?></a>
+				</div>
+			</form>
+		</div>
+		<!-- 侧边栏 -->
+		<div class="right">
+			<!-- 问题发起指南 -->
+			<div class="aw-mod publish-help">
+				<div class="mod-head">
+					<h3>
+						<?php _e('问题发起指南'); ?></h3>
+				</div>
+				<div class="mod-body">
+					<p><b>•<?php _e('问题标题'); ?>:</b>
+						<?php _e('请用准确的语言描述您发布的问题思想'); ?></p>
+					<p><b>•<?php _e('问题补充'); ?>:</b>
+						<?php _e('详细补充您的问题内容, 并提供一些相关的素材以供参与者更多的了解您所要问题的主题思想'); ?>
+					</p>
+					<p><b>•<?php _e('选择话题'); ?>:</b>
+						<?php _e('选择一个或者多个合适的话题, 让您发布的问题得到更多有相同兴趣的人参与. 所有人可以在您发布问题之后添加和编辑该问题所属的话题'); ?>
+					</p>
+					<?php if (get_setting('integral_system_enabled') == 'Y') { ?>
+					<p><b>•<?php _e('关于积分'); ?>：</b>
+						<?php _e('发起一个问题会消耗您 %s 个积分', -get_setting('integral_system_config_new_question')); ?>,
+						<?php if (get_setting('integral_system_config_answer_change_source') == 'Y') { _e('每多一个回复你将获得 %s 个积分的奖励', -get_setting('integral_system_config_new_answer')); ?>,
+						<?php } _e('为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能'); ?>.</p>
+					<?php } ?>
+				</div>
+			</div>
+			<!-- end 问题发起指南 -->
+			<!-- 广告位 -->
+			<?php echo get_ad(ad_class::L_PUBLISH_ASK, 0, 0, $this->user_info); ?>
+		</div>
+		<!-- end 侧边栏 -->
+	</div>
+
+</section>
+<style type="text/css" media="screen">
+	.modal {
+	    bottom: 0 !important;
+	    display: none;
+	    /* left: 0 !important; */
+	    outline: 0 none !important;
+	    overflow: hidden !important;
+	    position: fixed !important;
+	    right: 0 !important;
+	    /* top: 0 !important; */
+	    z-index: 1050 !important;
+	    background: none !important;
+	    border: none !important;
+	    border-radius: 0;
+	    box-shadow: none !important;
+	}
+	#aw_edit_topic_title         { margin-bottom: 10px; }
+	.publish .left .bt-wrap .btn,.btn { padding: 6px 12px; }
+	.aw-edit-topic-box .btn,.bt-wrap a.btn { padding: 0 !important; }
+</style>
+<script type="text/javascript">
+	var ATTACH_ACCESS_KEY = '<?php echo $this->attach_access_key; ?>';
+	var CATEGORY_ID = <?php echo $this->question_info['category_id']; ?>;
+	var PUBLISH_TYPE = 'question';
+</script>
+<?php TPL::output('global/footer.tpl.htm'); ?>

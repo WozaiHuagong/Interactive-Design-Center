@@ -1,0 +1,9 @@
+<div class="classify-line clearfix">
+	<div class="pull-left"><h3>用户设置</h3></div>
+	<div class="comment-classify pull-right">
+		<a href="account/setting/profile/" <?php if (!$_GET['act'] OR $_GET['act'] == 'profile') { ?> class="active"<?php } ?>>基本信息</a>
+		<a href="account/setting/openid/" <?php if ($_GET['act'] == 'openid') { ?> class="active"<?php } ?>>账号绑定</a>
+		<a href="account/setting/security/" <?php if ($_GET['act'] == 'security') { ?> class="active"<?php } ?>>安全设置</a>
+		<a href="account/setting/verify/" <?php if ($_GET['act'] == 'verify') { ?> class="active"<?php } ?>>申请认证</a>
+	</div>
+</div>

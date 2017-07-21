@@ -1,0 +1,116 @@
+<?php TPL::output('admin/global/header.tpl.htm'); ?>
+<?php TPL::output('admin/global/nav_menu.tpl.htm'); ?>
+
+<div class="aw-content-wrap">
+	<form action="admin/info/save_withdraw/" id="category_form" method="post" onsubmit="return false">
+	<input type="hidden" name="id" value="<?php echo $this->withdraw['id']; ?>" />
+	<input type="hidden" name="status" id="pay-status" value="ok" />
+	<div class="mod">
+		<div class="mod-head">
+			<h3>
+				<span class="pull-left"><?php _e('提现申请'); ?></span>
+			</h3>
+		</div>
+		<div class="tab-content mod-content">
+			<table class="table table-striped">
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('订单状态'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								<?php if($this->withdraw['status'] == 'wait'){ ?>审核中<?php }elseif($this->withdraw['status'] == 'ok'){ ?>已处理<?php }elseif($this->withdraw['status'] == 'close'){ ?>关闭<?php } ?>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('申请时间'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								<?php echo date('Y-m-d H:i', $this->withdraw['add_time']); ?>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('申请人'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								<a href="people/<?php echo $this->withdraw['user_info']['url_token']; ?>" target="_blank"><?php echo $this->withdraw['user_info']['user_name']; ?></a>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('支付宝信息'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								<p>支付宝账号:<?php echo $this->withdraw['pay_account']; ?></p>
+								<p>支付宝姓名:<?php echo $this->withdraw['pay_name']; ?></p>
+								<code>请根据此支付宝账号信息打款给用户</code>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('备注'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								<?php echo $this->withdraw['info']; ?>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('提现金额'); ?>:</span>
+							<div class="col-sm-5 col-xs-8">
+								提现金额: <code><?php echo number_format($this->withdraw['cash']/100, 2); ?></code><br>
+								手续费: <code><?php echo number_format(($this->withdraw['cash'] - $this->withdraw['real_cash'])/100, 2); ?></code><br>
+								实际支付: <code><?php echo number_format($this->withdraw['real_cash']/100, 2); ?></code><br>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('支付情况'); ?>:</span>
+							<div class="col-sm-7 col-xs-8">
+								<?php if($this->withdraw['status'] != 'wait'){ ?>
+								<p>支付时间: <?php echo date('Y-m-d H:i', $this->withdraw['pay_time']); ?></p>
+								<p>支付宝流水号: <?php echo $this->withdraw['terrace_id']; ?></p>
+								<?php }else{ ?>
+								<div class="form-group">
+									<span class="col-sm-3 control-label"><?php _e('支付宝流水号'); ?></span>
+									<div class="col-sm-8">
+										<input class="form-control" type="text" name="terrace_id" />
+									</div>
+								</div>
+								<?php } ?>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<?php if($this->withdraw['status'] == 'wait'){ ?>
+				<tfoot>
+				<tr>
+					<td class="text-center">
+						<input type="button" value="<?php _e('通过申请'); ?>" class="btn btn-primary" onclick="$('#pay-status').val('ok');AWS.ajax_post($('#category_form'));" />
+						<input type="button" value="<?php _e('关闭提现申请'); ?>" class="btn btn-default" onclick="$('#pay-status').val('close');AWS.ajax_post($('#category_form'));" />
+					</td>
+				</tr>
+				</tfoot>
+				<?php } ?>
+			</table>
+		</div>
+		</div>
+	</form>
+</div>
+
+<?php TPL::output('admin/global/footer.tpl.htm'); ?>

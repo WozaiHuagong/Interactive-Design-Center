@@ -1,0 +1,100 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="personal spec-person">
+    <div class="content clearfix">
+        <div class="left">
+            <div class="classify-line clearfix">
+                <div class="pull-left mod-head">
+                    <h3 id="main_title">是金包包 -> <?php echo $this->finance_crumb; ?></h3>
+                </div>
+            </div>
+            <div class="content-wrap">
+                <div class="user-cash">
+                    <?php if($_GET['type'] == 'shang'){ ?>
+                    <div class="cash-title">赏金余额</div>
+                    <div class="cash-value"><span><?php echo number_format($this->user_info['cash']/100, 2); ?></span> 元</div>
+                    <div class="cash-control">
+                        <a href="payment/charge/type-shang" class="btn btn-primary btn-lg">充值</a>
+                        <a href="payment/withdraw/type-shang" class="btn btn-default btn-lg">提现</a>
+                    </div>
+                    <?php }else{ ?>
+                    <div class="cash-title">广告余额</div>
+                    <div class="cash-value"><span><?php echo number_format($this->user_info['ad_cash']/100, 2); ?></span> 元</div>
+                    <div class="cash-control">
+                        <a href="payment/charge/type-ad" class="btn btn-primary btn-lg">充值</a>
+                        <a href="payment/withdraw/type-ad" class="btn btn-default btn-lg">提现</a>
+                    </div>
+                    <?php } ?>
+                </div>
+                <div class="innerbox-title">明细</div>
+                <div class="innerbox-selector">交易类型:
+                    <label><input type="checkbox" name="action[in]" id="action-in" value="1" checked>收入</label>
+                    <label><input type="checkbox" name="action[out]" id="action-out" value="1" checked>支出</label></div>
+                <table class="img-text-wrap clearfix table">
+                    <thead>
+                        <th>时间</th>
+                        <th>用户</th>
+                        <th>名称</th>
+                        <th>收支</th>
+                        <th>金额</th>
+                        <th>当前余额</th>
+                    </thead>
+                    <tbody>
+                        <?php if($this->list){ ?>
+                        <?php foreach($this->list as $key => $val){ ?>
+                        <tr>
+                            <td><?php echo date('Y-m-d H:i', $val['add_time']); ?></td>
+                            <td>提现申请</td>
+                            <td><?php echo $val['info']; ?></td>
+                            <td>支出</td>
+                            <td colspan="2"><?php echo number_format($val['cash']/100, 2); ?>(审核中)</td>
+                        </tr>
+                        <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                    <tbody class="finance-list table" id="article_list"></tbody>
+                </table>
+                <p class="load-more" id="article_more" data-page="0">
+                    <span><?php _e('更多'); ?></span>
+                </p>
+            </div>
+        </div>
+        <!-- 侧边栏 -->
+        <div class="right sidelist">
+            <?php TPL::output('block/finance_menu.tpl.htm'); ?>
+        </div>
+        <!-- end 侧边栏 -->
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        AWS.load_list_view(G_BASE_URL + '/home/ajax/finance/type-<?php echo $_GET['type']; ?>__action-<?php echo $_GET['action']; ?>', $('#article_more'), $('#article_list'));
+
+        $('#action-in').change(function(){
+            init_load_more();
+        });
+
+        $('#action-out').change(function(){
+            init_load_more();
+        });
+
+        function init_load_more(){
+            $('#article_list').html('');
+            $('#article_more').attr('data-page', 0).removeClass('disabled').unbind('click').bind('click', function () { return false; });
+            if($('#action-in').is(':checked')){
+                if($('#action-out').is(':checked')) {
+                    AWS.load_list_view(G_BASE_URL + '/home/ajax/finance/type-<?php echo $_GET['type']; ?>', $('#article_more'), $('#article_list'));
+                }else{
+                    AWS.load_list_view(G_BASE_URL + '/home/ajax/finance/type-<?php echo $_GET['type']; ?>__action-in', $('#article_more'), $('#article_list'));
+                }
+            }else{
+                if($('#action-out').is(':checked')) {
+                    AWS.load_list_view(G_BASE_URL + '/home/ajax/finance/type-<?php echo $_GET['type']; ?>__action-out', $('#article_more'), $('#article_list'));
+                }else{
+                    AWS.load_list_view(G_BASE_URL + '/home/ajax/finance/type-<?php echo $_GET['type']; ?>', $('#article_more'), $('#article_list'));
+                }
+            }
+        }
+    });
+</script>
+<?php TPL::output('global/footer.tpl.htm'); ?>

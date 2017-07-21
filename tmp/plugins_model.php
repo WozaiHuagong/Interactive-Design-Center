@@ -1,0 +1,1 @@
+a:2:{s:18:"aws_external_class";s:70:"E:\server\Apache24\htdocs\2017-7/plugins/aws_external/aws_external.php";s:26:"aws_offical_external_class";s:86:"E:\server\Apache24\htdocs\2017-7/plugins/aws_offical_external/aws_offical_external.php";}

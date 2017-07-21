@@ -1,0 +1,116 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<div class="main">
+	<?php //TPL::output('block/content_nav_menu.tpl.htm'); ?>
+	<section class="first-section">
+		<img src="<?php echo get_setting('upload_url') . get_setting('ask_thumb'); ?>">
+	</section>
+	<section class="second-section clearfix">
+		<!-- 侧边栏 -->
+		<div class="left-slide">
+			<?php //TPL::output('block/sidebar_feature.tpl.htm'); ?>
+			<?php //TPL::output('block/sidebar_hot_topics.tpl.htm'); ?>
+			<?php //TPL::output('block/sidebar_hot_users.tpl.htm'); ?>
+			<?php //TPL::output('block/sidebar_comment.tpl.htm'); ?>
+			<div class="item">
+				<p>
+					<span class="item-title">ABC</span>
+					<span class="more"><a href="#">MORE</a></span>
+				</p>
+				<ol >
+					<ol>
+						<?php  
+							foreach ( $this->site_info AS $info_list) { 
+						?>
+						<li><a class="major-title" href="abc/<?php echo $info_list['question_id']; ?>"><?php echo $info_list['question_content']; ?></a></p></li>
+						<?php } ?>
+						<li><a href="javascript:;"onclick="AWS.dialog('CBox', {item_type:'C', item_id:1})">联系建议·@<?php echo substr(date_friendly(time(),"Y"),0,4)?>是</a></li>
+					</ol>
+				</ol>
+			</div>
+			<div class="item">
+				<p>
+					<span class="item-title">那·是·悬赏</span>
+					<span class="more"><a href="question/sort_type-shang">MORE</a></span>
+				</p>
+				<ol>
+					<?php
+						
+						foreach ($this->question_shang AS $question) {
+					$uinfo = get_user_info($question['question_info']['published_uid']);
+					?>
+					<li>
+						<p class="major-title">
+							<a href="question/<?php echo $question['qid']; ?>"><?php echo $question['question_info']['question_content']; ?></a></p>
+						<p class="article-desc">
+							<span><i class="icon icon-contact"></i>&nbsp;<?php echo $uinfo['user_name']; ?></span>
+							<span><i class="icon icon-date"></i>&nbsp;<?php echo date_friendly($question['question_info']["add_time"],"","Y-m-d"); ?></span>
+							<span><i class="icon icon-favor"></i>15</span>
+							<span><i class="icon icon-share"></i>20</span>
+						</p>
+					</li>
+					<?php } ?>
+				</ol>
+			</div>
+			<!-- 广告位 -->
+			<?php echo get_ad(ad_class::L_ASK_LIST_1, 0, 0, $this->user_info); ?>
+			<!-- 广告位 -->
+			<?php echo get_ad(ad_class::L_ASK_LIST_2, 0, 0, $this->user_info); ?>
+			<!-- 广告位 -->
+			<?php echo get_ad(ad_class::L_ASK_LIST_3, 0, 0, $this->user_info); ?>
+		</div>
+		<!-- end 侧边栏 -->
+
+		<div class="right-slide question index-img">
+			<div class="top-title clearfix">
+				<div class="top-title-text">
+					<h3>问题列表</h3>
+				</div>
+				<div class="top-title-tab">
+					<span<?php if ((!$_GET['sort_type'] OR $_GET['sort_type'] == 'new') AND !$_GET['is_recommend']) { ?> class="active"<?php } ?>><a href="question/<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?><?php if ($this->category_info['id']) { ?>category-<?php echo $this->category_info['id']; ?><?php } ?>"><?php _e('最新'); ?></a></span>
+
+					<span<?php if ($_GET['sort_type'] == 'hot') { ?> class="active"<?php } ?>><a href="question/<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>category-<?php echo $this->category_info['id']; ?>__sort_type-hot__day-30" id="sort_control_hot"><?php _e('热门'); ?></a></span>
+
+				</div>
+			</div>
+
+			<?php if ($_GET['sort_type'] == 'hot') { ?>
+			<!-- 自定义tab切换 -->
+			<div class="aw-tabs">
+				<ul>
+					<li<?php if ($_GET['sort_type'] == 'hot' AND $_GET['day'] == 30) { ?> class="active"<?php } ?>><a href="question/<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>sort_type-hot__<?php if ($this->category_info['id']) { ?>__category-<?php echo $this->category_info['id']; ?><?php } ?>__day-30" day="30"><?php _e('30天'); ?></a></li>
+				  	<li<?php if ($_GET['sort_type'] == 'hot' AND $_GET['day'] == 7) { ?> class="active"<?php } ?>><a href="question/<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>sort_type-hot__<?php if ($this->category_info['id']) { ?>__category-<?php echo $this->category_info['id']; ?><?php } ?>__day-7" day="7"><?php _e('7天'); ?></a></li>
+				  	<li<?php if ($_GET['sort_type'] == 'hot' AND $_GET['day'] == 1) { ?> class="active"<?php } ?>><a href="question/<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>sort_type-hot__<?php if ($this->category_info['id']) { ?>__category-<?php echo $this->category_info['id']; ?><?php } ?>__day-1" day="1"><?php _e('当天'); ?></a></li>
+				</ul>
+			</div>
+			<!-- end 自定义tab切换 -->
+			<?php } ?>
+
+			<!-- 问题列表 -->
+			<div id="question_list"></div>
+			<!-- end 问题列表 -->
+			<!-- <?php //echo $this->pagination; ?> -->
+			<!-- <p id="question_more">更多</p> -->
+			<p  id="question_more" data-page="0">
+	            <span><?php _e('更多'); ?></span>
+	        </p>
+		</div>
+	</section>
+	<?php  
+		if(!empty($_GET['is_recommend'])){
+			$u = 'is_recommend-1';
+		}else{
+			if(!empty($_GET['sort_type'])){
+				$u = 'sort_type-' . $_GET['sort_type'] . '__day-' . $_GET['day'];
+			}else{
+				$u = '';
+			}
+		}
+	?>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		var u = '<?php echo $u; ?>';
+		AWS.load_list_view(G_BASE_URL + '/question/ajax/list/' + u, $('#question_more'), $('#question_list'));
+	});
+</script>
+<?php TPL::output('global/footer.tpl.htm'); ?>

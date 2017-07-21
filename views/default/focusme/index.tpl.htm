@@ -1,0 +1,60 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="personal spec-person">
+	<div class="content clearfix">
+		<div class="left">
+			<div class="classify-line clearfix">
+				<div class="pull-left"><h3>关注我的用户</h3></div>
+				<!-- <div class="comment-classify pull-right">
+					<a href="focus/" class="active">我的关注</a>
+					<a href="focus/t-other" target="_blank">关注我的</a>
+				</div> -->
+			</div>
+			<div class="content-wrap">
+					<div class="item-list">
+						<ul class="item-list">
+							<?php if (sizeof ($this->list) > 0) { ?>
+							<?php 
+								foreach ($this->list AS $key => $val) { 
+							?>
+								<li class="clearfix">
+									<div class="title pull-left">
+										<div class="head-wrap pull-left">
+											<a class="aw-user-name" data-id="<?php echo $val['uid']; ?>" href="people/<?php echo $val['url_token']; ?>">
+											<img class="user-head-l" alt="<?php echo $val['user_name']; ?>" src="<?php echo get_avatar_url($val['uid'], 'mid'); ?>" /></a>
+										</div>
+										<div class="info-wrap pull-left">
+											<p class="username">
+												<a href="people/<?php echo $val['url_token']; ?>" target="_blank"><?php echo $val['user_name']; ?></a>
+											</p>
+											<p class="tag"><?php echo $val['signature']; ?></p>
+										</div>
+									</div>	
+									<div class="date pull-right">
+										<p><?php echo date_friendly(get_single_user_follow($this->user_id)); ?></p>
+										<!-- <p><a href="#">取消关注</a></p> -->
+									</div>
+								</li>
+								<?php } ?>
+							<?php } ?>
+						</ul>
+					</div>
+					<!-- <div class="page-line clearfix"> 
+						<ul class="pagination pull-right"> 
+							<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li> 
+							<li class="active"><a href="#">1</a></li> 
+							<li><a href="#">2</a></li> 
+							<li><a href="#">3</a></li> 
+							<li><a href="#">4</a></li> 
+							<li><a href="#">5</a></li> <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li> 
+						</ul> 
+					</div> -->
+				</div>
+		</div>
+		<!-- 侧边栏 -->
+		<div class="right">
+			<?php TPL::output('block/sidebar_menu.tpl.htm'); ?>
+		</div>
+		<!-- end 侧边栏 -->
+	</div>
+</section>
+<?php TPL::output('global/footer.tpl.htm'); ?>

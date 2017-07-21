@@ -1,0 +1,211 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<div class="aw-container-wrap" style="display:none;">
+	<?php TPL::output('block/content_nav_menu.tpl.htm'); ?>
+
+	<div class="container">
+		<div class="row">
+			<div class="aw-content-wrap clearfix">
+				<div class="col-sm-12 col-md-9 aw-main-content">
+					<!-- 新消息通知 -->
+					<div class="aw-mod aw-notification-box collapse" id="index_notification">
+						<div class="mod-head common-head">
+							<h2>
+								<span class="pull-right"><a href="account/setting/privacy/#notifications" class="text-color-999"><i class="icon icon-setting"></i> <?php _e('通知设置'); ?></a></span>
+								<i class="icon icon-bell"></i><?php _e('新通知'); ?><em class="badge badge-important" name="notification_unread_num"><?php echo $this->user_info['notification_unread']; ?></em>
+							</h2>
+						</div>
+						<div class="mod-body">
+							<ul id="notification_list"></ul>
+						</div>
+						<div class="mod-footer clearfix">
+							<a href="javascript:;" onclick="AWS.Message.read_notification(false, 0, false);" class="pull-left btn btn-mini btn-gray"><?php _e('我知道了'); ?></a>
+							<a href="notifications/" class="pull-right btn btn-mini btn-success"><?php _e('查看所有'); ?></a>
+						</div>
+					</div>
+					<!-- end 新消息通知 -->
+					<!-- tab切换 -->
+					<ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
+						<li<?php if ($_GET['sort_type'] == 'unresponsive') { ?> class="active"<?php } ?>><a href="<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>category-<?php echo $this->category_info['id']; ?>__sort_type-unresponsive"><?php _e('等待回复'); ?></a></li>
+						<li<?php if ($_GET['sort_type'] == 'hot') { ?> class="active"<?php } ?>><a href="<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>category-<?php echo $this->category_info['id']; ?>__sort_type-hot__day-7" id="sort_control_hot"><?php _e('热门'); ?></a></li>
+						<li<?php if ($_GET['is_recommend']) { ?> class="active"<?php } ?>><a href="<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>category-<?php echo $this->category_info['id']; ?>__is_recommend-1"><?php _e('推荐'); ?></a></li>
+						<li<?php if ((!$_GET['sort_type'] OR $_GET['sort_type'] == 'new') AND !$_GET['is_recommend']) { ?> class="active"<?php } ?>><a href="<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?><?php if ($this->category_info['id']) { ?>category-<?php echo $this->category_info['id']; ?><?php } ?>"><?php _e('最新'); ?></a></li>
+
+						<h2 class="hidden-xs"><?php if ($this->category_info) { ?><?php echo $this->category_info['title']; ?><?php } else if ($this->feature_info) { ?><?php echo $this->feature_info['title']; ?><?php } else { ?><i class="icon icon-list"></i> <?php _e('发现'); ?><?php } ?></h2>
+					</ul>
+					<!-- end tab切换 -->
+
+					<?php if ($_GET['sort_type'] == 'hot') { ?>
+					<!-- 自定义tab切换 -->
+					<div class="aw-tabs">
+						<ul>
+							<li<?php if ($_GET['day'] == 30) { ?> class="active"<?php } ?>><a href="<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>sort_type-hot__<?php if ($this->category_info['id']) { ?>__category-<?php echo $this->category_info['id']; ?><?php } ?>__day-30" day="30"><?php _e('30天'); ?></a></li>
+						  	<li<?php if ($_GET['day'] == 7) { ?> class="active"<?php } ?>><a href="<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>sort_type-hot__<?php if ($this->category_info['id']) { ?>__category-<?php echo $this->category_info['id']; ?><?php } ?>__day-7" day="7"><?php _e('7天'); ?></a></li>
+						  	<li<?php if ($_GET['day'] == 1) { ?> class="active"<?php } ?>><a href="<?php if ($this->feature_info) { ?>feature_id-<?php echo $this->feature_info['id']; ?>__<?php } ?>sort_type-hot__<?php if ($this->category_info['id']) { ?>__category-<?php echo $this->category_info['id']; ?><?php } ?>__day-1" day="1"><?php _e('当天'); ?></a></li>
+						</ul>
+					</div>
+					<!-- end 自定义tab切换 -->
+					<?php } ?>
+
+					<div class="aw-mod aw-explore-list">
+						<div class="mod-body">
+							<div class="aw-common-list">
+								<?php echo $this->posts_list_bit; ?>
+							</div>
+						</div>
+						<div class="mod-footer">
+							<?php echo $this->pagination; ?>
+						</div>
+					</div>
+				</div>
+
+				<!-- 侧边栏 -->
+				<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs hidden-sm">
+					<?php TPL::output('block/sidebar_feature.tpl.htm'); ?>
+					<?php TPL::output('block/sidebar_hot_topics.tpl.htm'); ?>
+					<?php TPL::output('block/sidebar_hot_users.tpl.htm'); ?>
+				</div>
+				<!-- end 侧边栏 -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="main">
+	<!-- <section class="first-section">
+		<div id="wowslider-container1">
+			<div class="ws_images">
+				<ul>
+					<li><a href="#"><img src="<?php echo G_STATIC_URL; ?>/images/slider_01.jpg" alt="大数据时代到来" title="大数据时代到来" id="wows1_0"/></a></li>
+					<li><a href="#"><img src="<?php echo G_STATIC_URL; ?>/images/slider_02.jpg" alt="bootstrap slider" title="即时的信息数据" id="wows1_1"/></a></li>
+					<li><a href="#"><img src="<?php echo G_STATIC_URL; ?>/images/slider_03.jpg" alt="slider_03" title="采集数据资源利用" id="wows1_2"/></a></li>
+				</ul>
+			</div>
+			<div class="ws_shadow"></div>
+		</div>	
+	</section> -->
+	<section class="second-section clearfix">
+		<div class="left-slide">
+			<div class="item">
+				<p>
+					<span class="item-title">ABC</span>
+					<span class="more"><a href="#">MORE</a></span>
+				</p>
+				<ol >
+					<ol>
+						<?php  
+							foreach ( $this->site_info AS $info_list) { 
+						?>
+						<li><a class="major-title" href="abc/<?php echo $info_list['question_id']; ?>"><?php echo $info_list['question_content']; ?></a></p></li>
+						<?php } ?>
+						<li><a href="javascript:;"onclick="AWS.dialog('CBox', {item_type:'C', item_id:0})">联系建议·@<?php echo substr(date_friendly(time(),"Y"),0,4)?>是</a></li>
+					</ol>
+				</ol>
+			</div>
+			<div class="item">
+				<p>
+					<span class="item-title">真·是·文章</span>
+					<span class="more"><a href="article/">MORE</a></span>
+				</p>
+				<ol>
+					<?php 
+						foreach ($this->hot_articles AS $hot_list) { 
+						$uinfo = get_user_info($hot_list['uid']);
+					?>
+						<li>
+							<p class="major-title">
+								<a href="article/<?php echo $hot_list['id']; ?>"><?php echo $hot_list['title']; ?></a>
+							</p>
+							<p class="article-desc">
+								<span><i class="icon-contact"></i>&nbsp;<?php echo $uinfo['user_name']; ?></span>
+								<span><i class="icon icon-topic"></i>&nbsp;<?php echo $hot_list['comments']; ?></span>
+								<span><i class="icon icon-favor"></i>100</span>
+							</p>
+						</li>
+					<?php } ?>
+				</ol>
+			</div>
+			<div class="item">
+				<p>
+					<!-- <span class="more"><a href="#">MORE</a></span> -->
+				</p>
+				<div id="tagscloud">
+					<?php  
+						foreach ($this->hot_tag as $k => $tag_list) { 
+					?>
+					<a class="tagc<?php echo generateRandomString(1);  ?>"><?php echo $tag_list['title']; ?></a>
+					<?php } ?>
+				</div>
+			</div>
+			<div class="item">
+				<p>
+					<span class="item-title">那·是·整理</span>
+					<span class="more"><a href="sortout/">MORE</a></span>
+				</p>
+				<ol>
+					<?php  
+						foreach ($this->hot_sortout AS $sortout_list) { 
+						$uinfo = get_user_info($sortout_list['uid']);
+					?>
+					<li>
+						<p class="major-title">
+						<a href="sortout/<?php echo $sortout_list['id']; ?>"><?php echo $sortout_list['title']; ?></a></p>
+						<p class="article-desc">
+							<span><i class="icon icon-contact"></i>&nbsp;<?php echo $uinfo['user_name']; ?></span>
+							<span><i class="icon icon-date"></i>&nbsp;<?php echo date_friendly($sortout_list["add_time"],"","Y-m-d"); ?></span>
+							<span><i class="icon icon-favor"></i>15</span>
+							<span><i class="icon icon-share"></i>20</span>
+						</p>
+					</li>
+					<?php } ?>
+				</ol>
+			</div>
+			<div class="item">
+				<p>
+					<span class="item-title">来·是·评论</span>
+					<!-- <span class="more"><a href="#">MORE</a></span> -->
+				</p>
+				<ol>
+					<?php 
+						foreach ($this->hot_comment AS $comment_list) {
+						$uinfo = get_user_info($comment_list['uid']);
+						$ainfo = get_article_info($comment_list['article_id']);
+					?>
+						<li>
+							<p class="major-title wow slideInUp"><a href="article/<?php echo $comment_list['article_id']; ?>"><?php echo $comment_list['message']; ?></a></p>
+							<p class="from wow slideInUp">来自：<a href="article/<?php echo $comment_list['article_id']; ?>"><?php echo $ainfo['title']; ?></a></p>
+							<p class="article-desc">
+								<span><i class="icon icon-topic"></i>&nbsp;<?php echo $uinfo['user_name']; ?></span>
+								<span><i class="icon icon-thank"></i><?php echo $comment_list['votes']; ?></span>
+							</p>
+						</li>
+					<?php } ?>
+				</ol>
+			</div>
+		</div>
+		<div class="right-slide index-img">
+			<section class="img-text-wrap clearfix">
+				<div id="article_list"></div>
+			</section>
+			<p  id="article_more" data-page="0">
+	           	<span><?php _e('更多'); ?></span>
+	        </p>
+		</div>
+	</section>
+</div>
+<!-- <script type="text/javascript" src="js/engine1/jquery.js"></script> -->
+<script type="text/javascript" src="<?php echo G_STATIC_URL; ?>/js/engine1/wowslider.js"></script>
+<script type="text/javascript" src="<?php echo G_STATIC_URL; ?>/js/engine1/script.js"></script>
+<script src="<?php echo G_STATIC_URL; ?>/js/wow.min.js"></script>
+<script type="text/javascript">
+ $(document).ready(function () {
+	AWS.load_list_view(G_BASE_URL + '/explore/ajax/newlist/', $('#article_more'), $('#article_list'));
+  	var wow = new WOW({
+    	boxClass: 'wow',
+    	animateClass: 'animated',
+    	mobile: true,
+    	live: true
+  	});
+  	wow.init();
+});
+</script>
+<?php TPL::output('global/footer.tpl.htm'); ?>

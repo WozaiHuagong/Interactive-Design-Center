@@ -1,0 +1,53 @@
+<?php TPL::output('admin/global/header.tpl.htm'); ?>
+<?php TPL::output('admin/global/nav_menu.tpl.htm'); ?>
+
+<div class="aw-content-wrap">
+    <div class="mod">
+        <div class="mod-head">
+            <h3>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#list" data-toggle="tab"><?php _e('广告上下架明细'); ?></a></li>
+                </ul>
+            </h3>
+        </div>
+        <div class="mod-body tab-content">
+            <div class="tab-pane active" id="list">
+                <div class="table-responsive">
+                    <?php if ($this->list) { ?>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>操作时间</th>
+                            <th><?php _e('操作用户'); ?></th>
+                            <th><?php _e('操作广告位置'); ?></th>
+                            <th><?php _e('广告用户'); ?></th>
+                            <th><?php _e('操作类型'); ?></th>
+                            <th><?php _e('广告名称'); ?></th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($this->list AS $key => $val) { ?>
+                        <tr>
+                            <td><?php echo date('Y-m-d H:i', $val['add_time']); ?></td>
+                            <td><a href="people/<?php echo $val['operator_info']['url_token']; ?>" target="_blank"><?php echo $val['operator_info']['user_name']; ?></a></td>
+                            <td><a href="<?php echo $val['page_link']; ?>" target="_blank"><?php echo $val['page_link']; ?></a></td>
+                            <td><a href="people/<?php echo $val['user_info']['url_token']; ?>" target="_blank"><?php echo $val['user_info']['user_name']; ?></a></td>
+                            <td><?php if($val['type'] == 1){echo '添加广告';}else{echo '移除广告';} ?></td>
+                            <td><a href="info/<?php echo $val['ad_info']['id']; ?>" target="_blank"><?php echo $val['ad_info']['title']; ?></a></td>
+                            <td>-</td>
+                        </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                    <?php } ?>
+                </div>
+                <div class="mod-table-foot">
+                    <?php echo $this->pagination; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php TPL::output('admin/global/footer.tpl.htm'); ?>

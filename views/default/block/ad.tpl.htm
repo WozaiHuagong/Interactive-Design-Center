@@ -1,0 +1,23 @@
+<div class="ad-block">
+    <a href="javascript:;" data-toggle="ad" data-id="<?php echo get_ad_url($this->ad_show, $this->user_id); ?>" target="_blank" rel="nofollow">
+        <img src="<?php echo get_ad_thumb($this->show_ad['thumb']); ?>">
+    </a>
+    <div class="ad-info">
+        <a href="javascript:;" data-toggle="ad" data-id="<?php echo get_ad_url($this->ad_show, $this->user_id); ?>" target="_blank" rel="nofollow">
+            <h3><?php echo $this->show_ad['title']; ?></h3>
+        </a>
+        <div class="ad-meta">
+            <span><a class="<?php if ($val['vote_info']['rating'] == 1) { ?> active<?php } ?>" onclick="AWS.User.info_vote($(this), '<?php echo $this->show_ad['id']; ?>', 1)"><i class="icon icon-agree"></i> <b class="text-normal"><?php echo $this->show_ad['agree_count']; ?></b></a></span>
+            <span><i class="icon icon-comment"></i> <?php echo intval($this->show_ad['comment_count']); ?></span>
+        </div>
+        <?php if($this->has_control){ ?>
+        <div class="ad-control">
+            <?php if($this->need_remove){ ?><p><code>该广告提供用户费用不足,或者已经扣满指定额度,不会正常展示给用户了,你可以选择下架</code></p><?php } ?>
+            <a href="info/select-true__location-<?php echo $this->ad_location; ?>__select_uid-<?php echo $this->select_uid; ?>__item_id-<?php echo $this->item_id; ?>" class="btn btn-info">选广告</a>
+            <?php if($this->show_ad['id']){ ?>
+                <a href="javascript:;" class="btn btn-info" onclick="AWS.ajax_request('<?php echo get_js_url('/info/ajax/offline/'); ?>', 'id=<?php echo $this->ad_show['id']; ?>')">下架</a>
+            <?php } ?>
+        </div>
+        <?php } ?>
+    </div>
+</div>

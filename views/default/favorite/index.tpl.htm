@@ -1,0 +1,44 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="personal spec-person">
+	<div class="content clearfix">
+		<div class="left">
+			<div class="classify-line clearfix">
+				<div class="pull-left"><h3>我的收藏 <!-- <span class="badge"><?php echo count($this->list); ?></span> --></h3></div>
+				<div class="comment-classify pull-right">
+					<a href="favorite/" class="<?php if(!$_GET['t']){ echo 'active'; } ?>">收藏的文章</a>
+					<a href="favorite/t-sortout" class="<?php if($_GET['t'] == 'sortout'){ echo 'active'; } ?>">收藏的整理</a>
+					<a href="favorite/t-prize" class="<?php if($_GET['t'] == 'prize'){ echo 'active'; } ?>">收藏的有奖</a>
+				</div>
+			</div>
+			<div class="content-wrap">
+				<div class="item-list">
+					<ul>
+						<?php if (sizeof ($this->list) > 0) { ?>
+						<?php foreach ($this->list AS $key => $val) { ?>
+						<li class="clearfix">
+							<div class="title pull-left">
+								<a href="<?php echo $val['link']; ?>"><?php echo $val['title']; ?></a>
+							</div>
+							<div class="date pull-right">
+								<p><?php echo date_friendly($val['add_time']); ?></p>
+								<p><a class="pull-right text-color-999" onclick="AWS.ajax_request(G_BASE_URL + '/favorite/ajax/remove_favorite_item/', 'item_type=<?php echo $val['item_type']; ?>&item_id=<?php echo $val['item_id']; ?>');"><?php _e('取消收藏'); ?></a></p>
+							</div>
+						</li>
+						<?php } ?>
+						<?php } ?>
+					</ul>
+				</div>
+				<div class="mod-footer">
+					<?php echo $this->pagination; ?>
+				</div>
+			</div>
+
+		</div>
+		<!-- 侧边栏 -->
+		<div class="right">
+			<?php TPL::output('block/sidebar_menu.tpl.htm'); ?>
+		</div>
+		<!-- end 侧边栏 -->
+	</div>
+</section>
+<?php TPL::output('global/footer.tpl.htm'); ?>
