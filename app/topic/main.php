@@ -360,7 +360,7 @@ class main extends AWS_CONTROLLER
 			'per_page' => 20
 		))->create_links());
 
-		$this->crumb(AWS_APP::lang()->_t('话题广场'), '/topic/');
+		$this->crumb(AWS_APP::lang()->_t('聚焦'), '/topic/');
 
 		TPL::output('topic/square');
 	}

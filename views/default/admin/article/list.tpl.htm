@@ -6,15 +6,18 @@
         <div class="mod-head">
             <h3>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#list" data-toggle="tab"><?php _e('文章列表'); ?></a></li>
-                    <li><a href="#search" data-toggle="tab"><?php _e('搜索'); ?></a></li>
-                    <li><a href="publish/article/"><?php _e('发布'); ?></a></li>
-                    <li><a href="#elite" data-toggle="tab"><?php _e('行业精英管理'); ?></a></li>
+                    <li class="<?php if($this->active_tab){ if($this->active_tab['topic_title'] == '行业资讯') echo 'active';} else echo 'active';?>"><a href="#industryInfo" data-toggle="tab"><?php _e('行业资讯'); ?></a></li>
+                    <li class="<?php if($this->active_tab){ if($this->active_tab['topic_title'] == '研究中心资讯') echo 'active';}?>"><a href="#libInfo" data-toggle="tab"><?php _e('研究中心资讯'); ?></a></li>
+                    <li class="<?php if($this->active_tab){ if($this->active_tab['topic_title'] == '在研项目') echo 'active';}?>"><a href="#working" data-toggle="tab"><?php _e('在研项目'); ?></a></li>
+                    <li class="<?php if($this->active_tab){ if($this->active_tab['topic_title'] == '研究成果') echo 'active';}?>"><a href="#finished" data-toggle="tab"><?php _e('研究成果'); ?></a></li>
+                    <li class="<?php if($this->active_tab){ if($this->active_tab['topic_title'] == '行业精英') echo 'active';}?>"><a href="#elite" data-toggle="tab"><?php _e('行业精英'); ?></a></li>
+                    <li style="float:right;" class="btn-info"><a href="#search" data-toggle="tab"><?php _e('搜索'); ?></a></li>
+                    <li style="float:right;" class="btn-success"><a href="publish/article/"><?php _e('发布'); ?></a></li>
                 </ul>
             </h3>
         </div>
         <div class="mod-body tab-content">
-            <div class="tab-pane active" id="list">
+            <div class="tab-pane <?php if($this->active_tab){ if($this->active_tab['topic_title'] == '行业资讯') echo 'active';} else echo 'active';?>" id="industryInfo">
                 <?php if ($_GET['action'] == 'search') { ?>
                 <div class="alert alert-info"><?php _e('找到 %s 条符合条件的内容', intval($this->articles_count)); ?></div>
                 <?php } ?>
@@ -35,7 +38,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($this->list AS $key => $val) { ?>
+                            <?php foreach ($this->list AS $key => $val) { if($val['topic_title']!="行业资讯") continue;?>
                             <tr>
                                 <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
                                 <td><img src="<?php echo $val['img'];?>" style="width: 200px"></td>
@@ -57,8 +60,138 @@
                 </div>
             </div>
 
-            
-            <div class="tab-pane" id="elite">
+            <div class="tab-pane <?php if($this->active_tab){ if($this->active_tab['topic_title'] == '研究中心资讯') echo 'active';}?>" id="libInfo">
+                <?php if ($_GET['action'] == 'search') { ?>
+                <div class="alert alert-info"><?php _e('找到 %s 条符合条件的内容', intval($this->articles_count)); ?></div>
+                <?php } ?>
+
+                <form id="batchs_form" action="admin/ajax/article_manage/" method="post">
+                <input type="hidden" id="action" name="action" value="del" />
+                <div class="table-responsive">
+                <?php if ($this->list) { ?>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" class="check-all"></th>
+                                <th><?php _e('封面图'); ?></th>
+                                <th><?php _e('文章标题'); ?></th>
+                                <th><?php _e('文章类型'); ?></th>
+                                <th><?php _e('发布时间'); ?></th>
+                                <th><?php _e('操作'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->list AS $key => $val) { if($val['topic_title']!="研究中心资讯") continue;?>
+                            <tr>
+                                <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
+                                <td><img src="<?php echo $val['img'];?>" style="width: 200px"></td>
+                                <td><a href="article/<?php echo $val['id']; ?>" target="_blank"><?php echo $val['title']; ?></a></td>
+                                <td><?php echo $val['topic_title']; ?></td>
+                                <td><?php echo date_friendly($val['add_time']); ?></td>
+                                <td><a href="publish/article/<?php echo $val['id']; ?>" target="_blank" class="icon icon-edit md-tip" title="编辑"></a></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
+                </div>
+                </form>
+                <div class="mod-table-foot">
+                    <?php echo $this->pagination; ?>
+
+                    <a class="btn btn-danger" onclick="$('#action').val('del'); AWS.ajax_post($('#batchs_form'));" href="javascript:;"><?php _e('删除'); ?></a>
+                </div>
+            </div>
+
+            <div class="tab-pane <?php if($this->active_tab){ if($this->active_tab['topic_title'] == '在研项目') echo 'active';}?>" id="working">
+                <?php if ($_GET['action'] == 'search') { ?>
+                <div class="alert alert-info"><?php _e('找到 %s 条符合条件的内容', intval($this->articles_count)); ?></div>
+                <?php } ?>
+
+                <form id="batchs_form" action="admin/ajax/article_manage/" method="post">
+                <input type="hidden" id="action" name="action" value="del" />
+                <div class="table-responsive">
+                <?php if ($this->list) { ?>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" class="check-all"></th>
+                                <th><?php _e('封面图'); ?></th>
+                                <th><?php _e('文章标题'); ?></th>
+                                <th><?php _e('文章类型'); ?></th>
+                                <th><?php _e('发布时间'); ?></th>
+                                <th><?php _e('操作'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->list AS $key => $val) { if($val['topic_title']!="在研项目") continue;?>
+                            <tr>
+                                <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
+                                <td><img src="<?php echo $val['img'];?>" style="width: 200px"></td>
+                                <td><a href="article/<?php echo $val['id']; ?>" target="_blank"><?php echo $val['title']; ?></a></td>
+                                <td><?php echo $val['topic_title']; ?></td>
+                                <td><?php echo date_friendly($val['add_time']); ?></td>
+                                <td><a href="publish/article/<?php echo $val['id']; ?>" target="_blank" class="icon icon-edit md-tip" title="编辑"></a></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
+                </div>
+                </form>
+                <div class="mod-table-foot">
+                    <?php echo $this->pagination; ?>
+
+                    <a class="btn btn-danger" onclick="$('#action').val('del'); AWS.ajax_post($('#batchs_form'));" href="javascript:;"><?php _e('删除'); ?></a>
+                </div>
+            </div>
+
+            <div class="tab-pane <?php if($this->active_tab){ if($this->active_tab['topic_title'] == '研究成果') echo 'active';}?>" id="finished">
+                <?php if ($_GET['action'] == 'search') { ?>
+                <div class="alert alert-info"><?php _e('找到 %s 条符合条件的内容', intval($this->articles_count)); ?></div>
+                <?php } ?>
+
+                <form id="batchs_form" action="admin/ajax/article_manage/" method="post">
+                <input type="hidden" id="action" name="action" value="del" />
+                <div class="table-responsive">
+                <?php if ($this->list) { ?>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" class="check-all"></th>
+                                <th><?php _e('封面图'); ?></th>
+                                <th><?php _e('文章标题'); ?></th>
+                                <th><?php _e('文章类型'); ?></th>
+                                <th><?php _e('发布时间'); ?></th>
+                                <th><?php _e('操作'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->list AS $key => $val) { if($val['topic_title']!="研究成果") continue;?>
+                            <tr>
+                                <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
+                                <td><img src="<?php echo $val['img'];?>" style="width: 200px"></td>
+                                <td><a href="article/<?php echo $val['id']; ?>" target="_blank"><?php echo $val['title']; ?></a></td>
+                                <td><?php echo $val['topic_title']; ?></td>
+                                <td><?php echo date_friendly($val['add_time']); ?></td>
+                                <td><a href="publish/article/<?php echo $val['id']; ?>" target="_blank" class="icon icon-edit md-tip" title="编辑"></a></td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
+                </div>
+                </form>
+                <div class="mod-table-foot">
+                    <?php echo $this->pagination; ?>
+
+                    <a class="btn btn-danger" onclick="$('#action').val('del'); AWS.ajax_post($('#batchs_form'));" href="javascript:;"><?php _e('删除'); ?></a>
+                </div>
+            </div>
+
+
+
+            <div class="tab-pane <?php if($this->active_tab){ if($this->active_tab['topic_title'] == '行业精英') echo 'active';}?>" id="elite">
                 <?php if ($_GET['action'] == 'search') { ?>
                 <div class="alert alert-info"><?php _e('找到 %s 条符合条件的内容', intval($this->articles_count)); ?></div>
                 <?php } ?>

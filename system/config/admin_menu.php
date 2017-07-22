@@ -88,13 +88,13 @@ $config[] = array(
         ),
         array(
             'id' => 301,
-            'title' => AWS_APP::lang()->_t('论坛管理'),
+            'title' => AWS_APP::lang()->_t('问答管理'),
             'url' => 'admin/question/question_list/'
         ),
 
         array(
             'id' => 309,
-            'title' => AWS_APP::lang()->_t('网站管理'),
+            'title' => AWS_APP::lang()->_t('文章管理'),
             'url' => 'admin/article/list/'
         ),
         // array(

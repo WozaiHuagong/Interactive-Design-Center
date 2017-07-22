@@ -55,7 +55,7 @@
 				</ul>
 				<?php } ?>
 			</div>
-			<div class="global-title"><img src="/static/images/shi.png"></div>
+<!-- 			<div class="global-title"><img src="/static/images/shi.png"></div> -->
 		</div>
 	</div>
 	<nav class="clearfix">
@@ -65,18 +65,15 @@
 					<a href="<?php echo base_url(); ?>"><?php _e('首页'); ?></a>
 				</li>
 				<li><a class="<?php if ($_GET['app'] == 'question') { ?>menu_current_item<?php } ?>" href="question/"><?php _e('问答'); ?></a></li>
-				<li><a class="<?php if ($_GET['app'] == 'sortout') { ?>menu_current_item<?php } ?>" href="sortout/"><?php _e('整理'); ?></a></li>
-				<li><a class="<?php if ($_GET['app'] == 'prize') { ?>menu_current_item<?php } ?>" href="javascript:;"><?php _e('有奖'); ?></a></li>
 				<li><a class="<?php if ($_GET['app'] == 'article') { ?>menu_current_item<?php } ?>" href="article/"><?php _e('文章'); ?></a></li>
-				<li><a class="<?php if ($_GET['app'] == 'info') { ?>menu_current_item<?php } ?>" href="info/"><?php _e('广而告'); ?></a></li>
 				<li><a class="<?php if ($_GET['app'] == 'topic') { ?>menu_current_item<?php } ?>" href="topic/"><?php _e('聚焦'); ?></a></li>
 			</ul>
 		</div>
 		<!-- 搜索框 -->
 		<div class="aw-search-box  hidden-xs hidden-sm pull-right search-wrap">
 			<form class="navbar-search" action="search/" id="global_search_form" method="post">
-				<input class="form-control search-query" type="text" placeholder="<?php _e('搜索'); ?>" autocomplete="off" name="q" id="aw-search-query" />
-				<span title="<?php _e('搜索'); ?>" id="global_search_btns" onClick="$('#global_search_form').submit();"><i class="icon icon-search"></i></span>
+				<input class="form-control search-query" type="text" placeholder="<?php _e('搜索'); ?>" autocomplete="off" name="q" id="aw-search-query" value="<?php echo $this->keyword;?>" />
+				<span title="<?php _e('搜索'); ?>" id="global_search_btns" onClick="$('#global_search_form').submit();" ><i class="icon icon-search"></i></span>
 				<div class="aw-dropdown">
 					<div class="mod-body">
 						<p class="title"><?php _e('输入关键字进行搜索'); ?></p>
@@ -93,16 +90,14 @@
 			<?php } ?>
 			<a class="btn btn-success pull-right" onclick="$(this).parents('form').submit();"><?php _e('提问'); ?></a>
 		</form>
-
+		<?php if ($this->user_info['permission']['publish_article']) { ?>
 		<form method="post" action="publish/article/">
 			<?php if ($this->topic_info['topic_title']) { ?>
 			<input type="hidden" value="<?php echo $this->topic_info['topic_title']; ?>" name="topics[]" />
 			<?php } ?>
 			<a class="btn btn-success pull-right" onclick="$(this).parents('form').submit();"><?php _e('发文'); ?></a>
 		</form>
-
-		<a class="btn btn-success pull-right" href="javascript:;"><?php _e('有奖'); ?></a>
-		<a class="btn btn-success pull-right" href="publish/ad/"><?php _e('发广告'); ?></a>
+		<?php } ?>
 	</nav>
 	<div class="fixed-nav">
 		<nav>
@@ -112,17 +107,14 @@
 						<a href="<?php echo base_url(); ?>"><?php _e('首页'); ?></a>
 					</li>
 					<li><a class="<?php if ($_GET['app'] == 'question') { ?>menu_current_item<?php } ?>" href="question/"><?php _e('问答'); ?></a></li>
-					<li><a class="<?php if ($_GET['app'] == 'sortout') { ?>menu_current_item<?php } ?>" href="sortout/"><?php _e('整理'); ?></a></li>
-					<li><a class="<?php if ($_GET['app'] == 'prize') { ?>menu_current_item<?php } ?>" href="javascript:;"><?php _e('有奖'); ?></a></li>
 					<li><a class="<?php if ($_GET['app'] == 'article') { ?>menu_current_item<?php } ?>" href="article/"><?php _e('文章'); ?></a></li>
-					<li><a class="<?php if ($_GET['app'] == 'info') { ?>menu_current_item<?php } ?>" href="info/"><?php _e('广而告'); ?></a></li>
 					<li><a class="<?php if ($_GET['app'] == 'topic') { ?>menu_current_item<?php } ?>" href="topic/"><?php _e('聚焦'); ?></a></li>
 				</ul>
 			</div>
 			<div class="search-wrap pull-right aw-search-box hidden-xs hidden-sm">
 				<form class="navbar-search" action="search/" id="global_search_form_fxd" method="post">
-					<input class="form-control search-query" type="text" placeholder="<?php _e('搜索'); ?>" autocomplete="off" name="q" id="aw-search-query-fxd" />
-					<span title="<?php _e('搜索'); ?>" id="global_search_btns2" onClick="$('#global_search_form_fxd').submit();"><i class="icon icon-search"></i></span>
+					<input class="form-control search-query" type="text" placeholder="<?php _e('搜索'); ?>" autocomplete="off" name="q" id="aw-search-query-fxd" value="<?php echo $this->keyword;?>"/>
+					<span title="<?php _e('搜索'); ?>" id="global_search_btns2" onClick="$('#global_search_form_fxd').submit();" style="position: absolute;right: 5px;top: 6px;color: #999;"><i class="icon icon-search"></i></span>
 					<div class="aw-dropdown">
 						<div class="mod-body">
 							<p class="title"><?php _e('输入关键字进行搜索'); ?></p>
@@ -148,9 +140,6 @@
 				<a class="btn btn-success pull-right" onclick="$(this).parents('form').submit();"><?php _e('发文'); ?></a>
 			</form>
 			<?php } ?>
-
-			<a class="btn btn-success pull-right" href="javascript:;"><?php _e('有奖'); ?></a>
-			<a class="btn btn-success pull-right" href="publish/ad/"><?php _e('发广告'); ?></a>
 		</nav>
 	</div>
 </header>

@@ -39,7 +39,7 @@
 				<label for="question_contents"><?php _e('输入关键字'); ?>:</label>
 				<input type="text" placeholder="多个关键词请用空格隔开..." name="tag" value="<?php echo $this->question_info['tag']; ?>" class="form-control" />
 				<div>
-					<label for="classify">选择分类：</label>
+					<label for="classify">选择话题：</label>
 					<select name="category_id" id="classify" class="form-control">
 
 						<option value="0">- <?php _e('请选择分类'); ?> -</option>
@@ -55,9 +55,9 @@
 				</div>
 				<?php } ?>
 				<?php if (!$this->question_info['question_id']){ ?>
-				<label class="clearfix">
+<!-- 				<label class="clearfix">
 					<input type="checkbox" value="1" name="use_y" <?php if (!$this->question_info['use_y'] && $this->user_info['y_permission'] < 1) { ?> disabled<?php }else{ ?> checked<?php } ?>/> 使用Y权限
-				</label>
+				</label> -->
 				<?php } ?>
 				<div class="text-center">
 					<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发起'); ?></a>

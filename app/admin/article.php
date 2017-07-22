@@ -59,6 +59,7 @@ class article extends AWS_ADMIN_CONTROLLER
 		if ($_GET['category_id'])
 		{
 			$where[] = "(`category_id` = ". $_GET['category_id'] ." )";
+			TPL::assign('active_tab',$this->model('topic')->get_topic_by_id($_GET['category_id']));
 		}
 
 		if ($_GET['start_date'])
@@ -143,7 +144,7 @@ class article extends AWS_ADMIN_CONTROLLER
 
 		TPL::assign('articles_count', $search_articles_total);
 		TPL::assign('list', $articles_list);
-		TPL::assign('category_list',$this->model('topic')->get_topic_list());
+		TPL::assign('category_list',$this->model('topic')->get_topic_list('type = "article"'));
 
 		TPL::output('admin/article/list');
 	}

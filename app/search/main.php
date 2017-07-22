@@ -54,7 +54,6 @@ class main extends AWS_CONTROLLER
 
 			HTTP::redirect($url);
 		}
-
 		$keyword = htmlspecialchars(base64_decode($_GET['q']));
 
 		$this->crumb($keyword, '/search/q-' . urlencode($keyword));

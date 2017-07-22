@@ -23,7 +23,11 @@ class main extends AWS_CONTROLLER
 	public function get_access_rule()
 	{
 		$rule_action['rule_type'] = 'white'; //黑名单,黑名单中的检查  'white'白名单,白名单以外的检查
-		$rule_action['actions'] = array();
+		if (!$this->user_info['permission']['is_administortar'])
+		{
+			$rule_action['actions'][] = 'article';
+			$rule_action['actions'][] = '  ';
+		}
 		return $rule_action;
 	}
 

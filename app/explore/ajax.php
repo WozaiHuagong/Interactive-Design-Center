@@ -88,9 +88,31 @@ class ajax extends AWS_CONTROLLER
 	public function newlist_action()
 	{
 		//get_setting('contents_per_page')
-		$article_list = $this->model('home')->get_home_list($_GET['page'], get_setting('contents_per_page'), 'id DESC');
-		TPL::assign('article_list', $article_list);
-		TPL::output('explore/ajax/newlist');
+		//$article_list = $this->model('home')->get_home_list($_GET['page'], get_setting('contents_per_page'), 'id DESC');
+		$question_list = $this->model('posts')->get_posts_list('question', $_GET['page'], get_setting('contents_per_page'));
+
+		$article_list = $this->model('posts')->get_posts_list('article', $_GET['page'], get_setting('contents_per_page'));
+		if (!$question_list) $question_list=Null;
+		if (!$article_list)  $article_list=Null;
+		$posts_list = array();
+		if (count($article_list) > count($question_list))
+		{
+			$b=$article_list;
+			$s=$question_list;
+		}
+		else{
+			$b=$question_list;
+			$s=$article_list;
+		}
+		for ($i=0; $i < count($s); $i++) { 
+			$posts_list[]=$b[$i];
+			$posts_list[]=$s[$i];
+		}
+		for ($j=$i+1; $j < count($b); $j++) { 
+			$posts_list[]=$b[$j];
+		}
+		TPL::assign('posts_list', $posts_list);
+		TPL::output('explore/ajax/listv2.0');
 	}
 
 }

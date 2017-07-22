@@ -10,7 +10,17 @@
 					<div class="mod-body">
 						<label><?php _e('文章标题'); ?>:</label>
 						<input type="text" name="title" value="<?php echo $this->article_info['title']; ?>" class="form-control" />
-						<label><?php _e('摘要或职称'); ?>:</label>
+                        <label for="classify">分类：</label>
+                            <select name="category_id" id="classify" class="form-control">
+                                <option value="0">- <?php _e('请选择分类'); ?> -</option>
+                                <?php if ($this->article_topic_list) { ?>
+                                    <?php echo $this->article_topic_list; ?>
+                                <?php } ?>
+                                <!-- 其他类的value值固定为0 -->
+<!--                                <option value="0">其他</option> -->
+                            </select>
+                        </div>
+						<label><?php _e('摘要或职称或项目启动时间/成果发表时间'); ?>:</label>
 						<input type="text" name="summary" value="<?php echo $this->article_info['summary']; ?>" class="form-control" />
 						<label><?php _e('文章内容'); ?>:</label>
 						<div class="aw-mod aw-editor-box" style="margin-bottom: 10px;">
@@ -31,16 +41,7 @@
 							</div>
 						</div>
 						<div >
-						<label for="classify">分类：</label>
-							<select name="category_id" id="classify" class="form-control">
-								<option value="0">- <?php _e('请选择分类'); ?> -</option>
-								<?php if ($this->article_topic_list) { ?>
-									<?php echo $this->article_topic_list; ?>
-								<?php } ?>
-								<!-- 其他类的value值固定为0 -->
-<!-- 								<option value="0">其他</option> -->
-							</select>
-						</div>
+
 <!-- 						<div>
 							<?php 
 								$is_original = $this->article_info['is_original'].'==='; 

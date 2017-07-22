@@ -7,11 +7,48 @@
 	<section class="second-section clearfix">
 		<!-- 侧边栏 -->
 		<div class="left-slide">
-			<?php //TPL::output('block/sidebar_feature.tpl.htm'); ?>
+<!-- 			<?php //TPL::output('block/sidebar_feature.tpl.htm'); ?>
 			<?php //TPL::output('block/sidebar_hot_topics.tpl.htm'); ?>
 			<?php //TPL::output('block/sidebar_hot_users.tpl.htm'); ?>
-			<?php //TPL::output('block/sidebar_comment.tpl.htm'); ?>
+			<?php //TPL::output('block/sidebar_comment.tpl.htm'); ?> -->
 			<div class="item">
+				<p>
+					<span class="item-title">聚焦</span>
+					<span class="more"><a href="#">MORE</a></span>
+				</p>
+				<ol>
+					<ol class="mod-body clearfix">
+						<?php  
+							foreach ( $this->sidebar_hot_topics AS $val) { 
+						?>
+						<li style="border-bottom: 1px dashed #dbdbdb;margin-bottom: 5px;position: relative;">
+                            <div class="aw-item">
+                                <!-- 话题图片 -->
+                                <a class="img aw-border-radius-5" href="topic/<?php echo $val['topic_title']; ?>" data-id="<?php echo $val['topic_id']; ?>">
+                                    <img src="<?php echo get_topic_pic_url('mid', $val['topic_pic']); ?>" alt="" />
+                                </a>
+                                <!-- end 话题图片 -->
+                                <p class="clearfix" style="display: inline-block;">
+                                    <!-- 话题内容 -->
+                                    <span class="topic-tag">
+                                        <a class="text" href="topic/<?php echo $val['topic_title']; ?>" data-id="<?php echo $val['topic_id']; ?>"><?php echo $val['topic_title']; ?></a>
+                                    </span>
+                                    <!-- end 话题内容 -->
+                                </p>
+                                <p class="text-color-999">
+                                    <span><?php _e('%s 个讨论', $val['discuss_count']); ?></span>
+                                    <span><?php _e('%s 个关注', $val['focus_count']); ?></span>
+                                </p>
+                                <p class="text-color-999">
+                                    <?php _e('7 天新增 %s 个讨论', $val['discuss_count_last_week']); ?>, <?php _e('30 天新增 %s 个讨论', $val['discuss_count_last_month']); ?>
+                                </p>
+                            </div>
+						</li>
+						<?php } ?>
+					</ol>
+				</ol>
+			</div>
+<!-- 			<div class="item">
 				<p>
 					<span class="item-title">ABC</span>
 					<span class="more"><a href="#">MORE</a></span>
@@ -26,8 +63,8 @@
 						<li><a href="javascript:;"onclick="AWS.dialog('CBox', {item_type:'C', item_id:1})">联系建议·@<?php echo substr(date_friendly(time(),"Y"),0,4)?>是</a></li>
 					</ol>
 				</ol>
-			</div>
-			<div class="item">
+			</div> -->
+<!-- 			<div class="item">
 				<p>
 					<span class="item-title">那·是·悬赏</span>
 					<span class="more"><a href="question/sort_type-shang">MORE</a></span>
@@ -50,13 +87,13 @@
 					</li>
 					<?php } ?>
 				</ol>
-			</div>
+			</div> -->
 			<!-- 广告位 -->
-			<?php echo get_ad(ad_class::L_ASK_LIST_1, 0, 0, $this->user_info); ?>
+<!-- 			<?php echo get_ad(ad_class::L_ASK_LIST_1, 0, 0, $this->user_info); ?> -->
 			<!-- 广告位 -->
-			<?php echo get_ad(ad_class::L_ASK_LIST_2, 0, 0, $this->user_info); ?>
+<!-- 			<?php echo get_ad(ad_class::L_ASK_LIST_2, 0, 0, $this->user_info); ?> -->
 			<!-- 广告位 -->
-			<?php echo get_ad(ad_class::L_ASK_LIST_3, 0, 0, $this->user_info); ?>
+<!-- 			<?php echo get_ad(ad_class::L_ASK_LIST_3, 0, 0, $this->user_info); ?> -->
 		</div>
 		<!-- end 侧边栏 -->
 
