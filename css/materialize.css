@@ -7334,7 +7334,7 @@ input[type=range]:focus::-ms-fill-upper {
 .table-of-contents a:hover {
   color: #a8a8a8;
   padding-left: 19px;
-  border-left: 1px solid #ee6e73;
+  border-left: 1px solid rgb(8,147,214);
 }
 
 .table-of-contents a.active {
