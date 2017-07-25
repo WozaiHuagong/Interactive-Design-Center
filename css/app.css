@@ -1,0 +1,337 @@
+@charset "UTF-8";
+html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select {
+  margin: 0;
+  padding: 0; }
+
+.common-header {
+  background-color: #0893d6;
+  width: 100%;
+  height: 64px; }
+  .common-header .common-header-content {
+    width: 1000px;
+    margin: 0 auto;
+    height: 64px;
+    overflow: hidden; }
+    .common-header .common-header-content .common-header-logo {
+      height: 100%;
+      display: inline-block;
+      background-image: url("../assets/common-assets/暂时logo.png");
+      vertical-align: middle;
+      height: 43px;
+      width: 41px; }
+    .common-header .common-header-content .common-header-text {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 18px;
+      height: 100%;
+      padding-top: 20px;
+      color: #ffffff;
+      font-family: "Microsoft YaHei";
+      letter-spacing: 3px; }
+
+.common-navigation-bar {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0px 5px 5px #f0f0f0; }
+  .common-navigation-bar .common-navigation-bar-wrap {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto; }
+    .common-navigation-bar .common-navigation-bar-wrap .common-navigation-join-us {
+      font-size: 20px;
+      font-family: "Microsoft YaHei";
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      margin-top: 20px;
+      width: 128px;
+      letter-spacing: 0px;
+      padding: 0px;
+      background-color: #f79556; }
+    .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content {
+      width: 1000px;
+      height: 64px;
+      overflow: hidden;
+      background-color: #ffffff;
+      line-height: 45px; }
+      .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        margin-top: 16px; }
+        .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content ul li a {
+          color: #626878;
+          font-size: 20px;
+          font-family: "Microsoft YaHei"; }
+        .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content ul li a:active,
+        .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content ul li a:hover {
+          background-color: #fff; }
+
+.common-footer {
+  width: 100%;
+  height: 255px; }
+  .common-footer .common-footer-content {
+    background-color: #0893d6;
+    width: 100%;
+    height: 195px; }
+    .common-footer .common-footer-content .common-footer-detail {
+      width: 1000px;
+      margin: 0 auto; }
+      .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left {
+        float: left; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-logo {
+          margin-top: 10px; }
+          .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-logo .common-footer-logo-img {
+            height: 100%;
+            display: inline-block;
+            background-image: url("../assets/common-assets/暂时logo.png");
+            vertical-align: middle;
+            height: 43px;
+            width: 41px; }
+          .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-logo .common-footer-logo-text {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 14px;
+            height: 100%;
+            padding-top: 20px;
+            color: #ffffff;
+            font-family: "Microsoft YaHei";
+            letter-spacing: 1px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-left-first-text {
+          margin-top: 25px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-left-second-text {
+          margin-top: 15px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left p {
+          color: #fff;
+          font-size: 14px;
+          font-family: "Microsoft YaHei";
+          letter-spacing: 1px; }
+      .common-footer .common-footer-content .common-footer-detail .common-footer-detail-right {
+        float: right;
+        width: 200px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-right .common-footer-logo-right-text {
+          margin-top: 10px;
+          font-size: 14px;
+          height: 100%;
+          padding-top: 20px;
+          color: #ffffff;
+          font-family: "Microsoft YaHei";
+          letter-spacing: 1px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-right .common-footer-wechat {
+          height: 73px;
+          width: 70px;
+          background-image: url("../assets/common-assets/footer二维码.png");
+          margin: 0 auto;
+          margin-top: 30px; }
+  .common-footer .common-copy-right {
+    width: 100%;
+    height: 65px;
+    background-color: #0c83bd;
+    overflow: hidden; }
+    .common-footer .common-copy-right .first {
+      font-size: 14px;
+      font-family: "Microsoft YaHei";
+      width: 340px;
+      margin: 0 auto;
+      color: #fff;
+      margin-top: 10px;
+      letter-spacing: 1px; }
+    .common-footer .common-copy-right .second {
+      font-size: 14px;
+      font-family: "Microsoft YaHei";
+      width: 150px;
+      margin: 0 auto;
+      color: #fff; }
+
+.info-center-detail-body {
+  width: 100%;
+  margin-bottom: 120px; }
+  .info-center-detail-body .info-center-detail-body-header {
+    width: 100%;
+    height: 80px;
+    background-color: #fafafa; }
+    .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content {
+      width: 1000px;
+      margin: 0 auto; }
+      .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left {
+        float: left; }
+        .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left i {
+          color: #0893d6;
+          font-size: 45px;
+          display: inline-block;
+          margin-top: 30px; }
+        .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left span {
+          font-size: 23px;
+          font-family: "Microsoft YaHei";
+          color: #0893d6;
+          display: inline-block;
+          position: relative;
+          bottom: 15px;
+          margin-left: 10px; }
+      .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-right {
+        margin-top: 30px;
+        float: right; }
+        .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-right span {
+          font-size: 20px;
+          font-family: "Microsoft YaHei";
+          letter-spacing: 2px;
+          display: inline-block;
+          padding-left: 6px;
+          cursor: pointer; }
+        .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-right span:first-child {
+          padding-right: 10px;
+          border-right: 1px solid black; }
+  .info-center-detail-body .info-center-article-content {
+    width: 1000px;
+    margin: 0 auto;
+    position: relative; }
+    .info-center-detail-body .info-center-article-content .info-center-article {
+      margin-top: 20px;
+      border-right: 1px solid #d2d2d2;
+      width: 740px;
+      height: 500px; }
+    .info-center-detail-body .info-center-article-content .info-center-article-list {
+      position: absolute;
+      width: 250px;
+      top: 0px;
+      right: 0px;
+      list-style-type: disc;
+      margin-left: 16px; }
+      .info-center-detail-body .info-center-article-content .info-center-article-list ul {
+        margin-left: 16px; }
+        .info-center-detail-body .info-center-article-content .info-center-article-list ul li {
+          list-style-type: disc;
+          margin-left: 20px;
+          font-size: 12px;
+          font-family: "Microsoft YaHei";
+          color: #c8c8c8; }
+        .info-center-detail-body .info-center-article-content .info-center-article-list ul p {
+          width: 100%;
+          border-bottom: 2px solid #d2d2d2;
+          margin-left: -10px;
+          margin-bottom: 20px; }
+          .info-center-detail-body .info-center-article-content .info-center-article-list ul p span {
+            display: inline-block;
+            font-size: 15px;
+            font-family: "Microsoft YaHei";
+            padding-right: 20px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid #0893d6; }
+
+.industry-elite-list-body {
+  width: 100%; }
+  .industry-elite-list-body .industry-elite-list-body-header {
+    width: 100%;
+    height: 80px;
+    background-color: #fafafa; }
+    .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content {
+      width: 1000px;
+      margin: 0 auto; }
+      .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left {
+        float: left; }
+        .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left i {
+          color: #0893d6;
+          font-size: 45px;
+          display: inline-block;
+          margin-top: 30px; }
+        .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left span {
+          font-size: 23px;
+          font-family: "Microsoft YaHei";
+          color: #0893d6;
+          display: inline-block;
+          position: relative;
+          bottom: 15px;
+          margin-left: 10px; }
+  .industry-elite-list-body .industry-elite-list-body-article {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page {
+      width: 1000px;
+      margin: 0 auto;
+      margin-top: 20px; }
+      .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-img {
+        height: 288px;
+        width: 228px;
+        background-color: yellow;
+        float: left;
+        top: 0px;
+        left: 0px;
+        margin-right: 30px; }
+      .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article {
+        width: 700px;
+        display: inline-block; }
+        .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article .industry-elite-personal-detail-article-name {
+          display: block;
+          font-size: 30px;
+          font-family: "Microsoft YaHei";
+          color: #2d3240; }
+        .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article .industry-elite-personal-detail-article-position {
+          display: block;
+          font-size: 18px;
+          color: #626878;
+          margin-top: 10px; }
+        .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article .industry-elite-personal-detail-article-title {
+          display: block;
+          padding-left: 20px;
+          border-left: 5px solid #0893d6;
+          margin-top: 30px;
+          font-size: 18px;
+          color: #626878;
+          font-family: "Microsoft YaHei"; }
+        .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article p {
+          text-indent: 2em;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          font-size: 18px;
+          color: #626878;
+          font-family: "Microsoft YaHei"; }
+    .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list {
+      width: 485px;
+      height: 200px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0px 0px 8px #c8c8c8; }
+      .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-left {
+        width: 160px;
+        height: 100%;
+        float: left;
+        background-color: #0893d6; }
+        .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-left i {
+          font-size: 50px;
+          color: #fff;
+          display: block;
+          margin-top: 75px;
+          margin-left: 55px; }
+      .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right {
+        cursor: pointer;
+        height: 100%;
+        width: 325px;
+        display: inline-block; }
+        .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction {
+          width: 270px;
+          height: 157px;
+          margin: auto;
+          overflow: hidden;
+          margin-top: 20px; }
+          .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-name {
+            font-size: 18px;
+            display: block;
+            font-family: "Microsoft YaHei"; }
+          .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-honor {
+            font-size: 12px;
+            color: #a0a0a0;
+            font-family: "Microsoft YaHei";
+            margin-top: 10px;
+            margin-bottom: 15px;
+            display: block; }
+          .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-personal-introduction {
+            font-size: 14px;
+            color: #626878;
+            font-family: "Microsoft YaHei"; }

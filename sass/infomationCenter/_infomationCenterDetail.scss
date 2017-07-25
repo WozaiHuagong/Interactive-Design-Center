@@ -1,0 +1,92 @@
+.info-center-detail-body {
+    width: 100%;
+    margin-bottom:120px;
+    .info-center-detail-body-header {
+        width: 100%;
+        height: 80px;
+        background-color: rgb(250, 250, 250);
+        .info-center-detail-body-header-content {
+            width: $base-width;
+            margin: 0 auto;
+            .info-center-detail-body-header-left {
+                float: left;
+                i {
+                    color: $base-background-color;
+                    font-size: 45px;
+                    display: inline-block;
+                    margin-top: 30px;
+                }
+                span {
+                    font-size: 23px;
+                    font-family: $base-font-family;
+                    color: $base-background-color;
+                    display: inline-block;
+                    position: relative;
+                    bottom: 15px;
+                    margin-left: 10px;
+                }
+            }
+            .info-center-detail-body-header-right {
+                margin-top: 30px;
+                float: right;
+                span {
+                    font-size: 20px;
+                    font-family: $base-font-family;
+                    letter-spacing: 2px;
+                    display: inline-block;
+                    padding-left: 6px; //inline-block中会有4px的空白
+                    cursor: pointer;
+                }
+                span:first-child {
+                    padding-right: 10px;
+                    border-right: 1px solid black;
+                   
+                }
+            }
+        }
+    }
+    .info-center-article-content {
+        width: 1000px;
+        margin: 0 auto;
+        position:relative;
+        .info-center-article {
+            margin-top:20px;
+            border-right: 1px solid rgb(210,210,210);
+            width: 740px;
+            height: 500px;
+            //此处改为inline-block或者float就会发生左偏移，未知原因
+        }
+        .info-center-article-list {
+            position:absolute;
+            width: 250px;
+            top:0px;
+            right:0px;
+            list-style-type: disc;
+            margin-left:16px;
+            ul{
+                margin-left:16px;
+                li{
+                      list-style-type: disc;
+                      margin-left:20px;
+                      font-size:12px;
+                      font-family:$base-font-family;
+                      color:rgb(200,200,200);
+                }
+                p{
+                    width:100%;
+                    border-bottom:2px solid rgb(210,210,210);
+                    margin-left:-10px;
+                    margin-bottom:20px;
+                    span{
+                        display:inline-block;
+                        font-size:15px;
+                        font-family:$base-font-family;
+                        padding-right:20px;
+                        padding-bottom:3px;
+                        border-bottom:2px solid $base-background-color;
+                    }
+                }
+            }
+        }
+    }
+}
