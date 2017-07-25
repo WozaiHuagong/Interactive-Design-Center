@@ -7340,7 +7340,8 @@ input[type=range]:focus::-ms-fill-upper {
 .table-of-contents a.active {
   font-weight: 500;
   padding-left: 18px;
-  border-left: 2px solid #ee6e73;
+  border-left: 3px solid rgb(8,147,214);
+  color:#2d3240;
 }
 
 .side-nav {

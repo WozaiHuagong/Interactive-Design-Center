@@ -82,6 +82,206 @@
 }
 
 //公共导航栏样式结束
+
+//主体内容样式开始
+.main-page-body{
+    width:$base-width;
+    margin:0 auto;
+
+    //首页资讯中心的样式开始
+    .mian-page-info-center{
+        margin-top:30px;
+        .main-page-info-center-header{
+            i{
+                font-size:40px;
+                color:$base-background-color;
+                display:inline-block;
+                vertical-align: middle;
+            }
+            span:nth-child(2){
+                font-size:20px;
+                display:inline-block;
+                margin-left:15px;
+                color:$base-background-color;
+                 font-family:$base-font-family;
+            }
+            span:nth-child(3){
+                font-size:18px;
+                font-family:$base-font-family;
+                color:$base-button-more-color;
+                float:right;
+            }
+        }
+        .main-page-info-center-card{
+            margin-top:10px;
+            height:300px;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .row{
+                box-shadow: 0px 0px 5px rgb(200,200,200);
+                width:310px;
+                padding:0px;
+                margin-left:0px;
+                margin-right:0px;
+                .col{
+                    padding:0px;
+                }
+                .card-content{
+                    padding:0px;
+                    margin:20px;
+                    p:nth-child(2){
+                        height:125px;
+                    }
+                    p:nth-child(3){
+                        padding-left:200px;
+                        font-size:12px;
+                        color:#a0a0a0;
+                    }
+                }
+                .card-title{
+                    font-size:18px;
+                    font-family: $base-font-family;
+                    color:#525765;
+                    text-align: center;
+                    font-weight:600;
+                }
+                p{
+                    font-size:14px;
+                    color:#626878;
+                    font-family: $base-font-family;
+                }
+                .card-content{
+                    height:180px;
+                    margin-bottom:10px;
+                }
+                .card-action{
+                    padding:0px;
+                    height:58px;
+                    text-align: center;
+                    bottom:0px;
+                    a{
+                        line-height:58px;//使字体垂直居中
+                        font-size:18px;
+                        font-family:$base-font-family;
+                        color:#626878;
+                    }
+
+                }
+            }
+        }
+    }
+    //首页资讯中心的样式结束
+
+    //首页的研究项目样式开始
+    .main-page-research-project{
+           margin-top:30px;
+        .main-page-research-project-header{
+            i{
+                font-size:40px;
+                color:$base-background-color;
+                display:inline-block;
+                vertical-align: middle;
+            }
+            span:nth-child(2){
+                font-size:20px;
+                display:inline-block;
+                margin-left:15px;
+                color:$base-background-color;
+                 font-family:$base-font-family;
+            }
+            span:nth-child(3){
+                font-size:18px;
+                font-family:$base-font-family;
+                color:$base-button-more-color;
+                float:right;
+            }
+        }
+        .main-page-research-project-card{
+             display:flex;
+           flex-direction: row;
+           justify-content: space-between;
+           margin-top:10px;
+           .row{
+               width:480px;
+               padding:0px;
+               margin-left:0px;
+               margin-right:0px;
+                box-shadow: 0px 0px 5px rgb(200,200,200);
+               .col{
+                   padding:0px;
+                   .card{
+                       margin:0px;
+                   }
+
+               }
+           }
+        }
+
+    }
+    //首页研究项目样式结束
+
+    //行业精英开始
+    .main-page-industry-elite{
+        margin-top:30px;
+        margin-bottom:110px;
+        .main-page-industry-elite-header{
+            i{
+                font-size:40px;
+                color:$base-background-color;
+                display:inline-block;
+                vertical-align: middle;
+            }
+            span:nth-child(2){
+                font-size:20px;
+                display:inline-block;
+                margin-left:15px;
+                color:$base-background-color;
+                 font-family:$base-font-family;
+            }
+            span:nth-child(3){
+                font-size:18px;
+                font-family:$base-font-family;
+                color:$base-button-more-color;
+                float:right;
+            }
+        }
+        .main-page-industry-elite-card{
+
+            margin-top:10px;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .row{
+                width:465px;
+                height:200px;
+                margin-left:0px;
+                margin-right:0px;
+                box-shadow: 0px 0px 5px #c8c8c8;
+                .col{
+                    padding:0px;
+                    .card{
+                        margin:0px;
+                    }
+                    .card-image{
+                        width:160px;
+                        height:200px;
+                        overflow:hidden;
+                        background-color:$base-background-color;
+                    }
+                }
+            }
+
+        }
+    }
+
+    //行业精英结束
+}
+
+
+
+//主体内容样式结束
 //公共尾部样式开始
 .common-footer {
     width: 100%;
@@ -179,3 +379,17 @@
 }
 
 //公共尾部样式结束
+
+//右边的滚动监视图
+.scroll-spy {
+ position:absolute;
+ top:500px;
+ right:200px;
+ font-size:18px;
+ font-family: $base-font-family;
+ .active{
+     border-left:5px solid $base-background-color;
+ }
+
+}
+//右边滚动监视条结束

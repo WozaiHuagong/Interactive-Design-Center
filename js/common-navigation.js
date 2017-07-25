@@ -1,4 +1,18 @@
 $(document).ready(function () {
+    //首页轮播图启动
+  $('.carousel.carousel-slider').carousel({full_width: true});
+  //轮播图启动结束
+  //右边的滚动监视条触发
+   $('.scrollspy').scrollSpy();
+     $('.scroll-spy').pushpin({
+      top: 0,//滚动多少页面后，就是隐藏的页面有多高后自动固定
+      bottom: 2000,
+      offset: 200//距离页面顶部多少距离时固定
+    });
+   //右边滚动监视条结束
+    
+    
+    
     //获取当前页面的URL，用正则表达式匹配，决定那个导航的地方有下边的蓝线
     var determineTheBlueBorder = function () {
         $url = window.location.href;

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="./css/app.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/materialize.css">
+    <link rel="stylesheet" href="./css/materialIcon.css">
 </head>
 
 <body>
@@ -18,60 +19,288 @@
     </div>
     <div class="common-navigation-bar">
         <div class="common-navigation-bar-wrap">
-        <nav class="nav-extended common-navigation-bar-content">
-                    <ul class="common-navigation-bar-content-list">
-                        <li id="common-nav-mainpage"><a href="./index.html">首页</a></li>
-                        <li id="common-nav-info-center"><a class="active" href="./html/infomationCenter/infomationCenterDetail.html" style="position:relative">资讯中心</a></li>
-                        <li id="common-nav-project"><a href="./html/researchProject/researchProjectDetail.html">研究项目</a></li>
-                        <li id="common-nav-industry-elite"><a href="./html/industryElite/industryEliteDetail.html">行业精英</a></li>
-                        <li id="common-nav-forum"><a href="./html/forum/forumDetail.html">交流论坛</a></li>
-                        <li id="common-nav-about-us"><a  href="./html/aboutUs/aboutUsDetail.html">关于我们</a></li>
-                        <li class="tab1"><a  href="#test2">关于我们</a></li>
-                    </ul>
-        </nav>
-        <!-- <div id="test1" class="col s12">测试 1</div>
+            <nav class="nav-extended common-navigation-bar-content">
+                <ul class="common-navigation-bar-content-list">
+                    <li id="common-nav-mainpage"><a href="./index.html">首页</a></li>
+                    <li id="common-nav-info-center"><a class="active" href="./html/infomationCenter/infomationCenterDetail.html" style="position:relative">资讯中心</a></li>
+                    <li id="common-nav-project"><a href="./html/researchProject/researchProjectDetail.html">研究项目</a></li>
+                    <li id="common-nav-industry-elite"><a href="./html/industryElite/industryEliteDetail.html">行业精英</a></li>
+                    <li id="common-nav-forum"><a href="./html/forum/forumDetail.html">交流论坛</a></li>
+                    <li id="common-nav-about-us"><a href="./html/aboutUs/aboutUsDetail.html">关于我们</a></li>
+                    <li class="tab1"><a href="#test2">关于我们</a></li>
+                </ul>
+            </nav>
+            <!-- <div id="test1" class="col s12">测试 1</div>
         <div id="test2" class="col s12">测试 2</div>
         <div id="test3" class="col s12">测试 3</div>
         <div id="test4" class="col s12">测试 4</div> -->
-        <a class="btn common-navigation-join-us" href="./html/joinUs/joinUsDetail.html">加入我们</a>
+            <a class="btn common-navigation-join-us" href="./html/joinUs/joinUsDetail.html">加入我们</a>
         </div>
     </div>
-       
-
-
-
-<!--尾部开始-->
-<div class="common-footer" id="common-footer-id">
-        <div class="common-footer-content">
-          <div class="common-footer-detail">
-              <div class="common-footer-detail-left">
-                  <div class="common-footer-logo">
-                      <div class="common-footer-logo-img"></div>
-                      <div class="common-footer-logo-text">广东省人机交互设计工程技术研究中心</div>
-                  </div>
-                <p class="common-footer-left-first-text">地址：广州市番禺区小谷围街道华南理工大学</p>
-                <p>邮编： 510006</p>
-                <p class="common-footer-left-second-text">电话： +86-15555551234</p>
-                <P>邮箱： maggie@163.edu.com</P>
-              </div>
-              <div class="common-footer-detail-right">
-                <div class="common-footer-logo-right-text">关注微信公众号获取更多资讯</div>
-                <div class="common-footer-wechat"></div>
-              </div>
+    <!--这是首页的主体内容-->
+    <div class="main-page-body">
+        <!-- 轮播图内容开始 -->
+        <div class="carousel-content  section scrollspy" id="main-page-id">
+            <div class="carousel carousel-slider center" data-indicators="true">
+                <div class="carousel-fixed-item center">
+                    <!-- <a class="btn waves-effect white grey-text darken-text-2"></a> -->
+                </div>
+                <div class="carousel-item red white-text" href="#one!" style="background-image:url('./assets/交互设计中心切图（3）/首页切图/首页/首页轮播图01.png')">
+                    <!-- <h2>第一面板</h2>
+                    <p class="white-text">这是第一面板</p> -->
+                </div>
+                <div class="carousel-item amber white-text" href="#two!" style="background-image:url('./assets/交互设计中心切图（3）/首页切图/首页/首页轮播图02.png')">
+                    <!-- <h2>第二面板</h2>
+                    <p class="white-text">这是第二面板</p> -->
+                </div>
+                <div class="carousel-item green white-text" href="#three!" style="background-image:url('./assets/交互设计中心切图（3）/首页切图/首页/首页轮播图03.png')">
+                    <!-- <h2>第三面板</h2>
+                    <p class="white-text">这是第三面板</p> -->
+                </div>
+                <div class="carousel-item blue white-text" href="#four!" style="background-image:url('./assets/交互设计中心切图（3）/首页切图/首页/首页轮播图04.png')">
+                    <!-- <h2>第四面板</h2>
+                    <p class="white-text">这是第四面板</p> -->
+                </div>
             </div>
         </div>
-  
-    <div class="common-copy-right">
-        <div class="common-copy-right-text">
-            <p class="first">Copyright © 2011-2016 华南理工大学版权所有</p>
-            <p class="second"> 粤ICP备12031769号-2</p>
+        <!-- 轮播图结束 -->
+        <!-- 这是首页显示资讯中心的内容 -->
+        <div class="mian-page-info-center  section scrollspy" id="info-center-id" >
+            <div class="main-page-info-center-header">
+                <i class="material-icons">chat</i>
+                <span>资讯中心</span>
+                <span>more&nbsp;&nbsp;></span>
+            </div>
+            <div class="main-page-info-center-card">
+                <!--卡片-->
+                <div class="row">
+                    <div class="col">
+                        <!--这里取消了网格布局-->
+                        <div class="card ">
+                            <div class="card-content white-text">
+                                <span class="card-title">卡片标题</span>
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。我很方便，因为我只需要一个小标记就可以有效地使用。</p>
+                                <p>2017/07/01</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <!--这里取消了网格布局-->
+                        <div class="card">
+                            <div class="card-content white-text">
+                                <span class="card-title">卡片标题</span>
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。我很方便，因为我只需要一个小标记就可以有效地使用。</p>
+                                <p>2017/07/01</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <!--这里取消了网格布局-->
+                        <div class="card">
+                            <div class="card-content white-text">
+                                <span class="card-title">卡片标题</span>
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。我很方便，因为我只需要一个小标记就可以有效地使用。我很方便，因为我只需要一个小标记就可以有效地使用我很方便，因为我只需要一个小标记就可以有效地使用我很方便用</p>
+                                <p>2017/07/01</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- 首页资讯中心内容结束 -->
+
+        <!--首页研究项目内容开始-->
+        <div class="main-page-research-project  section scrollspy" id="research-project-id">
+            <div class="main-page-research-project-header">
+                <i class="material-icons">flag</i>
+                <span>研究项目</span>
+                <span>more&nbsp;&nbsp;></span>
+            </div>
+            <div class="main-page-research-project-card">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="./assets/交互设计中心切图（3）/首页切图/首页/首页轮播图01.png">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。我很方便，因为我只需要一个小标记就可以有效地使用。</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--卡片一结束-->
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="./assets/交互设计中心切图（3）/首页切图/首页/首页轮播图02.png">
+                                <span class="card-title">Card Title</span>
+                            </div>
+                            <div class="card-content">
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。我很方便，因为我只需要一个小标记就可以有效地使用。</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--首页研究节目内容结束-->
+        <!--首页的行业精英开始-->
+        <div class="main-page-industry-elite  section scrollspy" id="industry-elite-id">
+            <div class="main-page-industry-elite-header">
+                <i class="material-icons">supervisor_account</i>
+                <span>行业精英</span>
+                <span>more&nbsp;&nbsp;></span>
+            </div>
+            <div class="main-page-industry-elite-card">
+                <!--卡片一-->
+             <div class="row">
+                <div class="col">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <!-- <img src="http://lorempixel.com/100/190/nature/6"> -->
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!--卡片二-->
+               <div class="row">
+                <div class="col">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <!-- <img src="http://lorempixel.com/100/190/nature/6"> -->
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!--卡片三-->
+                <div class="row">
+                <div class="col">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <!-- <img src="http://lorempixel.com/100/190/nature/6"> -->
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!--卡片四-->
+                <div class="row">
+                <div class="col">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <!-- <img src="http://lorempixel.com/100/190/nature/6"> -->
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>我是一个很简单的卡片。我很擅长于包含少量的信息。</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">这是一个链接</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!--卡片结束-->
+            </div>
+        </div>
+        <!--行业精英解读+-->
+    </div>
+    <!--首页主体内容结束-->
+
+    <!--右边的滚动监视条-->
+    <div class="scroll-spy">
+      <ul class="section table-of-contents">
+        <li><a href="#main-page-id">首页</a></li>
+        <li><a href="#info-center-id">资讯中心</a></li>
+        <li><a href="#research-project-id">研究项目</a></li>
+         <li><a href="#industry-elite-id">行业精英</a></li>
+      </ul>
+    </div>
+    <!--页面的右边的滚动监视条结束-->
+
+
+    <!--尾部开始-->
+    <div class="common-footer" id="common-footer-id">
+        <div class="common-footer-content">
+            <div class="common-footer-detail">
+                <div class="common-footer-detail-left">
+                    <div class="common-footer-logo">
+                        <div class="common-footer-logo-img"></div>
+                        <div class="common-footer-logo-text">广东省人机交互设计工程技术研究中心</div>
+                    </div>
+                    <p class="common-footer-left-first-text">地址：广州市番禺区小谷围街道华南理工大学</p>
+                    <p>邮编： 510006</p>
+                    <p class="common-footer-left-second-text">电话： +86-15555551234</p>
+                    <P>邮箱： maggie@163.edu.com</P>
+                </div>
+                <div class="common-footer-detail-right">
+                    <div class="common-footer-logo-right-text">关注微信公众号获取更多资讯</div>
+                    <div class="common-footer-wechat"></div>
+                </div>
+            </div>
         </div>
 
+        <div class="common-copy-right">
+            <div class="common-copy-right-text">
+                <p class="first">Copyright © 2011-2016 华南理工大学版权所有</p>
+                <p class="second"> 粤ICP备12031769号-2</p>
+            </div>
+
+        </div>
     </div>
-</div>
-        <script type="text/javascript" src="./js/jquery-3.2.1.js"></script>
-        <script type="text/javascript" src="./js/materialize.js"></script>
-        <script type="text/javascript" src="./js/common-navigation.js"></script>
+    <script type="text/javascript" src="./js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="./js/materialize.js"></script>
+    <script type="text/javascript" src="./js/common-navigation.js"></script>
 </body>
 
 </html>
