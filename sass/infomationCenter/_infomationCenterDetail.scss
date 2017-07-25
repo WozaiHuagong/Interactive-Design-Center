@@ -52,8 +52,63 @@
         .info-center-article {
             margin-top:20px;
             border-right: 1px solid rgb(210,210,210);
-            width: 740px;
-            height: 500px;
+            width: 730px;
+            padding-right:20px;
+            .article-level-one-title{
+                font-size:30px;
+                font-family: $base-font-family;
+                color:#2d3240;
+                margin-top:20px;
+               
+            }
+            .article-pages-level-two-title{
+                margin-top:15px;
+                .article-pages-date{
+                    font-size:14px;
+                    font-family:$base-font-family;
+                    color:#959595;
+                }
+                .article-pages-rede-times{
+                     font-size:14px;
+                    font-family:$base-font-family;
+                    color:#959595;
+                    padding-left:10px;
+                    padding-right:10px;
+                    border-left:1px solid #959595;
+                    border-right:1px solid #959595;
+                    margin-right:10px;
+                    margin-left:10px;
+                }
+                .article-pages-address{
+                    font-size:14px;
+                    font-family:$base-font-family;
+                    color:#959595;
+                }
+            }
+            .article-pages-abstract{
+                margin-top:30px;
+                margin-bottom:20px;
+                padding:20px;
+                width:100%;
+                background-color:rgb(246,245,245);
+                .article-pages-abstract-img{
+                    background-image: url('../assets/详情页－资讯中心-assets/摘要左边标签.png');
+                    width:10px;
+                    height:16px;
+                    float:left;
+                    margin-right:10px;
+                }
+                .article-pages-abstract-content{
+                 font-size:14px;
+                 line-height:25px;
+                 color:#959595;
+                 letter-spacing: 2px;
+                 font-family:$base-font-family;
+                }
+            }
+            .article-pages-content{
+                
+            }
             //此处改为inline-block或者float就会发生左偏移，未知原因
         }
         .info-center-article-list {

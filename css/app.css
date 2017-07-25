@@ -189,8 +189,51 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     .info-center-detail-body .info-center-article-content .info-center-article {
       margin-top: 20px;
       border-right: 1px solid #d2d2d2;
-      width: 740px;
-      height: 500px; }
+      width: 730px;
+      padding-right: 20px; }
+      .info-center-detail-body .info-center-article-content .info-center-article .article-level-one-title {
+        font-size: 30px;
+        font-family: "Microsoft YaHei";
+        color: #2d3240;
+        margin-top: 20px; }
+      .info-center-detail-body .info-center-article-content .info-center-article .article-pages-level-two-title {
+        margin-top: 15px; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-level-two-title .article-pages-date {
+          font-size: 14px;
+          font-family: "Microsoft YaHei";
+          color: #959595; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-level-two-title .article-pages-rede-times {
+          font-size: 14px;
+          font-family: "Microsoft YaHei";
+          color: #959595;
+          padding-left: 10px;
+          padding-right: 10px;
+          border-left: 1px solid #959595;
+          border-right: 1px solid #959595;
+          margin-right: 10px;
+          margin-left: 10px; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-level-two-title .article-pages-address {
+          font-size: 14px;
+          font-family: "Microsoft YaHei";
+          color: #959595; }
+      .info-center-detail-body .info-center-article-content .info-center-article .article-pages-abstract {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding: 20px;
+        width: 100%;
+        background-color: #f6f5f5; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-abstract .article-pages-abstract-img {
+          background-image: url("../assets/详情页－资讯中心-assets/摘要左边标签.png");
+          width: 10px;
+          height: 16px;
+          float: left;
+          margin-right: 10px; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-abstract .article-pages-abstract-content {
+          font-size: 14px;
+          line-height: 25px;
+          color: #959595;
+          letter-spacing: 2px;
+          font-family: "Microsoft YaHei"; }
     .info-center-detail-body .info-center-article-content .info-center-article-list {
       position: absolute;
       width: 250px;
