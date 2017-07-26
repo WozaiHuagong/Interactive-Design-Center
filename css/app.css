@@ -8,7 +8,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
   width: 100%;
   height: 64px; }
   .common-header .common-header-content {
-    width: 1000px;
+    width: 956px;
     margin: 0 auto;
     height: 64px;
     overflow: hidden; }
@@ -35,7 +35,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
   box-shadow: 0px 5px 5px #f0f0f0; }
   .common-navigation-bar .common-navigation-bar-wrap {
     position: relative;
-    width: 1000px;
+    width: 956px;
     margin: 0 auto; }
     .common-navigation-bar .common-navigation-bar-wrap .common-navigation-join-us {
       font-size: 20px;
@@ -49,7 +49,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       padding: 0px;
       background-color: #f79556; }
     .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content {
-      width: 1000px;
+      width: 956px;
       height: 64px;
       overflow: hidden;
       background-color: #ffffff;
@@ -69,7 +69,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           background-color: #fff; }
 
 .main-page-body {
-  width: 1000px;
+  width: 956px;
   margin: 0 auto; }
   .main-page-body .mian-page-info-center {
     margin-top: 30px; }
@@ -302,7 +302,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     height: 80px;
     background-color: #fafafa; }
     .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content {
-      width: 1000px;
+      width: 956px;
       margin: 0 auto; }
       .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left {
         float: left; }
@@ -419,7 +419,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     height: 80px;
     background-color: #fafafa; }
     .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content {
-      width: 1000px;
+      width: 956px;
       margin: 0 auto; }
       .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left {
         float: left; }
@@ -437,7 +437,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           bottom: 15px;
           margin-left: 10px; }
   .industry-elite-list-body .industry-elite-list-body-article {
-    width: 1000px;
+    width: 956px;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 80px;
@@ -446,7 +446,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     flex-wrap: wrap;
     justify-content: space-between; }
     .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page {
-      width: 1000px;
+      width: 956px;
       margin: 0 auto;
       margin-top: 20px; }
       .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-img {
@@ -528,3 +528,49 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
             font-size: 14px;
             color: #626878;
             font-family: "Microsoft YaHei"; }
+
+.about-us-organization {
+  background-image: url("../../assets/交互设计中心切图（3）/关于我们-组织架构/组织架构.png");
+  height: 386px;
+  width: 954px;
+  margin: 0 auto;
+  margin-top: 75px; }
+
+.about-us-member {
+  width: 956px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .about-us-member .about-us-member-list {
+    width: 291px;
+    height: 500px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin-top: 30px; }
+    .about-us-member .about-us-member-list .member-list-img {
+      height: 157px;
+      width: 157px;
+      margin: 0 auto;
+      margin-top: 16px;
+      border-radius: 50%; }
+    .about-us-member .about-us-member-list .member-list-name {
+      font-size: 24px;
+      color: #313131;
+      font-family: "Microsoft YaHei";
+      display: block;
+      text-align: center; }
+    .about-us-member .about-us-member-list .member-list-position {
+      font-size: 12px;
+      color: #313131;
+      font-family: "Microsoft YaHei";
+      display: block;
+      text-align: center; }
+    .about-us-member .about-us-member-list .member-list-introduction {
+      font-size: 16px;
+      font-family: "Microsoft YaHei";
+      display: block;
+      margin-top: 10px;
+      margin-left: 20px;
+      margin-right: 20px; }

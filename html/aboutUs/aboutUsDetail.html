@@ -1,67 +1,189 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../../css/app.css" rel="stylesheet">
-        <link href="../../css/materialize.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="common-header">
-            <div class="common-header-content">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../css/app.css" rel="stylesheet">
+    <link href="../../css/materialize.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/materialIcon.css">
+</head>
+
+<body>
+    <!--公共头部-->
+    <div class="common-header">
+        <div class="common-header-content">
             <div class="common-header-logo"></div>
             <div class="common-header-text">广东省人机交互设计工程技术研究中心</div>
-            </div>
-        </div>
-            <div class="common-navigation-bar">
-        <div class="common-navigation-bar-wrap">
-       <nav class="nav-extended common-navigation-bar-content">
-                      <ul class="common-navigation-bar-content-list">
-                        <li id="common-nav-mainpage"><a href="../../index.html">首页</a></li>
-                        <li id="common-nav-info-center"><a class="active" href="../../html/infomationCenter/infomationCenterDetail.html" style="position:relative">资讯中心</a></li>
-                        <li id="common-nav-project"><a href="../../html/researchProject/researchProjectDetail.html">研究项目</a></li>
-                        <li id="common-nav-industry-elite"><a href="../../html/industryElite/industryEliteDetail.html">行业精英</a></li>
-                        <li id="common-nav-forum"><a href="../../html/forum/forumDetail.html">交流论坛</a></li>
-                        <li id="common-nav-about-us"><a  href="../../html/aboutUs/aboutUsDetail.html">关于我们</a></li>
-                        <li class="tab1"><a  href="#test2">关于我们</a></li>
-                    </ul>
-        </nav>
-        <a class="btn common-navigation-join-us" href="../joinUs/joinUsDetail.html">加入我们</a>
         </div>
     </div>
-        
-<!--尾部开始-->
-    <div class="common-footer"  id="common-footer-id">
-        <div class="common-footer-content">
-          <div class="common-footer-detail">
-              <div class="common-footer-detail-left">
-                  <div class="common-footer-logo">
-                      <div class="common-footer-logo-img"></div>
-                      <div class="common-footer-logo-text">广东省人机交互设计工程技术研究中心</div>
-                  </div>
-                <p class="common-footer-left-first-text">地址：广州市番禺区小谷围街道华南理工大学</p>
-                <p>邮编： 510006</p>
-                <p class="common-footer-left-second-text">电话： +86-15555551234</p>
-                <P>邮箱： maggie@163.edu.com</P>
-              </div>
-              <div class="common-footer-detail-right">
-                <div class="common-footer-logo-right-text">关注微信公众号获取更多资讯</div>
-                <div class="common-footer-wechat"></div>
-              </div>
+    <div class="common-navigation-bar">
+        <div class="common-navigation-bar-wrap">
+            <nav class="nav-extended common-navigation-bar-content">
+                <ul class="common-navigation-bar-content-list">
+                    <li id="common-nav-mainpage"><a href="../../index.html">首页</a></li>
+                    <li id="common-nav-info-center"><a class="active" href="../../html/infomationCenter/infomationCenterDetail.html" style="position:relative">资讯中心</a></li>
+                    <li id="common-nav-project"><a href="../../html/researchProject/researchProjectDetail.html">研究项目</a></li>
+                    <li id="common-nav-industry-elite"><a href="../../html/industryElite/industryEliteDetail.html">行业精英</a></li>
+                    <li id="common-nav-forum"><a href="../../html/forum/forumDetail.html">交流论坛</a></li>
+                    <li id="common-nav-about-us"><a href="../../html/aboutUs/aboutUsDetail.html">关于我们</a></li>
+                    <li class="tab1"><a href="#test2">关于我们</a></li>
+                </ul>
+            </nav>
+            <a class="btn common-navigation-join-us" href="../joinUs/joinUsDetail.html">加入我们</a>
+        </div>
+    </div>
+    <!--公共头部结束-->
+    <div class="info-center-detail-body">
+        <div class="info-center-detail-body-header">
+            <div class="info-center-detail-body-header-content">
+                <div class="info-center-detail-body-header-left">
+                    <i class="material-icons">assignment_ind</i>
+                    <span>关于我们</span>
+                </div>
+                <div class="info-center-detail-body-header-right">
+                    <span id="about-us-detail-body-header-right-first" style=" color: rgb(8,147,214);">组织架构</span>
+                    <span id="about-us-detail-body-header-right-second">研究中心成员</span>
+                </div>
             </div>
         </div>
-  
-    <div class="common-copy-right">
-        <div class="common-copy-right-text">
-            <p class="first">Copyright © 2011-2016 华南理工大学版权所有</p>
-            <p class="second"> 粤ICP备12031769号-2</p>
+        <!--关于我们的组织架构内容-->
+        <div class="about-us-organization" id="about-us-organization-id">
+        </div>
+        <!--组织架构结束-->
+        <!--研究中心成员-->
+    <div class="abou-us-member-parent" style="clear:both">
+        <div class="about-us-member" id="about-us-member-id" style="display:none;">
+            <div class="about-us-member-list">
+                <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 1.png')"></div>
+                <span class="member-list-name">姜立军</span>
+                <span class="member-list-position">研究中心主任/技术委员会副主任</span>
+                <p class="member-list-introduction">姜立军，博士，教授。华南理工大学设计学院副院长，主管科研、研究生教学及实验室建设工作。一直从事"工程图学"、"计算机图形图像处理"、“智能环境感知应用与产品开发研究”、“人机交互”等方向的教学和科研工作。任第5届广东省工程图学学会副秘书长、常务理事，华南理工大学CAD实验中心副主任。</p>
+            </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 2.png')"></div>
+                    <span class="member-list-name">金连文</span>
+                    <span class="member-list-position">技术委员会主任</span>
+                    <p class="member-list-introduction">金连文，博士，教授。华南理工大学电子与信息学院信息工程系主任，博士生导师。主要研究方向包括：人机智能交互、云计算、移动互联网、模式识别等。兼任广东省高校“音视频图文智能信息处理”工程研究中心主任，“无线通信网络及终端”广东省重点实验室副主任。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 3.png')"></div>
+                    <span class="member-list-name">李哲林</span>
+                    <span class="member-list-position">研究中心副主任</span>
+                    <p class="member-list-introduction">李哲林，博士，教授。华南理工大学设计学院实验中心主任。于2003年7月至2010年5月在华南理工大学机械工程学院工作，2010年6月至今在华南理工大学设计学院工作。主要研究方向是人机交互技术与工业产品智能检测</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 4.png')"></div>
+                    <span class="member-list-name">熊志勇</span>
+                    <span class="member-list-position">研究中心副主任</span>
+                    <p class="member-list-introduction">熊志勇，博士，华南理工大学设计学院副教授。2013年入选广州市“珠江科技新星”专项计划。主要研究方向是人机交互设计与产品形态创新设计。兼任世界技能大赛中国专家组组长和裁判长</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 5.png')"></div>
+                    <span class="member-list-name">罗笑南</span>
+                    <span class="member-list-position">技术委员会副主任</span>
+                    <p class="member-list-introduction">罗笑南，博士，中山大学信息科学与技术学院教授，博士生导师，享受广东省“千百十”人才计划百人岗位特殊津贴。主讲过研究生及本科生课程“计算机图形学”、“数字通信技术”、“软件能力成熟度模型”等课程近20门。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 6.png')"></div>
+                    <span class="member-list-name">李绍滋</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">李绍滋，博士，教授。厦门大学智能科学与技术系系主任，博士生导师。机械工业部首批跨世纪学术骨干、河南省首批优秀中青年骨干教师。主要研究方向为：人工智能与多媒体信息检索、网络多媒体及CSCW技术、软件体系结构与中间件技术等。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 7.png')"></div>
+                    <span class="member-list-name">杨艳</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">杨艳，博士，西北工业大学航海学院特聘研究员，博士生导师。兼任德国宝马-新加坡南洋理工大学未来交通联合实验室技术负责人。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 8.png')"></div>
+                    <span class="member-list-name">陈江</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">陈江，博士，广州美术学院教授，工业设计学院院长。研究领域包括： 工业设计工程、产品系统设计、设计管理。自1992年11月至今，已承接十余项纵向和横向设计研究课题。先后为数十家各类公司进行过设计工作，设计实践领域包括：产品外观、内部结构设计和原创产品功能设计、系统设计、展示设计和设计管理咨询。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 9.png')"></div>
+                    <span class="member-list-name">董华</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">董华，博士，教授。同济大学传媒与艺术学院院长，设计创意学院教授。中组部青年千人、东方学者。研究方向：包容性设计，领域涵产品、环境、视觉传达、人机交互、媒体；涉及包容性设计过程、用户与设计师合作方式、设计过程中的数据使用、健康工程与家用医疗器械设计研究、应对老龄化的设计创新，设计教育和设计伦理。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 10.png')"></div>
+                    <span class="member-list-name">曲行达</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">曲行达，博士，深圳大学机电与控制工程学院特聘教授，人因工程研究所主任，博士生导师。2013 年，入选中组部青年千人计划。研究领域包括：人因工程，职业生物力学，人体运动分析，人机交互，和安全工程。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 11.png')"></div>
+                    <span class="member-list-name">范冰冰</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">范冰冰，华南师范大学教授，计算机学院副院长。主要研究方向包括：通信与计算机网络、网络分布计算、信息安全教学和研发。曾获全军通信系统有突出贡献的优秀科技人员，总参优秀教师，通信和信息系统学科带头人。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 12.png')"></div>
+                    <span class="member-list-name">胡飞</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">胡飞，博士，教授。广东工业大学艺术设计学院副院长。研究方向：以用户为中心的产品、交互、服务与战略设计。广东省引进创新科研团队“工业设计集成创新科研团队”核心成员、广东省教育厅“千百十工程”省级培养对象，广东工业大学“百人计划”特聘教授。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 13.png')"></div>
+                    <span class="member-list-name">范劲松</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">范劲松，博士，教授。佛山科学技术学院陶瓷(珠宝)艺术设计学院副院长。主要研究领域：可持续发展设计、设计程序与方法、材料与工业设计、计算机辅助工业设计、数字图像处理、人机工程学等。中国机械工程学会工业设计分会理事，广东省机械工程学会工业设计分会常务理事、中国工艺美术协会会员。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 14.png')"></div>
+                    <span class="member-list-name">潘志庚</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">潘志庚，博士，杭州师范大学教授，博士生导师。近年研究方向集中在虚拟现实及多媒体、分布式图形等基础研究工作中，取得多项高水平具有创新性的研究成果,在国内外虚拟现实及多媒体领域有较大知名度。兼任中国图像图形学会常务理事，副秘书长；中国图像图形学会虚拟现实专委会副主任兼秘书长；中国人工智能学会机器感知和虚拟现实专委会副主任。</p>
+                </div>
+                <div class="about-us-member-list">
+                    <div class="member-list-img" style=" background-image :url('../../assets/交互设计中心切图（3）/关于我们－研究中心成员-assets/组 15.png')"></div>
+                    <span class="member-list-name">李桂清</span>
+                    <span class="member-list-position">技术委员会委员</span>
+                    <p class="member-list-introduction">李桂清，博士，华南理工大学计算机科学与工程学院教授，博士生导师。研究领域包括：数字几何处理，3D动画，图像编缉，可视分析等。担任CSIAM几何设计与计算专委会和CCF CAD/CG专委会委员，《计算机辅助设计与图形学学报》和《CADDM》编委。</p>
+                </div>
+            </div>
+        </div>
+        <!--研究中心成员结束-->
+        </div>
+    </div>
+
+    <div class="about-us-footer-top" style="background-color:rgb(250,250,250);height:130px; width:100%;"></div>
+    <!--尾部开始-->
+    <div class="common-footer" id="common-footer-id">
+        <div class="common-footer-content">
+            <div class="common-footer-detail">
+                <div class="common-footer-detail-left">
+                    <div class="common-footer-logo">
+                        <div class="common-footer-logo-img"></div>
+                        <div class="common-footer-logo-text">广东省人机交互设计工程技术研究中心</div>
+                    </div>
+                    <p class="common-footer-left-first-text">地址：广州市番禺区小谷围街道华南理工大学</p>
+                    <p>邮编： 510006</p>
+                    <p class="common-footer-left-second-text">电话： +86-15555551234</p>
+                    <P>邮箱： maggie@163.edu.com</P>
+                </div>
+                <div class="common-footer-detail-right">
+                    <div class="common-footer-logo-right-text">关注微信公众号获取更多资讯</div>
+                    <div class="common-footer-wechat"></div>
+                </div>
+            </div>
         </div>
 
+        <div class="common-copy-right">
+            <div class="common-copy-right-text">
+                <p class="first">Copyright © 2011-2016 华南理工大学版权所有</p>
+                <p class="second"> 粤ICP备12031769号-2</p>
+            </div>
+
+        </div>
     </div>
-</div>
     <script type="text/javascript" src="../../js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="../../js/materialize.js"></script>
     <script type="text/javascript" src="../../js/common-navigation.js"></script>
-    </body>
+</body>
+
 </html>

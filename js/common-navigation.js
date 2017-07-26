@@ -117,6 +117,27 @@ $(document).ready(function () {
     })
 
     //资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换结束
+    //关于我们上方的点击切换页面功能
+       $('#about-us-detail-body-header-right-first').click(function (event) {
+        infoCenterBodyHeaderChoices(event.target);
+        infoCenterBodyHeaderRemoveChoices(event.target);
+        $('#about-us-organization-id').show();
+        $('#about-us-member-id').hide();
+
+    });
+    $('#about-us-detail-body-header-right-second').click(function (event) {
+        infoCenterBodyHeaderChoices(event.target);
+        infoCenterBodyHeaderRemoveChoices(event.target);
+        $('#about-us-organization-id').hide();
+        $('#about-us-member-id').show();
+    })
+
+    //关于我们上方切换结束
+
+
+
+
+
     //行业精英获取信息，点击刷新的行业精英的内容
     $('#industry-elite-personal-detail-introduction-first').click(function () {
           var $industryEliteFirstPageHtml="";
