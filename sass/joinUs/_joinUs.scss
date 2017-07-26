@@ -1,0 +1,33 @@
+.join-us-content {
+    width: $base-width;
+    margin: 0 auto;
+    .join-us-image {
+        background-image: url('../assets/交互设计中心切图（3）/加入我们-assets/VCG41542548114 (1).png');
+        height: 228px;
+        width: 667px;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+    .join-us-article {
+        p{
+            text-indent: 2em;
+            font-family:$base-font-family;
+            font-size:18px;
+            color:#626878;
+            margin-top:20px;
+        }
+        article{
+            h1{
+               color: #0893d6;
+               font-size:18px;
+               font-family:$base-font-family;
+               margin-top:20px;
+               text-indent: 2em;
+               margin-bottom:10px;
+            }
+            p{
+                margin-top:0px;
+            }
+        }
+    }
+}

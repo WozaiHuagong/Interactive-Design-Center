@@ -66,6 +66,9 @@ $(document).ready(function () {
         }
     }
     determineTheFooterPosition();
+    $('body').click(function(){
+          determineTheFooterPosition();
+    })
     //尾部位置处理结束
 
 

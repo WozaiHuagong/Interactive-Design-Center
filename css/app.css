@@ -574,3 +574,28 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       margin-top: 10px;
       margin-left: 20px;
       margin-right: 20px; }
+
+.join-us-content {
+  width: 956px;
+  margin: 0 auto; }
+  .join-us-content .join-us-image {
+    background-image: url("../assets/交互设计中心切图（3）/加入我们-assets/VCG41542548114 (1).png");
+    height: 228px;
+    width: 667px;
+    margin: 0 auto;
+    margin-top: 30px; }
+  .join-us-content .join-us-article p {
+    text-indent: 2em;
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    color: #626878;
+    margin-top: 20px; }
+  .join-us-content .join-us-article article h1 {
+    color: #0893d6;
+    font-size: 18px;
+    font-family: "Microsoft YaHei";
+    margin-top: 20px;
+    text-indent: 2em;
+    margin-bottom: 10px; }
+  .join-us-content .join-us-article article p {
+    margin-top: 0px; }
