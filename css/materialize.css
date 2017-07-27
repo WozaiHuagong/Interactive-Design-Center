@@ -2681,7 +2681,7 @@ video.responsive-video {
 }
 
 .pagination li a {
-  color: #444;
+  color: #626878;
   display: inline-block;
   font-size: 1.2rem;
   padding: 0 10px;
@@ -2698,7 +2698,7 @@ video.responsive-video {
 
 .pagination li.disabled a {
   cursor: default;
-  color: #999;
+  color: #cfcfce;
 }
 
 .pagination li i {

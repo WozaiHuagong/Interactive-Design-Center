@@ -71,6 +71,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
 .main-page-body {
   width: 956px;
   margin: 0 auto; }
+  .main-page-body .carousel {
+    height: 468px; }
   .main-page-body .mian-page-info-center {
     margin-top: 30px; }
     .main-page-body .mian-page-info-center .main-page-info-center-header i {
@@ -91,16 +93,58 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       float: right; }
     .main-page-body .mian-page-info-center .main-page-info-center-card {
       margin-top: 10px;
-      height: 300px;
       display: flex;
       flex-direction: row;
       justify-content: space-between; }
       .main-page-body .mian-page-info-center .main-page-info-center-card .row {
         box-shadow: 0px 0px 5px #c8c8c8;
-        width: 310px;
+        width: 300px;
+        height: 264px;
         padding: 0px;
         margin-left: 0px;
         margin-right: 0px; }
+        .main-page-body .mian-page-info-center .main-page-info-center-card .row h2 {
+          line-height: 18px;
+          margin: 0px;
+          padding: 0ps;
+          font-size: 18px;
+          font-family: "Microsoft YaHei";
+          color: #525765;
+          text-align: center;
+          font-weight: 600;
+          display: block;
+          line-height: 32px;
+          margin-bottom: 8px;
+          margin-top: 22px;
+          text-align: center; }
+        .main-page-body .mian-page-info-center .main-page-info-center-card .row p {
+          margin-top: 22px;
+          font-size: 14px;
+          color: #626878;
+          font-family: "Microsoft YaHei";
+          height: 96px;
+          padding: 0 20px;
+          line-height: 25px;
+          overflow: hidden;
+          margin-bottom: 4px; }
+        .main-page-body .mian-page-info-center .main-page-info-center-card .row span {
+          padding-left: 220px;
+          font-size: 12px;
+          color: #a0a0a0; }
+        .main-page-body .mian-page-info-center .main-page-info-center-card .row hr {
+          margin: 0px;
+          margin-top: 3px;
+          height: 0px;
+          padding: 0px;
+          width: 100%;
+          border-top: 1px solid rgba(160, 160, 160, 0.2); }
+        .main-page-body .mian-page-info-center .main-page-info-center-card .row a {
+          display: block;
+          text-align: center;
+          color: #f79556;
+          font-size: 18px;
+          font-family: "Microsoft YaHei";
+          margin-top: 16px; }
         .main-page-body .mian-page-info-center .main-page-info-center-card .row .col {
           padding: 0px; }
         .main-page-body .mian-page-info-center .main-page-info-center-card .row .card-content {
@@ -159,7 +203,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       justify-content: space-between;
       margin-top: 10px; }
       .main-page-body .main-page-research-project .main-page-research-project-card .row {
-        width: 480px;
+        width: 462px;
+        height: 412px;
         padding: 0px;
         margin-left: 0px;
         margin-right: 0px;
@@ -168,6 +213,38 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           padding: 0px; }
           .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card {
             margin: 0px; }
+            .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-image {
+              width: 100%;
+              height: 280px; }
+            .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content {
+              width: 100%;
+              height: 132px;
+              padding: 0px;
+              overflow: hidden; }
+              .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content span:nth-child(2) {
+                float: right;
+                display: block;
+                margin-top: 22px;
+                margin-right: 20px;
+                font-size: 14px;
+                color: #626878;
+                font-family: "Microsoft YaHei"; }
+              .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content .card-article-title {
+                display: inline-block;
+                margin-left: 14px;
+                padding-top: 22px;
+                line-height: 18px;
+                font-size: 18px;
+                font-family: "Microsoft YaHei";
+                color: #525765; }
+              .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content p {
+                margin-left: 14px;
+                margin-top: 20px;
+                margin-right: 18px;
+                line-height: 25px;
+                font-size: 14px;
+                font-family: "Microsoft YaHei";
+                color: #626878; }
   .main-page-body .main-page-industry-elite {
     margin-top: 30px;
     margin-bottom: 110px; }
@@ -194,8 +271,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       justify-content: space-between;
       flex-wrap: wrap; }
       .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row {
-        width: 465px;
-        height: 200px;
+        width: 462px;
+        height: 198px;
         margin-left: 0px;
         margin-right: 0px;
         box-shadow: 0px 0px 5px #c8c8c8; }
@@ -205,9 +282,35 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
             margin: 0px; }
           .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-image {
             width: 160px;
-            height: 200px;
+            height: 198px;
             overflow: hidden;
             background-color: #0893d6; }
+          .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-content {
+            padding: 0px; }
+            .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-content span:nth-child(1) {
+              font-family: "Microsoft YaHei";
+              font-size: 18px;
+              line-height: 18px;
+              margin-top: 25px;
+              margin-left: 28px;
+              color: #525765;
+              display: block; }
+            .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-content span:nth-child(2) {
+              font-family: "Microsoft YaHei";
+              font-size: 12px;
+              line-height: 12x;
+              margin-top: 16px;
+              margin-left: 28px;
+              color: #a0a0a0;
+              display: block; }
+            .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-content p {
+              font-family: "Microsoft YaHei";
+              font-size: 14px;
+              line-height: 25px;
+              margin-top: 30px;
+              margin-left: 28px;
+              margin-right: 25px;
+              color: #626878; }
 
 .common-footer {
   width: 100%;
@@ -314,7 +417,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left span {
           font-size: 23px;
           font-family: "Microsoft YaHei";
-          color: #0893d6;
+          color: #626878;
           display: inline-block;
           position: relative;
           bottom: 15px;
@@ -326,6 +429,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           font-size: 20px;
           font-family: "Microsoft YaHei";
           letter-spacing: 2px;
+          color: #626878;
           display: inline-block;
           padding-left: 6px;
           cursor: pointer; }
@@ -456,7 +560,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         bottom: 0px;
         margin-bottom: 12px;
         margin-right: 6px;
-        background-color: #3f3c35; }
+        background-color: #626878; }
       .info-center-article-content-first .info-center-article-list .info-center-article-abstract p {
         font-size: 14px;
         margin-left: 30px;
@@ -508,7 +612,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         bottom: 0px;
         margin-bottom: 12px;
         margin-right: 6px;
-        background-color: #3f3c35; }
+        background-color: #626878; }
       .info-center-article-content-second .info-center-article-list .info-center-article-abstract p {
         font-size: 14px;
         margin-left: 30px;
@@ -844,7 +948,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         font-size: 14px;
         color: #626878;
         font-family: "Microsoft YaHei";
-        line-height: 2; }
+        line-height: 2;
+        margin-top: 20px; }
 
 .research-project-gain {
   width: 956px;
@@ -882,7 +987,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         font-size: 14px;
         color: #626878;
         font-family: "Microsoft YaHei";
-        line-height: 2; }
+        line-height: 2;
+        margin-top: 20px; }
 
 #footer-top-id {
   text-align: center;

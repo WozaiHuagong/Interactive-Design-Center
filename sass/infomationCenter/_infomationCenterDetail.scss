@@ -18,7 +18,7 @@
                 span {
                     font-size: 23px;
                     font-family: $base-font-family;
-                    color: $base-background-color;
+                   color:#626878;
                     display: inline-block;
                     position: relative;
                     bottom: 15px;
@@ -32,6 +32,7 @@
                     font-size: 20px;
                     font-family: $base-font-family;
                     letter-spacing: 2px;
+                    color:#626878;
                     display: inline-block;
                     padding-left: 6px; //inline-block中会有4px的空白
                     cursor: pointer;
@@ -188,7 +189,7 @@
                 bottom: 0px;
                 margin-bottom: 12px;
                 margin-right: 6px;
-                background-color: rgb(63, 60, 53);
+                background-color: #626878;
             }
             p {
                 font-size: 14px;
@@ -248,7 +249,7 @@
                 bottom: 0px;
                 margin-bottom: 12px;
                 margin-right: 6px;
-                background-color: rgb(63, 60, 53);
+                     background-color: #626878;
             }
             p {
                 font-size: 14px;
