@@ -1,18 +1,20 @@
 $(document).ready(function () {
     //首页轮播图启动
-  $('.carousel.carousel-slider').carousel({full_width: true});
-  //轮播图启动结束
-  //右边的滚动监视条触发
-   $('.scrollspy').scrollSpy();
-     $('.scroll-spy').pushpin({
-      top: 0,//滚动多少页面后，就是隐藏的页面有多高后自动固定
-      bottom: 2000,
-      offset: 200//距离页面顶部多少距离时固定
+    $('.carousel.carousel-slider').carousel({
+        full_width: true
     });
-   //右边滚动监视条结束
-    
-    
-    
+    //轮播图启动结束
+    //右边的滚动监视条触发
+    $('.scrollspy').scrollSpy();
+    $('.scroll-spy').pushpin({
+        top: 0, //滚动多少页面后，就是隐藏的页面有多高后自动固定
+        bottom: 2000,
+        offset: 200 //距离页面顶部多少距离时固定
+    });
+    //右边滚动监视条结束
+
+
+
     //获取当前页面的URL，用正则表达式匹配，决定那个导航的地方有下边的蓝线
     var determineTheBlueBorder = function () {
         $url = window.location.href;
@@ -66,8 +68,8 @@ $(document).ready(function () {
         }
     }
     determineTheFooterPosition();
-    $('body').click(function(){
-          determineTheFooterPosition();
+    $('body').click(function () {
+        determineTheFooterPosition();
     })
     //尾部位置处理结束
 
@@ -110,18 +112,61 @@ $(document).ready(function () {
         infoCenterBodyHeaderRemoveChoices(event.target);
         $('#info-center-article-list-research-info-id').show();
         $('#info-center-article-list-industry-info-id').hide();
-
+        $('#info-center-article-content-research-room').show(); //研究中心资讯
+        $('#info-center-article-content-industry').hide(); //行业资讯
+        $('#info-center-detail-page-id').hide();
+        $('#info-center-pagination-id').show(); //分页条
     });
     $('#info-center-detail-body-header-right-second').click(function (event) {
         infoCenterBodyHeaderChoices(event.target);
         infoCenterBodyHeaderRemoveChoices(event.target);
         $('#info-center-article-list-research-info-id').hide();
         $('#info-center-article-list-industry-info-id').show();
+        $('#info-center-article-content-research-room').hide();
+        $('#info-center-article-content-industry').show();
+        $('#info-center-detail-page-id').hide()
+        $('#info-center-pagination-id').show(); //分页条
     })
 
     //资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换结束
+
+    //研究项目右上角切换功能
+    //要结合滚动显示效果，所以放到另外一个文件researchProject.js里面
+    
+   $('#research-project-detail-body-header-right-first').click(function (event) {
+        infoCenterBodyHeaderChoices(event.target);
+        infoCenterBodyHeaderRemoveChoices(event.target);
+        $('#current-research-project-id').show();
+        $('#research-project-gain-id').hide();
+        $('#footer-top-id').text('');
+        console.log($('#footer-top-id').offset().top+"footer-id-current");
+          if($('#footer-top-id').offset().top>4000)//后期注意修改
+            {
+                 $('#footer-top-id').text('没有更多内容了...');
+            }
+
+    });
+    $('#research-project-detail-body-header-right-second').click(function (event) {
+        infoCenterBodyHeaderChoices(event.target);
+        infoCenterBodyHeaderRemoveChoices(event.target);
+        $('#current-research-project-id').hide();
+        $('#research-project-gain-id').show();
+        $('#footer-top-id').text('');
+           console.log($('#footer-top-id').offset().top+"footer-id-current");
+         if($('#footer-top-id').offset().top>2300)//后期注意修改
+            {
+                 $('#footer-top-id').text('没有更多内容了...');
+            }
+
+    });
+    //研究项目右上角切换功能失效
+
+
+
+
+
     //关于我们上方的点击切换页面功能
-       $('#about-us-detail-body-header-right-first').click(function (event) {
+    $('#about-us-detail-body-header-right-first').click(function (event) {
         infoCenterBodyHeaderChoices(event.target);
         infoCenterBodyHeaderRemoveChoices(event.target);
         $('#about-us-organization-id').show();
@@ -133,18 +178,33 @@ $(document).ready(function () {
         infoCenterBodyHeaderRemoveChoices(event.target);
         $('#about-us-organization-id').hide();
         $('#about-us-member-id').show();
-    })
-
+    });
     //关于我们上方切换结束
+    
 
 
 
 
 
+
+
+
+
+
+
+    //资讯中心查看详情按钮点击事件
+    $('.look-in-detail').click(function () {
+        $('#info-center-detail-page-id').show()
+        $('#info-center-article-content-research-room').hide(); //研究中心资讯
+        $('#info-center-article-content-industry').hide();
+        $('#info-center-pagination-id').hide();
+
+    });
+    //资讯中心按钮点击事件结束
     //行业精英获取信息，点击刷新的行业精英的内容
     $('#industry-elite-personal-detail-introduction-first').click(function () {
-          var $industryEliteFirstPageHtml="";
-          var industryElitePersonalDetailIntroduction="";
+        var $industryEliteFirstPageHtml = "";
+        var industryElitePersonalDetailIntroduction = "";
         // $.ajax({
         //     url: "",
         //     method: "",
@@ -162,21 +222,21 @@ $(document).ready(function () {
         //     error: function () {}
         // });//ajax请求结束
         //下面代码仅做调试用
-        var $test='<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">'+
-                     '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>'+
-                     '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>'+
-                     '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>'+
-                     '<span class="industry-elite-personal-detail-article-title">获奖情况</span> '+
-                     '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>'+
-                     '</div></div>'
+        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+            '</div></div>'
         $('#industry-elite-list-body-article-id').html($test);
         //调试代码结束
     })
-//第一个人结束
-//第二个人开始
+    //第一个人结束
+    //第二个人开始
     $('#industry-elite-personal-detail-introduction-second').click(function () {
-          var $industryEliteFirstPageHtml="";
-          var industryElitePersonalDetailIntroduction="";
+        var $industryEliteFirstPageHtml = "";
+        var industryElitePersonalDetailIntroduction = "";
         // $.ajax({
         //     url: "",
         //     method: "",
@@ -194,13 +254,13 @@ $(document).ready(function () {
         //     error: function () {}
         // });//ajax请求结束
         //下面代码仅做调试用
-        var $test='<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">'+
-                     '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>'+
-                     '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>'+
-                     '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>'+
-                     '<span class="industry-elite-personal-detail-article-title">获奖情况</span> '+
-                     '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>'+
-                     '</div></div>'
+        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+            '</div></div>'
         $('#industry-elite-list-body-article-id').html($test);
         //调试代码结束
     })
@@ -208,8 +268,8 @@ $(document).ready(function () {
 
     //第三个人开始
     $('#industry-elite-personal-detail-introduction-third').click(function () {
-          var $industryEliteFirstPageHtml="";
-          var industryElitePersonalDetailIntroduction="";
+        var $industryEliteFirstPageHtml = "";
+        var industryElitePersonalDetailIntroduction = "";
         // $.ajax({
         //     url: "",
         //     method: "",
@@ -227,13 +287,13 @@ $(document).ready(function () {
         //     error: function () {}
         // });//ajax请求结束
         //下面代码仅做调试用
-        var $test='<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">'+
-                     '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>'+
-                     '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>'+
-                     '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>'+
-                     '<span class="industry-elite-personal-detail-article-title">获奖情况</span> '+
-                     '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>'+
-                     '</div></div>'
+        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+            '</div></div>'
         $('#industry-elite-list-body-article-id').html($test);
         //调试代码结束
     })
@@ -241,8 +301,8 @@ $(document).ready(function () {
 
     //第四个人开始
     $('#industry-elite-personal-detail-introduction-forth').click(function () {
-          var $industryEliteFirstPageHtml="";
-          var industryElitePersonalDetailIntroduction="";
+        var $industryEliteFirstPageHtml = "";
+        var industryElitePersonalDetailIntroduction = "";
         // $.ajax({
         //     url: "",
         //     method: "",
@@ -260,13 +320,13 @@ $(document).ready(function () {
         //     error: function () {}
         // });//ajax请求结束
         //下面代码仅做调试用
-        var $test='<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">'+
-                     '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>'+
-                     '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>'+
-                     '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>'+
-                     '<span class="industry-elite-personal-detail-article-title">获奖情况</span> '+
-                     '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>'+
-                     '</div></div>'
+        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+            '</div></div>'
         $('#industry-elite-list-body-article-id').html($test);
         //调试代码结束
     })
@@ -275,8 +335,8 @@ $(document).ready(function () {
 
     //第五个人开始
     $('#industry-elite-personal-detail-introduction-fifth').click(function () {
-          var $industryEliteFirstPageHtml="";
-          var industryElitePersonalDetailIntroduction="";
+        var $industryEliteFirstPageHtml = "";
+        var industryElitePersonalDetailIntroduction = "";
         // $.ajax({
         //     url: "",
         //     method: "",
@@ -294,13 +354,13 @@ $(document).ready(function () {
         //     error: function () {}
         // });//ajax请求结束
         //下面代码仅做调试用
-        var $test='<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">'+
-                     '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>'+
-                     '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>'+
-                     '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>'+
-                     '<span class="industry-elite-personal-detail-article-title">获奖情况</span> '+
-                     '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>'+
-                     '</div></div>'
+        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+            '</div></div>'
         $('#industry-elite-list-body-article-id').html($test);
         //调试代码结束
     })
@@ -309,8 +369,8 @@ $(document).ready(function () {
 
     //第六个人开始
     $('#industry-elite-personal-detail-introduction-sixth').click(function () {
-          var $industryEliteFirstPageHtml="";
-          var industryElitePersonalDetailIntroduction="";
+        var $industryEliteFirstPageHtml = "";
+        var industryElitePersonalDetailIntroduction = "";
         // $.ajax({
         //     url: "",
         //     method: "",
@@ -328,13 +388,13 @@ $(document).ready(function () {
         //     error: function () {}
         // });//ajax请求结束
         //下面代码仅做调试用
-        var $test='<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">'+
-                     '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>'+
-                     '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>'+
-                     '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>'+
-                     '<span class="industry-elite-personal-detail-article-title">获奖情况</span> '+
-                     '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>'+
-                     '</div></div>'
+        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+            '</div></div>'
         $('#industry-elite-list-body-article-id').html($test);
         //调试代码结束
     })

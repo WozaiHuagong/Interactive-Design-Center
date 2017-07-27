@@ -295,8 +295,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     border-left: 5px solid #0893d6; }
 
 .info-center-detail-body {
-  width: 100%;
-  margin-bottom: 120px; }
+  width: 100%; }
   .info-center-detail-body .info-center-detail-body-header {
     width: 100%;
     height: 80px;
@@ -333,7 +332,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           padding-right: 10px;
           border-right: 1px solid black; }
   .info-center-detail-body .info-center-article-content {
-    width: 1000px;
+    width: 956px;
     margin: 0 auto;
     position: relative; }
     .info-center-detail-body .info-center-article-content .info-center-article {
@@ -411,6 +410,214 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
             padding-right: 20px;
             padding-bottom: 3px;
             border-bottom: 2px solid #0893d6; }
+
+.info-center-article-content-first {
+  width: 956px;
+  margin: 0 auto; }
+  .info-center-article-content-first .info-center-article-list {
+    width: 100%;
+    height: 202px;
+    box-shadow: 0px 0px 5px #c8c8c8;
+    padding: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px; }
+    .info-center-article-content-first .info-center-article-list .info-center-article-img {
+      background-color: #0893d6;
+      height: 186px;
+      width: 286px;
+      display: inline-block; }
+    .info-center-article-content-first .info-center-article-list .info-center-article-abstract {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      width: 650px;
+      height: 100%; }
+      .info-center-article-content-first .info-center-article-list .info-center-article-abstract h1 {
+        display: inline-block;
+        margin: 0px;
+        font-size: 18px;
+        color: #525765;
+        font-family: "Microsoft YaHei";
+        margin-top: 14px;
+        margin-left: 30px; }
+      .info-center-article-content-first .info-center-article-list .info-center-article-abstract span {
+        float: right;
+        right: 0px;
+        top: 0px;
+        font-size: 12px;
+        font-family: "Microsoft YaHei";
+        color: #a0a0a0;
+        margin-right: 6px;
+        margin-top: 14px; }
+      .info-center-article-content-first .info-center-article-list .info-center-article-abstract .look-in-detail {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        margin-bottom: 12px;
+        margin-right: 6px;
+        background-color: #3f3c35; }
+      .info-center-article-content-first .info-center-article-list .info-center-article-abstract p {
+        font-size: 14px;
+        margin-left: 30px;
+        margin-top: 35px;
+        color: #626878;
+        font-family: "Microsoft YaHei"; }
+
+.info-center-article-content-second {
+  width: 956px;
+  margin: 0 auto; }
+  .info-center-article-content-second .info-center-article-list {
+    width: 100%;
+    height: 202px;
+    box-shadow: 0px 0px 5px #c8c8c8;
+    padding: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px; }
+    .info-center-article-content-second .info-center-article-list .info-center-article-img {
+      background-color: #0893d6;
+      height: 186px;
+      width: 286px;
+      display: inline-block; }
+    .info-center-article-content-second .info-center-article-list .info-center-article-abstract {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      width: 650px;
+      height: 100%; }
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract h1 {
+        display: inline-block;
+        margin: 0px;
+        font-size: 18px;
+        color: #525765;
+        font-family: "Microsoft YaHei";
+        margin-top: 14px;
+        margin-left: 30px; }
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract span {
+        float: right;
+        right: 0px;
+        top: 0px;
+        font-size: 12px;
+        font-family: "Microsoft YaHei";
+        color: #a0a0a0;
+        margin-right: 6px;
+        margin-top: 14px; }
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract .look-in-detail {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        margin-bottom: 12px;
+        margin-right: 6px;
+        background-color: #3f3c35; }
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract p {
+        font-size: 14px;
+        margin-left: 30px;
+        margin-top: 35px;
+        color: #626878;
+        font-family: "Microsoft YaHei"; }
+
+.info-center-pagination {
+  width: 956px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 66px; }
+
+.info-center-detail-page {
+  width: 956px;
+  margin: 0 auto; }
+  .info-center-detail-page .left-section {
+    display: inline-block;
+    vertical-align: top;
+    width: 706px;
+    border-right: 1px solid #f0f0f0;
+    padding-right: 24px;
+    margin-top: 20px; }
+    .info-center-detail-page .left-section h1 {
+      margin: 0px;
+      font-size: 30px;
+      color: #2d3240;
+      font-family: "Microsoft YaHei";
+      margin-bottom: 15px; }
+    .info-center-detail-page .left-section .share-time {
+      display: inline-block;
+      font-size: 14px;
+      color: #959595;
+      font-family: "Microsoft YaHei"; }
+    .info-center-detail-page .left-section .read-times {
+      display: inline-block;
+      font-size: 14px;
+      color: #959595;
+      font-family: "Microsoft YaHei";
+      padding: 0 10px;
+      margin: 0 10px;
+      border-left: 1px solid #959595;
+      border-right: 1px solid #959595; }
+    .info-center-detail-page .left-section .article-source {
+      display: inline-block;
+      font-size: 14px;
+      color: #959595;
+      font-family: "Microsoft YaHei"; }
+    .info-center-detail-page .left-section .info-center-detail-page-abstract {
+      background-color: #f6f5f5;
+      margin-top: 26px;
+      margin-bottom: 26px;
+      font-size: 14px;
+      color: #959595;
+      font-family: "Microsoft YaHei";
+      letter-spacing: 2px;
+      line-height: 2;
+      padding: 16px 18px; }
+      .info-center-detail-page .left-section .info-center-detail-page-abstract span {
+        width: 10px;
+        height: 16px;
+        background-image: url("../assets/详情页－资讯中心-assets/摘要左边标签.png");
+        float: left;
+        margin-right: 10px;
+        margin-top: 5px; }
+    .info-center-detail-page .left-section article {
+      width: 100%; }
+      .info-center-detail-page .left-section article p {
+        text-indent: 2em;
+        font-family: "Microsoft YaHei";
+        color: #626878;
+        font-size: 18px; }
+    .info-center-detail-page .left-section .pre-article {
+      float: left;
+      width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-top: 56px;
+      margin-bottom: 128px; }
+    .info-center-detail-page .left-section .next-article {
+      float: right;
+      width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-top: 56px;
+      margin-bottom: 128px; }
+  .info-center-detail-page .right-section {
+    display: inline-block;
+    font-size: 15px;
+    color: #2d3240;
+    font-family: "Microsoft YaHei";
+    margin-top: 28px;
+    margin-left: 20px; }
+    .info-center-detail-page .right-section ul {
+      padding-top: 20px;
+      width: 226px;
+      border-top: 1px solid #c8c8c8; }
+      .info-center-detail-page .right-section ul li {
+        list-style-type: disc;
+        margin-left: 20px;
+        font-size: 12px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        line-height: 2; }
+    .info-center-detail-page .right-section span {
+      display: inline-block;
+      border-bottom: 2px solid #0893d6; }
 
 .industry-elite-list-body {
   width: 100%; }
@@ -599,3 +806,84 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     margin-bottom: 10px; }
   .join-us-content .join-us-article article p {
     margin-top: 0px; }
+
+.current-research-project {
+  width: 956px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .current-research-project .current-research-project-card {
+    box-shadow: 0px 0px 5px #c8c8c8;
+    margin-top: 20px;
+    width: 462px;
+    height: 410px; }
+    .current-research-project .current-research-project-card .example-img {
+      width: 100%;
+      height: 274px;
+      background-color: #0893d6;
+      background-image: url("../切图（0726）/切图（0726）/study-program.png"); }
+    .current-research-project .current-research-project-card .card-introduction {
+      padding: 20px; }
+      .current-research-project .current-research-project-card .card-introduction h1 {
+        margin: 0px;
+        padding: 0px;
+        color: #525765;
+        font-size: 18px;
+        font-family: "Microsoft YaHei";
+        display: inline-block; }
+      .current-research-project .current-research-project-card .card-introduction span {
+        font-size: 14px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        float: right; }
+      .current-research-project .current-research-project-card .card-introduction p {
+        font-size: 14px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        line-height: 2; }
+
+.research-project-gain {
+  width: 956px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .research-project-gain .research-project-gain-card {
+    box-shadow: 0px 0px 5px #c8c8c8;
+    margin-top: 20px;
+    width: 462px;
+    height: 410px; }
+    .research-project-gain .research-project-gain-card .example-img {
+      width: 100%;
+      height: 274px;
+      background-color: #0893d6;
+      background-image: url("../切图（0726）/切图（0726）/study-program.png"); }
+    .research-project-gain .research-project-gain-card .card-introduction {
+      padding: 20px; }
+      .research-project-gain .research-project-gain-card .card-introduction h1 {
+        margin: 0px;
+        padding: 0px;
+        color: #525765;
+        font-size: 18px;
+        font-family: "Microsoft YaHei";
+        display: inline-block; }
+      .research-project-gain .research-project-gain-card .card-introduction span {
+        font-size: 14px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        float: right; }
+      .research-project-gain .research-project-gain-card .card-introduction p {
+        font-size: 14px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        line-height: 2; }
+
+#footer-top-id {
+  text-align: center;
+  color: #626878;
+  font-size: 18px;
+  font-family: "Microsoft YaHei";
+  padding-top: 30px; }

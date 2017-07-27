@@ -2693,7 +2693,7 @@ video.responsive-video {
 }
 
 .pagination li.active {
-  background-color: #ee6e73;
+  background-color: rgb(8,147,214);/*样式改动*/
 }
 
 .pagination li.disabled a {

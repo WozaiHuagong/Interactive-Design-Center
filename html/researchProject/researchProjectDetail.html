@@ -1,72 +1,175 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../../css/app.css" rel="stylesheet">
-        <link href="../../css/materialize.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="common-header">
-            <div class="common-header-content">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../css/app.css" rel="stylesheet">
+    <link href="../../css/materialize.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/materialIcon.css">
+</head>
+
+<body>
+    <!--公共头部开始-->
+    <div class="common-header">
+        <div class="common-header-content">
             <div class="common-header-logo"></div>
             <div class="common-header-text">广东省人机交互设计工程技术研究中心</div>
-            </div>
         </div>
-            <div class="common-navigation-bar">
+    </div>
+    <div class="common-navigation-bar">
         <div class="common-navigation-bar-wrap">
-       <nav class="nav-extended common-navigation-bar-content">
-                      <ul class="common-navigation-bar-content-list">
-                        <li id="common-nav-mainpage"><a href="../../index.html">首页</a></li>
-                        <li id="common-nav-info-center"><a class="active" href="../../html/infomationCenter/infomationCenterDetail.html" style="position:relative">资讯中心</a></li>
-                        <li id="common-nav-project"><a href="../../html/researchProject/researchProjectDetail.html">研究项目</a></li>
-                        <li id="common-nav-industry-elite"><a href="../../html/industryElite/industryEliteDetail.html">行业精英</a></li>
-                        <li id="common-nav-forum"><a href="../../html/forum/forumDetail.html">交流论坛</a></li>
-                        <li id="common-nav-about-us"><a  href="../../html/aboutUs/aboutUsDetail.html">关于我们</a></li>
-                        <li class="tab1"><a  href="#test2">关于我们</a></li>
-                    </ul>
-        </nav>
-        <a class="btn common-navigation-join-us" href="../joinUs/joinUsDetail.html">加入我们</a>
+            <nav class="nav-extended common-navigation-bar-content">
+                <ul class="common-navigation-bar-content-list">
+                    <li id="common-nav-mainpage"><a href="../../index.html">首页</a></li>
+                    <li id="common-nav-info-center"><a class="active" href="../../html/infomationCenter/infomationCenterDetail.html" style="position:relative">资讯中心</a></li>
+                    <li id="common-nav-project"><a href="../../html/researchProject/researchProjectDetail.html">研究项目</a></li>
+                    <li id="common-nav-industry-elite"><a href="../../html/industryElite/industryEliteDetail.html">行业精英</a></li>
+                    <li id="common-nav-forum"><a href="../../html/forum/forumDetail.html">交流论坛</a></li>
+                    <li id="common-nav-about-us"><a href="../../html/aboutUs/aboutUsDetail.html">关于我们</a></li>
+                    <li class="tab1"><a href="#test2">关于我们</a></li>
+                </ul>
+            </nav>
+            <a class="btn common-navigation-join-us" href="../joinUs/joinUsDetail.html">加入我们</a>
         </div>
     </div>
-
-
-
-
-
-
-<!--尾部开始-->
-    <div class="common-footer"  id="common-footer-id">
-        <div class="common-footer-content">
-          <div class="common-footer-detail">
-              <div class="common-footer-detail-left">
-                  <div class="common-footer-logo">
-                      <div class="common-footer-logo-img"></div>
-                      <div class="common-footer-logo-text">广东省人机交互设计工程技术研究中心</div>
-                  </div>
-                <p class="common-footer-left-first-text">地址：广州市番禺区小谷围街道华南理工大学</p>
-                <p>邮编： 510006</p>
-                <p class="common-footer-left-second-text">电话： +86-15555551234</p>
-                <P>邮箱： maggie@163.edu.com</P>
-              </div>
-              <div class="common-footer-detail-right">
-                <div class="common-footer-logo-right-text">关注微信公众号获取更多资讯</div>
-                <div class="common-footer-wechat"></div>
-              </div>
+    <!--公共头部结束-->
+    <div class="info-center-detail-body">
+        <div class="info-center-detail-body-header">
+            <div class="info-center-detail-body-header-content">
+                <div class="info-center-detail-body-header-left">
+                    <i class="material-icons">flag</i>
+                    <span>研究项目</span>
+                </div>
+                <div class="info-center-detail-body-header-right">
+                    <span id="research-project-detail-body-header-right-first" style=" color: rgb(8,147,214);">在研项目</span>
+                    <span id="research-project-detail-body-header-right-second">研究成果</span>
+                </div>
             </div>
         </div>
-  
-    <div class="common-copy-right">
-        <div class="common-copy-right-text">
-            <p class="first">Copyright © 2011-2016 华南理工大学版权所有</p>
-            <p class="second"> 粤ICP备12031769号-2</p>
+    </div>
+    <div style="clear:both;"></div>
+    <!--在研研究基本内容-->
+    <div class="current-research-project" id="current-research-project-id">
+        <div class="current-research-project-card">
+            <div class="example-img"></div>
+            <div class="card-introduction">
+                <h1>人工智能技术落地核心驱动力</h1><span>2017-07-22</span>
+                <p>4月24日，搜狗公布了2017年第一季度财报，其中搜狗搜索流量及 份额稳固增长，到3月底，整体搜索流量较一年前增长26%.
+                </p>
+            </div>
+        </div>
+        <div class="current-research-project-card">
+            <div class="example-img"></div>
+            <div class="card-introduction">
+                <h1>人工智能技术落地核心驱动力</h1><span>2017-07-22</span>
+                <p>4月24日，搜狗公布了2017年第一季度财报，其中搜狗搜索流量及 份额稳固增长，到3月底，整体搜索流量较一年前增长26%.
+                </p>
+            </div>
+        </div>
+
+        <div class="current-research-project-card" id="card-first">
+            <div class="example-img"></div>
+            <div class="card-introduction">
+                <h1>人工智能技术落地核心驱动力</h1><span>2017-07-22</span>
+                <p>4月24日，搜狗公布了2017年第一季度财报，其中搜狗搜索流量及 份额稳固增长，到3月底，整体搜索流量较一年前增长26%.
+                </p>
+            </div>
+        </div>
+
+        <div class="current-research-project-card">
+            <div class="example-img"></div>
+            <div class="card-introduction">
+                <h1>人工智能技术落地核心驱动力</h1><span>2017-07-22</span>
+                <p>4月24日，搜狗公布了2017年第一季度财报，其中搜狗搜索流量及 份额稳固增长，到3月底，整体搜索流量较一年前增长26%.
+                </p>
+            </div>
         </div>
 
     </div>
-</div>
+    <!--在研项目基本内容结束-->
+
+
+    <!--研究项目成果基本内容-->
+    <div class="research-project-gain" style="display:none" id="research-project-gain-id">
+         <div class="research-project-gain-card">
+            <div class="example-img"></div>
+            <div class="card-introduction">
+                <h1>这是研究成果啦</h1><span>2017-07-22</span>
+                <p>4月24日，搜狗公布了2017年第一季度财报，其中搜狗搜索流量及 份额稳固增长，到3月底，整体搜索流量较一年前增长26%.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="research-project-gain-card">
+            <div class="example-img"></div>
+            <div class="card-introduction">
+                <h1>这是研究成果啦</h1><span>2017-07-22</span>
+                <p>4月24日，搜狗公布了2017年第一季度财报，其中搜狗搜索流量及 份额稳固增长，到3月底，整体搜索流量较一年前增长26%.
+                </p>
+            </div>
+        </div>
+
+        <div class="research-project-gain-card" id="project-gain-card">
+            <div class="example-img"></div>
+            <div class="card-introduction">
+                <h1>这是研究成果啦</h1><span>2017-07-22</span>
+                <p>4月24日，搜狗公布了2017年第一季度财报，其中搜狗搜索流量及 份额稳固增长，到3月底，整体搜索流量较一年前增长26%.
+                </p>
+            </div>
+        </div>
+
+        <div class="research-project-gain-card">
+            <div class="example-img"></div>
+            <div class="card-introduction">
+                <h1>这是研究成果啦</h1><span>2017-07-22</span>
+                <p>4月24日，搜狗公布了2017年第一季度财报，其中搜狗搜索流量及 份额稳固增长，到3月底，整体搜索流量较一年前增长26%.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--研究项目成果基本内容结束-->
+
+
+
+
+
+    <div class="footer-top" id="footer-top-id" style="background-color:rgb(250,250,250);height:130px; width:100%;margin-top:40px;"></div>
+    <!--尾部开始-->
+    <div class="common-footer" id="common-footer-id">
+        <div class="common-footer-content">
+            <div class="common-footer-detail">
+                <div class="common-footer-detail-left">
+                    <div class="common-footer-logo">
+                        <div class="common-footer-logo-img"></div>
+                        <div class="common-footer-logo-text">广东省人机交互设计工程技术研究中心</div>
+                    </div>
+                    <p class="common-footer-left-first-text">地址：广州市番禺区小谷围街道华南理工大学</p>
+                    <p>邮编： 510006</p>
+                    <p class="common-footer-left-second-text">电话： +86-15555551234</p>
+                    <P>邮箱： maggie@163.edu.com</P>
+                </div>
+                <div class="common-footer-detail-right">
+                    <div class="common-footer-logo-right-text">关注微信公众号获取更多资讯</div>
+                    <div class="common-footer-wechat"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="common-copy-right">
+            <div class="common-copy-right-text">
+                <p class="first">Copyright © 2011-2016 华南理工大学版权所有</p>
+                <p class="second"> 粤ICP备12031769号-2</p>
+            </div>
+
+        </div>
+    </div>
     <script type="text/javascript" src="../../js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="../../js/materialize.js"></script>
     <script type="text/javascript" src="../../js/common-navigation.js"></script>
-    </body>
+    <script type="text/javascript" src="../../js/researchProject.js"></script>
+</body>
+
 </html>
