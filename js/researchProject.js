@@ -20,9 +20,6 @@
  //                         $('#current-research-project-id').append($childCard);
  //                 }
  //下面是滚动位置判断同时执行的函数
- window.onscroll=function(){
-     console.log($('#footer-top-id').offset().top)
- }
  var counter = 3; //变量声明的同时最好初始化
  var options = [{
          selector: '#card-first',

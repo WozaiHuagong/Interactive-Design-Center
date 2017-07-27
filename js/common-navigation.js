@@ -138,8 +138,8 @@ $(document).ready(function () {
         infoCenterBodyHeaderRemoveChoices(event.target);
         $('#current-research-project-id').show();
         $('#research-project-gain-id').hide();
+        $('#research-project-detail-page-id').hide();
         $('#footer-top-id').text('');
-        console.log($('#footer-top-id').offset().top+"footer-id-current");
           if($('#footer-top-id').offset().top>4000)//后期注意修改
             {
                  $('#footer-top-id').text('没有更多内容了...');
@@ -150,16 +150,30 @@ $(document).ready(function () {
         infoCenterBodyHeaderChoices(event.target);
         infoCenterBodyHeaderRemoveChoices(event.target);
         $('#current-research-project-id').hide();
+        $('#research-project-detail-page-id').hide();
         $('#research-project-gain-id').show();
         $('#footer-top-id').text('');
-           console.log($('#footer-top-id').offset().top+"footer-id-current");
          if($('#footer-top-id').offset().top>2300)//后期注意修改
             {
                  $('#footer-top-id').text('没有更多内容了...');
             }
 
     });
-    //研究项目右上角切换功能失效
+
+    
+    //研究中心点击事件查看详情方法
+    $('.current-research-project-card').click(function(){
+        $('#current-research-project-id').hide();
+        $('#research-project-gain-id').hide();
+        $('#research-project-detail-page-id').show();
+    });
+    $(' .research-project-gain-card').click(function(){
+            $('#current-research-project-id').hide();
+        $('#research-project-gain-id').hide();
+        $('#research-project-detail-page-id').show();
+    })
+    //研究中心点击时间结束
+    //研究项目右上角切换功能结束
 
 
 
@@ -198,9 +212,11 @@ $(document).ready(function () {
         $('#info-center-article-content-research-room').hide(); //研究中心资讯
         $('#info-center-article-content-industry').hide();
         $('#info-center-pagination-id').hide();
-
     });
     //资讯中心按钮点击事件结束
+
+
+
     //行业精英获取信息，点击刷新的行业精英的内容
     $('#industry-elite-personal-detail-introduction-first').click(function () {
         var $industryEliteFirstPageHtml = "";
