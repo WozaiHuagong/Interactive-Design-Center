@@ -13,12 +13,12 @@
                     color: $base-background-color;
                     font-size: 45px;
                     display: inline-block;
-                    margin-top: 30px;
+                    margin-top: 22px;
                 }
                 span {
                     font-size: 23px;
                     font-family: $base-font-family;
-                   color:#626878;
+                   color:$base-background-color;
                     display: inline-block;
                     position: relative;
                     bottom: 15px;
@@ -26,7 +26,7 @@
                 }
             }
             .info-center-detail-body-header-right {
-                margin-top: 30px;
+                margin-top: 28px;
                 float: right;
                 span {
                     font-size: 20px;
@@ -177,7 +177,7 @@
                 float: right;
                 right: 0px;
                 top: 0px;
-                font-size: 12px;
+                font-size: 14px;
                 font-family: $base-font-family;
                 color: #a0a0a0;
                 margin-right: 6px;
@@ -237,7 +237,7 @@
                 float: right;
                 right: 0px;
                 top: 0px;
-                font-size: 12px;
+                font-size: 14px;
                 font-family: $base-font-family;
                 color: #a0a0a0;
                 margin-right: 6px;

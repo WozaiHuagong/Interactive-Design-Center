@@ -13,7 +13,7 @@
                     color: $base-background-color;
                     font-size: 45px;
                     display: inline-block;
-                    margin-top: 30px;
+                    margin-top: 22px;
                 }
                 span {
                     font-size: 23px;
@@ -91,8 +91,8 @@
         }
         //ajax刷新的页面的样式结束
         .industry-elite-list-body-article-list {
-            width: 485px;
-            height: 200px;
+            width: 462px;
+            height: 198px;
             margin-top: 10px;
             margin-bottom: 10px;
             box-shadow: 0px 0px 8px rgb(200,200,200);
@@ -112,7 +112,7 @@
             .industry-elite-list-body-article-list-right {
                 cursor: pointer;
                 height: 100%;
-                width: 325px;
+                width: 302px;
                 display: inline-block;
                 .industry-elite-introduction {
                     width: 270px;
@@ -124,6 +124,7 @@
                         font-size: 18px;
                         display: block;
                         font-family: $base-font-family;
+                        color:#525765;
                     }
                     .industry-elite-honor {
                         font-size: 12px;

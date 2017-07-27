@@ -27,7 +27,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       padding-top: 20px;
       color: #ffffff;
       font-family: "Microsoft YaHei";
-      letter-spacing: 3px; }
+      letter-spacing: 2px; }
 
 .common-navigation-bar {
   width: 100%;
@@ -413,17 +413,17 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           color: #0893d6;
           font-size: 45px;
           display: inline-block;
-          margin-top: 30px; }
+          margin-top: 22px; }
         .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left span {
           font-size: 23px;
           font-family: "Microsoft YaHei";
-          color: #626878;
+          color: #0893d6;
           display: inline-block;
           position: relative;
           bottom: 15px;
           margin-left: 10px; }
       .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-right {
-        margin-top: 30px;
+        margin-top: 28px;
         float: right; }
         .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-right span {
           font-size: 20px;
@@ -549,7 +549,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         float: right;
         right: 0px;
         top: 0px;
-        font-size: 12px;
+        font-size: 14px;
         font-family: "Microsoft YaHei";
         color: #a0a0a0;
         margin-right: 6px;
@@ -601,7 +601,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         float: right;
         right: 0px;
         top: 0px;
-        font-size: 12px;
+        font-size: 14px;
         font-family: "Microsoft YaHei";
         color: #a0a0a0;
         margin-right: 6px;
@@ -739,7 +739,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           color: #0893d6;
           font-size: 45px;
           display: inline-block;
-          margin-top: 30px; }
+          margin-top: 22px; }
         .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left span {
           font-size: 23px;
           font-family: "Microsoft YaHei";
@@ -798,8 +798,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           color: #626878;
           font-family: "Microsoft YaHei"; }
     .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list {
-      width: 485px;
-      height: 200px;
+      width: 462px;
+      height: 198px;
       margin-top: 10px;
       margin-bottom: 10px;
       box-shadow: 0px 0px 8px #c8c8c8; }
@@ -817,7 +817,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right {
         cursor: pointer;
         height: 100%;
-        width: 325px;
+        width: 302px;
         display: inline-block; }
         .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction {
           width: 270px;
@@ -828,7 +828,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-name {
             font-size: 18px;
             display: block;
-            font-family: "Microsoft YaHei"; }
+            font-family: "Microsoft YaHei";
+            color: #525765; }
           .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-honor {
             font-size: 12px;
             color: #a0a0a0;
@@ -869,13 +870,13 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       border-radius: 50%; }
     .about-us-member .about-us-member-list .member-list-name {
       font-size: 24px;
-      color: #313131;
+      color: #525765;
       font-family: "Microsoft YaHei";
       display: block;
       text-align: center; }
     .about-us-member .about-us-member-list .member-list-position {
       font-size: 12px;
-      color: #313131;
+      color: #a0a0a0;
       font-family: "Microsoft YaHei";
       display: block;
       text-align: center; }
@@ -885,7 +886,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       display: block;
       margin-top: 10px;
       margin-left: 20px;
-      margin-right: 20px; }
+      margin-right: 20px;
+      color: #626878; }
 
 .join-us-content {
   width: 956px;
