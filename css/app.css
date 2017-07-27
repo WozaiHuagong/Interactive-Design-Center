@@ -247,7 +247,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           color: #fff;
           font-size: 14px;
           font-family: "Microsoft YaHei";
-          letter-spacing: 1px; }
+          letter-spacing: 1px;
+          margin-left: 28px; }
       .common-footer .common-footer-content .common-footer-detail .common-footer-detail-right {
         float: right;
         width: 200px; }
@@ -260,7 +261,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           font-family: "Microsoft YaHei";
           letter-spacing: 1px; }
         .common-footer .common-footer-content .common-footer-detail .common-footer-detail-right .common-footer-wechat {
-          height: 73px;
+          height: 70px;
           width: 70px;
           background-image: url("../assets/common-assets/footer二维码.png");
           margin: 0 auto;
@@ -285,14 +286,14 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       margin: 0 auto;
       color: #fff; }
 
-.scroll-spy {
-  position: absolute;
-  top: 500px;
-  right: 200px;
-  font-size: 18px;
-  font-family: "Microsoft YaHei"; }
-  .scroll-spy .active {
-    border-left: 5px solid #0893d6; }
+.main-page-body-scrollby {
+  width: 1200px;
+  margin: 0 auto; }
+  .main-page-body-scrollby .scroll-spy {
+    font-size: 18px;
+    font-family: "Microsoft YaHei"; }
+    .main-page-body-scrollby .scroll-spy .active {
+      border-left: 5px solid #0893d6; }
 
 .info-center-detail-body {
   width: 100%; }
