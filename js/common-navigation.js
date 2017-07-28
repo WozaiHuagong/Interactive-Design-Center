@@ -20,12 +20,129 @@ $(document).ready(function () {
         $url = window.location.href;
         $mainPage = $url.match('index');
         if ($mainPage != null) {
-            $('#common-nav-mainpage').attr('style', 'border-bottom:5px solid rgb(8,147,214)')
+            $('#common-nav-mainpage').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
+            //根据当前URL做出相关的ajax请求与更新，更新轮播图
+            $.ajax({
+                url: "http://wecenter.shabby-wjt.cn:8081/api/carousel/list/",
+                method: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/x-www-form-urlencoded',
+                //data追加到URL
+                success: function (response) {
+                    //console.log(response);
+                    var data = response.data; //轮播图内容
+                    var arrLength = data.length;
+                    //更新轮播图
+                    for (var i = 0; i < arrLength; i++) {
+                        $('.carousel-item').eq(i).attr('style', 'background-image: url("' + data[i].url + '");');
+                    }
+                    //轮播图更新完毕
+                },
+                error: function () {
+                    console.log('carousel get fail!');
+                }
+            }); //轮播图更新完毕
+
+            //更新主页资讯中心内容
+            $.ajax({
+                url: "http://wecenter.shabby-wjt.cn:8081/api/advisory/industryInfo/number",
+                method: 'GET',
+                // data:'3',
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'JSON',
+                success: function (response) {
+                    var data = response.data;
+                    var dataLength = data.length;
+                    var $title = $('.main-page-info-center-card .row h2');
+                    var $p = $('.main-page-info-center-card .row p');
+                    var $spanPublishTime = $('.main-page-info-center-card .row span');
+                    for (var i = 0; i < (dataLength >= 3 ? 3 : dataLength); i++) {
+                        $title.eq(i).text(data[i].title);
+                        $p.eq(i).text(data[i].summary);
+                        $spanPublishTime.eq(i).text(data[i].publish_time);
+                    }
+
+                },
+                error: function () {
+                    console.log('main-page-info-center-infomation-get-fail!');
+                }
+
+            });
+            //主页资讯中心内容更新完毕
+            //研究项目具体内容更换开始；
+            $.ajax({
+                url: "http://wecenter.shabby-wjt.cn:8081/api/project/working/",
+                method: 'GET',
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'JSON',
+                success: function (response) {
+                    var data = response.data;
+                    var attach = response.attachs; //附件图片内容
+                    var dataLength = data.length;
+                    var $image = $('.main-page-research-project-card .row .col .card .card-image');
+                    var $title = $('.main-page-research-project-card .row .col .card .card-content .card-article-title');
+                    var $summary = $('.main-page-research-project-card .row .col .card .card-content p');
+                    var $publish_time = $('.main-page-research-project-card .row .col .card .card-content .publish-time');
+                    for (var i = 0; i < (dataLength > 2 ? 2 : dataLength); i++) {
+
+                        $image.eq(i).attr('style', 'background-image:url("' + attach[i].url + '");') //更新项目图片
+                        $title.eq(i).text(data[i].title);
+                        $summary.eq(i).text(data[i].message);
+                        $publish_time.eq(i).text(data[i].publish_time);
+                    }
+                },
+                error: function () {
+                    console.log('get-research-project-fail!')
+                }
+            });
+            //资讯中心内容更换结束
+            //行业精英资讯内容更换开始
+            $.ajax({
+                url: "http://wecenter.shabby-wjt.cn:8081/api/elite/list/",
+                method: 'GET',
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'JSON',
+                success: function (response) {
+                    var data = response.data;
+                    var dataLength = data.length;
+                    var $image = $('.main-page-industry-elite-card .row .col .card .card-image');
+                    var $name = $('.main-page-industry-elite-card .row .col .card .card-stacked .card-content .name');
+
+                    var $position = $('.main-page-industry-elite-card .row .col .card .card-stacked .card-content .position');
+                    var $introduction = $('.main-page-industry-elite-card .row .col .card .card-stacked .card-content p'); //这是行业精英的描述
+                    for (var i = 0; i < (dataLength > 4 ? 4 : dataLength); i++) {
+                        $image.eq(i).attr('style', 'background-image: url("' + data[i].avatar + '")'); //更改行业精英的头像
+                        $name.eq(i).text(data[i].title); //获取行业精英的名字
+                        $position.eq(i).text(data[i].honor); //获取头衔
+                        $introduction.eq(i).html(getText(HTMLDecode(data[i].message)));
+                        //缺个人介绍
+                        //正则表达式匹配html标签
+                        function getText(htmlContent) {
+                            var re = new RegExp(/(<("[^"]*"|'[^']*'|[^'">])*>|&nbsp;)/, 'g');//匹配出所有标签和内容
+                            var result = htmlContent.replace(re, "");
+                            return result;
+                        }
+                        //html标签转义
+                        function HTMLDecode(text) {
+                            var temp = document.createElement("div");
+                            temp.innerHTML = text;
+                            var output = temp.innerText || temp.textContent; //如果能顺利转就取标签加内容，不能就直接取内容
+                            temp = null;
+                            return output;
+                        }
+                    }
+                },
+                error: function () {
+                    console.log('get industry elite fail!');
+                }
+            })
+            //行业精英内容更换结束
         }
 
         $infoCenter = $url.match('infomationCenterDetail')
         if ($infoCenter != null) {
             $('#common-nav-info-center').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
+            //资讯中心的内容ajax
         }
 
         $project = $url.match('researchProject');
@@ -55,6 +172,18 @@ $(document).ready(function () {
     //处理尾部，如果页面内容少，让尾部固定在底部，多则不用理
     var determineTheFooterPosition = function () {
         // $("#footer").style.cssText="";
+        $.ajax({
+            url: ' http://wecenter.shabby-wjt.cn:8081/api/advisory/libInfo/number',
+            method: 'GET',
+            contentType: "application/x-www-form-urlencoded",
+            dataType: 'JSON',
+            success: function (response) {
+                //alert(response);
+            },
+            error: function () {
+                // alert('fail!');
+            }
+        })
         $('#common-footer-id').removeAttr('style');
         var contentHeight = document.body.scrollHeight, //网页正文全文高度
             winHeight = window.innerHeight; //可视窗口高度，不包括浏览器顶部工具栏
@@ -132,18 +261,18 @@ $(document).ready(function () {
 
     //研究项目右上角切换功能
     //要结合滚动显示效果，所以放到另外一个文件researchProject.js里面
-    
-   $('#research-project-detail-body-header-right-first').click(function (event) {
+
+    $('#research-project-detail-body-header-right-first').click(function (event) {
         infoCenterBodyHeaderChoices(event.target);
         infoCenterBodyHeaderRemoveChoices(event.target);
         $('#current-research-project-id').show();
         $('#research-project-gain-id').hide();
         $('#research-project-detail-page-id').hide();
         $('#footer-top-id').text('');
-          if($('#footer-top-id').offset().top>4000)//后期注意修改
-            {
-                 $('#footer-top-id').text('没有更多内容了...');
-            }
+        if ($('#footer-top-id').offset().top > 4000) //后期注意修改
+        {
+            $('#footer-top-id').text('没有更多内容了...');
+        }
 
     });
     $('#research-project-detail-body-header-right-second').click(function (event) {
@@ -153,22 +282,22 @@ $(document).ready(function () {
         $('#research-project-detail-page-id').hide();
         $('#research-project-gain-id').show();
         $('#footer-top-id').text('');
-         if($('#footer-top-id').offset().top>2300)//后期注意修改
-            {
-                 $('#footer-top-id').text('没有更多内容了...');
-            }
+        if ($('#footer-top-id').offset().top > 2300) //后期注意修改
+        {
+            $('#footer-top-id').text('没有更多内容了...');
+        }
 
     });
 
-    
+
     //研究中心点击事件查看详情方法
-    $('.current-research-project-card').click(function(){
+    $('.current-research-project-card').click(function () {
         $('#current-research-project-id').hide();
         $('#research-project-gain-id').hide();
         $('#research-project-detail-page-id').show();
     });
-    $(' .research-project-gain-card').click(function(){
-            $('#current-research-project-id').hide();
+    $(' .research-project-gain-card').click(function () {
+        $('#current-research-project-id').hide();
         $('#research-project-gain-id').hide();
         $('#research-project-detail-page-id').show();
     })
@@ -194,7 +323,7 @@ $(document).ready(function () {
         $('#about-us-member-id').show();
     });
     //关于我们上方切换结束
-    
+
 
 
 

@@ -114,7 +114,7 @@
         font-size: 14px;
         color: #959595;
         font-family: $base-font-family;
-        margin-bottom: 10px;
+        margin-bottom:30px;
         display:block;
 
         }
@@ -125,8 +125,9 @@
             width: 676px;
             min-height:600px;
             display:inline-block;
+
             p{
-                margin-top:40px;
+               // margin-top:20px;
                 font-size:18px;
                 color:#626878;
                 font-family: $base-font-family;
@@ -134,6 +135,7 @@
         }
         .right-image {
             float: right;
+            //margin-top:20px;
             width: 270px;
             padding-left: 10px;
             .img-list {
