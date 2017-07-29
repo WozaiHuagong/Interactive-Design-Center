@@ -91,6 +91,9 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       font-family: "Microsoft YaHei";
       color: #f79556;
       float: right; }
+      .main-page-body .mian-page-info-center .main-page-info-center-header span:nth-child(3) a {
+        text-decoration: none;
+        color: #f79556; }
     .main-page-body .mian-page-info-center .main-page-info-center-card {
       margin-top: 10px;
       display: flex;
@@ -197,6 +200,9 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       font-family: "Microsoft YaHei";
       color: #f79556;
       float: right; }
+      .main-page-body .main-page-research-project .main-page-research-project-header span:nth-child(3) a {
+        text-decoration: none;
+        color: #f79556; }
     .main-page-body .main-page-research-project .main-page-research-project-card {
       display: flex;
       flex-direction: row;
@@ -264,6 +270,9 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       font-family: "Microsoft YaHei";
       color: #f79556;
       float: right; }
+      .main-page-body .main-page-industry-elite .main-page-industry-elite-header span:nth-child(3) a {
+        text-decoration: none;
+        color: #f79556; }
     .main-page-body .main-page-industry-elite .main-page-industry-elite-card {
       margin-top: 10px;
       display: flex;
@@ -606,7 +615,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         color: #a0a0a0;
         margin-right: 6px;
         margin-top: 14px; }
-      .info-center-article-content-second .info-center-article-list .info-center-article-abstract .look-in-detail {
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract .look-in-detail-industry {
         position: absolute;
         right: 0px;
         bottom: 0px;
@@ -671,7 +680,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       font-family: "Microsoft YaHei";
       letter-spacing: 2px;
       line-height: 2;
-      padding: 16px 18px; }
+      padding: 16px 18px;
+      min-height: 60px; }
       .info-center-detail-page .left-section .info-center-detail-page-abstract span {
         width: 10px;
         height: 16px;

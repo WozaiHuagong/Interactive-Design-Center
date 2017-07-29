@@ -13,8 +13,19 @@ $(document).ready(function () {
     });
     //右边滚动监视条结束
 
-
-
+    function getText(htmlContent) {
+        var re = new RegExp(/(<("[^"]*"|'[^']*'|[^'">])*>|&nbsp;)/, 'g'); //匹配出所有标签和内容
+        var result = htmlContent.replace(re, "");
+        return result;
+    }
+    //html标签转义
+    function HTMLDecode(text) {
+        var temp = document.createElement("div");
+        temp.innerHTML = text;
+        var output = temp.innerText || temp.textContent; //如果能顺利转就取标签加内容，不能就直接取内容
+        temp = null;
+        return output;
+    }
     //获取当前页面的URL，用正则表达式匹配，决定那个导航的地方有下边的蓝线
     var determineTheBlueBorder = function () {
         $url = window.location.href;
@@ -47,6 +58,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "http://wecenter.shabby-wjt.cn:8081/api/advisory/industryInfo/number",
                 method: 'GET',
+                //data:{number:0},
                 // data:'3',
                 contentType: 'application/x-www-form-urlencoded',
                 dataType: 'JSON',
@@ -58,7 +70,11 @@ $(document).ready(function () {
                     var $spanPublishTime = $('.main-page-info-center-card .row span');
                     for (var i = 0; i < (dataLength >= 3 ? 3 : dataLength); i++) {
                         $title.eq(i).text(data[i].title);
-                        $p.eq(i).text(data[i].summary);
+                        if (data[i].summary.length > 70) {
+                            $p.eq(i).text(data[i].summary.substring(0, 70) + "...");
+                        } else {
+                            $p.eq(i).text(data[i].summary);
+                        } //出现省略号的判断
                         $spanPublishTime.eq(i).text(data[i].publish_time);
                     }
 
@@ -81,13 +97,18 @@ $(document).ready(function () {
                     var dataLength = data.length;
                     var $image = $('.main-page-research-project-card .row .col .card .card-image');
                     var $title = $('.main-page-research-project-card .row .col .card .card-content .card-article-title');
-                    var $summary = $('.main-page-research-project-card .row .col .card .card-content p');
+                    var $summary = $('.main-page-research-project-card .row .col .card .card-content p'); //图片内容简介
                     var $publish_time = $('.main-page-research-project-card .row .col .card .card-content .publish-time');
                     for (var i = 0; i < (dataLength > 2 ? 2 : dataLength); i++) {
 
                         $image.eq(i).attr('style', 'background-image:url("' + attach[i].url + '");') //更新项目图片
                         $title.eq(i).text(data[i].title);
-                        $summary.eq(i).text(data[i].message);
+                        if (getText(HTMLDecode(data[i].message)).length > 57) {
+                            $summary.eq(i).text(getText(HTMLDecode(data[i].message)).substring(0, 56) + "...");
+                        } else {
+                            $summary.eq(i).text(getText(HTMLDecode(data[i].message))); //短就直接显示，太长就直接截断
+                        }
+
                         $publish_time.eq(i).text(data[i].publish_time);
                     }
                 },
@@ -114,22 +135,13 @@ $(document).ready(function () {
                         $image.eq(i).attr('style', 'background-image: url("' + data[i].avatar + '")'); //更改行业精英的头像
                         $name.eq(i).text(data[i].title); //获取行业精英的名字
                         $position.eq(i).text(data[i].honor); //获取头衔
-                        $introduction.eq(i).html(getText(HTMLDecode(data[i].message)));
+                        if (getText(HTMLDecode(data[i].message)).length > 48) {
+                            $introduction.eq(i).text(getText(HTMLDecode(data[i].message)).substring(0, 48) + "...");
+                        } else {
+                            $introduction.eq(i).text(getText(HTMLDecode(data[i].message)));
+                        }
                         //缺个人介绍
                         //正则表达式匹配html标签
-                        function getText(htmlContent) {
-                            var re = new RegExp(/(<("[^"]*"|'[^']*'|[^'">])*>|&nbsp;)/, 'g');//匹配出所有标签和内容
-                            var result = htmlContent.replace(re, "");
-                            return result;
-                        }
-                        //html标签转义
-                        function HTMLDecode(text) {
-                            var temp = document.createElement("div");
-                            temp.innerHTML = text;
-                            var output = temp.innerText || temp.textContent; //如果能顺利转就取标签加内容，不能就直接取内容
-                            temp = null;
-                            return output;
-                        }
                     }
                 },
                 error: function () {
@@ -139,15 +151,167 @@ $(document).ready(function () {
             //行业精英内容更换结束
         }
 
+
+
+
+        /*===================================================================================================================*/
+        /*======资讯中心模块===================================================================================================*/
+        /*===================================================================================================================*/
+        /*===================================================================================================================*/
         $infoCenter = $url.match('infomationCenterDetail')
         if ($infoCenter != null) {
             $('#common-nav-info-center').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
             //资讯中心的内容ajax
+            var ajaxResponse = "";
+            $.ajax({
+                url: 'http://wecenter.shabby-wjt.cn:8081/api/advisory/libInfo/number',
+                method: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/x-www-form-urlencoded',
+                //data追加到URL
+                success: function (response) {
+                    ajaxResponse = response; //提取所有返回的数据
+                    var data = response.data;
+                    var attach = response.attachs;
+                    var dataLength = data.length;
+                    var $libInfoImg = $('#info-center-article-content-research-room .info-center-article-list .info-center-article-img');
+                    var $libInfoTitle = $('#info-center-article-content-research-room .info-center-article-list .info-center-article-abstract h1');
+                    var $libInfoTime = $('#info-center-article-content-research-room .info-center-article-list .info-center-article-abstract .info-center-article-share-time');
+                    var $libInfoDetail = $('#info-center-article-content-research-room .info-center-article-list .info-center-article-abstract p');
+                    var $lookInDetail = $('#info-center-article-content-research-room .info-center-article-list .info-center-article-abstract .look-in-detail')
+                    for (var i = 0; i < (dataLength > 5 ? 5 : dataLength); i++) {
+                        $lookInDetail.eq(i).attr('id', 'id-' + i);
+                        $libInfoTitle.eq(i).text(data[i].title);
+                        $libInfoTime.eq(i).text(data[i].publish_time);
+                        if (data[i].summary.length > 128) {
+                            $libInfoDetail.eq(i).text(data[i].summary.substring(0, 128) + '...');
+                        } else {
+                            $libInfoDetail.eq(i).text(data[i].summary);
+                        }
+                    }
+                    $libInfoImg.eq(i).attr('style', 'background-image:url("' + data[i].attach[i].url + '");');
+                },
+                error: function () {
+                    console.log('infomation-page-ajax fail!!!');
+                }
+            }); //请求研究中心资讯内容
+
+            $('.look-in-detail').click(function () {
+                var indexOfArticle = parseInt($(this).attr('id').substr(3, 1));
+                $('#info-center-detail-page-id .left-section h1').text(ajaxResponse.data[indexOfArticle].title);
+                $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse.data[indexOfArticle].publish_time);
+                $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse.data[indexOfArticle].view_num + "次阅读");
+               // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse.data[indexOfArticle].source ? ajaxResponse.data[indexOfArticle].source : ""); //文章来源
+                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse.data[indexOfArticle].summary);
+                $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse.data[indexOfArticle].message));
+                //文章内容已经更新完毕
+                //更新下方的上一篇与下一篇
+                if (indexOfArticle > 0 && indexOfArticle < ajaxResponse.data.length - 1) {
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponse.data[--indexOfArticle].title);
+                    $('#info-center-detail-page-id .left-section pre-article').text('下一篇：' + ajaxResponse.data[++indexOfArticle].title);
+                } else if (indexOfArticle == 0) {
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponse.data[++indexOfArticle].title);
+                } else {
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponse.data[--indexOfArticle].title);
+                } //上下篇的问题解决
+                $('#info-center-detail-page-id').show()
+                $('#info-center-article-content-research-room').hide(); //研究中心资讯隐藏
+                $('#info-center-article-content-industry').hide(); //行业资讯隐藏
+                $('#info-center-pagination-id').hide(); //分页条隐藏
+            });
+            //这个是资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换
+            var infoCenterBodyHeaderChoices = function (eventNode) {
+                $(eventNode).attr('style', 'color:rgb(8,147,214);')
+            }
+            var infoCenterBodyHeaderRemoveChoices = function (eventNode) {
+                $(eventNode).siblings().removeAttr('style');
+            }
+            $('#info-center-detail-body-header-right-first').click(function (event) {
+                infoCenterBodyHeaderChoices(event.target);
+                infoCenterBodyHeaderRemoveChoices(event.target);
+                $('#info-center-article-list-research-info-id').show(); //研究中心变蓝
+                $('#info-center-article-list-industry-info-id').hide(); //行业资讯变灰
+                $('#info-center-article-content-research-room').show(); //研究中心资讯
+                $('#info-center-article-content-industry').hide(); //行业资讯
+                $('#info-center-detail-page-id').hide(); //详情页
+                $('#info-center-pagination-id').show(); //分页条
+            });
+            var ajaxResponseOfIndustryInfo="";
+            $('#info-center-detail-body-header-right-second').click(function (event) {
+                //点击时再进行ajx请求，加快网页加载速度提高用户体验
+                infoCenterBodyHeaderChoices(event.target);
+                infoCenterBodyHeaderRemoveChoices(event.target);
+                $.ajax({
+                    url: 'http://wecenter.shabby-wjt.cn:8081/api/advisory/industryInfo/number',
+                    method: 'GET',
+                    dataType: 'JSON',
+                    contentType: 'application/x-www-form-urlencoded',
+                    success:function(response){
+                        ajaxResponseOfIndustryInfo=response;
+                        var data=response.data;
+                        var $image=$('#info-center-article-content-industry .info-center-article-list .info-center-article-img');
+                        var $title=$('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract h1');
+                        var $time=$('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .info-center-article-share-time');
+                        var $summary=$('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract p');
+                        var $lookInDetail=$('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .look-in-detail-industry');
+                        for(var i=0;i<(data.length>5?5:data.length);i++){
+                            //$image.attr('style','background-image:url("'+data[i].attach[0]);//图片内容未定
+                            $title.eq(i).text(data[i].title);
+                            $time.eq(i).text(data[i].publish_time);
+                            $summary.eq(i).text(data[i].summary);
+                            $lookInDetail.eq(i).attr('id', 'id-' + i);
+                        }
+
+                    },
+                    error:function(){
+                        console.log('industry info get fail!!!');
+                    }
+                })
+                $('#info-center-article-list-research-info-id').hide(); //研究中心变灰
+                $('#info-center-article-list-industry-info-id').show(); //行业资讯变蓝
+                $('#info-center-article-content-research-room').hide(); //研究中心资讯
+                $('#info-center-article-content-industry').show(); //行业资讯
+                $('#info-center-detail-page-id').hide(); //详情页
+                $('#info-center-pagination-id').show(); //分页条
+            });
+             $('.look-in-detail-industry').click(function () {
+                var indexOfArticle = parseInt($(this).attr('id').substr(3, 1));
+                $('#info-center-detail-page-id .left-section h1').text( ajaxResponseOfIndustryInfo.data[indexOfArticle].title);
+                $('#info-center-detail-page-id .left-section .share-time').text("发表于 " +  ajaxResponseOfIndustryInfo.data[indexOfArticle].publish_time);
+                $('#info-center-detail-page-id .left-section .read-times').text( ajaxResponseOfIndustryInfo.data[indexOfArticle].view_num + "次阅读");
+               // $('#info-center-detail-page-id .left-section .article-source').text( ajaxResponseOfIndustryInfo.data[indexOfArticle].source ?  ajaxResponseOfIndustryInfo.data[indexOfArticle].source : ""); //文章来源
+                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" +  ajaxResponseOfIndustryInfo.data[indexOfArticle].summary);
+                $('#info-center-detail-page-id .left-section article').html(HTMLDecode( ajaxResponseOfIndustryInfo.data[indexOfArticle].message));
+                //文章内容已经更新完毕
+                //更新下方的上一篇与下一篇
+                if (indexOfArticle > 0 && indexOfArticle <  ajaxResponseOfIndustryInfo.data.length - 1) {
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' +  ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
+                    $('#info-center-detail-page-id .left-section pre-article').text('下一篇：' +  ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
+                } else if (indexOfArticle == 0) {
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' +  ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
+                } else {
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' +  ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
+                } //上下篇的问题解决
+                $('#info-center-detail-page-id').show()
+                $('#info-center-article-content-research-room').hide(); //研究中心资讯隐藏
+                $('#info-center-article-content-industry').hide(); //行业资讯隐藏
+                $('#info-center-pagination-id').hide(); //分页条隐藏
+            });
+            //资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换结束
+
+
+
         }
+        //匹配资讯中心
+        /*===================================================================================================================*/
+        /*======研究项目模块====================================================================================================*/
+        /*===================================================================================================================*/
+        /*===================================================================================================================*/
 
         $project = $url.match('researchProject');
         if ($project != null) {
             $('#common-nav-project').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
+            //ajax请求
         }
 
         $industryElite = $url.match('industryElite');
@@ -228,37 +392,6 @@ $(document).ready(function () {
     // }
     // search();
 
-
-    //这个是资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换
-    var infoCenterBodyHeaderChoices = function (eventNode) {
-        $(eventNode).attr('style', 'color:rgb(8,147,214);')
-    }
-    var infoCenterBodyHeaderRemoveChoices = function (eventNode) {
-        $(eventNode).siblings().removeAttr('style');
-    }
-    $('#info-center-detail-body-header-right-first').click(function (event) {
-        infoCenterBodyHeaderChoices(event.target);
-        infoCenterBodyHeaderRemoveChoices(event.target);
-        $('#info-center-article-list-research-info-id').show();
-        $('#info-center-article-list-industry-info-id').hide();
-        $('#info-center-article-content-research-room').show(); //研究中心资讯
-        $('#info-center-article-content-industry').hide(); //行业资讯
-        $('#info-center-detail-page-id').hide();
-        $('#info-center-pagination-id').show(); //分页条
-    });
-    $('#info-center-detail-body-header-right-second').click(function (event) {
-        infoCenterBodyHeaderChoices(event.target);
-        infoCenterBodyHeaderRemoveChoices(event.target);
-        $('#info-center-article-list-research-info-id').hide();
-        $('#info-center-article-list-industry-info-id').show();
-        $('#info-center-article-content-research-room').hide();
-        $('#info-center-article-content-industry').show();
-        $('#info-center-detail-page-id').hide()
-        $('#info-center-pagination-id').show(); //分页条
-    })
-
-    //资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换结束
-
     //研究项目右上角切换功能
     //要结合滚动显示效果，所以放到另外一个文件researchProject.js里面
 
@@ -335,14 +468,6 @@ $(document).ready(function () {
 
 
 
-    //资讯中心查看详情按钮点击事件
-    $('.look-in-detail').click(function () {
-        $('#info-center-detail-page-id').show()
-        $('#info-center-article-content-research-room').hide(); //研究中心资讯
-        $('#info-center-article-content-industry').hide();
-        $('#info-center-pagination-id').hide();
-    });
-    //资讯中心按钮点击事件结束
 
 
 

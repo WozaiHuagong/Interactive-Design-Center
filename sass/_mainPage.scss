@@ -110,6 +110,10 @@
                 font-family: $base-font-family;
                 color: $base-button-more-color;
                 float: right;
+                a{
+                    text-decoration: none;
+                    color:$base-button-more-color;
+                }
             }
         }
         .main-page-info-center-card {
@@ -239,6 +243,10 @@
                 font-family: $base-font-family;
                 color: $base-button-more-color;
                 float: right;
+                a{
+                    text-decoration: none;
+                    color:$base-button-more-color;
+                }
             }
         }
         .main-page-research-project-card {
@@ -322,6 +330,10 @@
                 font-family: $base-font-family;
                 color: $base-button-more-color;
                 float: right;
+                a{
+                    text-decoration: none;
+                    color:$base-button-more-color;
+                }
             }
         }
         .main-page-industry-elite-card {
