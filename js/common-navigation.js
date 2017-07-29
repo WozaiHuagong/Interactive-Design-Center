@@ -26,6 +26,13 @@ $(document).ready(function () {
         temp = null;
         return output;
     }
+    //各个页面右上角蓝色的功能切换
+    var infoCenterBodyHeaderChoices = function (eventNode) {
+        $(eventNode).attr('style', 'color:rgb(8,147,214);')
+    }
+    var infoCenterBodyHeaderRemoveChoices = function (eventNode) {
+        $(eventNode).siblings().removeAttr('style');
+    }
     //获取当前页面的URL，用正则表达式匹配，决定那个导航的地方有下边的蓝线
     var determineTheBlueBorder = function () {
         $url = window.location.href;
@@ -150,12 +157,8 @@ $(document).ready(function () {
             })
             //行业精英内容更换结束
         }
-
-
-
-
         /*===================================================================================================================*/
-        /*======资讯中心模块===================================================================================================*/
+        /*======资讯中心模块==================================================================================================*/
         /*===================================================================================================================*/
         /*===================================================================================================================*/
         $infoCenter = $url.match('infomationCenterDetail')
@@ -201,7 +204,7 @@ $(document).ready(function () {
                 $('#info-center-detail-page-id .left-section h1').text(ajaxResponse.data[indexOfArticle].title);
                 $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse.data[indexOfArticle].publish_time);
                 $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse.data[indexOfArticle].view_num + "次阅读");
-               // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse.data[indexOfArticle].source ? ajaxResponse.data[indexOfArticle].source : ""); //文章来源
+                // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse.data[indexOfArticle].source ? ajaxResponse.data[indexOfArticle].source : ""); //文章来源
                 $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse.data[indexOfArticle].summary);
                 $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse.data[indexOfArticle].message));
                 //文章内容已经更新完毕
@@ -220,12 +223,6 @@ $(document).ready(function () {
                 $('#info-center-pagination-id').hide(); //分页条隐藏
             });
             //这个是资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换
-            var infoCenterBodyHeaderChoices = function (eventNode) {
-                $(eventNode).attr('style', 'color:rgb(8,147,214);')
-            }
-            var infoCenterBodyHeaderRemoveChoices = function (eventNode) {
-                $(eventNode).siblings().removeAttr('style');
-            }
             $('#info-center-detail-body-header-right-first').click(function (event) {
                 infoCenterBodyHeaderChoices(event.target);
                 infoCenterBodyHeaderRemoveChoices(event.target);
@@ -236,7 +233,7 @@ $(document).ready(function () {
                 $('#info-center-detail-page-id').hide(); //详情页
                 $('#info-center-pagination-id').show(); //分页条
             });
-            var ajaxResponseOfIndustryInfo="";
+            var ajaxResponseOfIndustryInfo = "";
             $('#info-center-detail-body-header-right-second').click(function (event) {
                 //点击时再进行ajx请求，加快网页加载速度提高用户体验
                 infoCenterBodyHeaderChoices(event.target);
@@ -246,15 +243,15 @@ $(document).ready(function () {
                     method: 'GET',
                     dataType: 'JSON',
                     contentType: 'application/x-www-form-urlencoded',
-                    success:function(response){
-                        ajaxResponseOfIndustryInfo=response;
-                        var data=response.data;
-                        var $image=$('#info-center-article-content-industry .info-center-article-list .info-center-article-img');
-                        var $title=$('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract h1');
-                        var $time=$('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .info-center-article-share-time');
-                        var $summary=$('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract p');
-                        var $lookInDetail=$('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .look-in-detail-industry');
-                        for(var i=0;i<(data.length>5?5:data.length);i++){
+                    success: function (response) {
+                        ajaxResponseOfIndustryInfo = response;
+                        var data = response.data;
+                        var $image = $('#info-center-article-content-industry .info-center-article-list .info-center-article-img');
+                        var $title = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract h1');
+                        var $time = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .info-center-article-share-time');
+                        var $summary = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract p');
+                        var $lookInDetail = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .look-in-detail-industry');
+                        for (var i = 0; i < (data.length > 5 ? 5 : data.length); i++) {
                             //$image.attr('style','background-image:url("'+data[i].attach[0]);//图片内容未定
                             $title.eq(i).text(data[i].title);
                             $time.eq(i).text(data[i].publish_time);
@@ -263,7 +260,7 @@ $(document).ready(function () {
                         }
 
                     },
-                    error:function(){
+                    error: function () {
                         console.log('industry info get fail!!!');
                     }
                 })
@@ -274,23 +271,23 @@ $(document).ready(function () {
                 $('#info-center-detail-page-id').hide(); //详情页
                 $('#info-center-pagination-id').show(); //分页条
             });
-             $('.look-in-detail-industry').click(function () {
+            $('.look-in-detail-industry').click(function () {
                 var indexOfArticle = parseInt($(this).attr('id').substr(3, 1));
-                $('#info-center-detail-page-id .left-section h1').text( ajaxResponseOfIndustryInfo.data[indexOfArticle].title);
-                $('#info-center-detail-page-id .left-section .share-time').text("发表于 " +  ajaxResponseOfIndustryInfo.data[indexOfArticle].publish_time);
-                $('#info-center-detail-page-id .left-section .read-times').text( ajaxResponseOfIndustryInfo.data[indexOfArticle].view_num + "次阅读");
-               // $('#info-center-detail-page-id .left-section .article-source').text( ajaxResponseOfIndustryInfo.data[indexOfArticle].source ?  ajaxResponseOfIndustryInfo.data[indexOfArticle].source : ""); //文章来源
-                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" +  ajaxResponseOfIndustryInfo.data[indexOfArticle].summary);
-                $('#info-center-detail-page-id .left-section article').html(HTMLDecode( ajaxResponseOfIndustryInfo.data[indexOfArticle].message));
+                $('#info-center-detail-page-id .left-section h1').text(ajaxResponseOfIndustryInfo.data[indexOfArticle].title);
+                $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponseOfIndustryInfo.data[indexOfArticle].publish_time);
+                $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponseOfIndustryInfo.data[indexOfArticle].view_num + "次阅读");
+                // $('#info-center-detail-page-id .left-section .article-source').text( ajaxResponseOfIndustryInfo.data[indexOfArticle].source ?  ajaxResponseOfIndustryInfo.data[indexOfArticle].source : ""); //文章来源
+                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponseOfIndustryInfo.data[indexOfArticle].summary);
+                $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponseOfIndustryInfo.data[indexOfArticle].message));
                 //文章内容已经更新完毕
                 //更新下方的上一篇与下一篇
-                if (indexOfArticle > 0 && indexOfArticle <  ajaxResponseOfIndustryInfo.data.length - 1) {
-                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' +  ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
-                    $('#info-center-detail-page-id .left-section pre-article').text('下一篇：' +  ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
+                if (indexOfArticle > 0 && indexOfArticle < ajaxResponseOfIndustryInfo.data.length - 1) {
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
+                    $('#info-center-detail-page-id .left-section pre-article').text('下一篇：' + ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
                 } else if (indexOfArticle == 0) {
-                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' +  ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
                 } else {
-                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' +  ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
+                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
                 } //上下篇的问题解决
                 $('#info-center-detail-page-id').show()
                 $('#info-center-article-content-research-room').hide(); //研究中心资讯隐藏
@@ -304,19 +301,548 @@ $(document).ready(function () {
         }
         //匹配资讯中心
         /*===================================================================================================================*/
-        /*======研究项目模块====================================================================================================*/
+        /*======研究项目模块==================================================================================================*/
         /*===================================================================================================================*/
         /*===================================================================================================================*/
 
         $project = $url.match('researchProject');
         if ($project != null) {
-            $('#common-nav-project').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
             //ajax请求
+            $('#common-nav-project').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
+            var researchProjectNum = 0;
+            var ajaxResponseResearchProject = "";
+            var ajaxResponseFinshed = "";
+            var projectFinshNum = 0;
+            $.ajax({
+                url: 'http://wecenter.shabby-wjt.cn:8081/api/project/working/',
+                method: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (response) {
+                    ajaxResponseResearchProject = response;
+                    var data = response.data;
+                    researchProjectNum = data.length; //获取全部共有几条数据
+                    var attach = response.attachs;
+                    var $img = $('#current-research-project-id .current-research-project-card .example-img');
+                    var $title = $('#current-research-project-id .current-research-project-card .card-introduction h1');
+                    var $time = $('#current-research-project-id .current-research-project-card .card-introduction span');
+                    var $summary = $('#current-research-project-id .current-research-project-card .card-introduction p');
+                    var $card = $('#current-research-project-id .current-research-project-card');
+                    for (var i = 0; i < (data.length > 4 ? 4 : data.length); i++) {
+                        $card.eq(i).attr('id', 'current-research-project-card-id-' + i);
+                        $img.eq(i).attr('style', 'background-image: url("' + attach[i].url + '");');
+                        $title.eq(i).text(data[i].title);
+                        $time.eq(i).text(data[i].publish_time);
+                        var text = getText(HTMLDecode(data[i].message));
+                        if (text.length > 63) {
+                            $summary.eq(i).text(text.substring(0, 63) + "...");
+                        } else {
+                            $summary.eq(i).text(text);
+                        }
+                    }
+
+                },
+                error: function () {
+                    console.log('get project working fail!!!');
+                }
+            })
+            //研究项目右上角切换功能
+            //要结合滚动显示效果，所以放到另外一个文件researchProject.js里面
+            $('#research-project-detail-body-header-right-first').click(function (event) {
+                infoCenterBodyHeaderChoices(event.target);
+                infoCenterBodyHeaderRemoveChoices(event.target);
+                $('#current-research-project-id').show();
+                $('#research-project-gain-id').hide();
+                $('#research-project-detail-page-id').hide();
+                $('#footer-top-id').text('');
+                if ($('#footer-top-id').offset().top > (researchProjectNum - 4) * 380) //后期注意修改
+                {
+                    $('#footer-top-id').text('没有更多内容了...');
+                }
+
+            });
+            $('#research-project-detail-body-header-right-second').click(function (event) {
+
+                infoCenterBodyHeaderChoices(event.target);
+                infoCenterBodyHeaderRemoveChoices(event.target);
+                $.ajax({
+                    url: 'http://wecenter.shabby-wjt.cn:8081/api/project/finished/',
+                    method: 'GET',
+                    dataType: 'JSON',
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function (response) {
+                        ajaxResponseFinshed = response;
+                        projectFinshNum = response.data.length;
+                        var data = response.data;
+                        var attach = response.attachs;
+                        var $img = $('#research-project-gain-id .research-project-gain-card .example-img');
+                        var $title = $('#research-project-gain-id .research-project-gain-card .card-introduction h1');
+                        var $time = $('#research-project-gain-id .research-project-gain-card .card-introduction span');
+                        var $summary = $('#research-project-gain-id .research-project-gain-card .card-introduction p');
+                        var $card = $('#research-project-gain-id  .research-project-gain-card');
+                        for (var i = 0; i < (data.length > 4 ? 4 : data.length); i++) {
+                            $card.eq(i).attr('id', 'id-' + i);
+                            $img.eq(i).attr('style', 'background-image: url("' + attach[i].url + '");');
+                            $title.eq(i).text(data[i].title);
+                            $time.eq(i).text(data[i].publish_time);
+                            var text = getText(HTMLDecode(data[i].message));
+                            if (text.length > 63) {
+                                $summary.eq(i).text(text.substring(0, 63) + "...");
+                            } else {
+                                $summary.eq(i).text(text);
+                            }
+                        }
+                    },
+                    error: function () {
+                        console.log('get project finshed fail!!!');
+                    }
+                });
+                $('#current-research-project-id').hide();
+                $('#research-project-detail-page-id').hide();
+                $('#research-project-gain-id').show();
+                $('#footer-top-id').text('');
+                if ($('#footer-top-id').offset().top > (projectFinshNum - 4) * 380) //后期注意修改
+                {
+                    $('#footer-top-id').text('没有更多内容了...');
+                }
+
+            });
+
+
+            //研究中心点击事件查看详情方法
+            $('.current-research-project-card').click(function () {
+                var indexOfArticle = parseInt($(this).attr('id').substr(-1));
+                $('#research-project-detail-page-id h1').text(ajaxResponseResearchProject.data[indexOfArticle].title);
+                $('#research-project-detail-page-id .share-time').text(ajaxResponseResearchProject.data[indexOfArticle].publish_time);
+                $('#research-project-detail-page-id .article-section article').html(HTMLDecode(ajaxResponseResearchProject.data[indexOfArticle].message));
+                var imglist = "";
+                for (var i = 0; i < ajaxResponseResearchProject.attachs.length; i++) {
+                    imglist += '<div class="img-list"' + 'style="background-image:url("' + ajaxResponseResearchProject.attachs[i].url + '")">' + '</div>';
+                }
+                $('#research-project-detail-page-id .article-section .right-image').html(imglist);
+                $('#footer-top-id').text("");
+                $('#current-research-project-id').hide();
+                $('#research-project-gain-id').hide();
+                $('#research-project-detail-page-id').show();
+            });
+            $(' .research-project-gain-card').click(function () {
+                var indexOfArticle = parseInt($(this).attr('id').substr(-1));
+                $('#research-project-detail-page-id h1').text(ajaxResponseFinshed.data[indexOfArticle].title);
+                $('#research-project-detail-page-id .share-time').text(ajaxResponseFinshed.data[indexOfArticle].publish_time);
+                $('#research-project-detail-page-id .article-section article').html(HTMLDecode(ajaxResponseFinshed.data[indexOfArticle].message));
+                var imglist = "";
+                for (var i = 0; i < ajaxResponseFinshed.attachs.length; i++) {
+                    imglist += '<div class="img-list"' + 'style="background-image:url("' + ajaxResponseFinshed.attachs[i].url + '")">' + '</div>';
+                }
+                $('#research-project-detail-page-id .article-section .right-image').html(imglist);
+                $('#footer-top-id').text("");
+                $('#current-research-project-id').hide();
+                $('#research-project-gain-id').hide();
+                $('#research-project-detail-page-id').show();
+            })
+            //研究中心点击时间结束
+            //研究项目右上角切换功能结束
+            /*======滚动显示效果==========================================================*/
+            var counter = 3; //变量声明的同时最好初始化
+            var options = [{
+                    selector: '#card-first',
+                    offset: 400,
+                    callback: function (el) {
+                        var result = appendNew();
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#card-first',
+                    offset: 800,
+                    callback: function (el) {
+                        var result = appendNew();
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#card-first',
+                    offset: 1200,
+                    callback: function (el) {
+                        var result = appendNew();
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#card-first',
+                    offset: 1600,
+                    callback: function (el) {
+                        var result = appendNew();
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#card-first',
+                    offset: 2000,
+                    callback: function (el) {
+                        var result = appendNew();
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#card-first',
+                    offset: 2400,
+                    callback: function (el) {
+                        var result = appendNew();
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#card-first',
+                    offset: 2800,
+                    callback: function (el) {
+                        var result = appendNew();
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#card-first',
+                    offset: 3200,
+                    callback: function (el) {
+                        var result = appendNew();
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                }, //代码需要改进 20170729
+                //上面是研究项目，下面是研究成果的内容
+                {
+                    selector: '#project-gain-card',
+                    offset: 800,
+                    callback: function (el) {
+                        var result = projectGain()
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#project-gain-card',
+                    offset: 1200,
+                    callback: function (el) {
+                        var result = projectGain()
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#project-gain-card',
+                    offset: 1500,
+                    callback: function (el) {
+                        var result = projectGain()
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#project-gain-card',
+                    offset: 1800,
+                    callback: function (el) {
+                        var result = projectGain()
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#project-gain-card',
+                    offset: 2200,
+                    callback: function (el) {
+                        var result = projectGain()
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                },
+                {
+                    selector: '#project-gain-card',
+                    offset: 2600,
+                    callback: function (el) {
+                        var result = projectGain()
+                        if (result == "append failed!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
+                    }
+                }
+            ];
+            Materialize.scrollFire(options);
+
+            function appendNew() {
+                var num = researchProjectNum;
+                if (counter < num) {
+                    if (getText(HTMLDecode(ajaxResponseResearchProject.data[i].message)).length > 63) {
+                        $childCard = '<div class="current-research-project-card" id="current-research-project-card-id-' + counter + '">' +
+                            '<div class="example-img" background-image: url("' + ajaxResponseResearchProject.attachs[0].url + '")' + '></div>' +
+                            '<div class="card-introduction">' +
+                            '<h1>' + ajaxResponseResearchProject.data[i].title + '</h1><span>' + ajaxResponseResearchProject.data[i].publish_time + '</span>' +
+                            '<p>' + getText(HTMLDecode(ajaxResponseResearchProject.data[i].message)).substr(0, 63) + "..." + '</p>' +
+                            '</div>' +
+                            '</div>';
+                    } else {
+                        $childCard = '<div class="current-research-project-card" id="current-research-project-card-id-' + counter + '">' +
+                            '<div class="example-img" background-image: url("' + ajaxResponseResearchProject.attachs[0].url + '")' + '></div>' +
+                            '<div class="card-introduction">' +
+                            '<h1>' + ajaxResponseResearchProject.data[i].title + '</h1><span>' + ajaxResponseResearchProject.data[i].publish_time + '</span>' +
+                            '<p>' + getText(HTMLDecode(ajaxResponseResearchProject.data[i].message)) + '</p>' +
+                            '</div>' +
+                            '</div>';
+                    }
+                    $('#current-research-project-id').append($childCard);
+                    counter++;
+                    $('#current-research-project-id').append($childCard);
+                    counter++;
+                    for (var i = counter - 2; i < counter; i++) {
+                        Materialize.fadeInImage($('#current-research-project-card-id-' + i));
+                    }
+                    return "append success!";
+                } else {
+                    return "append failed!";
+                }
+            }
+            var counterProjectGain = 3; // 一开始就有四个卡片了
+            function projectGain() {
+                var num = projectFinshNum;
+                if (counterProjectGain < num) {
+                    if (getText(HTMLDecode(ajaxResponseFinshed.data[i].message)).length > 63) {
+                        $childCard = '<div class="research-project-gain-card" id="research-project-gain-card-id-' + counterProjectGain + '">' +
+                            '<div class="example-img" background-image: url("' + ajaxResponseFinshed.attachs[0].url + '")' + '></div>' +
+                            '<div class="card-introduction">' +
+                            '<h1>' + ajaxResponseFinshed.data[i].title + '</h1><span>' + ajaxResponseFinshed.data[i].publish_time + '</span>' +
+                            '<p>' + getText(HTMLDecode(ajaxResponseFinshed.data[i].message)).substr(0, 63) + "..." + '</p>' +
+                            '</div>' +
+                            '</div>';
+                    } else {
+                        $childCard = '<div class="research-project-gain-card" id="research-project-gain-card-id-' + counterProjectGain + '">' +
+                            '<div class="example-img" background-image: url("' + ajaxResponseFinshed.attachs[0].url + '")' + '></div>' +
+                            '<div class="card-introduction">' +
+                            '<h1>' + ajaxResponseFinshed.data[i].title + '</h1><span>' + ajaxResponseFinshed.data[i].publish_time + '</span>' +
+                            '<p>' + getText(HTMLDecode(ajaxResponseFinshed.data[i].message)) + '</p>' +
+                            '</div>' +
+                            '</div>';
+                    }
+                    $('#research-project-gain-id').append($childCard);
+                    counterProjectGain++;
+                    $('#research-project-gain-id').append($childCard);
+                    counterProjectGain++;
+                    for (var i = counterProjectGain - 2; i < counterProjectGain; i++) {
+                        Materialize.fadeInImage($('#research-project-gain-card-id-' + i));
+                    }
+                    return "append success!";
+                } else {
+                    return "append failed!";
+                }
+
+            }
+            //研究项目滚动监视效果结束=============================================================
         }
+
+        /*===================================================================================================================*/
+        /*======行业精英模块==================================================================================================*/
+        /*===================================================================================================================*/
+        /*===================================================================================================================*/
 
         $industryElite = $url.match('industryElite');
         if ($industryElite != null) {
             $('#common-nav-industry-elite').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
+            var ajaxResponse = "";
+            var personNum = 0;
+            $.ajax({
+                url: 'http://wecenter.shabby-wjt.cn:8081/api/elite/list/',
+                method: 'GET',
+                dataType: 'JSON',
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (response) {
+                    ajaxResponse = response;
+                    personNum = response.data.length;
+                    var data = response.data;
+                    var $image = $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-left');
+                    var $name = $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-name');
+                    var $honor = $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-honor');
+                    var $introduction = $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-personal-introduction');
+                    for (var i = 0; i < (data.length > 6 ? 6 : data.length); i++) {
+                        $image.eq(i).attr('style', 'background-image:url("' + data[i].avatar + '")');
+                        $name.eq(i).text(data[i].title);
+                        $honor.eq(i).text(data[i].honor);
+                        var text = getText(HTMLDecode(data[i].message));
+                        $introduction.eq(i).text(text);
+                    }
+                },
+                error: function () {
+                    console.log('get elite fail!!!');
+                }
+
+            });
+            //滚动显示内容，动态刷新
+            var counterOfElite = 5;
+            var options = [{
+                    selector: '#industry-elite-personal-detail-introduction-first',
+                    offset: 500,
+                    callback: function (el) {
+                        Materialize.toast("This is our ScrollFire Demo!", 1500);
+                    }
+                },
+                {
+                    selector: '#industry-elite-personal-detail-introduction-first',
+                    offset: 800,
+                    callback: function (el) {
+                        Materialize.toast("Please continue scrolling!", 1500);
+                    }
+                },
+                {
+                    selector: '#industry-elite-personal-detail-introduction-first',
+                    offset: 1100,
+                    callback: function (el) {
+                        Materialize.showStaggeredList($(el));
+                    }
+                },
+                {
+                    selector: '#iindustry-elite-personal-detail-introduction-first',
+                    offset: 1400,
+                    callback: function (el) {
+                        Materialize.fadeInImage($(el));
+                    }
+                }
+            ];
+            Materialize.scrollFire(options);
+
+            function appendElite() {
+                if (counterOfElite < personNum) {
+                    var child='<div class="industry-elite-list-body-article-list">'+
+                '<div class="industry-elite-list-body-article-list-left" style="background-image:url("'+ajaxResponse.data[]+'")'+'>'
+                    '<i class=" material-icons">polymer</i>'+
+               '</div>'+
+                '<div class="industry-elite-list-body-article-list-right">'+
+                    <div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-forth">
+                        <span class="industry-elite-name">姜立军</span>
+                        <span class="industry-elite-honor">IDRC教授</span>
+                        <span class="industry-elite-personal-introduction">姜立军（JiangLijun），博士，男，汉族，<br/>
+                    湖南益阳人，1968年生。1994毕业于重庆<br/>
+                    大学机械制造专业，获工学硕士学位。一直从事"工程图学"、"计算机图形图像处理"...</span>
+                    </div>
+
+                </div>
+
+
+            </div>
+                }
+            }
+            //行业精英获取信息，点击刷新的行业精英的内容
+            $('#industry-elite-personal-detail-introduction-first').click(function () {
+                var $industryEliteFirstPageHtml = "";
+                var industryElitePersonalDetailIntroduction = "";
+                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+                    '</div></div>'
+                $('#industry-elite-list-body-article-id').html($test);
+                //调试代码结束
+            })
+            //第一个人结束
+            //第二个人开始
+            $('#industry-elite-personal-detail-introduction-second').click(function () {
+                var $industryEliteFirstPageHtml = "";
+                var industryElitePersonalDetailIntroduction = "";
+                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+                    '</div></div>'
+                $('#industry-elite-list-body-article-id').html($test);
+                //调试代码结束
+            })
+            //第二个人结束
+
+            //第三个人开始
+            $('#industry-elite-personal-detail-introduction-third').click(function () {
+                var $industryEliteFirstPageHtml = "";
+                var industryElitePersonalDetailIntroduction = "";
+                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+                    '</div></div>'
+                $('#industry-elite-list-body-article-id').html($test);
+                //调试代码结束
+            })
+            //第三个人结束
+
+            //第四个人开始
+            $('#industry-elite-personal-detail-introduction-forth').click(function () {
+                var $industryEliteFirstPageHtml = "";
+                var industryElitePersonalDetailIntroduction = "";
+                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+                    '</div></div>'
+                $('#industry-elite-list-body-article-id').html($test);
+                //调试代码结束
+            })
+            //第四个人结束
+
+
+            //第五个人开始
+            $('#industry-elite-personal-detail-introduction-fifth').click(function () {
+                var $industryEliteFirstPageHtml = "";
+                var industryElitePersonalDetailIntroduction = "";
+                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+                    '</div></div>'
+                $('#industry-elite-list-body-article-id').html($test);
+                //调试代码结束
+            })
+            //第五个人结束
+
+
+            //第六个人开始
+            $('#industry-elite-personal-detail-introduction-sixth').click(function () {
+                var $industryEliteFirstPageHtml = "";
+                var industryElitePersonalDetailIntroduction = "";
+                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
+                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
+                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
+                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
+                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
+                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
+                    '</div></div>'
+                $('#industry-elite-list-body-article-id').html($test);
+                //调试代码结束
+            })
+            //第六个人结束
         }
 
         $forum = $url.match('forum');
@@ -365,82 +891,6 @@ $(document).ready(function () {
         determineTheFooterPosition();
     })
     //尾部位置处理结束
-
-
-
-    // var getInfoCenterDetail=function(){
-    //     alert('开始请求');
-    //     $.ajax({
-    //         type:"GET",
-    //         url:"http://wecenter.shabby-wjt.cn:8133/api/advisory/industryInfo/",
-    //         // dataType:"text/html",
-    //         contentType:'application/x-www-form-urlencoded',
-    //         success:function(response){
-    //             alert('success'+ ": "+response);
-    //         },
-    //         error:function()
-    //         {
-    //             alert('fail');
-    //         }
-    //     })
-    // }
-    // function search(){
-    // if(window.location.href.match('index')!=null)
-    //     {
-    //         getInfoCenterDetail();
-    //     }
-    // }
-    // search();
-
-    //研究项目右上角切换功能
-    //要结合滚动显示效果，所以放到另外一个文件researchProject.js里面
-
-    $('#research-project-detail-body-header-right-first').click(function (event) {
-        infoCenterBodyHeaderChoices(event.target);
-        infoCenterBodyHeaderRemoveChoices(event.target);
-        $('#current-research-project-id').show();
-        $('#research-project-gain-id').hide();
-        $('#research-project-detail-page-id').hide();
-        $('#footer-top-id').text('');
-        if ($('#footer-top-id').offset().top > 4000) //后期注意修改
-        {
-            $('#footer-top-id').text('没有更多内容了...');
-        }
-
-    });
-    $('#research-project-detail-body-header-right-second').click(function (event) {
-        infoCenterBodyHeaderChoices(event.target);
-        infoCenterBodyHeaderRemoveChoices(event.target);
-        $('#current-research-project-id').hide();
-        $('#research-project-detail-page-id').hide();
-        $('#research-project-gain-id').show();
-        $('#footer-top-id').text('');
-        if ($('#footer-top-id').offset().top > 2300) //后期注意修改
-        {
-            $('#footer-top-id').text('没有更多内容了...');
-        }
-
-    });
-
-
-    //研究中心点击事件查看详情方法
-    $('.current-research-project-card').click(function () {
-        $('#current-research-project-id').hide();
-        $('#research-project-gain-id').hide();
-        $('#research-project-detail-page-id').show();
-    });
-    $(' .research-project-gain-card').click(function () {
-        $('#current-research-project-id').hide();
-        $('#research-project-gain-id').hide();
-        $('#research-project-detail-page-id').show();
-    })
-    //研究中心点击时间结束
-    //研究项目右上角切换功能结束
-
-
-
-
-
     //关于我们上方的点击切换页面功能
     $('#about-us-detail-body-header-right-first').click(function (event) {
         infoCenterBodyHeaderChoices(event.target);
@@ -456,219 +906,5 @@ $(document).ready(function () {
         $('#about-us-member-id').show();
     });
     //关于我们上方切换结束
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //行业精英获取信息，点击刷新的行业精英的内容
-    $('#industry-elite-personal-detail-introduction-first').click(function () {
-        var $industryEliteFirstPageHtml = "";
-        var industryElitePersonalDetailIntroduction = "";
-        // $.ajax({
-        //     url: "",
-        //     method: "",
-        //     data: "", //追加的参数
-        //     dataType: "", //返回数据的格式
-        //     contentType: "", //发送数据的格式
-        //     success: function (response) {
-        //         //带有$符号的变量只是用来识别这个是DOM对象
-        //         //准备自动匹配去掉所有的HTML
-        //         $industryEliteFirstPageHtml= $('#industry-elite-list-body-article-id').html(); //点击时获取全部的html，存储起来
-        //         industryElitePersonalDetailIntroduction = '<img src="' + response.avatar+'" alt="something wrong"/>'+
-        //                                                     '<div class="industry-elite-personal-detail-article>'+response.message+'</div>';
-        //         $('#industry-elite-list-body-article-id').html(industryElitePersonalDetailIntroduction);//刷新页面
-        //     },
-        //     error: function () {}
-        // });//ajax请求结束
-        //下面代码仅做调试用
-        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-            '</div></div>'
-        $('#industry-elite-list-body-article-id').html($test);
-        //调试代码结束
-    })
-    //第一个人结束
-    //第二个人开始
-    $('#industry-elite-personal-detail-introduction-second').click(function () {
-        var $industryEliteFirstPageHtml = "";
-        var industryElitePersonalDetailIntroduction = "";
-        // $.ajax({
-        //     url: "",
-        //     method: "",
-        //     data: "", //追加的参数
-        //     dataType: "", //返回数据的格式
-        //     contentType: "", //发送数据的格式
-        //     success: function (response) {
-        //         //带有$符号的变量只是用来识别这个是DOM对象
-        //         //准备自动匹配去掉所有的HTML
-        //         $industryEliteFirstPageHtml= $('#industry-elite-list-body-article-id').html(); //点击时获取全部的html，存储起来
-        //         industryElitePersonalDetailIntroduction = '<img src="' + response.avatar+'" alt="something wrong"/>'+
-        //                                                     '<div class="industry-elite-personal-detail-article>'+response.message+'</div>';
-        //         $('#industry-elite-list-body-article-id').html(industryElitePersonalDetailIntroduction);//刷新页面
-        //     },
-        //     error: function () {}
-        // });//ajax请求结束
-        //下面代码仅做调试用
-        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-            '</div></div>'
-        $('#industry-elite-list-body-article-id').html($test);
-        //调试代码结束
-    })
-    //第二个人结束
-
-    //第三个人开始
-    $('#industry-elite-personal-detail-introduction-third').click(function () {
-        var $industryEliteFirstPageHtml = "";
-        var industryElitePersonalDetailIntroduction = "";
-        // $.ajax({
-        //     url: "",
-        //     method: "",
-        //     data: "", //追加的参数
-        //     dataType: "", //返回数据的格式
-        //     contentType: "", //发送数据的格式
-        //     success: function (response) {
-        //         //带有$符号的变量只是用来识别这个是DOM对象
-        //         //准备自动匹配去掉所有的HTML
-        //         $industryEliteFirstPageHtml= $('#industry-elite-list-body-article-id').html(); //点击时获取全部的html，存储起来
-        //         industryElitePersonalDetailIntroduction = '<img src="' + response.avatar+'" alt="something wrong"/>'+
-        //                                                     '<div class="industry-elite-personal-detail-article>'+response.message+'</div>';
-        //         $('#industry-elite-list-body-article-id').html(industryElitePersonalDetailIntroduction);//刷新页面
-        //     },
-        //     error: function () {}
-        // });//ajax请求结束
-        //下面代码仅做调试用
-        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-            '</div></div>'
-        $('#industry-elite-list-body-article-id').html($test);
-        //调试代码结束
-    })
-    //第三个人结束
-
-    //第四个人开始
-    $('#industry-elite-personal-detail-introduction-forth').click(function () {
-        var $industryEliteFirstPageHtml = "";
-        var industryElitePersonalDetailIntroduction = "";
-        // $.ajax({
-        //     url: "",
-        //     method: "",
-        //     data: "", //追加的参数
-        //     dataType: "", //返回数据的格式
-        //     contentType: "", //发送数据的格式
-        //     success: function (response) {
-        //         //带有$符号的变量只是用来识别这个是DOM对象
-        //         //准备自动匹配去掉所有的HTML
-        //         $industryEliteFirstPageHtml= $('#industry-elite-list-body-article-id').html(); //点击时获取全部的html，存储起来
-        //         industryElitePersonalDetailIntroduction = '<img src="' + response.avatar+'" alt="something wrong"/>'+
-        //                                                     '<div class="industry-elite-personal-detail-article>'+response.message+'</div>';
-        //         $('#industry-elite-list-body-article-id').html(industryElitePersonalDetailIntroduction);//刷新页面
-        //     },
-        //     error: function () {}
-        // });//ajax请求结束
-        //下面代码仅做调试用
-        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-            '</div></div>'
-        $('#industry-elite-list-body-article-id').html($test);
-        //调试代码结束
-    })
-    //第四个人结束
-
-
-    //第五个人开始
-    $('#industry-elite-personal-detail-introduction-fifth').click(function () {
-        var $industryEliteFirstPageHtml = "";
-        var industryElitePersonalDetailIntroduction = "";
-        // $.ajax({
-        //     url: "",
-        //     method: "",
-        //     data: "", //追加的参数
-        //     dataType: "", //返回数据的格式
-        //     contentType: "", //发送数据的格式
-        //     success: function (response) {
-        //         //带有$符号的变量只是用来识别这个是DOM对象
-        //         //准备自动匹配去掉所有的HTML
-        //         $industryEliteFirstPageHtml= $('#industry-elite-list-body-article-id').html(); //点击时获取全部的html，存储起来
-        //         industryElitePersonalDetailIntroduction = '<img src="' + response.avatar+'" alt="something wrong"/>'+
-        //                                                     '<div class="industry-elite-personal-detail-article>'+response.message+'</div>';
-        //         $('#industry-elite-list-body-article-id').html(industryElitePersonalDetailIntroduction);//刷新页面
-        //     },
-        //     error: function () {}
-        // });//ajax请求结束
-        //下面代码仅做调试用
-        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-            '</div></div>'
-        $('#industry-elite-list-body-article-id').html($test);
-        //调试代码结束
-    })
-    //第五个人结束
-
-
-    //第六个人开始
-    $('#industry-elite-personal-detail-introduction-sixth').click(function () {
-        var $industryEliteFirstPageHtml = "";
-        var industryElitePersonalDetailIntroduction = "";
-        // $.ajax({
-        //     url: "",
-        //     method: "",
-        //     data: "", //追加的参数
-        //     dataType: "", //返回数据的格式
-        //     contentType: "", //发送数据的格式
-        //     success: function (response) {
-        //         //带有$符号的变量只是用来识别这个是DOM对象
-        //         //准备自动匹配去掉所有的HTML
-        //         $industryEliteFirstPageHtml= $('#industry-elite-list-body-article-id').html(); //点击时获取全部的html，存储起来
-        //         industryElitePersonalDetailIntroduction = '<img src="' + response.avatar+'" alt="something wrong"/>'+
-        //                                                     '<div class="industry-elite-personal-detail-article>'+response.message+'</div>';
-        //         $('#industry-elite-list-body-article-id').html(industryElitePersonalDetailIntroduction);//刷新页面
-        //     },
-        //     error: function () {}
-        // });//ajax请求结束
-        //下面代码仅做调试用
-        var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-            '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-            '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-            '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-            '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-            '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-            '</div></div>'
-        $('#industry-elite-list-body-article-id').html($test);
-        //调试代码结束
-    })
-    //第六个人结束
-
     //行业精英获取信息结束
 })
