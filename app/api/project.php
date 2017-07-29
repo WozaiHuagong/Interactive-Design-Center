@@ -28,7 +28,8 @@ class project extends AWS_CONTROLLER
         $rule_action['rule_type'] = 'white';
 
         $rule_action['actions'] = array(
-            'list'
+            'working',
+            'finished'
         );
 
         return $rule_action;
@@ -43,15 +44,21 @@ class project extends AWS_CONTROLLER
     {
         if (isset($_GET['number'])) $list = $this->model('project')->get_working_list(intval($_GET['number']));
         else $list = $this->model('project')->get_working_list();
-        foreach ($list as $lib) {
+        foreach ($list as $working) {
             $tmp=[];
-            $tmp["title"] = $lib["title"];
-            $tmp["id"] = $lib["id"];
-            $tmp["summary"] = $lib["summary"];
-            $tmp["message"] = $lib["message"];
-            $tmp["publish_time"] = $lib["publish_time"];
-            $tmp["view_num"] = $lib["views"];
+            $tmp["title"] = $working["title"];
+            $tmp["id"] = $working["id"];
+            $tmp["summary"] = $working["summary"];
+            $tmp["message"] = $working["message"];
+            $tmp["publish_time"] = $working["publish_time"];
+            $tmp["view_num"] = $working["views"];
             $tmp["type"] = 'projectWroking';
+            $attach = $this->model('p ublish')->get_attach('article',$working['id']);
+            $attach_list =array();
+            foreach ($attach as $key => $value) {
+                $attach_list[] = $value["attachment"];
+            }
+            $tmp["attach"] = $attach_list;
             $data[]=$tmp;
         }
         $result=array(
@@ -66,15 +73,21 @@ class project extends AWS_CONTROLLER
     {
         if (isset($_GET['number'])) $list = $this->model('project')->get_finished_list(intval($_GET['number']));
         else $list = $this->model('project')->get_finished_list();
-        foreach ($list as $lib) {
+        foreach ($list as $finished) {
             $tmp=[];
-            $tmp["title"] = $lib["title"];
-            $tmp["id"] = $lib["id"];
-            $tmp["summary"] = $lib["summary"];
-            $tmp["message"] = $lib["message"];
-            $tmp["publish_time"] = $lib["publish_time"];
-            $tmp["view_num"] = $lib["views"];
+            $tmp["title"] = $finished["title"];
+            $tmp["id"] = $finished["id"];
+            $tmp["summary"] = $finished["summary"];
+            $tmp["message"] = $finished["message"];
+            $tmp["publish_time"] = $finished["publish_time"];
+            $tmp["view_num"] = $finished["views"];
             $tmp["type"] = 'projectFinished';
+            $attach = $this->model('p ublish')->get_attach('article',$finished['id']);
+            $attach_list =array();
+            foreach ($attach as $key => $value) {
+                $attach_list[] = $value["attachment"];
+            }
+            $tmp["attach"] = $attach_list;
             $data[]=$tmp;
         }
         $result=array(

@@ -28,7 +28,8 @@ class advisory extends AWS_CONTROLLER
         $rule_action['rule_type'] = 'white';
 
         $rule_action['actions'] = array(
-            'list'
+            'libInfo',
+            'industryInfo'
         );
 
         return $rule_action;
@@ -52,6 +53,12 @@ class advisory extends AWS_CONTROLLER
             $tmp["publish_time"] = $lib["publish_time"];
             $tmp["view_num"] = $lib["views"];
             $tmp["type"] = 'libInfo';
+            $attach = $this->model('p ublish')->get_attach('article',$lib['id']);
+            $attach_list =array();
+            foreach ($attach as $key => $value) {
+                $attach_list[] = $value["attachment"];
+            }
+            $tmp["attach"] = $attach_list;
             $data[]=$tmp;
         }
         $result=array(
@@ -66,15 +73,21 @@ class advisory extends AWS_CONTROLLER
     {
         if (isset($_GET['number'])) $list = $this->model('advisory')->get_industry_info_list(intval($_GET['number']));
         else $list = $this->model('advisory')->get_lib_info_list();
-        foreach ($list as $lib) {
+        foreach ($list as $industry) {
             $tmp=[];
-            $tmp["title"] = $lib["title"];
-            $tmp["id"] = $lib["id"];
-            $tmp["summary"] = $lib["summary"];
-            $tmp["message"] = $lib["message"];
-            $tmp["publish_time"] = $lib["publish_time"];
-            $tmp["view_num"] = $lib["views"];
+            $tmp["title"] = $industry["title"];
+            $tmp["id"] = $industry["id"];
+            $tmp["summary"] = $industry["summary"];
+            $tmp["message"] = $industry["message"];
+            $tmp["publish_time"] = $industry["publish_time"];
+            $tmp["view_num"] = $industry["views"];
             $tmp["type"] = 'industryInfo';
+            $attach = $this->model('p ublish')->get_attach('article',$industry['id']);
+            $attach_list =array();
+            foreach ($attach as $key => $value) {
+                $attach_list[] = $value["attachment"];
+            }
+            $tmp["attach"] = $attach_list;
             $data[]=$tmp;
         }
         $result=array(

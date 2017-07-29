@@ -356,6 +356,9 @@ class favorite_class extends AWS_MODEL
 		if($type == 'prize'){
 			$list_items = $this->fetch_all('prize_comments', "uid = " . intval($uid), 'add_time DESC', $limit);
 		}
+		if($type == 'question'){
+			$list_items = $this->fetch_all('question_comments', "uid = " . intval($uid), 'time DESC', $limit);
+		}
 		
 		return $list_items;
 	}

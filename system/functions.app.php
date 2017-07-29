@@ -356,6 +356,9 @@ function get_content_info($id,$type)
 	if($type == 'prize'){
 		$article_info = AWS_APP::model('prize')->get_prize_info_by_id($id);
 	}
+    if($type == 'question'){
+        $article_info = AWS_APP::model('question')->get_question_info_by_id($id);
+    }
 
 	if ($article_info)
 	{

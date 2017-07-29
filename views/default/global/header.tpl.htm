@@ -24,7 +24,11 @@
 				<?php if (get_setting('register_type') == 'open') { ?><a class="btn btn-success regist-bt" href="account/register/"><?php _e('注册'); ?></a><?php } ?>
 				<?php }else{ ?>
 				<a href="people/<?php echo $this->user_info['url_token']; ?>" class="aw-user-nav-dropdown">
-					<img class="user-head-s" alt="<?php echo $this->user_info['user_name']; ?>" src="<?php echo get_avatar_url($this->user_info['uid'], 'mid'); ?>" />
+				<div class="form-group" style="display: inline;color: #aaa">
+					<label for="user-head-img"><?php echo $this->user_info['user_name']; ?></label>
+					<img class="user-head-s" alt="<?php echo $this->user_info['user_name']; ?>" src="<?php echo get_avatar_url($this->user_info['uid'], 'mid'); ?>" id="user-head-img"/>
+				</div>
+
 					<?php if ($this->user_info['inbox_unread'] != 0 OR $this->user_info['notification_unread'] != 0) {?>
 					<span class="badge badge-important"><?php echo $this->user_info['inbox_unread']+$this->user_info['notification_unread'];?></span>
 					<?php } ?>
@@ -64,9 +68,9 @@
 				<li class="<?php if (!$_GET['app'] OR $_GET['app'] == 'explore') { ?>menu_current_item<?php } ?>">
 					<a href="<?php echo base_url(); ?>"><?php _e('首页'); ?></a>
 				</li>
-				<li><a class="<?php if ($_GET['app'] == 'question') { ?>menu_current_item<?php } ?>" href="question/"><?php _e('问答'); ?></a></li>
-				<li><a class="<?php if ($_GET['app'] == 'article') { ?>menu_current_item<?php } ?>" href="article/"><?php _e('文章'); ?></a></li>
-				<li><a class="<?php if ($_GET['app'] == 'topic') { ?>menu_current_item<?php } ?>" href="topic/"><?php _e('聚焦'); ?></a></li>
+				<li class="<?php if ($_GET['app'] == 'question') { ?>menu_current_item<?php } ?>"><a href="question/"><?php _e('问答'); ?></a></li>
+				<li class="<?php if ($_GET['app'] == 'article') { ?>menu_current_item<?php } ?>"><a  href="article/"><?php _e('文章'); ?></a></li>
+				<li class="<?php if ($_GET['app'] == 'topic') { ?>menu_current_item<?php } ?>"><a href="topic/"><?php _e('聚焦'); ?></a></li>
 			</ul>
 		</div>
 		<!-- 搜索框 -->
@@ -106,9 +110,9 @@
 					<li class="<?php if (!$_GET['app'] OR $_GET['app'] == 'explore') { ?>menu_current_item<?php } ?>">
 						<a href="<?php echo base_url(); ?>"><?php _e('首页'); ?></a>
 					</li>
-					<li><a class="<?php if ($_GET['app'] == 'question') { ?>menu_current_item<?php } ?>" href="question/"><?php _e('问答'); ?></a></li>
-					<li><a class="<?php if ($_GET['app'] == 'article') { ?>menu_current_item<?php } ?>" href="article/"><?php _e('文章'); ?></a></li>
-					<li><a class="<?php if ($_GET['app'] == 'topic') { ?>menu_current_item<?php } ?>" href="topic/"><?php _e('聚焦'); ?></a></li>
+					<li class="<?php if ($_GET['app'] == 'question') { ?>menu_current_item<?php } ?>"><a href="question/"><?php _e('问答'); ?></a></li>
+					<li class="<?php if ($_GET['app'] == 'article') { ?>menu_current_item<?php } ?>"><a href="article/"><?php _e('文章'); ?></a></li>
+					<li class="<?php if ($_GET['app'] == 'topic') { ?>menu_current_item<?php } ?>"><a href="topic/"><?php _e('聚焦'); ?></a></li>
 				</ul>
 			</div>
 			<div class="search-wrap pull-right aw-search-box hidden-xs hidden-sm">

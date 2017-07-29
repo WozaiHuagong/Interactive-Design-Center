@@ -29,11 +29,11 @@
                                 <li>
                                     <a <?php if (!$_GET['topic_id']) { ?>class="active"<?php } ?> href="topic/"><?php _e('聚焦'); ?></a>
                                 </li>
-                                <?php foreach ($this->parent_topics AS $key => $val) { ?>
+<!--                                 <?php foreach ($this->parent_topics AS $key => $val) { ?>
                                 <li>
                                     <a href="topic/channel-topic__topic_id-<?php echo $val['topic_id']; ?>"<?php if ($_GET['topic_id'] == $val['topic_id']) { ?> class="active"<?php } ?>><?php echo $val['topic_title']; ?></a>
                                 </li>
-                                <?php } ?>
+                                <?php } ?> -->
                             </ul>
                         </div>
                     </div>

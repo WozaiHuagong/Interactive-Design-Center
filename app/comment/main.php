@@ -45,7 +45,15 @@ class main extends AWS_CONTROLLER
 		if ($action_list = $this->model('favorite')->get_item_comment_list($this->user_id, calc_page_limit($_GET['page'], get_setting('contents_per_page')),$get_type)){
 			TPL::assign('list', $action_list);
 		}
-		
-		TPL::output('comment/index');
+
+		if($get_type == 'question')
+		{
+			TPL::output('comment/question');
+
+		}else{
+			TPL::output('comment/index');
+		}
+
+
 	}
 }

@@ -264,6 +264,8 @@ class main extends AWS_CONTROLLER
 			TPL::assign('sidebar_hot_topics', $this->model('module')->sidebar_hot_topics($category_info['id']));
 		}
 
+		TPL::assign('sidebar_hot_topics', $this->model('module')->sidebar_hot_topics($_GET['category']));
+
 		if ($category_info)
 		{
 			TPL::assign('category_info', $category_info);

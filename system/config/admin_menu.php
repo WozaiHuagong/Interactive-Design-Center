@@ -109,7 +109,7 @@ $config[] = array(
         // ),
         array(
             'id' => 303,
-            'title' => AWS_APP::lang()->_t('标签管理'),
+            'title' => AWS_APP::lang()->_t('话题管理'),
             'url' => 'admin/topic/list/'
         ),
         array(
