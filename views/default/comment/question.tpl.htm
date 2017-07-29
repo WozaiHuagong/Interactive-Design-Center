@@ -1,0 +1,59 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+<section class="personal spec-person">
+	<div class="content clearfix">
+		<div class="left">
+			<div class="classify-line clearfix">
+				<div class="pull-left"><h3>我的评论 <!-- <span class="badge"><?php echo count($this->list); ?></span> --></h3></div>
+				<div class="comment-classify pull-right">
+					<a href="comment/" class="<?php if(!$_GET['t']){ echo 'active'; } ?>">文章评论</a>
+					<a href="comment/t-question" class="<?php if($_GET['t'] == 'sortout'){ echo 'active'; } ?>">问答追问</a>
+<!-- 					<a href="comment/t-answer" class="<?php if($_GET['t'] == 'prize'){ echo 'active'; } ?>">问答回复</a> -->
+				</div>
+			</div>
+			<div class="content-wrap">
+				<div class="item-list">
+					<ul>
+						<?php  
+							$get_type = $_GET['t'];
+							if(empty($get_type)){
+								$get_type = 'article';
+							}
+						?>
+						<?php if (sizeof ($this->list) > 0) { ?>
+							<?php 
+								foreach ($this->list AS $key => $val) { 
+								$info = get_content_info($val['question_id'],$get_type);
+							?>
+							<li class="clearfix">
+								<div class="title pull-left">
+									<a href="<?php echo $get_type; ?>/<?php echo $val['question_id']; ?>" target="_blank">
+										<p class="quest"><?php echo $info['question_content']; ?></p> 
+									</a>
+									<p class="quest-reply">
+										<?php
+											$message = $val['message'];
+											echo '<span>追问内容：</span>';
+											echo cjk_substr($message, 0, 130, 'UTF-8', '...'); 
+										?>
+									</p>
+								</div>
+								<div class="date pull-right">
+									<p><?php echo date_friendly($val['time']); ?></p>
+								</div>
+							</li>
+							<?php } ?>
+						<?php } ?>
+					</ul>
+				</div>
+				<div class="mod-footer"></div>
+			</div>
+
+		</div>
+		<!-- 侧边栏 -->
+		<div class="right">
+           <?php TPL::output('block/sidebar_menu.tpl.htm'); ?>
+		</div>
+		<!-- end 侧边栏 -->
+	</div>
+</section>
+<?php TPL::output('global/footer.tpl.htm'); ?>
