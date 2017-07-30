@@ -881,4 +881,16 @@ $(document).ready(function () {
     });
     //关于我们上方切换结束
     //行业精英获取信息结束
+    $('#search').keydown(function(e){
+        if(e.keyCode==13)
+            {
+                alert($('#search').val());
+            }
+    });
+    $('#search').focus(function(){
+        $('.common-header .common-header-content nav').attr('style','width:400px');
+    });
+     $('#search').blur(function(){
+           $('.common-header .common-header-content nav').removeAttr('style');
+     })
 })

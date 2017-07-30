@@ -34,19 +34,21 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       margin-top: 0px;
       height: 30px;
       margin-top: 20px;
-      transition: width 2s;
+      transition: width 1.5s;
       background-color: #0893d6; }
       .common-header .common-header-content nav .input-field .label-icon i {
         margin-top: -28px;
         left: 10px; }
       .common-header .common-header-content nav .input-field i:nth-child(3) {
         margin-top: -15px; }
+    .common-header .common-header-content #search:focus nav {
+      width: 400px !important; }
     .common-header .common-header-content nav:hover {
       width: 400px; }
       .common-header .common-header-content nav:hover input {
         background-color: #fff; }
       .common-header .common-header-content nav:hover #search-icon {
-        color: #2d3240 !important; }
+        color: #2d3240; }
     .common-header .common-header-content input:focus {
       width: 400px; }
       .common-header .common-header-content input:focus #close-btn {

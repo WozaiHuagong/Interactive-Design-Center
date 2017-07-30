@@ -34,7 +34,7 @@
             margin-top: 0px; //height:30px;
             height: 30px;
             margin-top: 20px;
-            transition: width 2s;
+            transition: width 1.5s;
             background-color:$base-background-color;
             .input-field {
                 .label-icon {
@@ -47,7 +47,9 @@
                     margin-top: -15px;
                 }
             }
-
+        }
+        #search:focus nav{
+            width:400px!important;
         }
         nav:hover{
             width: 400px;
@@ -55,8 +57,7 @@
                 background-color:#fff;
             }
             #search-icon{
-                color:#2d3240 !important;
-
+                color:#2d3240;
             }
         }
         input:focus{
