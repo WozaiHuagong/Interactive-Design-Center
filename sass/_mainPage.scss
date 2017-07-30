@@ -91,11 +91,13 @@
         .indicators{
             bottom:46px;
         }
-        .carousel-content-text{
-            width:100%;
+    } //首页资讯中心的样式开始
+       .carousel-content-text{
+            width:$base-width;
             height:70px;
             position:absolute;
-            bottom:0px;
+            margin-top:-70px;
+            //bottom:0px;
             z-index: 3;
            background-color:rgba(67,67,69,0.7);//rgba子元素不继承透明度，opacity会被子元素继承，IE8、9以下使用position使元素脱离文档流来解决，
            //background-color: rgb(67,67,69);
@@ -126,9 +128,9 @@
                 float:right;
                 margin-right:20px;
                 margin-top:-12px;
+                background-color:$base-background-color;
             }
         }
-    } //首页资讯中心的样式开始
     .mian-page-info-center {
         margin-top: 30px;
         .main-page-info-center-header {

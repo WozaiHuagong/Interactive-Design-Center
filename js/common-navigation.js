@@ -40,6 +40,7 @@ $(document).ready(function () {
         if ($mainPage != null) {
             $('#common-nav-mainpage').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
             //根据当前URL做出相关的ajax请求与更新，更新轮播图
+            var ajaxResponseOfCarousel = "";
             $.ajax({
                 url: "http://wecenter.shabby-wjt.cn:8081/api/carousel/list/",
                 method: 'GET',
@@ -48,11 +49,13 @@ $(document).ready(function () {
                 //data追加到URL
                 success: function (response) {
                     //console.log(response);
+                    ajaxResponseOfCarousel = response;
                     var data = response.data; //轮播图内容
                     var arrLength = data.length;
                     //更新轮播图
                     for (var i = 0; i < arrLength; i++) {
                         $('.carousel-item').eq(i).attr('style', 'background-image: url("' + data[i].url + '");');
+                         $('.carousel-item').eq(i).attr('id', 'carousel-id'+i);
                     }
                     //轮播图更新完毕
                 },
@@ -60,7 +63,11 @@ $(document).ready(function () {
                     console.log('carousel get fail!');
                 }
             }); //轮播图更新完毕
-
+            $('.carousel-item').click(function () {
+                var id=$(this).attr('id').substr(-1);
+                $('#carousel-content-text-title-id').text(ajaxResponseOfCarousel.data[id].title);
+                $('#carousel-content-text-content-id').text(ajaxResponseOfCarousel.data[id].content);
+            });//点击更新轮播图下方的标题与小标题内容
             //更新主页资讯中心内容
             $.ajax({
                 url: "http://wecenter.shabby-wjt.cn:8081/api/advisory/industryInfo/number",
@@ -816,7 +823,7 @@ $(document).ready(function () {
             $('#common-nav-about-us').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
 
 
-            $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function(){
+            $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function () {
                 $('#about-us-member-id').hide();
                 $('#about-us-organization-id').show();
             });
