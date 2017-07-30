@@ -86,7 +86,48 @@
 .main-page-body {
     width: $base-width;
     .carousel {
+        position:relative;
         height: 468px;
+        .indicators{
+            bottom:46px;
+        }
+        .carousel-content-text{
+            width:100%;
+            height:70px;
+            position:absolute;
+            bottom:0px;
+            z-index: 3;
+           background-color:rgba(67,67,69,0.7);//rgba子元素不继承透明度，opacity会被子元素继承，IE8、9以下使用position使元素脱离文档流来解决，
+           //background-color: rgb(67,67,69);
+           //opacity: 0.5;
+            text-align:left;
+            span:nth-child(1) {
+                //opacity:10;
+                margin:0px;
+                padding:0px;
+                font-size:18px;
+                color:#ffffff;
+                font-family: $base-font-family;
+                margin-top:12px;
+                margin-left:30px;
+                line-height:18px;
+                display:block;
+            }
+            span:nth-child(2) {
+                font-size:14px;
+                font-family: $base-font-family;
+                color:#ffffff;
+                margin-top:12px;
+                margin-left:30px;
+                line-height:18px;
+                display:inline-block;
+            }
+              .main-page-look-in-detail{
+                float:right;
+                margin-right:20px;
+                margin-top:-12px;
+            }
+        }
     } //首页资讯中心的样式开始
     .mian-page-info-center {
         margin-top: 30px;
