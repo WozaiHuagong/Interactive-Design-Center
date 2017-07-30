@@ -28,6 +28,43 @@
             font-family: $base-font-family;
             letter-spacing: 2px;
         }
+        nav {
+            float: right;
+            width: 200px;
+            margin-top: 0px; //height:30px;
+            height: 30px;
+            margin-top: 20px;
+            transition: width 2s;
+            background-color:$base-background-color;
+            .input-field {
+                .label-icon {
+                    i {
+                        margin-top: -28px;
+                       left:10px;
+                    }
+                }
+                i:nth-child(3) {
+                    margin-top: -15px;
+                }
+            }
+
+        }
+        nav:hover{
+            width: 400px;
+            input{
+                background-color:#fff;
+            }
+            #search-icon{
+                color:#2d3240 !important;
+
+            }
+        }
+        input:focus{
+            width:400px;
+            #close-btn{
+                display:inline-block;
+            }
+        }
     }
 }
 
@@ -86,51 +123,50 @@
 .main-page-body {
     width: $base-width;
     .carousel {
-        position:relative;
+        position: relative;
         height: 468px;
-        .indicators{
-            bottom:46px;
+        .indicators {
+            bottom: 46px;
         }
     } //首页资讯中心的样式开始
-       .carousel-content-text{
-            width:$base-width;
-            height:70px;
-            position:absolute;
-            margin-top:-70px;
-            //bottom:0px;
-            z-index: 3;
-           background-color:rgba(67,67,69,0.7);//rgba子元素不继承透明度，opacity会被子元素继承，IE8、9以下使用position使元素脱离文档流来解决，
-           //background-color: rgb(67,67,69);
-           //opacity: 0.5;
-            text-align:left;
-            span:nth-child(1) {
-                //opacity:10;
-                margin:0px;
-                padding:0px;
-                font-size:18px;
-                color:#ffffff;
-                font-family: $base-font-family;
-                margin-top:12px;
-                margin-left:30px;
-                line-height:18px;
-                display:block;
-            }
-            span:nth-child(2) {
-                font-size:14px;
-                font-family: $base-font-family;
-                color:#ffffff;
-                margin-top:12px;
-                margin-left:30px;
-                line-height:18px;
-                display:inline-block;
-            }
-              .main-page-look-in-detail{
-                float:right;
-                margin-right:20px;
-                margin-top:-12px;
-                background-color:$base-background-color;
-            }
+    .carousel-content-text {
+        width: $base-width;
+        height: 70px;
+        position: absolute;
+        margin-top: -70px; //bottom:0px;
+        z-index: 3;
+        background-color: rgba(67, 67, 69, 0.7); //rgba子元素不继承透明度，opacity会被子元素继承，IE8、9以下使用position使元素脱离文档流来解决，
+        //background-color: rgb(67,67,69);
+        //opacity: 0.5;
+        text-align: left;
+        span:nth-child(1) {
+            //opacity:10;
+            margin: 0px;
+            padding: 0px;
+            font-size: 18px;
+            color: #ffffff;
+            font-family: $base-font-family;
+            margin-top: 12px;
+            margin-left: 30px;
+            line-height: 18px;
+            display: block;
         }
+        span:nth-child(2) {
+            font-size: 14px;
+            font-family: $base-font-family;
+            color: #ffffff;
+            margin-top: 12px;
+            margin-left: 30px;
+            line-height: 18px;
+            display: inline-block;
+        }
+        .main-page-look-in-detail {
+            float: right;
+            margin-right: 20px;
+            margin-top: -12px;
+            background-color: $base-background-color;
+        }
+    }
     .mian-page-info-center {
         margin-top: 30px;
         .main-page-info-center-header {
@@ -542,16 +578,15 @@
 
 .scroll-spy-wrap {
     float: right;
-        .scroll-spy {
-            font-size: 18px;
-            font-family: $base-font-family;
-            .active {
-                border-left: 5px solid $base-background-color;
-                // color: #2d3240;
-                // font-weight: 500;
-                // padding-left: 18px;
-            }
+    .scroll-spy {
+        font-size: 18px;
+        font-family: $base-font-family;
+        .active {
+            border-left: 5px solid $base-background-color; // color: #2d3240;
+            // font-weight: 500;
+            // padding-left: 18px;
         }
     }
+}
 
 //右边滚动监视条结束
