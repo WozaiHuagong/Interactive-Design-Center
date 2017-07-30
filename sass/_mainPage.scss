@@ -85,7 +85,6 @@
 //主体内容样式开始
 .main-page-body {
     width: $base-width;
-    margin: 0 auto;
     .carousel {
         height: 468px;
     } //首页资讯中心的样式开始
@@ -110,9 +109,9 @@
                 font-family: $base-font-family;
                 color: $base-button-more-color;
                 float: right;
-                a{
+                a {
                     text-decoration: none;
-                    color:$base-button-more-color;
+                    color: $base-button-more-color;
                 }
             }
         }
@@ -243,9 +242,9 @@
                 font-family: $base-font-family;
                 color: $base-button-more-color;
                 float: right;
-                a{
+                a {
                     text-decoration: none;
-                    color:$base-button-more-color;
+                    color: $base-button-more-color;
                 }
             }
         }
@@ -330,9 +329,9 @@
                 font-family: $base-font-family;
                 color: $base-button-more-color;
                 float: right;
-                a{
+                a {
                     text-decoration: none;
-                    color:$base-button-more-color;
+                    color: $base-button-more-color;
                 }
             }
         }
@@ -493,15 +492,23 @@
 //公共尾部样式结束
 //右边的滚动监视图
 .main-page-body-scrollby {
-    width: 1200px;
+    width: 1080px;
     margin: 0 auto;
-    .scroll-spy {
-        font-size: 18px;
-        font-family: $base-font-family;
-        .active {
-            border-left: 5px solid $base-background-color;
+    padding-left: 62px;
+}
+
+.scroll-spy-wrap {
+    float: right;
+        .scroll-spy {
+            font-size: 18px;
+            font-family: $base-font-family;
+            .active {
+                border-left: 5px solid $base-background-color;
+                // color: #2d3240;
+                // font-weight: 500;
+                // padding-left: 18px;
+            }
         }
     }
-}
 
 //右边滚动监视条结束

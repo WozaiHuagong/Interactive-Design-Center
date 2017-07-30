@@ -294,8 +294,12 @@ $(document).ready(function () {
                 $('#info-center-article-content-industry').hide(); //行业资讯隐藏
                 $('#info-center-pagination-id').hide(); //分页条隐藏
             });
-            //资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换结束
-
+            //资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换结
+            $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function () {
+                $('#info-center-article-content-industry').hide();
+                $('#info-center-detail-page-id').hide();
+                $('#info-center-article-content-research-room').show();
+            });
 
 
         }
@@ -590,29 +594,30 @@ $(document).ready(function () {
 
             function appendNew() {
                 var num = researchProjectNum;
+                counter++;
                 if (counter < num) {
-                    if (getText(HTMLDecode(ajaxResponseResearchProject.data[i].message)).length > 63) {
+                    if (getText(HTMLDecode(ajaxResponseResearchProject.data[counter].message)).length > 63) {
                         $childCard = '<div class="current-research-project-card" id="current-research-project-card-id-' + counter + '">' +
                             '<div class="example-img" background-image: url("' + ajaxResponseResearchProject.attachs[0].url + '")' + '></div>' +
                             '<div class="card-introduction">' +
-                            '<h1>' + ajaxResponseResearchProject.data[i].title + '</h1><span>' + ajaxResponseResearchProject.data[i].publish_time + '</span>' +
-                            '<p>' + getText(HTMLDecode(ajaxResponseResearchProject.data[i].message)).substr(0, 63) + "..." + '</p>' +
+                            '<h1>' + ajaxResponseResearchProject.data[counter].title + '</h1><span>' + ajaxResponseResearchProject.data[counter].publish_time + '</span>' +
+                            '<p>' + getText(HTMLDecode(ajaxResponseResearchProject.data[counter].message)).substr(0, 63) + "..." + '</p>' +
                             '</div>' +
                             '</div>';
                     } else {
                         $childCard = '<div class="current-research-project-card" id="current-research-project-card-id-' + counter + '">' +
                             '<div class="example-img" background-image: url("' + ajaxResponseResearchProject.attachs[0].url + '")' + '></div>' +
                             '<div class="card-introduction">' +
-                            '<h1>' + ajaxResponseResearchProject.data[i].title + '</h1><span>' + ajaxResponseResearchProject.data[i].publish_time + '</span>' +
-                            '<p>' + getText(HTMLDecode(ajaxResponseResearchProject.data[i].message)) + '</p>' +
+                            '<h1>' + ajaxResponseResearchProject.data[counter].title + '</h1><span>' + ajaxResponseResearchProject.data[counter].publish_time + '</span>' +
+                            '<p>' + getText(HTMLDecode(ajaxResponseResearchProject.data[counter].message)) + '</p>' +
                             '</div>' +
                             '</div>';
                     }
                     $('#current-research-project-id').append($childCard);
                     counter++;
                     $('#current-research-project-id').append($childCard);
-                    counter++;
-                    for (var i = counter - 2; i < counter; i++) {
+
+                    for (var i = counter - 1; i <= counter; i++) {
                         Materialize.fadeInImage($('#current-research-project-card-id-' + i));
                     }
                     return "append success!";
@@ -623,13 +628,14 @@ $(document).ready(function () {
             var counterProjectGain = 3; // 一开始就有四个卡片了
             function projectGain() {
                 var num = projectFinshNum;
+                counterProjectGain++;
                 if (counterProjectGain < num) {
-                    if (getText(HTMLDecode(ajaxResponseFinshed.data[i].message)).length > 63) {
+                    if (getText(HTMLDecode(ajaxResponseFinshed.data[counterProjectGain].message)).length > 63) {
                         $childCard = '<div class="research-project-gain-card" id="research-project-gain-card-id-' + counterProjectGain + '">' +
                             '<div class="example-img" background-image: url("' + ajaxResponseFinshed.attachs[0].url + '")' + '></div>' +
                             '<div class="card-introduction">' +
-                            '<h1>' + ajaxResponseFinshed.data[i].title + '</h1><span>' + ajaxResponseFinshed.data[i].publish_time + '</span>' +
-                            '<p>' + getText(HTMLDecode(ajaxResponseFinshed.data[i].message)).substr(0, 63) + "..." + '</p>' +
+                            '<h1>' + ajaxResponseFinshed.data[counterProjectGain].title + '</h1><span>' + ajaxResponseFinshed.data[counterProjectGain].publish_time + '</span>' +
+                            '<p>' + getText(HTMLDecode(ajaxResponseFinshed.data[counterProjectGain].message)).substr(0, 63) + "..." + '</p>' +
                             '</div>' +
                             '</div>';
                     } else {
@@ -644,8 +650,7 @@ $(document).ready(function () {
                     $('#research-project-gain-id').append($childCard);
                     counterProjectGain++;
                     $('#research-project-gain-id').append($childCard);
-                    counterProjectGain++;
-                    for (var i = counterProjectGain - 2; i < counterProjectGain; i++) {
+                    for (var i = counterProjectGain - 1; i <= counterProjectGain; i++) {
                         Materialize.fadeInImage($('#research-project-gain-card-id-' + i));
                     }
                     return "append success!";
@@ -655,6 +660,13 @@ $(document).ready(function () {
 
             }
             //研究项目滚动监视效果结束=============================================================
+
+
+            $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function () {
+                $('#research-project-gain-id').hide();
+                $('#research-project-detail-page-id').hide();
+                $('#current-research-project-id').show();
+            })
         }
 
         /*===================================================================================================================*/
@@ -676,11 +688,13 @@ $(document).ready(function () {
                     ajaxResponse = response;
                     personNum = response.data.length;
                     var data = response.data;
+                    var $card = $('.industry-elite-list-body-article-list');
                     var $image = $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-left');
                     var $name = $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-name');
                     var $honor = $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-honor');
                     var $introduction = $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-personal-introduction');
                     for (var i = 0; i < (data.length > 6 ? 6 : data.length); i++) {
+                        $card.eq(i).attr('id', 'industry-elite-id-' + i);
                         $image.eq(i).attr('style', 'background-image:url("' + data[i].avatar + '")');
                         $name.eq(i).text(data[i].title);
                         $honor.eq(i).text(data[i].honor);
@@ -699,152 +713,99 @@ $(document).ready(function () {
                     selector: '#industry-elite-personal-detail-introduction-first',
                     offset: 500,
                     callback: function (el) {
-                        Materialize.toast("This is our ScrollFire Demo!", 1500);
+                        var result = appendElite();
+                        if (result == "append fail!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
                     }
                 },
                 {
                     selector: '#industry-elite-personal-detail-introduction-first',
                     offset: 800,
                     callback: function (el) {
-                        Materialize.toast("Please continue scrolling!", 1500);
+                        var result = appendElite();
+                        if (result == "append fail!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
                     }
                 },
                 {
                     selector: '#industry-elite-personal-detail-introduction-first',
                     offset: 1100,
                     callback: function (el) {
-                        Materialize.showStaggeredList($(el));
+                        var result = appendElite();
+                        if (result == "append fail!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
                     }
                 },
                 {
                     selector: '#iindustry-elite-personal-detail-introduction-first',
                     offset: 1400,
                     callback: function (el) {
-                        Materialize.fadeInImage($(el));
+                        var result = appendElite();
+                        if (result == "append fail!") {
+                            $('#footer-top-id').text('没有更多内容了...');
+                        }
                     }
                 }
             ];
             Materialize.scrollFire(options);
 
             function appendElite() {
+                counterOfElite++;
                 if (counterOfElite < personNum) {
-                    var child='<div class="industry-elite-list-body-article-list">'+
-                '<div class="industry-elite-list-body-article-list-left" style="background-image:url("'+ajaxResponse.data[]+'")'+'>'
-                    '<i class=" material-icons">polymer</i>'+
-               '</div>'+
-                '<div class="industry-elite-list-body-article-list-right">'+
-                    <div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-forth">
-                        <span class="industry-elite-name">姜立军</span>
-                        <span class="industry-elite-honor">IDRC教授</span>
-                        <span class="industry-elite-personal-introduction">姜立军（JiangLijun），博士，男，汉族，<br/>
-                    湖南益阳人，1968年生。1994毕业于重庆<br/>
-                    大学机械制造专业，获工学硕士学位。一直从事"工程图学"、"计算机图形图像处理"...</span>
-                    </div>
-
-                </div>
-
-
-            </div>
+                    if (getText(HTMLDecode(ajaxResponse.data[counterOfElite].message)).length > 73) {
+                        var child = '<div class="industry-elite-list-body-article-list" id="industry-elite-id-"' + counterOfElite + '>' +
+                            '<div class="industry-elite-list-body-article-list-left" style="background-image:url("' + ajaxResponse.data[counterOfElite].avatar + '")' + '>'
+                        '<i class=" material-icons">polymer</i>' + '</div>' +
+                        '<div class="industry-elite-list-body-article-list-right">' +
+                        '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-forth">' +
+                        '<span class="industry-elite-name">' + ajaxResponse.data[counterOfElite].title + '</span>' +
+                            '<span class="industry-elite-honor">' + ajaxResponse.data[counterOfElite].honor + '</span>' +
+                            '<span class="industry-elite-personal-introduction">' + getText(HTMLDecode(ajaxResponse.data[counterOfElite].message)).substr(0, 73) + "..." + '</span>' +
+                            '</div>' + '</div>' + '</div>';
+                    } else {
+                        var child = '<div class="industry-elite-list-body-article-list"id="industry-elite-id-"' + counterOfElite + '>' +
+                            '<div class="industry-elite-list-body-article-list-left" style="background-image:url("' + ajaxResponse.data[counterOfElite].avatar + '")' + '>'
+                        '<i class=" material-icons">polymer</i>' + '</div>' +
+                        '<div class="industry-elite-list-body-article-list-right">' +
+                        '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-forth">' +
+                        '<span class="industry-elite-name">' + ajaxResponse.data[counterOfElite].title + '</span>' +
+                            '<span class="industry-elite-honor">' + ajaxResponse.data[counterOfElite].honor + '</span>' +
+                            '<span class="industry-elite-personal-introduction">' + getText(HTMLDecode(ajaxResponse.data[counterOfElite].message)) + '</span>' +
+                            '</div>' + '</div>' + '</div>';
+                    }
+                    $('#industry-elite-list-body-article-id').append(child);
+                    counterOfElite++;
+                    $('#industry-elite-list-body-article-id').append(child);
+                    for (var i = counterOfElite - 1; i <= counterOfElite; i++) {
+                        Materialize.fadeInImage($('#industry-elite-id-' + i));
+                    }
+                    return "append success!";
+                } else {
+                    return "append fail!";
                 }
+
             }
             //行业精英获取信息，点击刷新的行业精英的内容
-            $('#industry-elite-personal-detail-introduction-first').click(function () {
-                var $industryEliteFirstPageHtml = "";
-                var industryElitePersonalDetailIntroduction = "";
-                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-                    '</div></div>'
-                $('#industry-elite-list-body-article-id').html($test);
+            $('.industry-elite-list-body-article-list').click(function () {
+                var indexOfArticle = parseInt($(this).attr('id').substr(-1));
+                $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-page').attr('style', 'background-image:url("' + ajaxResponse.data[indexOfArticle].avatar + '")');
+                $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-name').text(ajaxResponse.data[indexOfArticle].title);
+                $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-position').text(ajaxResponse.data[indexOfArticle].honor);
+                $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article article').html(ajaxResponse.data[indexOfArticle].message);
+                $('#industry-elite-list-body-article-id').hide();
+                $('#industry-elite-personal-detail-page-id').show();
                 //调试代码结束
             })
             //第一个人结束
-            //第二个人开始
-            $('#industry-elite-personal-detail-introduction-second').click(function () {
-                var $industryEliteFirstPageHtml = "";
-                var industryElitePersonalDetailIntroduction = "";
-                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-                    '</div></div>'
-                $('#industry-elite-list-body-article-id').html($test);
-                //调试代码结束
-            })
-            //第二个人结束
+            $('.industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left').click(function () {
+                $('#industry-elite-personal-detail-page-id').hide();
+                $('#industry-elite-list-body-article-id').show();
 
-            //第三个人开始
-            $('#industry-elite-personal-detail-introduction-third').click(function () {
-                var $industryEliteFirstPageHtml = "";
-                var industryElitePersonalDetailIntroduction = "";
-                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-                    '</div></div>'
-                $('#industry-elite-list-body-article-id').html($test);
-                //调试代码结束
-            })
-            //第三个人结束
-
-            //第四个人开始
-            $('#industry-elite-personal-detail-introduction-forth').click(function () {
-                var $industryEliteFirstPageHtml = "";
-                var industryElitePersonalDetailIntroduction = "";
-                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-                    '</div></div>'
-                $('#industry-elite-list-body-article-id').html($test);
-                //调试代码结束
-            })
-            //第四个人结束
-
-
-            //第五个人开始
-            $('#industry-elite-personal-detail-introduction-fifth').click(function () {
-                var $industryEliteFirstPageHtml = "";
-                var industryElitePersonalDetailIntroduction = "";
-                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-                    '</div></div>'
-                $('#industry-elite-list-body-article-id').html($test);
-                //调试代码结束
-            })
-            //第五个人结束
-
-
-            //第六个人开始
-            $('#industry-elite-personal-detail-introduction-sixth').click(function () {
-                var $industryEliteFirstPageHtml = "";
-                var industryElitePersonalDetailIntroduction = "";
-                var $test = '<div id="industry-elite-personal-detail-page"><div class="industry-elite-personal-detail-img"></div> <div class="industry-elite-personal-detail-article">' +
-                    '<span class="industry-elite-personal-detail-article-name">姜立军</span><span class="industry-elite-personal-detail-article-position">IDRC教授</span>' +
-                    '<span class="industry-elite-personal-detail-article-title">主要成就</span><p> 早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表早期主要从事计算机辅助几何造型的研究，对于计算机三维造型、虚拟现实和 图像处理技术进行了长期的研究，尤其对于曲面表</p>' +
-                    '<p>近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发近年来，在过程质量监控方面，研究了离散型制造业的实时在线质量监控， “制造业生产现场质量管理支持平台的研究与开发</p>' +
-                    '<span class="industry-elite-personal-detail-article-title">获奖情况</span> ' +
-                    '<p>2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程2003-2008年，参与“建筑制图课程 多媒体教学的研究 与实践”教学项目 1 项，所在课程被评为国家精品课程</p>' +
-                    '</div></div>'
-                $('#industry-elite-list-body-article-id').html($test);
-                //调试代码结束
-            })
-            //第六个人结束
+            });
         }
-
         $forum = $url.match('forum');
         if ($forum != null) {
             $('#common-nav-forum').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
@@ -853,6 +814,12 @@ $(document).ready(function () {
         $aboutUs = $url.match('aboutUs');
         if ($aboutUs != null) {
             $('#common-nav-about-us').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
+
+
+            $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function(){
+                $('#about-us-member-id').hide();
+                $('#about-us-organization-id').show();
+            });
         }
 
     }
