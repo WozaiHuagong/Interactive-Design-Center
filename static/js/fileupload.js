@@ -458,6 +458,7 @@ FileUpload.prototype =
 				
 				//_this.editor.insertText("\n[attach]" + attach_id + "[/attach]\n");
 				//= 
+				attach_id +="";
 				var str1 = attach_id.replace(/90x90_/g, "");
 				var str2 = str1.replace(/http:/g, "");
 				//alert(str2);
@@ -470,6 +471,7 @@ FileUpload.prototype =
                 _this.editor.imageElement.$.style.width="auto"
                 _this.editor.imageElement.$.style.height="auto"
                 _this.editor.insertHtml(_this.editor.imageElement.$.outerHTML,'html')
+                console.log(_this.editor.imageElement)
                 // console.log($('.cke_1')[0])
 
 			}
