@@ -160,7 +160,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       .main-page-body .mian-page-info-center .main-page-info-center-card .row {
         box-shadow: 0px 0px 5px #c8c8c8;
         width: 300px;
-        height: 264px;
+        height: 296px;
         padding: 0px;
         margin-left: 0px;
         margin-right: 0px; }
@@ -177,7 +177,9 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           line-height: 32px;
           margin-bottom: 8px;
           margin-top: 22px;
-          text-align: center; }
+          text-align: center;
+          height: 64px;
+          padding: 0 20px; }
         .main-page-body .mian-page-info-center .main-page-info-center-card .row p {
           margin-top: 22px;
           font-size: 14px;
@@ -708,7 +710,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     width: 706px;
     border-right: 1px solid #f0f0f0;
     padding-right: 24px;
-    margin-top: 20px; }
+    margin-top: 20px;
+    overflow: hidden; }
     .info-center-detail-page .left-section h1 {
       margin: 0px;
       font-size: 30px;
@@ -792,7 +795,10 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         font-size: 12px;
         color: #626878;
         font-family: "Microsoft YaHei";
-        line-height: 2; }
+        line-height: 2;
+        cursor: pointer; }
+      .info-center-detail-page .right-section ul li:hover {
+        color: #0893d6; }
     .info-center-detail-page .right-section span {
       display: inline-block;
       border-bottom: 2px solid #0893d6; }

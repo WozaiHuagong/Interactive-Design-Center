@@ -42,7 +42,7 @@ $(document).ready(function () {
             //根据当前URL做出相关的ajax请求与更新，更新轮播图
             var ajaxResponseOfCarousel = "";
             $.ajax({
-                url: "http://wecenter.shabby-wjt.cn:8081/api/carousel/list/",
+                url: "http://39.108.87.54/api/carousel/list/",
                 method: 'GET',
                 dataType: 'JSON',
                 contentType: 'application/x-www-form-urlencoded',
@@ -53,24 +53,29 @@ $(document).ready(function () {
                     var data = response.data; //轮播图内容
                     var arrLength = data.length;
                     //更新轮播图
-                    for (var i = 0; i < arrLength; i++) {
-                        $('.carousel-item').eq(i).attr('style', 'background-image: url("' + data[i].url + '");');
-                         $('.carousel-item').eq(i).attr('id', 'carousel-id'+i);
+                    for (var i = 0; i < 2; i++) {
+                        $('.carousel-item').eq(i).attr('style', 'background-image: url("http://39.108.87.54' + data[i].url + '");');
+                        $('.carousel-item').eq(i).attr('id', 'carousel-id' + i);
                     }
                     //轮播图更新完毕
+                    $('.carousel-item').eq(2).attr('style', 'background-image: url("./切图（0726）/切图（0726）/carousel-figure02.png")');
+                    $('.carousel-item').eq(2).attr('id', 'png');
+                    $('.carousel-item').eq(3).attr('style', 'background-image: url("./切图（0726）/切图（0726）/carousel-figure03.png")');
+
                 },
                 error: function () {
                     console.log('carousel get fail!');
+                    alert('it me')
                 }
             }); //轮播图更新完毕
             $('.carousel-item').click(function () {
-                var id=$(this).attr('id').substr(-1);
+                var id = $(this).attr('id').substr(-1);
                 $('#carousel-content-text-title-id').text(ajaxResponseOfCarousel.data[id].title);
                 $('#carousel-content-text-content-id').text(ajaxResponseOfCarousel.data[id].content);
-            });//点击更新轮播图下方的标题与小标题内容
+            }); //点击更新轮播图下方的标题与小标题内容
             //更新主页资讯中心内容
             $.ajax({
-                url: "http://wecenter.shabby-wjt.cn:8081/api/advisory/industryInfo/number",
+                url: "http://39.108.87.54/api/advisory/industryInfo/number",
                 method: 'GET',
                 //data:{number:0},
                 // data:'3',
@@ -83,7 +88,13 @@ $(document).ready(function () {
                     var $p = $('.main-page-info-center-card .row p');
                     var $spanPublishTime = $('.main-page-info-center-card .row span');
                     for (var i = 0; i < (dataLength >= 3 ? 3 : dataLength); i++) {
-                        $title.eq(i).text(data[i].title);
+                        if (data[i].title.length > 27) {
+                            $title.eq(i).text(data[i].title.substr(0, 26) + "...");
+
+                        } else {
+                            $title.eq(i).text(data[i].title);
+                        }
+
                         if (data[i].summary.length > 70) {
                             $p.eq(i).text(data[i].summary.substring(0, 70) + "...");
                         } else {
@@ -101,13 +112,13 @@ $(document).ready(function () {
             //主页资讯中心内容更新完毕
             //研究项目具体内容更换开始；
             $.ajax({
-                url: "http://wecenter.shabby-wjt.cn:8081/api/project/working/",
+                url: "http://39.108.87.54/api/project/working/",
                 method: 'GET',
                 contentType: 'application/x-www-form-urlencoded',
                 dataType: 'JSON',
                 success: function (response) {
                     var data = response.data;
-                    var attach = response.attachs; //附件图片内容
+                    // var attach = response.attachs; //附件图片内容
                     var dataLength = data.length;
                     var $image = $('.main-page-research-project-card .row .col .card .card-image');
                     var $title = $('.main-page-research-project-card .row .col .card .card-content .card-article-title');
@@ -115,10 +126,10 @@ $(document).ready(function () {
                     var $publish_time = $('.main-page-research-project-card .row .col .card .card-content .publish-time');
                     for (var i = 0; i < (dataLength > 2 ? 2 : dataLength); i++) {
 
-                        $image.eq(i).attr('style', 'background-image:url("' + attach[i].url + '");') //更新项目图片
+                        $image.eq(i).attr('style', 'background-image:url("' + data[i].attach[0] + '");') //更新项目图片
                         $title.eq(i).text(data[i].title);
                         if (getText(HTMLDecode(data[i].message)).length > 57) {
-                            $summary.eq(i).text(getText(HTMLDecode(data[i].message)).substring(0, 56) + "...");
+                            $summary.eq(i).text(getText(HTMLDecode(data[i].message)).substring(0, 65) + "...");
                         } else {
                             $summary.eq(i).text(getText(HTMLDecode(data[i].message))); //短就直接显示，太长就直接截断
                         }
@@ -133,7 +144,7 @@ $(document).ready(function () {
             //资讯中心内容更换结束
             //行业精英资讯内容更换开始
             $.ajax({
-                url: "http://wecenter.shabby-wjt.cn:8081/api/elite/list/",
+                url: "http://39.108.87.54/api/elite/list/",
                 method: 'GET',
                 contentType: 'application/x-www-form-urlencoded',
                 dataType: 'JSON',
@@ -163,6 +174,34 @@ $(document).ready(function () {
                 }
             })
             //行业精英内容更换结束
+            //搜索跳转方法
+            $('#search').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    // $.ajax({
+                    //     url:'http://apis.baidu.com/bdyunfenxi/intelligence/ip',
+                    //     data:{apikey:'0c8f61484a8dc6d3687dd3a98e6ba464',ip:'110.64.94.210'},
+                    //     method:'GET',
+                    //     dataType:'JSON',
+                    //     success:function(response){
+                    //         globalSearchResult=response;
+                    //         alert(response.errNum);
+                    //         alert(response);
+                    //     },
+                    //     error:function(){
+                    //         alert('error!');
+                    //     }
+                    // })
+                    // window.location.href = 'html/searchResult/searchResult.html';
+                    // var searchValue = $('#search').val();
+                    // var $url = window.location.href;
+                    // alert($url.match('searchresult'));
+
+                    // return false;//测试用例
+                    // $.ajax({
+
+                    // })
+                }
+            });
         }
         /*===================================================================================================================*/
         /*======资讯中心模块==================================================================================================*/
@@ -174,7 +213,7 @@ $(document).ready(function () {
             //资讯中心的内容ajax
             var ajaxResponse = "";
             $.ajax({
-                url: 'http://wecenter.shabby-wjt.cn:8081/api/advisory/libInfo/number',
+                url: 'http://39.108.87.54/api/advisory/libInfo/number',
                 method: 'GET',
                 dataType: 'JSON',
                 contentType: 'application/x-www-form-urlencoded',
@@ -190,6 +229,7 @@ $(document).ready(function () {
                     var $libInfoDetail = $('#info-center-article-content-research-room .info-center-article-list .info-center-article-abstract p');
                     var $lookInDetail = $('#info-center-article-content-research-room .info-center-article-list .info-center-article-abstract .look-in-detail')
                     for (var i = 0; i < (dataLength > 5 ? 5 : dataLength); i++) {
+                        $libInfoImg.eq(i).attr('style', 'background-image:url("' + data[i].attach[0] + '");');
                         $lookInDetail.eq(i).attr('id', 'id-' + i);
                         $libInfoTitle.eq(i).text(data[i].title);
                         $libInfoTime.eq(i).text(data[i].publish_time);
@@ -199,7 +239,7 @@ $(document).ready(function () {
                             $libInfoDetail.eq(i).text(data[i].summary);
                         }
                     }
-                    $libInfoImg.eq(i).attr('style', 'background-image:url("' + data[i].attach[i].url + '");');
+
                 },
                 error: function () {
                     console.log('infomation-page-ajax fail!!!');
@@ -215,6 +255,23 @@ $(document).ready(function () {
                 $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse.data[indexOfArticle].summary);
                 $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse.data[indexOfArticle].message));
                 //文章内容已经更新完毕
+                for (var i = 0; i < 5; i++) {
+                    $('#info-center-detail-page-id .right-section ul li').eq(i).text(ajaxResponse.data[i].title);
+                };
+                //右方最新资讯内容更新
+                $('#info-center-detail-page-id .right-section ul li').click(function () {
+                    for (var i = 0; i < ajaxResponse.data.length; i++) {
+                        if (ajaxResponse.data[i].title == $(this).text()) {
+                            $('#info-center-detail-page-id .left-section h1').text(ajaxResponse.data[i].title);
+                            $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse.data[i].publish_time);
+                            $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse.data[i].view_num + "次阅读");
+                            // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse.data[indexOfArticle].source ? ajaxResponse.data[indexOfArticle].source : ""); //文章来源
+                            $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse.data[i].summary);
+                            $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse.data[i].message));
+                            break;
+                        }
+                    }
+                });
                 //更新下方的上一篇与下一篇
                 if (indexOfArticle > 0 && indexOfArticle < ajaxResponse.data.length - 1) {
                     $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponse.data[--indexOfArticle].title);
@@ -246,7 +303,7 @@ $(document).ready(function () {
                 infoCenterBodyHeaderChoices(event.target);
                 infoCenterBodyHeaderRemoveChoices(event.target);
                 $.ajax({
-                    url: 'http://wecenter.shabby-wjt.cn:8081/api/advisory/industryInfo/number',
+                    url: 'http://39.108.87.54/api/advisory/industryInfo/number',
                     method: 'GET',
                     dataType: 'JSON',
                     contentType: 'application/x-www-form-urlencoded',
@@ -259,7 +316,7 @@ $(document).ready(function () {
                         var $summary = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract p');
                         var $lookInDetail = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .look-in-detail-industry');
                         for (var i = 0; i < (data.length > 5 ? 5 : data.length); i++) {
-                            //$image.attr('style','background-image:url("'+data[i].attach[0]);//图片内容未定
+                            $image.attr('style', 'background-image:url("' + data[i].attach[0] + '")'); //图片内容未定
                             $title.eq(i).text(data[i].title);
                             $time.eq(i).text(data[i].publish_time);
                             $summary.eq(i).text(data[i].summary);
@@ -287,14 +344,31 @@ $(document).ready(function () {
                 $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponseOfIndustryInfo.data[indexOfArticle].summary);
                 $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponseOfIndustryInfo.data[indexOfArticle].message));
                 //文章内容已经更新完毕
+                //右方最新资讯更新
+                for (var i = 0; i < 5; i++) {
+                    $('#info-center-detail-page-id .right-section ul li').eq(i).text(ajaxResponseOfIndustryInfo.data[i].title);
+                };
+                 $('#info-center-detail-page-id .right-section ul li').click(function(){
+                        for (var i = 0; i <ajaxResponseOfIndustryInfo.data.length; i++) {
+                        if (ajaxResponseOfIndustryInfo.data[i].title == $(this).text()) {
+                            $('#info-center-detail-page-id .left-section h1').text(ajaxResponseOfIndustryInfo.data[i].title);
+                            $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponseOfIndustryInfo.data[i].publish_time);
+                            $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponseOfIndustryInfo.data[i].view_num + "次阅读");
+                            // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse.data[indexOfArticle].source ? ajaxResponse.data[indexOfArticle].source : ""); //文章来源
+                            $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponseOfIndustryInfo.data[i].summary);
+                            $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponseOfIndustryInfo.data[i].message));
+                            break;
+                        }
+                    }
+                 })
                 //更新下方的上一篇与下一篇
                 if (indexOfArticle > 0 && indexOfArticle < ajaxResponseOfIndustryInfo.data.length - 1) {
                     $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
-                    $('#info-center-detail-page-id .left-section pre-article').text('下一篇：' + ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
+                    $('#info-center-detail-page-id .left-section next-article').text('下一篇：' + ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
                 } else if (indexOfArticle == 0) {
                     $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponseOfIndustryInfo.data[++indexOfArticle].title);
                 } else {
-                    $('#info-center-detail-page-id .left-section pre-article').text('上一篇：' + ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
+                    $('#info-center-detail-page-id .left-section next-article').text('上一篇：' + ajaxResponseOfIndustryInfo.data[--indexOfArticle].title);
                 } //上下篇的问题解决
                 $('#info-center-detail-page-id').show()
                 $('#info-center-article-content-research-room').hide(); //研究中心资讯隐藏
@@ -303,12 +377,27 @@ $(document).ready(function () {
             });
             //资讯中心右上角“研究中心资讯 | 行业资讯”点击时的JS代码切换结
             $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function () {
+                infoCenterBodyHeaderChoices( $('#info-center-detail-body-header-right-first'));
+                infoCenterBodyHeaderRemoveChoices( $('#info-center-detail-body-header-right-first'));
                 $('#info-center-article-content-industry').hide();
                 $('#info-center-detail-page-id').hide();
                 $('#info-center-article-content-research-room').show();
+                $('#info-center-pagination-id').show(); //分页条
             });
+            //资讯中心搜索
 
+            $('#search').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    window.location.href = '../searchResult/searchResult.html';
 
+                    alert('success');
+                    var searchValue = $('#search').val();
+                    return false;
+                    // $.ajax({
+
+                    // })
+                }
+            });
         }
         //匹配资讯中心
         /*===================================================================================================================*/
@@ -673,7 +762,21 @@ $(document).ready(function () {
                 $('#research-project-gain-id').hide();
                 $('#research-project-detail-page-id').hide();
                 $('#current-research-project-id').show();
-            })
+            });
+
+            //研究项目搜索
+            $('#search').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    window.location.href = '../searchResult/searchResult.html';
+
+                    alert('success');
+                    var searchValue = $('#search').val();
+                    return false;
+                    // $.ajax({
+
+                    // })
+                }
+            });
         }
 
         /*===================================================================================================================*/
@@ -687,11 +790,12 @@ $(document).ready(function () {
             var ajaxResponse = "";
             var personNum = 0;
             $.ajax({
-                url: 'http://wecenter.shabby-wjt.cn:8081/api/elite/list/',
+                url: 'http://39.108.87.54/api/elite/list/',
                 method: 'GET',
                 dataType: 'JSON',
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (response) {
+                    alert('success');
                     ajaxResponse = response;
                     personNum = response.data.length;
                     var data = response.data;
@@ -812,6 +916,21 @@ $(document).ready(function () {
                 $('#industry-elite-list-body-article-id').show();
 
             });
+
+
+            //行业精英搜索
+            $('#search').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    window.location.href = '../searchResult/searchResult.html';
+
+                    alert('success');
+                    var searchValue = $('#search').val();
+                    return false;
+                    // $.ajax({
+
+                    // })
+                }
+            });
         }
         $forum = $url.match('forum');
         if ($forum != null) {
@@ -823,10 +942,42 @@ $(document).ready(function () {
             $('#common-nav-about-us').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
 
 
+
             $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function () {
                 $('#about-us-member-id').hide();
                 $('#about-us-organization-id').show();
             });
+            //关于我们搜索
+            $('#search').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    window.location.href = '../searchResult/searchResult.html';
+
+                    alert('success');
+                    var searchValue = $('#search').val();
+                    return false;
+                    // $.ajax({
+
+                    // })
+                }
+            });
+        };
+        $joinUs = $url.match('joinUs');
+        if ($joinUs != null) {
+            $('#search').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    window.location.href = '../searchResult/searchResult.html';
+
+                    var searchValue = $('#search').val();
+                    return false;
+                    // $.ajax({
+
+                    // })
+                }
+            });
+        }
+
+        if (window.location.href.match('searchResult')) {
+            $('body').html(globalSearchResult.errNum + '   123');
         }
 
     }
@@ -836,18 +987,18 @@ $(document).ready(function () {
     //处理尾部，如果页面内容少，让尾部固定在底部，多则不用理
     var determineTheFooterPosition = function () {
         // $("#footer").style.cssText="";
-        $.ajax({
-            url: ' http://wecenter.shabby-wjt.cn:8081/api/advisory/libInfo/number',
-            method: 'GET',
-            contentType: "application/x-www-form-urlencoded",
-            dataType: 'JSON',
-            success: function (response) {
-                //alert(response);
-            },
-            error: function () {
-                // alert('fail!');
-            }
-        })
+        // $.ajax({
+        //     url: ' http://wecenter.shabby-wjt.cn:8081/api/advisory/libInfo/number',
+        //     method: 'GET',
+        //     contentType: "application/x-www-form-urlencoded",
+        //     dataType: 'JSON',
+        //     success: function (response) {
+        //         //alert(response);
+        //     },
+        //     error: function () {
+        //         // alert('fail!');
+        //     }
+        // })
         $('#common-footer-id').removeAttr('style');
         var contentHeight = document.body.scrollHeight, //网页正文全文高度
             winHeight = window.innerHeight; //可视窗口高度，不包括浏览器顶部工具栏
@@ -881,16 +1032,11 @@ $(document).ready(function () {
     });
     //关于我们上方切换结束
     //行业精英获取信息结束
-    $('#search').keydown(function(e){
-        if(e.keyCode==13)
-            {
-                alert($('#search').val());
-            }
+
+    $('#search').focus(function () {
+        $('.common-header .common-header-content nav').attr('style', 'width:400px');
     });
-    $('#search').focus(function(){
-        $('.common-header .common-header-content nav').attr('style','width:400px');
+    $('#search').blur(function () {
+        $('.common-header .common-header-content nav').removeAttr('style');
     });
-     $('#search').blur(function(){
-           $('.common-header .common-header-content nav').removeAttr('style');
-     })
 })
