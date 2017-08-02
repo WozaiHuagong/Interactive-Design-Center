@@ -82,7 +82,7 @@ class advisory extends AWS_CONTROLLER
             $tmp["publish_time"] = $industry["publish_time"];
             $tmp["view_num"] = $industry["views"];
             $tmp["type"] = 'industryInfo';
-            $attach = $this->model('p ublish')->get_attach('article',$industry['id']);
+            $attach = $this->model('publish')->get_attach('article',$industry['id']);
             $attach_list =array();
             foreach ($attach as $key => $value) {
                 $attach_list[] = $value["attachment"];
