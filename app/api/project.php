@@ -82,7 +82,7 @@ class project extends AWS_CONTROLLER
             $tmp["publish_time"] = $finished["publish_time"];
             $tmp["view_num"] = $finished["views"];
             $tmp["type"] = 'projectFinished';
-            $attach = $this->model('p ublish')->get_attach('article',$finished['id']);
+            $attach = $this->model('publish')->get_attach('article',$finished['id']);
             $attach_list =array();
             foreach ($attach as $key => $value) {
                 $attach_list[] = $value["attachment"];
