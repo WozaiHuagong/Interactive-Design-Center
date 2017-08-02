@@ -25,7 +25,7 @@
                 <form id="batchs_form" action="admin/ajax/article_manage/" method="post">
                 <input type="hidden" id="action" name="action" value="del" />
                 <div class="table-responsive">
-                <?php if ($this->list) { ?>
+                <?php if ($this->industryInfo_list) { ?>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -38,7 +38,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($this->list AS $key => $val) { if($val['topic_title']!="行业资讯") continue;?>
+                            <?php foreach ($this->industryInfo_list AS $key => $val) { if($val['topic_title']!="行业资讯") continue;?>
                             <tr>
                                 <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
                                 <td><img src="<?php echo $val['img'];?>" style="width: 200px"></td>
@@ -54,7 +54,7 @@
                 </div>
                 </form>
                 <div class="mod-table-foot">
-                    <?php echo $this->pagination; ?>
+                    <?php echo $this->industryInfo_pagination; ?>
                     <a class="btn btn-danger" onclick="$('#action').val('del'); AWS.ajax_post($('#batchs_form'));" href="javascript:;"><?php _e('删除'); ?></a>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                 <form id="batchs_form" action="admin/ajax/article_manage/" method="post">
                 <input type="hidden" id="action" name="action" value="del" />
                 <div class="table-responsive">
-                <?php if ($this->list) { ?>
+                <?php if ($this->libInfo_list) { ?>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -80,7 +80,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($this->list AS $key => $val) { if($val['topic_title']!="研究中心资讯") continue;?>
+                            <?php foreach ($this->libInfo_list AS $key => $val) { if($val['topic_title']!="研究中心资讯") continue;?>
                             <tr>
                                 <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
                                 <td><img src="<?php echo $val['img'];?>" style="width: 200px"></td>
@@ -110,7 +110,7 @@
                 <form id="batchs_form" action="admin/ajax/article_manage/" method="post">
                 <input type="hidden" id="action" name="action" value="del" />
                 <div class="table-responsive">
-                <?php if ($this->list) { ?>
+                <?php if ($this->working_list) { ?>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -123,7 +123,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($this->list AS $key => $val) { if($val['topic_title']!="在研项目") continue;?>
+                            <?php foreach ($this->working_list AS $key => $val) { if($val['topic_title']!="在研项目") continue;?>
                             <tr>
                                 <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
                                 <td><img src="<?php echo $val['img'];?>" style="width: 200px"></td>
@@ -153,7 +153,7 @@
                 <form id="batchs_form" action="admin/ajax/article_manage/" method="post">
                 <input type="hidden" id="action" name="action" value="del" />
                 <div class="table-responsive">
-                <?php if ($this->list) { ?>
+                <?php if ($this->finished_list) { ?>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -166,7 +166,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($this->list AS $key => $val) { if($val['topic_title']!="研究成果") continue;?>
+                            <?php foreach ($this->finished_list AS $key => $val) { if($val['topic_title']!="研究成果") continue;?>
                             <tr>
                                 <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
                                 <td><img src="<?php echo $val['img'];?>" style="width: 200px"></td>
