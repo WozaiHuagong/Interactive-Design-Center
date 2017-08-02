@@ -94,6 +94,35 @@ class article extends AWS_ADMIN_CONTROLLER
 			$search_articles_total = $this->model('article')->found_rows();
 		}
 
+		$articles_list = $this->articles_list_modify($articles_list);
+
+		$url_param = array();
+
+		foreach($_GET as $key => $val)
+		{
+			if (!in_array($key, array('app', 'c', 'act', 'page')))
+			{
+				$url_param[] = $key . '-' . $val;
+			}
+		}
+
+		TPL::assign('pagination', AWS_APP::pagination()->initialize(array(
+			'base_url' => get_js_url('/admin/article/list/') . implode('__', $url_param),
+			'total_rows' => $search_articles_total,
+			'per_page' => $this->per_page,
+			'query_string_segment' => 'tmp'
+		))->create_links());
+
+		$this->crumb(AWS_APP::lang()->_t('文章管理'), 'admin/article/list/');
+
+		TPL::assign('articles_count', $search_articles_total);
+		TPL::assign('list', $articles_list);
+		TPL::assign('category_list',$this->model('topic')->get_topic_list('type = "article"'));
+
+		TPL::output('admin/article/list');
+	}
+
+	private function articles_list_modify($articles_list){
 		if ($articles_list)
 		{
 			foreach ($articles_list AS $key => $val)
@@ -123,29 +152,6 @@ class article extends AWS_ADMIN_CONTROLLER
 	                $articles_list[$key]['img'] = current($attach)['attachment'];
 			}
 		}
-
-		$url_param = array();
-
-		foreach($_GET as $key => $val)
-		{
-			if (!in_array($key, array('app', 'c', 'act', 'page')))
-			{
-				$url_param[] = $key . '-' . $val;
-			}
-		}
-
-		TPL::assign('pagination', AWS_APP::pagination()->initialize(array(
-			'base_url' => get_js_url('/admin/article/list/') . implode('__', $url_param),
-			'total_rows' => $search_articles_total,
-			'per_page' => $this->per_page
-		))->create_links());
-
-		$this->crumb(AWS_APP::lang()->_t('文章管理'), 'admin/article/list/');
-
-		TPL::assign('articles_count', $search_articles_total);
-		TPL::assign('list', $articles_list);
-		TPL::assign('category_list',$this->model('topic')->get_topic_list('type = "article"'));
-
-		TPL::output('admin/article/list');
+		return $articles_list;
 	}
 }

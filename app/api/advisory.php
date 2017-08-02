@@ -43,7 +43,7 @@ class advisory extends AWS_CONTROLLER
     public function libInfo_action()
     {
         if (isset($_GET['number'])) $list = $this->model('advisory')->get_lib_info_list(intval($_GET['number']));
-        else $list = $this->model('advisory')->get_lib_info_list();
+        else                        $list = $this->model('advisory')->get_lib_info_list();
         foreach ($list as $lib) {
             $tmp=[];
             $tmp["title"] = $lib["title"];
@@ -72,7 +72,7 @@ class advisory extends AWS_CONTROLLER
     public function industryInfo_action()
     {
         if (isset($_GET['number'])) $list = $this->model('advisory')->get_industry_info_list(intval($_GET['number']));
-        else $list = $this->model('advisory')->get_lib_info_list();
+        else                        $list = $this->model('advisory')->get_industry_info_list();
         foreach ($list as $industry) {
             $tmp=[];
             $tmp["title"] = $industry["title"];
