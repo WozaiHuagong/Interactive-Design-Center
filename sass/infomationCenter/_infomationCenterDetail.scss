@@ -334,11 +334,15 @@
         }
         article {
             width: 100%;
+            img{
+                margin:26px 0px;
+            }
             p{
                 text-indent: 2em;
                 font-family:$base-font-family;
                 color:#626878;
                 font-size:18px;
+                line-height:30px;
             }
         }
         .pre-article {

@@ -757,11 +757,14 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         margin-top: 5px; }
     .info-center-detail-page .left-section article {
       width: 100%; }
+      .info-center-detail-page .left-section article img {
+        margin: 26px 0px; }
       .info-center-detail-page .left-section article p {
         text-indent: 2em;
         font-family: "Microsoft YaHei";
         color: #626878;
-        font-size: 18px; }
+        font-size: 18px;
+        line-height: 30px; }
     .info-center-detail-page .left-section .pre-article {
       float: left;
       width: 240px;
