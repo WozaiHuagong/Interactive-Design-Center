@@ -840,46 +840,6 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between; }
-    .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page {
-      width: 956px;
-      margin: 0 auto;
-      margin-top: 20px; }
-      .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-img {
-        height: 198px;
-        width: 160px;
-        background-color: yellow;
-        float: left;
-        top: 0px;
-        left: 0px;
-        margin-right: 30px; }
-      .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article {
-        width: 700px;
-        display: inline-block; }
-        .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article .industry-elite-personal-detail-article-name {
-          display: block;
-          font-size: 30px;
-          font-family: "Microsoft YaHei";
-          color: #2d3240; }
-        .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article .industry-elite-personal-detail-article-position {
-          display: block;
-          font-size: 18px;
-          color: #626878;
-          margin-top: 10px; }
-        .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article .industry-elite-personal-detail-article-title {
-          display: block;
-          padding-left: 20px;
-          border-left: 5px solid #0893d6;
-          margin-top: 30px;
-          font-size: 18px;
-          color: #626878;
-          font-family: "Microsoft YaHei"; }
-        .industry-elite-list-body .industry-elite-list-body-article #industry-elite-personal-detail-page .industry-elite-personal-detail-article p {
-          text-indent: 2em;
-          margin-top: 20px;
-          margin-bottom: 20px;
-          font-size: 18px;
-          color: #626878;
-          font-family: "Microsoft YaHei"; }
     .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list {
       width: 462px;
       height: 198px;
@@ -924,6 +884,46 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
             font-size: 14px;
             color: #626878;
             font-family: "Microsoft YaHei"; }
+  .industry-elite-list-body #industry-elite-personal-detail-page-id {
+    width: 956px;
+    margin: 0 auto;
+    margin-top: 20px; }
+    .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-img {
+      height: 198px;
+      width: 160px;
+      background-color: yellow;
+      float: left;
+      top: 0px;
+      left: 0px;
+      margin-right: 30px; }
+    .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article {
+      width: 700px;
+      display: inline-block; }
+      .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-name {
+        display: block;
+        font-size: 30px;
+        font-family: "Microsoft YaHei";
+        color: #2d3240; }
+      .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-position {
+        display: block;
+        font-size: 18px;
+        color: #626878;
+        margin-top: 10px; }
+      .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-title {
+        display: block;
+        padding-left: 20px;
+        border-left: 5px solid #0893d6;
+        margin-top: 30px;
+        font-size: 18px;
+        color: #626878;
+        font-family: "Microsoft YaHei"; }
+      .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article p {
+        text-indent: 2em;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #626878;
+        font-family: "Microsoft YaHei"; }
 
 .about-us-organization {
   background-image: url("../../assets/交互设计中心切图（3）/关于我们-组织架构/组织架构.png");
@@ -1023,7 +1023,10 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         color: #525765;
         font-size: 18px;
         font-family: "Microsoft YaHei";
-        display: inline-block; }
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
       .current-research-project .current-research-project-card .card-introduction span {
         font-size: 14px;
         color: #626878;
@@ -1062,7 +1065,10 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         color: #525765;
         font-size: 18px;
         font-family: "Microsoft YaHei";
-        display: inline-block; }
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
       .research-project-gain .research-project-gain-card .card-introduction span {
         font-size: 14px;
         color: #626878;

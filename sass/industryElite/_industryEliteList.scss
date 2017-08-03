@@ -37,59 +37,6 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        #industry-elite-personal-detail-page{
-            width:$base-width;
-            margin:0 auto;
-            margin-top:20px;
-            //ajax请求完毕后页面的HTMl结构已经刷新
-            .industry-elite-personal-detail-img{
-                height:198px;
-                width:160px;
-                background-color:yellow;
-                float:left;
-                top:0px;
-                left:0px;
-                margin-right:30px;
-            }
-            .industry-elite-personal-detail-article{
-                
-                width:700px;
-                display:inline-block;
-                .industry-elite-personal-detail-article-name{
-                   //名称
-                    display:block;
-                    font-size:30px;
-                    font-family:$base-font-family;
-                    color:#2d3240;
-                }
-                .industry-elite-personal-detail-article-position{
-                    //职称
-                    display:block;
-                    font-size:18px;
-                    color:#626878;
-                    margin-top:10px;
-                }
-                .industry-elite-personal-detail-article-title{
-                    display:block;
-                    padding-left:20px;
-                    border-left:5px solid $base-background-color;
-                    margin-top:30px;
-                    font-size:18px;
-                    color:#626878;
-                    font-family:$base-font-family;
-                }
-                p{
-                    text-indent: 2em;
-                    margin-top:20px;
-                    margin-bottom:20px;
-                    font-size:18px;
-                    color:#626878;
-                    font-family:$base-font-family;
-                }
-
-            }
-
-        }
         //ajax刷新的页面的样式结束
         .industry-elite-list-body-article-list {
             width: 462px;
@@ -144,4 +91,57 @@
             }
         }
     }
+      #industry-elite-personal-detail-page-id{
+            width:$base-width;
+            margin:0 auto;
+            margin-top:20px;
+            //ajax请求完毕后页面的HTMl结构已经刷新
+            .industry-elite-personal-detail-img{
+                height:198px;
+                width:160px;
+                background-color:yellow;
+                float:left;
+                top:0px;
+                left:0px;
+                margin-right:30px;
+            }
+            .industry-elite-personal-detail-article{
+                
+                width:700px;
+                display:inline-block;
+                .industry-elite-personal-detail-article-name{
+                   //名称
+                    display:block;
+                    font-size:30px;
+                    font-family:$base-font-family;
+                    color:#2d3240;
+                }
+                .industry-elite-personal-detail-article-position{
+                    //职称
+                    display:block;
+                    font-size:18px;
+                    color:#626878;
+                    margin-top:10px;
+                }
+                .industry-elite-personal-detail-article-title{
+                    display:block;
+                    padding-left:20px;
+                    border-left:5px solid $base-background-color;
+                    margin-top:30px;
+                    font-size:18px;
+                    color:#626878;
+                    font-family:$base-font-family;
+                }
+                p{
+                    text-indent: 2em;
+                    margin-top:20px;
+                    margin-bottom:20px;
+                    font-size:18px;
+                    color:#626878;
+                    font-family:$base-font-family;
+                }
+
+            }
+
+        }
 }
