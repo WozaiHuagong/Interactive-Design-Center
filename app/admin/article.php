@@ -120,12 +120,11 @@ class article extends AWS_ADMIN_CONTROLLER
 		$this->pagination_wrapper('研究中心资讯','libInfo',$where,$url_param);
 		$this->pagination_wrapper('在研项目','working',$where,$url_param);
 		$this->pagination_wrapper('研究成果','finished',$where,$url_param);
+		$this->pagination_wrapper('行业精英','elite',$where,$url_param);
 		
 
 		$this->crumb(AWS_APP::lang()->_t('文章管理'), 'admin/article/list/');
 
-		//TPL::assign('articles_count', $search_articles_total);
-		TPL::assign('list', $industryInfo_list);
 		TPL::assign('category_list',$this->model('topic')->get_topic_list('type = "article"'));
 
 		TPL::output('admin/article/list');
