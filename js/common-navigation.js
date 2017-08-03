@@ -225,7 +225,9 @@ $(document).ready(function () {
                 contentType: 'application/x-www-form-urlencoded',
                 //data追加到URL
                 success: function (response) {
-                    response=response.data.sort(function(a,b){return b.id-a.id;});
+                    response = response.data.sort(function (a, b) {
+                        return b.id - a.id;
+                    });
                     ajaxResponse = response; //提取所有返回的数据
                     var data = response;
                     var attach = response.attachs;
@@ -346,6 +348,45 @@ $(document).ready(function () {
                 var index = $('#info-center-pagination-id ul li').index(this);
                 var maxPageNum = Math.ceil(ajaxResponse.length / 5); //向上取整获取最大页面数
                 var pageNum = parseInt($(this).text());
+                // alert(pageNum);
+                if (index == 6) //用户点击了下一页的功能
+                {
+                    for (var i = 0; i < 7; i++) {
+                        if ($('#info-center-pagination-id ul li').eq(i).attr('class') == 'active') {
+                            pageNum = parseInt($('#info-center-pagination-id ul li').eq(i).text());
+                            if (pageNum === maxPageNum) {
+                                break;
+                            }
+                            pageNum++;
+                            for (var i = 0; i < 6; i++) {
+                                $('#info-center-pagination-id ul li').eq(i).attr('class', 'waves-effect');
+                            }
+                            $('#info-center-pagination-id ul li').eq(pageNum).attr('class', 'active')
+                            break;
+                        }
+
+                    }
+
+                }
+                if (index == 0) {
+
+                    for (var i = 0; i < 7; i++) {
+                        if ($('#info-center-pagination-id ul li').eq(i).attr('class') == 'active') {
+                            pageNum = parseInt($('#info-center-pagination-id ul li').eq(i).text());
+                            if (pageNum === 1) {
+                                break;
+                            }
+                               pageNum--;
+                            for (var i = 1; i < 7; i++) {
+                                $('#info-center-pagination-id ul li').eq(i).attr('class', 'waves-effect');
+                            }
+                            $('#info-center-pagination-id ul li').eq(pageNum).attr('class', 'active')
+                         
+                            break;
+                        }
+
+                    }
+                }
                 if (pageNum === 1) {
                     for (var i = 0; i < 7; i++) {
                         $('#info-center-pagination-id ul li').eq(i).attr('class', 'waves-effect');
@@ -358,11 +399,11 @@ $(document).ready(function () {
                     }
                     $('#info-center-pagination-id ul li').eq(6).attr('class', 'disabled');
                     $('#info-center-pagination-id ul li').eq(5).attr('class', 'active');
-                } else if (!isNaN(pageNum)) { //证明此时是页码//当点击到最大页码时需要让下一页功能失效
-                    for (var i = 1; i < 6; i++) {
-                        $('#info-center-pagination-id ul li').attr('class', 'waves-effect');
+                } else if (!isNaN(parseInt($(this).text()))) { //证明此时是页码//当点击到最大页码时需要让下一页功能失效
+                    for (var i = 0; i < 7; i++) {
+                        $('#info-center-pagination-id ul li').eq(i).attr('class', 'waves-effect');
                     }
-                    $(this).attr('class', 'active')
+                    $('#info-center-pagination-id ul li').eq(pageNum).attr('class', 'active')
                 }
                 //判断分页部分是否应该向前推进还是向后推进
                 var isMaxPage = parseInt($('#info-center-pagination-id ul li').eq(5).text());
@@ -442,8 +483,10 @@ $(document).ready(function () {
                     dataType: 'JSON',
                     contentType: 'application/x-www-form-urlencoded',
                     success: function (response) {
-                    response=response.data.sort(function(a,b){return b.id-a.id;});
-                   // ajaxResponse = response; //提取所有返回的数据
+                        response = response.data.sort(function (a, b) {
+                            return b.id - a.id;
+                        });
+                        // ajaxResponse = response; //提取所有返回的数据
                         ajaxResponseOfIndustryInfo = response;
                         var data = response;
                         var $image = $('#info-center-article-content-industry .info-center-article-list .info-center-article-img');
@@ -519,11 +562,11 @@ $(document).ready(function () {
                     var data = ajaxResponseOfIndustryInfo;
                     //  var attach = response.attachs;
                     var dataLength = data.length;
-                   var $image = $('#info-center-article-content-industry .info-center-article-list .info-center-article-img');
-                        var $title = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract h1');
-                        var $time = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .info-center-article-share-time');
-                        var $summary = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract p');
-                        var $lookInDetail = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .look-in-detail-industry');
+                    var $image = $('#info-center-article-content-industry .info-center-article-list .info-center-article-img');
+                    var $title = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract h1');
+                    var $time = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .info-center-article-share-time');
+                    var $summary = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract p');
+                    var $lookInDetail = $('#info-center-article-content-industry .info-center-article-list .info-center-article-abstract .look-in-detail-industry');
                     for (var i = 0; i < 5; i++) {
                         $image.eq(i).attr('style', 'background-image:url("' + data[(pageNum - 1) * 5 + i].attach[0] + '");');
                         $lookInDetail.eq(i).attr('id', 'id-' + ((pageNum - 1) * 5 + i)); //注意字符串拼接问题，在这里因为前面有字符串，直接想加会使得成为字符串拼接问题
@@ -545,7 +588,7 @@ $(document).ready(function () {
                 $('#info-center-pagination-id').show(); //分页条
 
 
-                
+
             });
             $('.look-in-detail-industry').click(function () {
                 var indexOfArticle = parseInt($(this).attr('id').substr(3));
@@ -575,7 +618,7 @@ $(document).ready(function () {
                 })
                 //更新下方的上一篇与下一篇
 
-                   //更新下方的上一篇与下一篇
+                //更新下方的上一篇与下一篇
                 if (indexOfArticle > 0 && indexOfArticle < ajaxResponse.length - 1) {
                     $('#info-center-detail-page-id .left-section .pre-article').text('上一篇：' + ajaxResponse[indexOfArticle - 1].title);
                     $('#info-center-detail-page-id .left-section .next-article').text('下一篇：' + ajaxResponse[indexOfArticle + 1].title);
