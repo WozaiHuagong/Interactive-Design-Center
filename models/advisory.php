@@ -28,6 +28,6 @@ class advisory_class extends AWS_MODEL
 
     public function get_industry_info_list($num = null)
     {
-        return $this->model('article')->get_articles_list_by_topic_title("行业咨询",$num);
+        return $this->model('article')->get_articles_list_by_topic_title("行业资讯",$num);
     }
 }
