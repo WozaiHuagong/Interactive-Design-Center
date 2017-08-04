@@ -35,12 +35,12 @@
             height: 30px;
             margin-top: 20px;
             transition: width 1.5s;
-            background-color:$base-background-color;
+            background-color: $base-background-color;
             .input-field {
                 .label-icon {
                     i {
                         margin-top: -28px;
-                       left:10px;
+                        left: 10px;
                     }
                 }
                 i:nth-child(3) {
@@ -48,22 +48,22 @@
                 }
             }
         }
-        #search:focus nav{
-            width:400px!important;
+        #search:focus nav {
+            width: 400px!important;
         }
-        nav:hover{
+        nav:hover {
             width: 400px;
-            input{
-                background-color:#fff;
+            input {
+                background-color: #fff;
             }
-            #search-icon{
-                color:#2d3240;
+            #search-icon {
+                color: #2d3240;
             }
         }
-        input:focus{
-            width:400px;
-            #close-btn{
-                display:inline-block;
+        input:focus {
+            width: 400px;
+            #close-btn {
+                display: inline-block;
             }
         }
     }
@@ -151,6 +151,10 @@
             margin-left: 30px;
             line-height: 18px;
             display: block;
+            width:700px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         span:nth-child(2) {
             font-size: 14px;
@@ -160,6 +164,10 @@
             margin-left: 30px;
             line-height: 18px;
             display: inline-block;
+            width: 780px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .main-page-look-in-detail {
             float: right;
@@ -221,8 +229,8 @@
                     margin-bottom: 8px;
                     margin-top: 22px;
                     text-align: center;
-                    height:64px;
-                    padding:0 20px;
+                    height: 64px;
+                    padding: 0 20px;
                 }
                 p {
                     margin-top: 22px;
@@ -342,6 +350,7 @@
                 margin-left: 0px;
                 margin-right: 0px;
                 box-shadow: 0px 0px 5px rgb(200, 200, 200);
+                cursor: pointer;
                 .col {
                     padding: 0px;
                     .card {
@@ -429,6 +438,7 @@
                 margin-left: 0px;
                 margin-right: 0px;
                 box-shadow: 0px 0px 5px #c8c8c8;
+                cursor: pointer;
                 .col {
                     padding: 0px;
                     .card {
