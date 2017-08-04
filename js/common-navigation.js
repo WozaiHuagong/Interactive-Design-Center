@@ -201,7 +201,7 @@ $(document).ready(function () {
                         $image.eq(i).attr('style', 'background-image:url("' + data[i].attach[0] + '");') //更新项目图片
                         $title.eq(i).text(data[i].title);
                         if (getText(HTMLDecode(data[i].message)).length > 57) {
-                            $summary.eq(i).text(getText(HTMLDecode(data[i].message)).substring(0, 65) + "...");
+                            $summary.eq(i).text(getText(HTMLDecode(data[i].message)).substring(0, 57) + "...");
                         } else {
                             $summary.eq(i).text(getText(HTMLDecode(data[i].message))); //短就直接显示，太长就直接截断
                         }
