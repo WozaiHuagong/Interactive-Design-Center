@@ -34,12 +34,13 @@ class carousel_class extends AWS_MODEL
         return $this->fetch_row('carousel', ' id = '.intval($carousel_id));
     }
 
-    public function update_carousel($carousel_id,$show_index,$title,$content,$status=0)
+    public function update_carousel($carousel_id,$show_index,$title,$content,$link_url,$status=0)
     {
         $this->update('carousel',array(
             'show_index'=>$show_index,
             'title' => $title,
             'content' => $content,
+            'link_url' => $link_url,
             'status' => $status
             ),' id = '.$carousel_id);
     }

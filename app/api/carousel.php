@@ -48,6 +48,7 @@ class carousel extends AWS_CONTROLLER
             $tmp["content"] = $carousel["content"];
             $tmp["show_index"] = $carousel["show_index"];
             $tmp["url"] = $carousel["url"];
+            $tmp["link_url"] = $carousel["link_url"];
             $data[]=$tmp;
         }
         $result=array(

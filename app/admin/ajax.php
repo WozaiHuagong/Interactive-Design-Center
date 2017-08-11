@@ -644,6 +644,16 @@ class ajax extends AWS_ADMIN_CONTROLLER
         {
             H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请输入轮播图大标题')));
         }
+        if (trim($_POST['link_url']) == '')
+        {
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请输入轮播图关联链接')));
+        }
+
+        if ( strpos( $_POST['link_url'], "http://") === 0 || strpos( $_POST['link_url'], "https://") === 0 )
+            echo "";
+        else{
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('关联链接不是正确的http(s)链接格式')));
+        }
 
         if ($_POST['show_index'])
         {
@@ -654,7 +664,7 @@ class ajax extends AWS_ADMIN_CONTROLLER
             $show_index = end($this->model('carousel')->get_carousel_list())['show_index']+1;
         }
 
-        $category = $this->model('carousel')->update_carousel($_POST['carousel_id'],$show_index,$_POST['title'],$_POST['content'],$_POST['status']);
+        $category = $this->model('carousel')->update_carousel($_POST['carousel_id'],$show_index,$_POST['title'],$_POST['content'],$_POST['link_url'],$_POST['status']);
 
         H::ajax_json_output(AWS_APP::RSM(array(
             'url' => get_js_url('/admin/home/list/')

@@ -20,6 +20,7 @@
                         <th><?php _e('图片'); ?></th>
                         <th><?php _e('大标题'); ?></th>
                         <th><?php _e('小标题'); ?></th>
+                        <th><?php _e('关联链接'); ?></th>
                         <th><?php _e('操作'); ?></th>
                     </tr>
                     </thead>
@@ -38,6 +39,9 @@
                         </td>
                         <td>
                             <?php echo $val['content']; ?>
+                        </td>
+                        <td>
+                            <?php echo $val['link_url']; ?>
                         </td>
                         <td >
                             <a href="admin/home/edit/carousel_id-<?php echo $val['id']; ?>" data-toggle="tooltip" class="icon icon-edit md-tip" title="<?php _e('编辑'); ?>"></a>
@@ -71,6 +75,9 @@
                         </td>
                         <td>
                             <input type="text" class="form-control" name="content" />
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="link_url" />
                         </td>
                         <td>
                              <button onclick="AWS.ajax_post($('#add_carousel_form'));" class="btn-primary btn" <?php echo (count($this->list) >= 4)?'disabled':'';?>><?php _e('添加轮播图'); ?></button>
