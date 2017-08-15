@@ -1168,19 +1168,6 @@ $(document).ready(function () {
             });
             //返回正常页面
 
-            //研究项目搜索
-            // $('#search').keydown(function (e) {
-            //     if (e.keyCode == 13) {
-            //         window.location.href = '../searchResult/searchResult.html';
-
-            //         alert('success');
-            //         var searchValue = $('#search').val();
-            //         return false;
-            //         // $.ajax({
-
-            //         // })
-            //     }
-            // });
         }
 
         /*===================================================================================================================*/
@@ -1241,85 +1228,7 @@ $(document).ready(function () {
             });
             //滚动显示内容，动态刷新
             var counterOfElite = 5;
-            // var options = [{
-            //         selector: '#industry-elite-personal-detail-introduction-first',
-            //         offset: 500,
-            //         callback: function (el) {
-            //             var result = appendElite();
-            //             if (result == "append fail!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#industry-elite-personal-detail-introduction-first',
-            //         offset: 800,
-            //         callback: function (el) {
-            //             var result = appendElite();
-            //             if (result == "append fail!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#industry-elite-personal-detail-introduction-first',
-            //         offset: 1100,
-            //         callback: function (el) {
-            //             var result = appendElite();
-            //             if (result == "append fail!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#iindustry-elite-personal-detail-introduction-first',
-            //         offset: 1400,
-            //         callback: function (el) {
-            //             var result = appendElite();
-            //             if (result == "append fail!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     }
-            // ];
-            // Materialize.scrollFire(options);
-
-            // function appendElite() {
-            //     counterOfElite++;
-            //     if (counterOfElite < personNum) {
-            //         if (getText(HTMLDecode(ajaxResponse[counterOfElite].message)).length > 73) {
-            //             var child = '<div class="industry-elite-list-body-article-list" id="industry-elite-id-"' + counterOfElite + '>' +
-            //                 '<div class="industry-elite-list-body-article-list-left" style="background-image:url("' + ajaxResponse[counterOfElite].avatar + '")' + '>'
-            //             '<i class=" material-icons">polymer</i>' + '</div>' +
-            //             '<div class="industry-elite-list-body-article-list-right">' +
-            //             '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-forth">' +
-            //             '<span class="industry-elite-name">' + ajaxResponse[counterOfElite].title + '</span>' +
-            //                 '<span class="industry-elite-honor">' + ajaxResponse[counterOfElite].honor + '</span>' +
-            //                 '<span class="industry-elite-personal-introduction">' + getText(HTMLDecode(ajaxResponse[counterOfElite].message)).substr(0, 73) + "..." + '</span>' +
-            //                 '</div>' + '</div>' + '</div>';
-            //         } else {
-            //             var child = '<div class="industry-elite-list-body-article-list"id="industry-elite-id-"' + counterOfElite + '>' +
-            //                 '<div class="industry-elite-list-body-article-list-left" style="background-image:url("' + ajaxResponse[counterOfElite].avatar + '")' + '>'
-            //             '<i class=" material-icons">polymer</i>' + '</div>' +
-            //             '<div class="industry-elite-list-body-article-list-right">' +
-            //             '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-forth">' +
-            //             '<span class="industry-elite-name">' + ajaxResponse[counterOfElite].title + '</span>' +
-            //                 '<span class="industry-elite-honor">' + ajaxResponse[counterOfElite].honor + '</span>' +
-            //                 '<span class="industry-elite-personal-introduction">' + getText(HTMLDecode(ajaxResponse[counterOfElite].message)) + '</span>' +
-            //                 '</div>' + '</div>' + '</div>';
-            //         }
-            //         $('#industry-elite-list-body-article-id').append(child);
-            //         counterOfElite++;
-            //         $('#industry-elite-list-body-article-id').append(child);
-            //         for (var i = counterOfElite - 1; i <= counterOfElite; i++) {
-            //             Materialize.fadeInImage($('#industry-elite-id-' + i));
-            //         }
-            //         return "append success!";
-            //     } else {
-            //         return "append fail!";
-            //     }
-
-            // }
+          
             //行业精英获取信息，点击刷新的行业精英的内容
             $('.industry-elite-list-body-article-list').click(function () {
                 var indexOfArticle = parseInt($(this).attr('id').substr(-1));
@@ -1452,7 +1361,7 @@ $(document).ready(function () {
             $.cookie('globalSearch', $('#search').val());
             var url = window.location.href;
             if (url.match('index.html') != null) {
-                window.location.href = "`./html/searchResult/searchResult.html";
+                window.location.href = "./html/searchResult/searchResult.html";
             } else {
                 window.location.href = "../searchResult/searchResult.html";
             }
