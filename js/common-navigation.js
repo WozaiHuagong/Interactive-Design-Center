@@ -340,7 +340,7 @@ $(document).ready(function () {
                                 path: '/'
                             });
                             flag = true;
-                               window.location.href = "../html/infomationCenter/infomationCenterDetail.html";
+                            window.location.href = "../html/infomationCenter/infomationCenterDetail.html";
                             break;
                         }
                     }
@@ -363,7 +363,7 @@ $(document).ready(function () {
                             $.cookie('globalMainPageElite', i, {
                                 path: '/'
                             });
-                              window.location.href = "../html/industryElite/industryEliteDetail.html";
+                            window.location.href = "../html/industryElite/industryEliteDetail.html";
                             flag = true;
                             break;
                         }
@@ -1224,14 +1224,61 @@ $(document).ready(function () {
                 error: function () {
                     console.log('get elite fail!!!');
                 }
-
             });
             //滚动显示内容，动态刷新
             var counterOfElite = 5;
-          
+            // window.scr
+            function appendChild() {
+                counterOfElite++;
+                var text = getText(HTMLDecode(ajaxResponse[counterOfElite].message));
+               // alert(text);
+               var urlPng=ajaxResponse[counterOfElite].avatar;
+                if (text.length > 60) {
+                    $childHtml = '<div class="industry-elite-list-body-article-list">' +
+                        '<div class="industry-elite-list-body-article-list-left"><i class=" material-icons">polymer</i></div>' +
+                        '<div class="industry-elite-list-body-article-list-right">' +
+                        '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-second">'+
+                        '<span class="industry-elite-name">' + ajaxResponse[counterOfElite].title + '</span>' +
+                        '<span class="industry-elite-honor">' + ajaxResponse[counterOfElite].honor + '</span>' +
+                        ' <span class="industry-elite-personal-introduction">' + text.substr(0, 60) + "..." + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+
+                } else {
+                    $childHtml = '<div class="industry-elite-list-body-article-list">' +
+                        '<div class="industry-elite-list-body-article-list-left"><i class=" material-icons">polymer</i></div>' +
+                        '<div class="industry-elite-list-body-article-list-right">' +
+                        '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-second">'+
+                    '<span class="industry-elite-name">' + ajaxResponse[counterOfElite].title + '</span>' +
+                        '<span class="industry-elite-honor">' + ajaxResponse[counterOfElite].honor + '</span>' +
+                        ' <span class="industry-elite-personal-introduction">' + text + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                }
+                $('#industry-elite-list-body-article-id').append($childHtml);
+                $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-left').eq(counterOfElite).attr('style','background-image:url("' + urlPng + '")');
+                $('.industry-elite-list-body-article-list').eq(counterOfElite).attr('id','industry-elite-id-' +counterOfElite)
+                $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-left').eq(counterOfElite).html('');
+                Materialize.fadeInImage($('.industry-elite-list-body-article-list').eq(counterOfElite));
+            }
+            $(window).scroll(function () {
+                var restHeight = $(document).height() - $(document).scrollTop(); //文档高度减去被卷进去的文档高度
+                var flagOfDisplay = restHeight - $(window).height(); //窗口可视高度
+                if (flagOfDisplay < 200) {
+                    // alert('doit');
+                    for (var i = 0; i < 2; i++) {
+                        if (counterOfElite <= ajaxResponse.length - 1) {
+                            appendChild();
+                        }
+                    }
+                }
+            });
             //行业精英获取信息，点击刷新的行业精英的内容
-            $('.industry-elite-list-body-article-list').click(function () {
-                var indexOfArticle = parseInt($(this).attr('id').substr(-1));
+            $('#industry-elite-list-body-article-id').on('click','.industry-elite-list-body-article-list',function () {
+                var indexOfArticle = parseInt($(this).attr('id').substr(18));
+                alert(indexOfArticle);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-img').attr('style', 'background-image:url("' + ajaxResponse[indexOfArticle].avatar + '")');
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-name').text(ajaxResponse[indexOfArticle].title);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-position').text(ajaxResponse[indexOfArticle].honor);
@@ -1246,21 +1293,6 @@ $(document).ready(function () {
                 $('#industry-elite-list-body-article-id').show();
 
             });
-
-
-            //行业精英搜索
-            // $('#search').keydown(function (e) {
-            //     if (e.keyCode == 13) {
-            //         window.location.href = '../searchResult/searchResult.html';
-
-            //         alert('success');
-            //         var searchValue = $('#search').val();
-            //         return false;
-            //         // $.ajax({
-
-            //         // })
-            //     }
-            // });
         }
         $forum = $url.match('forum');
         if ($forum != null) {
@@ -1365,9 +1397,7 @@ $(document).ready(function () {
             } else {
                 window.location.href = "../searchResult/searchResult.html";
             }
-
             event.preventDefault();
-
         }
     })
 })
