@@ -40,21 +40,57 @@ $(document).ready(function () {
         $url = window.location.href;
         $mainPage = $url.match('index');
         if ($mainPage != null) {
+            //轮播图函数
+            var sliderCounter = 0;
+            // $(function(){
+            // });
+            function sliderChange() {
+                var leftIn = -sliderCounter * 956;
+                var styleLeft = leftIn + "px";
+                $('#main-page-id .personal-slider .slider-wrap').animate({
+                    left: styleLeft
+                }, 500);
+                $('#main-page-id .personal-slider .slider-dots ul li i').attr('class', '');
+                $('#main-page-id .personal-slider .slider-dots ul li').eq(sliderCounter).find('i').attr('class', 'active');
+
+                $('#carousel-content-text-title-id').text(ajaxResponseOfCarousel.data[sliderCounter].title);
+                $('#carousel-content-text-content-id').text(ajaxResponseOfCarousel.data[sliderCounter].content);
+            }
+            $('#main-page-id .personal-slider  .slider-direction-next').click(function () {
+                sliderCounter++;
+                sliderCounter %= 4;
+                sliderChange();
+            });
+            $('#main-page-id .personal-slider  .slider-direction-prev').click(function () {
+                if (sliderCounter >= 1) {
+                    sliderCounter--;
+                    sliderCounter %= 4;
+                    sliderChange();
+                } else {
+                    sliderCounter = 3;
+                    sliderChange();
+                }
+
+            });
+            $('#main-page-id .personal-slider .slider-dots ul li').click(function () {
+                var index = $('#main-page-id .personal-slider .slider-dots ul li').index($(this));
+                sliderCounter = index;
+                sliderChange();
+            });
+            $('#main-page-id .slider-wrap').click(function () {
+                sliderCounter++;
+                sliderCounter %= 4;
+                sliderChange();
+            })
+
+
+            //轮播图结束
             $('#common-nav-mainpage').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
             //根据当前URL做出相关的ajax请求与更新，更新轮播图
             var ajaxResponseOfCarousel = "";
-            //$('.carousel-item').click(function(){});//点击事件
-            //$('.blue').click(function(){});
-           // $('.red').click(function () {});
-           // $('.amber').click(function () {});
-           // $('.green').click(function () {});
-           // $('.blue').click(function () {});//alert('click')
-            // $('.red').click(function () {});
-           $('.red').trigger('carouselPrev'); 
-            // $('#main-page-id ul li').eq(0).click(function(){})//alert('click the li')
-            // $('#carousel-item-second').click(function(){alert('2')});
-            // $('#carousel-item-third').click(function(){alert('3')});
-            // $('#carousel-item-forth').click(function(){alert('4')})
+            //$('.carousel-item').click(function(){});//点击事
+            //    $('#main-page-right-nav-id li a').click(function(){
+
             $.ajax({
                 url: "http://39.108.87.54/api/carousel/list/",
                 method: 'GET',
@@ -68,63 +104,23 @@ $(document).ready(function () {
                     var arrLength = data.length;
                     //更新轮播图
                     for (var i = 0; i < 4; i++) {
-                        $('.carousel-item').eq(i).attr('style', 'background-image: url("http://39.108.87.54' + data[i].url + '");');
-                        $('.carousel-item').eq(i).attr('id', 'carousel-id' + i);
-                        if(i==0){
+                        $('.slider-block').eq(i).attr('style', 'background-image: url("http://39.108.87.54' + data[i].url + '");');
+                        $('.slider-block').eq(i).attr('id', 'carousel-id' + i);
+                        if (i == 0) {
                             $('#carousel-content-text-title-id').text(data[0].title);
                             $('#carousel-content-text-content-id').text(data[0].content);
-
                         }
                     }
                     //轮播图更新完毕
-                   
-                    // $('.blue').trigger('click');
-                    // $('.red').trigger('click');
-                     //$('#carousel-item-third').trigger('click');
-                     //$('.amber').trigger('click');
-                     //$('.green').trigger('click');
-                 //   $('.blue').trigger('click');
-                   // $('.blue').trigger('mousedown');
-                  //   $('.blue').trigger('mousedout');
-                   // $('.blue').trigger('touchstart');
-                     //$('.blue').trigger('change');
-                  
-                     $('.blue').trigger('carouselNext');  
-                  //  $('.amber').trigger('carouselPrev');
-                  //  $('.carousel-item').trigger('click');               // $('.red').trigger('click');
-                    // $('#main-page-id ul li').eq(0).trigger('click');
-                    // $('.red').trigger('click');
-                    //$('.red').trigger('click');
-                    // $('#carousel-item-second').trigger('click');
-                    // $('#carousel-item-third').trigger('click');
-                    // $('#carousel-item-forth').trigger('click');
-                    //$('.carousel-item').trigger('click');
-                    // $('.carousel-item').eq(2).attr('style', 'background-image: url("./切图（0726）/切图（0726）/carousel-figure02.png")');
-                    //$('.carousel-item').eq(2).attr('id', 'png');
-                    // $('.carousel-item').eq(3).attr('style', 'background-image: url("./切图（0726）/切图（0726）/carousel-figure03.png")');
-                    //$('#main-page-id .carousel').attr('class', 'carousel carousel-slider center scrolling');
-                    //$('#main-page-id .carousel').attr('class','carousel carousel-slider center');
-                    // $('.carousel-item').trigger('click');
-                    // $('.carousel-item').trigger('click');
-
                 },
                 error: function () {
                     console.log('carousel get fail!');
                     //alert('it me')
                 }
             }); //轮播图更新完毕
-            var counterOfClick=0;
-            $('.carousel-item').click(function () {
-                counterOfClick=(++counterOfClick)%4;;
-                    var id= counterOfClick;
-               // if($(this).attr('id').substr(-1)<3)
-                 //id = ($(this).attr('id').substr(-1)+1)%4;
-               // else if($(this).attr('id').substr(-1)==3)
-                $('#carousel-content-text-title-id').text(ajaxResponseOfCarousel.data[id].title);
-                $('#carousel-content-text-content-id').text(ajaxResponseOfCarousel.data[id].content);
-            }); //点击更新轮播图下方的标题与小标题内容
+
             //更新主页资讯中心内容
-           var infoajax = "";
+            var infoajax = "";
 
             $.ajax({
                 url: "http://39.108.87.54/api/advisory/libInfo/number",
@@ -203,7 +199,7 @@ $(document).ready(function () {
             });
             //主页资讯中心内容更新完毕
             //研究项目具体内容更换开始；
-            var researchajax="";
+            var researchajax = "";
             $.ajax({
                 url: "http://39.108.87.54/api/project/working/",
                 method: 'GET',
@@ -213,7 +209,7 @@ $(document).ready(function () {
                     response = response.data.sort(function (a, b) {
                         return b.id - a.id;
                     });
-                    researchajax=response;
+                    researchajax = response;
                     var data = response;
                     $.cookie('globalMainPageResearch', '-1', {
                         path: '/'
@@ -263,7 +259,7 @@ $(document).ready(function () {
             });
             //资讯中心内容更换结束
             //行业精英资讯内容更换开始
-            var eliteajax="";
+            var eliteajax = "";
             $.ajax({
                 url: "http://39.108.87.54/api/elite/list/",
                 method: 'GET',
@@ -273,7 +269,7 @@ $(document).ready(function () {
                     response = response.data.sort(function (a, b) {
                         return b.id - a.id
                     });
-                    eliteajax=response;
+                    eliteajax = response;
                     var data = response;
                     $.cookie('globalMainPageElite', '-1', {
                         path: '/'
@@ -333,40 +329,48 @@ $(document).ready(function () {
                 }
             })
             //行业精英内容更换结束
-            $('#main-page-look-in-detail-id').click(function(){
-                var title=$('#carousel-content-text-title-id').text();
-                alert(title);
-                var flag=false;
-                if(!flag){
-                    for(var i=0;i<infoajax.length;i++){
-                        if(infoajax[i].title==title){
-                            $.cookie('globalMainPageInfo',i,{path:'/'});
-                            flag=true;
+            //首页查看详情页==========================================================================
+            $('#main-page-look-in-detail-id').click(function () {
+                var title = $('#carousel-content-text-title-id').text();
+                var flag = false;
+                if (!flag) {
+                    for (var i = 0; i < infoajax.length; i++) {
+                        if (infoajax[i].title == title) {
+                            $.cookie('globalMainPageInfo', i, {
+                                path: '/'
+                            });
+                            flag = true;
+                               window.location.href = "../html/infomationCenter/infomationCenterDetail.html";
                             break;
                         }
                     }
                 }
-                if(!flag){
-                     for(var i=0;i<researchajax.length;i++){
-                        if(researchajax[i].title==title){
-                            $.cookie('globalMainPageResearch',i,{path:'/'});
-                            flag=true;
+                if (!flag) {
+                    for (var i = 0; i < researchajax.length; i++) {
+                        if (researchajax[i].title == title) {
+                            $.cookie('globalMainPageResearch', i, {
+                                path: '/'
+                            });
+                            window.location.href = "../html/researchProject/researchProjectDetail.html";
+                            flag = true;
                             break;
                         }
                     }
                 }
-                  if(!flag){
-                     for(var i=0;i<liteajax.length;i++){
-                        if(eliteajax[i].title==title){
-                            $.cookie('globalMainPageElite',i,{path:'/'});
-                            flag=true;
+                if (!flag) {
+                    for (var i = 0; i < eliteajax.length; i++) {
+                        if (eliteajax[i].title == title) {
+                            $.cookie('globalMainPageElite', i, {
+                                path: '/'
+                            });
+                              window.location.href = "../html/industryElite/industryEliteDetail.html";
+                            flag = true;
                             break;
                         }
                     }
                 }
-               
+
             })
-            //搜索跳转方法
         }
         /*===================================================================================================================*/
         /*======资讯中心模块==================================================================================================*/
@@ -1151,7 +1155,7 @@ $(document).ready(function () {
                 alert("num " + num);
                 counter++;
                 if (counter < 10) {
-                   
+
                 }
             }
             //研究项目滚动监视效果结束=============================================================
@@ -1393,9 +1397,9 @@ $(document).ready(function () {
             // });
         }
 
-        if (window.location.href.match('searchResult')) {
-            $('body').html(globalSearchResult.errNum + '   123');
-        }
+        // if (window.location.href.match('searchResult')) {
+        //     $('body').html(globalSearchResult.errNum + '   123');
+        // }
 
     }
     determineTheBlueBorder();
@@ -1438,24 +1442,23 @@ $(document).ready(function () {
     //行业精英获取信息结束
 
     $('#search').focus(function () {
-        $('.common-header .common-header-content nav').attr('style','width:300px');
+        $('.common-header .common-header-content nav').attr('style', 'width:300px');
     });
     $('#search').blur(function () {
         $('.common-header .common-header-content nav').removeAttr('style');
     });
-    $('#search').keydown(function(event){
-        if(event.keyCode==13)
-            {
-               $.cookie('globalSearch',$('#search').val());
-               var url=window.location.href;
-               if(url.match('index.html')!=null){
-                      window.location.href="./html/searchResult/searchResult.html";
-               }else{
-                    window.location.href="../searchResult/searchResult.html";
-               }
-            
-               event.preventDefault();
-               
+    $('#search').keydown(function (event) {
+        if (event.keyCode == 13) {
+            $.cookie('globalSearch', $('#search').val());
+            var url = window.location.href;
+            if (url.match('index.html') != null) {
+                window.location.href = "`./html/searchResult/searchResult.html";
+            } else {
+                window.location.href = "../searchResult/searchResult.html";
             }
+
+            event.preventDefault();
+
+        }
     })
 })

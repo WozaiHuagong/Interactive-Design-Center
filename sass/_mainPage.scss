@@ -30,8 +30,7 @@
         }
         nav {
             float: right;
-            width: 80px;
-           //right:0px;
+            width: 80px; //right:0px;
             margin-top: 0px; //height:30px;
             height: 30px;
             margin-top: 20px;
@@ -47,8 +46,8 @@
                 i:nth-child(3) {
                     margin-top: -15px;
                 }
-                #search{
-                    border-radius:2px;
+                #search {
+                    border-radius: 2px;
                 }
             }
         }
@@ -59,7 +58,6 @@
             width: 300px;
             input {
                 background-color: #fff;
-
             }
             #search-icon {
                 color: #2d3240;
@@ -128,19 +126,91 @@
 //主体内容样式开始
 .main-page-body {
     width: $base-width;
-    .carousel {
+    .personal-slider {
         position: relative;
+        overflow: hidden;
         height: 468px;
-        .indicators {
-            bottom: 46px;
+        box-shadow: 0px 0px 5px #c8c8c8;
+        .slider-wrap{
+            position:relative;
+            width:956*4px;
         }
-    } //首页资讯中心的样式开始
-    .carousel-content-text {
+        .slider-block {
+             float:left;
+            height: 468px;
+            width: 956px;;
+           // top: 0px;
+           //display:inline-block;
+            background-color: #ad1;
+        }
+        .slider-direction-next {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            z-index: 120;
+            width: 40px;
+            height: 40px;
+            margin-top: -25px;
+            border-radius: 50%;
+            border: 2px solid white;
+            i {
+                font-size: 40px;
+                color: #fff;
+                margin-top: -2px;
+                display: block;
+            }
+            cursor: pointer;
+        }
+        .slider-direction-prev {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            z-index: 120;
+            width: 40px;
+            height: 40px;
+            margin-top: -25px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+            i {
+                font-size: 40px;
+                color: #fff;
+                margin-top: -2px;
+                display: block;
+                margin-left:-5px;
+            }
+        }
+        .slider-dots {
+            position: absolute;
+            bottom: 80px;
+            z-index: 120;
+            left: 50%;
+            margin-left: -40px;
+            li {
+                display: inline-block;
+                width: 20px;
+                cursor: pointer;
+                i {
+                    display: block;
+                    width:10px;
+                    height:10px;
+                    border-radius:50%;
+                    background-color: rgba(255, 255, 255, 0.4);
+                    font-size: 10px;
+                    color: rgba(250, 250, 250, 0.8);
+                }
+                .active{
+                      background-color: rgba(255, 255, 255, 1);
+                }
+            }
+        }
+        .carousel-content-text {
         width: $base-width;
         height: 70px;
         position: absolute;
+        bottom:0px;
         margin-top: -70px; //bottom:0px;
-        z-index: 3;
+        z-index: 121;
         background-color: rgba(67, 67, 69, 0.7); //rgba子元素不继承透明度，opacity会被子元素继承，IE8、9以下使用position使元素脱离文档流来解决，
         //background-color: rgb(67,67,69);
         //opacity: 0.5;
@@ -156,7 +226,7 @@
             margin-left: 30px;
             line-height: 18px;
             display: block;
-            width:700px;
+            width: 700px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -181,7 +251,9 @@
             background-color: $base-background-color;
         }
     }
-    .mian-page-info-center {
+    } //首页资讯中心的样式开始
+
+    .main-page-info-center {
         margin-top: 30px;
         .main-page-info-center-header {
             i {
