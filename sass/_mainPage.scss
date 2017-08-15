@@ -30,7 +30,8 @@
         }
         nav {
             float: right;
-            width: 200px;
+            width: 80px;
+           //right:0px;
             margin-top: 0px; //height:30px;
             height: 30px;
             margin-top: 20px;
@@ -46,22 +47,26 @@
                 i:nth-child(3) {
                     margin-top: -15px;
                 }
+                #search{
+                    border-radius:2px;
+                }
             }
         }
         #search:focus nav {
-            width: 400px!important;
+            width: 300px!important;
         }
         nav:hover {
-            width: 400px;
+            width: 300px;
             input {
                 background-color: #fff;
+
             }
             #search-icon {
                 color: #2d3240;
             }
         }
         input:focus {
-            width: 400px;
+            width: 200px;
             #close-btn {
                 display: inline-block;
             }

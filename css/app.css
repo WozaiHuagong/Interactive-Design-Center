@@ -30,7 +30,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       letter-spacing: 2px; }
     .common-header .common-header-content nav {
       float: right;
-      width: 200px;
+      width: 80px;
       margin-top: 0px;
       height: 30px;
       margin-top: 20px;
@@ -41,16 +41,18 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         left: 10px; }
       .common-header .common-header-content nav .input-field i:nth-child(3) {
         margin-top: -15px; }
+      .common-header .common-header-content nav .input-field #search {
+        border-radius: 2px; }
     .common-header .common-header-content #search:focus nav {
-      width: 400px !important; }
+      width: 300px !important; }
     .common-header .common-header-content nav:hover {
-      width: 400px; }
+      width: 300px; }
       .common-header .common-header-content nav:hover input {
         background-color: #fff; }
       .common-header .common-header-content nav:hover #search-icon {
         color: #2d3240; }
     .common-header .common-header-content input:focus {
-      width: 400px; }
+      width: 200px; }
       .common-header .common-header-content input:focus #close-btn {
         display: inline-block; }
 

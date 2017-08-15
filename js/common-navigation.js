@@ -43,6 +43,18 @@ $(document).ready(function () {
             $('#common-nav-mainpage').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
             //根据当前URL做出相关的ajax请求与更新，更新轮播图
             var ajaxResponseOfCarousel = "";
+            //$('.carousel-item').click(function(){});//点击事件
+            //$('.blue').click(function(){});
+           // $('.red').click(function () {});
+           // $('.amber').click(function () {});
+           // $('.green').click(function () {});
+           // $('.blue').click(function () {});//alert('click')
+            // $('.red').click(function () {});
+           $('.red').trigger('carouselPrev'); 
+            // $('#main-page-id ul li').eq(0).click(function(){})//alert('click the li')
+            // $('#carousel-item-second').click(function(){alert('2')});
+            // $('#carousel-item-third').click(function(){alert('3')});
+            // $('#carousel-item-forth').click(function(){alert('4')})
             $.ajax({
                 url: "http://39.108.87.54/api/carousel/list/",
                 method: 'GET',
@@ -58,14 +70,42 @@ $(document).ready(function () {
                     for (var i = 0; i < 4; i++) {
                         $('.carousel-item').eq(i).attr('style', 'background-image: url("http://39.108.87.54' + data[i].url + '");');
                         $('.carousel-item').eq(i).attr('id', 'carousel-id' + i);
+                        if(i==0){
+                            $('#carousel-content-text-title-id').text(data[0].title);
+                            $('#carousel-content-text-content-id').text(data[0].content);
+
+                        }
                     }
                     //轮播图更新完毕
+                   
+                    // $('.blue').trigger('click');
+                    // $('.red').trigger('click');
+                     //$('#carousel-item-third').trigger('click');
+                     //$('.amber').trigger('click');
+                     //$('.green').trigger('click');
+                 //   $('.blue').trigger('click');
+                   // $('.blue').trigger('mousedown');
+                  //   $('.blue').trigger('mousedout');
+                   // $('.blue').trigger('touchstart');
+                     //$('.blue').trigger('change');
+                  
+                     $('.blue').trigger('carouselNext');  
+                  //  $('.amber').trigger('carouselPrev');
+                  //  $('.carousel-item').trigger('click');               // $('.red').trigger('click');
+                    // $('#main-page-id ul li').eq(0).trigger('click');
+                    // $('.red').trigger('click');
+                    //$('.red').trigger('click');
+                    // $('#carousel-item-second').trigger('click');
+                    // $('#carousel-item-third').trigger('click');
+                    // $('#carousel-item-forth').trigger('click');
+                    //$('.carousel-item').trigger('click');
                     // $('.carousel-item').eq(2).attr('style', 'background-image: url("./切图（0726）/切图（0726）/carousel-figure02.png")');
                     //$('.carousel-item').eq(2).attr('id', 'png');
                     // $('.carousel-item').eq(3).attr('style', 'background-image: url("./切图（0726）/切图（0726）/carousel-figure03.png")');
-                    $('#main-page-id .carousel').attr('class', 'carousel carousel-slider center scrolling');
+                    //$('#main-page-id .carousel').attr('class', 'carousel carousel-slider center scrolling');
                     //$('#main-page-id .carousel').attr('class','carousel carousel-slider center');
-
+                    // $('.carousel-item').trigger('click');
+                    // $('.carousel-item').trigger('click');
 
                 },
                 error: function () {
@@ -73,13 +113,19 @@ $(document).ready(function () {
                     //alert('it me')
                 }
             }); //轮播图更新完毕
+            var counterOfClick=0;
             $('.carousel-item').click(function () {
-                var id = $(this).attr('id').substr(-1);
+                counterOfClick=(++counterOfClick)%4;;
+                    var id= counterOfClick;
+               // if($(this).attr('id').substr(-1)<3)
+                 //id = ($(this).attr('id').substr(-1)+1)%4;
+               // else if($(this).attr('id').substr(-1)==3)
                 $('#carousel-content-text-title-id').text(ajaxResponseOfCarousel.data[id].title);
                 $('#carousel-content-text-content-id').text(ajaxResponseOfCarousel.data[id].content);
             }); //点击更新轮播图下方的标题与小标题内容
             //更新主页资讯中心内容
-            var infoajax = "";
+           var infoajax = "";
+
             $.ajax({
                 url: "http://39.108.87.54/api/advisory/libInfo/number",
                 method: 'GET',
@@ -92,7 +138,7 @@ $(document).ready(function () {
                         return (b.id - a.id);
                     })
                     var data = response;
-                    //infoajax = response;
+                    infoajax = response;
                     //  console.log(infoajax[0]);
                     $.cookie('globalMainPageInfo', -1);
                     $('#info-center-id .main-page-info-center-card .row a').click(function () {
@@ -157,6 +203,7 @@ $(document).ready(function () {
             });
             //主页资讯中心内容更新完毕
             //研究项目具体内容更换开始；
+            var researchajax="";
             $.ajax({
                 url: "http://39.108.87.54/api/project/working/",
                 method: 'GET',
@@ -166,6 +213,7 @@ $(document).ready(function () {
                     response = response.data.sort(function (a, b) {
                         return b.id - a.id;
                     });
+                    researchajax=response;
                     var data = response;
                     $.cookie('globalMainPageResearch', '-1', {
                         path: '/'
@@ -215,6 +263,7 @@ $(document).ready(function () {
             });
             //资讯中心内容更换结束
             //行业精英资讯内容更换开始
+            var eliteajax="";
             $.ajax({
                 url: "http://39.108.87.54/api/elite/list/",
                 method: 'GET',
@@ -224,6 +273,7 @@ $(document).ready(function () {
                     response = response.data.sort(function (a, b) {
                         return b.id - a.id
                     });
+                    eliteajax=response;
                     var data = response;
                     $.cookie('globalMainPageElite', '-1', {
                         path: '/'
@@ -283,34 +333,40 @@ $(document).ready(function () {
                 }
             })
             //行业精英内容更换结束
-            //搜索跳转方法
-            $('#search').keydown(function (e) {
-                if (e.keyCode == 13) {
-                    // $.ajax({
-                    //     url:'http://apis.baidu.com/bdyunfenxi/intelligence/ip',
-                    //     data:{apikey:'0c8f61484a8dc6d3687dd3a98e6ba464',ip:'110.64.94.210'},
-                    //     method:'GET',
-                    //     dataType:'JSON',
-                    //     success:function(response){
-                    //         globalSearchResult=response;
-                    //         alert(response.errNum);
-                    //         alert(response);
-                    //     },
-                    //     error:function(){
-                    //         alert('error!');
-                    //     }
-                    // })
-                    // window.location.href = 'html/searchResult/searchResult.html';
-                    // var searchValue = $('#search').val();
-                    // var $url = window.location.href;
-                    // alert($url.match('searchresult'));
-
-                    // return false;//测试用例
-                    // $.ajax({
-
-                    // })
+            $('#main-page-look-in-detail-id').click(function(){
+                var title=$('#carousel-content-text-title-id').text();
+                alert(title);
+                var flag=false;
+                if(!flag){
+                    for(var i=0;i<infoajax.length;i++){
+                        if(infoajax[i].title==title){
+                            $.cookie('globalMainPageInfo',i,{path:'/'});
+                            flag=true;
+                            break;
+                        }
+                    }
                 }
-            });
+                if(!flag){
+                     for(var i=0;i<researchajax.length;i++){
+                        if(researchajax[i].title==title){
+                            $.cookie('globalMainPageResearch',i,{path:'/'});
+                            flag=true;
+                            break;
+                        }
+                    }
+                }
+                  if(!flag){
+                     for(var i=0;i<liteajax.length;i++){
+                        if(eliteajax[i].title==title){
+                            $.cookie('globalMainPageElite',i,{path:'/'});
+                            flag=true;
+                            break;
+                        }
+                    }
+                }
+               
+            })
+            //搜索跳转方法
         }
         /*===================================================================================================================*/
         /*======资讯中心模块==================================================================================================*/
@@ -887,18 +943,18 @@ $(document).ready(function () {
                 $('#info-center-pagination-id').show(); //分页条
             });
             //资讯中心搜索
-            $('#search').keydown(function (e) {
-                if (e.keyCode == 13) {
-                    window.location.href = '../searchResult/searchResult.html';
+            // $('#search').keydown(function (e) {
+            //     if (e.keyCode == 13) {
+            //         window.location.href = '../searchResult/searchResult.html';
 
-                    alert('success');
-                    var searchValue = $('#search').val();
-                    return false;
-                    // $.ajax({
+            //         alert('success');
+            //         var searchValue = $('#search').val();
+            //         return false;
+            //         // $.ajax({
 
-                    // })
-                }
-            });
+            //         // })
+            //     }
+            // });
         }
         //匹配资讯中心
         /*===================================================================================================================*/
@@ -1089,224 +1145,13 @@ $(document).ready(function () {
             //研究项目右上角切换功能结束
             /*======滚动显示效果==========================================================*/
             var counter = 3; //变量声明的同时最好初始化
-            // var options = [{
-            //         selector: '#card-first',
-            //         offset: 400,
-            //         callback: function (el) {
-            //             console.log("400"+"callback")
-            //             var result = appendNew();
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#card-first',
-            //         offset: 800,
-            //         callback: function (el) {
-            //              console.log("800"+"callback")
-            //             var result = appendNew();
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#card-first',
-            //         offset: 1200,
-            //         callback: function (el) {
-            //             var result = appendNew();
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#card-first',
-            //         offset: 1600,
-            //         callback: function (el) {
-            //             var result = appendNew();
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#card-first',
-            //         offset: 2000,
-            //         callback: function (el) {
-            //             var result = appendNew();
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#card-first',
-            //         offset: 2400,
-            //         callback: function (el) {
-            //             var result = appendNew();
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#card-first',
-            //         offset: 2800,
-            //         callback: function (el) {
-            //             var result = appendNew();
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#card-first',
-            //         offset: 3200,
-            //         callback: function (el) {
-            //             var result = appendNew();
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     }, //代码需要改进 20170729
-            //     //上面是研究项目，下面是研究成果的内容
-            //     {
-            //         selector: '#project-gain-card',
-            //         offset: 800,
-            //         callback: function (el) {
-            //             var result = projectGain()
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#project-gain-card',
-            //         offset: 1200,
-            //         callback: function (el) {
-            //             var result = projectGain()
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#project-gain-card',
-            //         offset: 1500,
-            //         callback: function (el) {
-            //             var result = projectGain()
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#project-gain-card',
-            //         offset: 1800,
-            //         callback: function (el) {
-            //             var result = projectGain()
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#project-gain-card',
-            //         offset: 2200,
-            //         callback: function (el) {
-            //             var result = projectGain()
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     },
-            //     {
-            //         selector: '#project-gain-card',
-            //         offset: 2600,
-            //         callback: function (el) {
-            //             var result = projectGain()
-            //             if (result == "append failed!") {
-            //                 $('#footer-top-id').text('没有更多内容了...');
-            //             }
-            //         }
-            //     }
-            // ];
-            // Materialize.scrollFire(options);
 
             function appendNew() {
                 var num = researchProjectNum;
                 alert("num " + num);
                 counter++;
                 if (counter < 10) {
-                    // console.log(getText(HTMLDecode(ajaxResponseResearchProject[counter].message)).length);
-                    // if (getText(HTMLDecode(ajaxResponseResearchProject[counter].message)).length > 63) {
-                    //     alert('come in');
-                    //     $childCard = '<div class="current-research-project-card" id="current-research-project-card-id-' + counter + '">' +
-                    //         '<div class="example-img" background-image: url("' + ajaxResponseResearchProject[counter].attachs[0] + '")' + '></div>' +
-                    //         '<div class="card-introduction">' +
-                    //         '<h1>' + ajaxResponseResearchProject[counter].title + '</h1><span>' + ajaxResponseResearchProject[counter].publish_time + '</span>' +
-                    //         '<p>' + getText(HTMLDecode(ajaxResponseResearchProject[counter].message)).substr(0, 63) + "..." + '</p>' +
-                    //         '</div>' +
-                    //         '</div>';
-                    // } else {
-                    //     alert('come in else')
-                    //     $childCard = '<div class="current-research-project-card" id="current-research-project-card-id-' + counter + '">' +
-                    //         '<div class="example-img" background-image: url("' + ajaxResponseResearchProject[counter].attachs[0] + '")' + '></div>' +
-                    //         '<div class="card-introduction">' +
-                    //         '<h1>' + ajaxResponseResearchProject[counter].title + '</h1><span>' + ajaxResponseResearchProject[counter].publish_time + '</span>' +
-                    //         '<p>' + getText(HTMLDecode(ajaxResponseResearchProject[counter].message)) + '</p>' +
-                    //         '</div>' +
-                    //         '</div>';
-                    // }
-                    //                 $childCard='<div class="fuckyou" style="height:400px;">nimabi</div>';
-                    //                 $('#current-research-project-id').append($childCard);
-                    //                 counter++;
-                    //                 $('#current-research-project-id').append($childCard);
-                    //                 for (var i = counter - 1; i <= counter; i++) {
-                    //                     Materialize.fadeInImage($('#card-first'));
-                    //                 }
-                    //                 return "append success!";
-                    //             } else {
-                    //                 alert('fail!')
-                    //                 return "append failed!";
-                    //             }
-                    //         }
-                    // var counterProjectGain = 3; // 一开始就有四个卡片了
-                    // function projectGain() {
-                    //     var num = projectFinshNum;
-                    //     counterProjectGain++;
-                    //     if (counterProjectGain < num) {
-                    //         if (getText(HTMLDecode(ajaxResponseFinshed[counterProjectGain].message)).length > 63) {
-                    //             $childCard = '<div class="research-project-gain-card" id="research-project-gain-card-id-' + counterProjectGain + '">' +
-                    //                 '<div class="example-img" background-image: url("' + ajaxResponseFinshed.attachs[0].url + '")' + '></div>' +
-                    //                 '<div class="card-introduction">' +
-                    //                 '<h1>' + ajaxResponseFinshed[counterProjectGain].title + '</h1><span>' + ajaxResponseFinshed[counterProjectGain].publish_time + '</span>' +
-                    //                 '<p>' + getText(HTMLDecode(ajaxResponseFinshed[counterProjectGain].message)).substr(0, 63) + "..." + '</p>' +
-                    //                 '</div>' +
-                    //                 '</div>';
-                    //         } else {
-                    //             $childCard = '<div class="research-project-gain-card" id="research-project-gain-card-id-' + counterProjectGain + '">' +
-                    //                 '<div class="example-img" background-image: url("' + ajaxResponseFinshed.attachs[0].url + '")' + '></div>' +
-                    //                 '<div class="card-introduction">' +
-                    //                 '<h1>' + ajaxResponseFinshed[i].title + '</h1><span>' + ajaxResponseFinshed[i].publish_time + '</span>' +
-                    //                 '<p>' + getText(HTMLDecode(ajaxResponseFinshed[i].message)) + '</p>' +
-                    //                 '</div>' +
-                    //                 '</div>';
-                    //         }
-                    //         $('#research-project-gain-id').append($childCard);
-                    //         counterProjectGain++;
-                    //         $('#research-project-gain-id').append($childCard);
-                    //         for (var i = counterProjectGain - 1; i <= counterProjectGain; i++) {
-                    //             Materialize.fadeInImage($('#research-project-gain-card-id-' + i));
-                    //         }
-                    //         return "append success!";
-                    //     } else {
-                    //         return "append failed!";
-                    //     }
-
-                    // }
+                   
                 }
             }
             //研究项目滚动监视效果结束=============================================================
@@ -1320,18 +1165,18 @@ $(document).ready(function () {
             //返回正常页面
 
             //研究项目搜索
-            $('#search').keydown(function (e) {
-                if (e.keyCode == 13) {
-                    window.location.href = '../searchResult/searchResult.html';
+            // $('#search').keydown(function (e) {
+            //     if (e.keyCode == 13) {
+            //         window.location.href = '../searchResult/searchResult.html';
 
-                    alert('success');
-                    var searchValue = $('#search').val();
-                    return false;
-                    // $.ajax({
+            //         alert('success');
+            //         var searchValue = $('#search').val();
+            //         return false;
+            //         // $.ajax({
 
-                    // })
-                }
-            });
+            //         // })
+            //     }
+            // });
         }
 
         /*===================================================================================================================*/
@@ -1354,7 +1199,7 @@ $(document).ready(function () {
                     response = response.data.sort(function (a, b) {
                         return b.id - a.id;
                     });
-                      ajaxResponse = response;
+                    ajaxResponse = response;
                     if (parseInt($.cookie('globalMainPageElite')) != -1) {
                         var indexOfArticle = parseInt($.cookie('globalMainPageElite'));
                         $.cookie('globalMainPageElite', '-1', {
@@ -1367,7 +1212,7 @@ $(document).ready(function () {
                         $('#industry-elite-list-body-article-id').hide();
                         $('#industry-elite-personal-detail-page-id').show();
                     }
-                  
+
                     personNum = response.length;
                     var data = response;
                     var $card = $('.industry-elite-list-body-article-list');
@@ -1491,18 +1336,18 @@ $(document).ready(function () {
 
 
             //行业精英搜索
-            $('#search').keydown(function (e) {
-                if (e.keyCode == 13) {
-                    window.location.href = '../searchResult/searchResult.html';
+            // $('#search').keydown(function (e) {
+            //     if (e.keyCode == 13) {
+            //         window.location.href = '../searchResult/searchResult.html';
 
-                    alert('success');
-                    var searchValue = $('#search').val();
-                    return false;
-                    // $.ajax({
+            //         alert('success');
+            //         var searchValue = $('#search').val();
+            //         return false;
+            //         // $.ajax({
 
-                    // })
-                }
-            });
+            //         // })
+            //     }
+            // });
         }
         $forum = $url.match('forum');
         if ($forum != null) {
@@ -1520,32 +1365,32 @@ $(document).ready(function () {
                 $('#about-us-organization-id').show();
             });
             //关于我们搜索
-            $('#search').keydown(function (e) {
-                if (e.keyCode == 13) {
-                    window.location.href = '../searchResult/searchResult.html';
+            // $('#search').keydown(function (e) {
+            //     if (e.keyCode == 13) {
+            //         window.location.href = '../searchResult/searchResult.html';
 
-                    alert('success');
-                    var searchValue = $('#search').val();
-                    return false;
-                    // $.ajax({
+            //         alert('success');
+            //         var searchValue = $('#search').val();
+            //         return false;
+            //         // $.ajax({
 
-                    // })
-                }
-            });
+            //         // })
+            //     }
+            // });
         };
         $joinUs = $url.match('joinUs');
         if ($joinUs != null) {
-            $('#search').keydown(function (e) {
-                if (e.keyCode == 13) {
-                    window.location.href = '../searchResult/searchResult.html';
+            // $('#search').keydown(function (e) {
+            //     if (e.keyCode == 13) {
+            //         window.location.href = '../searchResult/searchResult.html';
 
-                    var searchValue = $('#search').val();
-                    return false;
-                    // $.ajax({
+            //         var searchValue = $('#search').val();
+            //         return false;
+            //         // $.ajax({
 
-                    // })
-                }
-            });
+            //         // })
+            //     }
+            // });
         }
 
         if (window.location.href.match('searchResult')) {
@@ -1593,9 +1438,24 @@ $(document).ready(function () {
     //行业精英获取信息结束
 
     $('#search').focus(function () {
-        $('.common-header .common-header-content nav').attr('style', 'width:400px');
+        $('.common-header .common-header-content nav').attr('style','width:300px');
     });
     $('#search').blur(function () {
         $('.common-header .common-header-content nav').removeAttr('style');
     });
+    $('#search').keydown(function(event){
+        if(event.keyCode==13)
+            {
+               $.cookie('globalSearch',$('#search').val());
+               var url=window.location.href;
+               if(url.match('index.html')!=null){
+                      window.location.href="./html/searchResult/searchResult.html";
+               }else{
+                    window.location.href="../searchResult/searchResult.html";
+               }
+            
+               event.preventDefault();
+               
+            }
+    })
 })
