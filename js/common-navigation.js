@@ -1269,9 +1269,14 @@ $(document).ready(function () {
                 if (flagOfDisplay < 200) {
                     // alert('doit');
                     for (var i = 0; i < 2; i++) {
-                        if (counterOfElite <= ajaxResponse.length - 1) {
+                        if (counterOfElite < ajaxResponse.length - 2) {
                             appendChild();
                         }
+                        else if(counterOfElite == ajaxResponse.length - 2)
+                            {
+                                   appendChild();
+                                   $('#footer-top-id').text('没有更多内容了……');
+                            }
                     }
                 }
             });
@@ -1302,45 +1307,16 @@ $(document).ready(function () {
         $aboutUs = $url.match('aboutUs');
         if ($aboutUs != null) {
             $('#common-nav-about-us').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
-
-
-
             $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function () {
                 $('#about-us-member-id').hide();
                 $('#about-us-organization-id').show();
             });
-            //关于我们搜索
-            // $('#search').keydown(function (e) {
-            //     if (e.keyCode == 13) {
-            //         window.location.href = '../searchResult/searchResult.html';
-
-            //         alert('success');
-            //         var searchValue = $('#search').val();
-            //         return false;
-            //         // $.ajax({
-
-            //         // })
-            //     }
-            // });
+   
         };
         $joinUs = $url.match('joinUs');
         if ($joinUs != null) {
-            // $('#search').keydown(function (e) {
-            //     if (e.keyCode == 13) {
-            //         window.location.href = '../searchResult/searchResult.html';
-
-            //         var searchValue = $('#search').val();
-            //         return false;
-            //         // $.ajax({
-
-            //         // })
-            //     }
-            // });
+     
         }
-
-        // if (window.location.href.match('searchResult')) {
-        //     $('body').html(globalSearchResult.errNum + '   123');
-        // }
 
     }
     determineTheBlueBorder();
