@@ -969,6 +969,8 @@ $(document).ready(function () {
         $project = $url.match('researchProject');
         if ($project != null) {
             //ajax请求
+            $.cookie('reaschProject', 0);
+            $.cookie('reaschGain', 0);
             $('#common-nav-project').attr('style', 'border-bottom:5px solid rgb(8,147,214)');
             var researchProjectNum = 0;
             var ajaxResponseResearchProject = "";
@@ -1048,11 +1050,11 @@ $(document).ready(function () {
                 $('#research-project-gain-id').hide();
                 $('#research-project-detail-page-id').hide();
                 $('#footer-top-id').text('');
-                if ($('#footer-top-id').offset().top > (researchProjectNum - 4) * 380) //后期注意修改
-                {
-                    $('#footer-top-id').text('没有更多内容了...');
+                if ($.cookie('reaschProject') == 1) {
+                    $('#footer-top-id').text('没有更多内容了……');
+                } else {
+                    $('#footer-top-id').text('');
                 }
-
             });
             $('#research-project-detail-body-header-right-second').click(function (event) {
 
@@ -1093,15 +1095,15 @@ $(document).ready(function () {
                         console.log('get project finshed fail!!!');
                     }
                 });
+                if ($.cookie('reaschGain') == 1) {
+                    $('#footer-top-id').text('没有更多内容了……');
+                } else {
+                    $('#footer-top-id').text('');
+                }
                 $('#current-research-project-id').hide();
                 $('#research-project-detail-page-id').hide();
                 $('#research-project-gain-id').show();
-                $('#footer-top-id').text('');
-                if ($('#footer-top-id').offset().top > (projectFinshNum - 4) * 380) //后期注意修改
-                {
-                    $('#footer-top-id').text('没有更多内容了...');
-                }
-
+               // $('#footer-top-id').text('');
             });
             //研究中心点击事件查看详情方法
             $('#current-research-project-id').on('click', '.current-research-project-card', function () {
@@ -1125,7 +1127,7 @@ $(document).ready(function () {
                 $('#research-project-gain-id').hide();
                 $('#research-project-detail-page-id').show();
             });
-            $('#research-project-gain-id').on('click','.research-project-gain-card',function () {
+            $('#research-project-gain-id').on('click', '.research-project-gain-card', function () {
                 var indexOfArticle = parseInt($(this).attr('id').substr(3));
                 $('#research-project-detail-page-id h1').text(ajaxResponseFinshed[indexOfArticle].title);
                 $('#research-project-detail-page-id .share-time').text(ajaxResponseFinshed[indexOfArticle].publish_time);
@@ -1170,7 +1172,7 @@ $(document).ready(function () {
 
             }
             $(window).scroll(function () {
-                if ($('#current-research-project-id').attr('style') !="") {
+                if ($('#current-research-project-id').attr('style') != "") {
                     return;
                 }
                 var restHeight = $(document).height() - $(document).scrollTop(); //文档高度减去被卷进去的文档高度
@@ -1182,6 +1184,7 @@ $(document).ready(function () {
                             appendReasch();
                         } else if (counterOfReaschProject == ajaxResponseResearchProject.length - 2) {
                             appendReasch();
+                            $.cookie('reaschProject', 1);
                             $('#footer-top-id').text('没有更多内容了……');
                         }
                     }
@@ -1213,9 +1216,9 @@ $(document).ready(function () {
 
             }
             $(window).scroll(function () {
-                if ($('#research-project-gain-id').attr('style') !="") {
+                if ($('#research-project-gain-id').attr('style') != "") {
                     console.log('12345')
-                    console.log($('#research-project-gain-id').attr('style')+" 1223")
+                    console.log($('#research-project-gain-id').attr('style') + " 1223")
                     return;
                 }
                 var restHeight = $(document).height() - $(document).scrollTop(); //文档高度减去被卷进去的文档高度
@@ -1227,6 +1230,7 @@ $(document).ready(function () {
                             appendProjectGain();
                         } else if (counterOfProjectGain == ajaxResponseFinshed.length - 2) {
                             appendProjectGain();
+                            $.cookie('reaschGain', 1);
                             $('#footer-top-id').text('没有更多内容了……');
                         }
                     }
