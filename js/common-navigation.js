@@ -1040,7 +1040,7 @@ $(document).ready(function () {
                 }
             })
             //研究项目右上角切换功能
-            //要结合滚动显示效果，所以放到另外一个文件researchProject.js里面
+
             $('#research-project-detail-body-header-right-first').click(function (event) {
                 infoCenterBodyHeaderChoices(event.target);
                 infoCenterBodyHeaderRemoveChoices(event.target);
@@ -1104,22 +1104,20 @@ $(document).ready(function () {
 
             });
             //研究中心点击事件查看详情方法
-            $('.current-research-project-card').click(function () {
-                var indexOfArticle = parseInt($(this).attr('id').substr(-1));
+            $('#current-research-project-id').on('click', '.current-research-project-card', function () {
+                var indexOfArticle = parseInt($(this).attr('id').substr(33));
                 $('#research-project-detail-page-id h1').text(ajaxResponseResearchProject[indexOfArticle].title);
                 $('#research-project-detail-page-id .share-time').text(ajaxResponseResearchProject[indexOfArticle].publish_time);
                 $('#research-project-detail-page-id .article-section article').html(HTMLDecode(ajaxResponseResearchProject[indexOfArticle].message));
                 var imglist = "";
                 for (var i = 0; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
-                    //console.log(ajaxResponseResearchProject[indexOfArticle].attach[i]);
+
                     imglist += '<div class="img-list">' + '</div>';
-                    //' + 'style="background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i] +'")"
+
                 }
                 $('#research-project-detail-page-id .article-section .right-image').html(imglist);
                 for (var i = 0; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
-                    // console.log( ajaxResponseResearchProject[indexOfArticle].attach[i] );
-                    // imglist += '<div class="img-list">' + '</div>';
-                    //' + 'style="background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i] +'")"
+
                     $('#research-project-detail-page-id .article-section .right-image .img-list').eq(i).attr('style', 'background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i] + '")')
                 }
                 $('#footer-top-id').text("");
@@ -1127,8 +1125,8 @@ $(document).ready(function () {
                 $('#research-project-gain-id').hide();
                 $('#research-project-detail-page-id').show();
             });
-            $('.research-project-gain-card').click(function () {
-                var indexOfArticle = parseInt($(this).attr('id').substr(-1));
+            $('#research-project-gain-id').on('click','.research-project-gain-card',function () {
+                var indexOfArticle = parseInt($(this).attr('id').substr(3));
                 $('#research-project-detail-page-id h1').text(ajaxResponseFinshed[indexOfArticle].title);
                 $('#research-project-detail-page-id .share-time').text(ajaxResponseFinshed[indexOfArticle].publish_time);
                 $('#research-project-detail-page-id .article-section article').html(HTMLDecode(ajaxResponseFinshed[indexOfArticle].message));
@@ -1148,16 +1146,92 @@ $(document).ready(function () {
             //研究中心点击时间结束
             //研究项目右上角切换功能结束
             /*======滚动显示效果==========================================================*/
-            var counter = 3; //变量声明的同时最好初始化
-
-            function appendNew() {
-                var num = researchProjectNum;
-                alert("num " + num);
-                counter++;
-                if (counter < 10) {
-
+            var counterOfReaschProject = 3; //变量声明的同时最好初始化
+            function appendReasch() {
+                counterOfReaschProject++;
+                var text = getText(HTMLDecode(ajaxResponseResearchProject[counterOfReaschProject].message));
+                if (text.length > 63) {
+                    var $reaschList = '<div class="current-research-project-card">' +
+                        '<div class="example-img"></div>' +
+                        '<div class="card-introduction">' +
+                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1><span>' + ajaxResponseResearchProject[counterOfReaschProject].publish_time + '</span>' +
+                        '<p>' + text.substr(0, 63) + "..." + '</p>' + '</div>' + '</div>';
+                } else {
+                    var $reaschList = '<div class="current-research-project-card">' +
+                        '<div class="example-img"></div>' +
+                        '<div class="card-introduction">' +
+                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1><span>' + ajaxResponseResearchProject[counterOfReaschProject].publish_time + '</span>' +
+                        '<p>' + text + '</p>' + '</div>' + '</div>';
                 }
+                $('#current-research-project-id').append($reaschList);
+                $('#current-research-project-id .current-research-project-card .example-img').eq(counterOfReaschProject).attr('style', 'background-image: url("' + ajaxResponseResearchProject[counterOfReaschProject].attach[0] + '");');
+                $('#current-research-project-id .current-research-project-card').eq(counterOfReaschProject).attr('id', 'current-research-project-card-id-' + counterOfReaschProject);
+                Materialize.fadeInImage($('.current-research-project-card').eq(counterOfReaschProject));
+
             }
+            $(window).scroll(function () {
+                if ($('#current-research-project-id').attr('style') !="") {
+                    return;
+                }
+                var restHeight = $(document).height() - $(document).scrollTop(); //文档高度减去被卷进去的文档高度
+                var flagOfDisplay = restHeight - $(window).height(); //窗口可视高度
+                if (flagOfDisplay < 200) {
+                    // alert('doit');
+                    for (var i = 0; i < 2; i++) {
+                        if (counterOfReaschProject < ajaxResponseResearchProject.length - 2) {
+                            appendReasch();
+                        } else if (counterOfReaschProject == ajaxResponseResearchProject.length - 2) {
+                            appendReasch();
+                            $('#footer-top-id').text('没有更多内容了……');
+                        }
+                    }
+                }
+            });
+
+            var counterOfProjectGain = 3;
+
+            function appendProjectGain() {
+                counterOfProjectGain++;
+                var text = getText(HTMLDecode(ajaxResponseFinshed[counterOfProjectGain].message));
+                if (text.length > 63) {
+                    var $reaschList = '<div class="research-project-gain-card">' +
+                        '<div class="example-img"></div>' +
+                        '<div class="card-introduction">' +
+                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1><span>' + ajaxResponseFinshed[counterOfProjectGain].publish_time + '</span>' +
+                        '<p>' + text.substr(0, 63) + "..." + '</p>' + '</div>' + '</div>';
+                } else {
+                    var $reaschList = '<div class="current-research-project-card">' +
+                        '<div class="example-img"></div>' +
+                        '<div class="card-introduction">' +
+                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1><span>' + ajaxResponseFinshed[counterOfProjectGain].publish_time + '</span>' +
+                        '<p>' + text + '</p>' + '</div>' + '</div>';
+                }
+                $('#research-project-gain-id').append($reaschList);
+                $('#research-project-gain-id .research-project-gain-card .example-img').eq(counterOfProjectGain).attr('style', 'background-image: url("' + ajaxResponseFinshed[counterOfProjectGain].attach[0] + '");');
+                $('#research-project-gain-id  .research-project-gain-card').eq(counterOfProjectGain).attr('id', 'id-' + counterOfProjectGain);
+                Materialize.fadeInImage($('.research-project-gain-card').eq(counterOfProjectGain));
+
+            }
+            $(window).scroll(function () {
+                if ($('#research-project-gain-id').attr('style') !="") {
+                    console.log('12345')
+                    console.log($('#research-project-gain-id').attr('style')+" 1223")
+                    return;
+                }
+                var restHeight = $(document).height() - $(document).scrollTop(); //文档高度减去被卷进去的文档高度
+                var flagOfDisplay = restHeight - $(window).height(); //窗口可视高度
+                if (flagOfDisplay < 200) {
+                    // alert('doit');
+                    for (var i = 0; i < 2; i++) {
+                        if (counterOfProjectGain < ajaxResponseFinshed.length - 2) {
+                            appendProjectGain();
+                        } else if (counterOfProjectGain == ajaxResponseFinshed.length - 2) {
+                            appendProjectGain();
+                            $('#footer-top-id').text('没有更多内容了……');
+                        }
+                    }
+                }
+            });
             //研究项目滚动监视效果结束=============================================================
             $('.info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left').click(function () {
                 infoCenterBodyHeaderChoices($('#research-project-detail-body-header-right-first'));
@@ -1167,7 +1241,6 @@ $(document).ready(function () {
                 $('#current-research-project-id').show();
             });
             //返回正常页面
-
         }
 
         /*===================================================================================================================*/
@@ -1231,13 +1304,13 @@ $(document).ready(function () {
             function appendChild() {
                 counterOfElite++;
                 var text = getText(HTMLDecode(ajaxResponse[counterOfElite].message));
-               // alert(text);
-               var urlPng=ajaxResponse[counterOfElite].avatar;
+                // alert(text);
+                var urlPng = ajaxResponse[counterOfElite].avatar;
                 if (text.length > 60) {
                     $childHtml = '<div class="industry-elite-list-body-article-list">' +
                         '<div class="industry-elite-list-body-article-list-left"><i class=" material-icons">polymer</i></div>' +
                         '<div class="industry-elite-list-body-article-list-right">' +
-                        '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-second">'+
+                        '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-second">' +
                         '<span class="industry-elite-name">' + ajaxResponse[counterOfElite].title + '</span>' +
                         '<span class="industry-elite-honor">' + ajaxResponse[counterOfElite].honor + '</span>' +
                         ' <span class="industry-elite-personal-introduction">' + text.substr(0, 60) + "..." + '</span>' +
@@ -1249,8 +1322,8 @@ $(document).ready(function () {
                     $childHtml = '<div class="industry-elite-list-body-article-list">' +
                         '<div class="industry-elite-list-body-article-list-left"><i class=" material-icons">polymer</i></div>' +
                         '<div class="industry-elite-list-body-article-list-right">' +
-                        '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-second">'+
-                    '<span class="industry-elite-name">' + ajaxResponse[counterOfElite].title + '</span>' +
+                        '<div class="industry-elite-introduction" id="industry-elite-personal-detail-introduction-second">' +
+                        '<span class="industry-elite-name">' + ajaxResponse[counterOfElite].title + '</span>' +
                         '<span class="industry-elite-honor">' + ajaxResponse[counterOfElite].honor + '</span>' +
                         ' <span class="industry-elite-personal-introduction">' + text + '</span>' +
                         '</div>' +
@@ -1258,8 +1331,8 @@ $(document).ready(function () {
                         '</div>';
                 }
                 $('#industry-elite-list-body-article-id').append($childHtml);
-                $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-left').eq(counterOfElite).attr('style','background-image:url("' + urlPng + '")');
-                $('.industry-elite-list-body-article-list').eq(counterOfElite).attr('id','industry-elite-id-' +counterOfElite)
+                $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-left').eq(counterOfElite).attr('style', 'background-image:url("' + urlPng + '")');
+                $('.industry-elite-list-body-article-list').eq(counterOfElite).attr('id', 'industry-elite-id-' + counterOfElite)
                 $('.industry-elite-list-body-article-list .industry-elite-list-body-article-list-left').eq(counterOfElite).html('');
                 Materialize.fadeInImage($('.industry-elite-list-body-article-list').eq(counterOfElite));
             }
@@ -1271,17 +1344,15 @@ $(document).ready(function () {
                     for (var i = 0; i < 2; i++) {
                         if (counterOfElite < ajaxResponse.length - 2) {
                             appendChild();
+                        } else if (counterOfElite == ajaxResponse.length - 2) {
+                            appendChild();
+                            $('#footer-top-id').text('没有更多内容了……');
                         }
-                        else if(counterOfElite == ajaxResponse.length - 2)
-                            {
-                                   appendChild();
-                                   $('#footer-top-id').text('没有更多内容了……');
-                            }
                     }
                 }
             });
             //行业精英获取信息，点击刷新的行业精英的内容
-            $('#industry-elite-list-body-article-id').on('click','.industry-elite-list-body-article-list',function () {
+            $('#industry-elite-list-body-article-id').on('click', '.industry-elite-list-body-article-list', function () {
                 var indexOfArticle = parseInt($(this).attr('id').substr(18));
                 alert(indexOfArticle);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-img').attr('style', 'background-image:url("' + ajaxResponse[indexOfArticle].avatar + '")');
@@ -1311,11 +1382,11 @@ $(document).ready(function () {
                 $('#about-us-member-id').hide();
                 $('#about-us-organization-id').show();
             });
-   
+
         };
         $joinUs = $url.match('joinUs');
         if ($joinUs != null) {
-     
+
         }
 
     }
