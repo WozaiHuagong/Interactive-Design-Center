@@ -50,7 +50,7 @@ class advisory extends AWS_CONTROLLER
             $tmp["id"] = $lib["id"];
             $tmp["summary"] = $lib["summary"];
             $tmp["message"] = $lib["message"];
-            $tmp["publish_time"] = $lib["publish_time"];
+            $tmp["publish_time"] = date('Y-m-d H:i', $lib["add_time"]);
             $tmp["view_num"] = $lib["views"];
             $tmp["type"] = 'libInfo';
             $attach = $this->model('publish')->get_attach('article',$lib['id']);
@@ -79,7 +79,7 @@ class advisory extends AWS_CONTROLLER
             $tmp["id"] = $industry["id"];
             $tmp["summary"] = $industry["summary"];
             $tmp["message"] = $industry["message"];
-            $tmp["publish_time"] = $industry["publish_time"];
+            $tmp["publish_time"] = date('Y-m-d H:i', $industry["add_time"]);
             $tmp["view_num"] = $industry["views"];
             $tmp["type"] = 'industryInfo';
             $attach = $this->model('publish')->get_attach('article',$industry['id']);

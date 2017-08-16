@@ -50,7 +50,7 @@ class project extends AWS_CONTROLLER
             $tmp["id"] = $working["id"];
             $tmp["summary"] = $working["summary"];
             $tmp["message"] = $working["message"];
-            $tmp["publish_time"] = $working["publish_time"];
+            $tmp["publish_time"] = date('Y-m-d H:i', $working["add_time"]);
             $tmp["view_num"] = $working["views"];
             $tmp["type"] = 'projectWroking';
             $attach = $this->model('publish')->get_attach('article',$working['id']);
@@ -79,7 +79,7 @@ class project extends AWS_CONTROLLER
             $tmp["id"] = $finished["id"];
             $tmp["summary"] = $finished["summary"];
             $tmp["message"] = $finished["message"];
-            $tmp["publish_time"] = $finished["publish_time"];
+            $tmp["publish_time"] = date('Y-m-d H:i', $finished["add_time"]);
             $tmp["view_num"] = $finished["views"];
             $tmp["type"] = 'projectFinished';
             $attach = $this->model('publish')->get_attach('article',$finished['id']);
