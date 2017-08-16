@@ -1156,13 +1156,13 @@ $(document).ready(function () {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1><span>' + ajaxResponseResearchProject[counterOfReaschProject].publish_time + '</span>' +
+                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1><span>'  + '</span>' +
                         '<p>' + text.substr(0, 63) + "..." + '</p>' + '</div>' + '</div>';
                 } else {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1><span>' + ajaxResponseResearchProject[counterOfReaschProject].publish_time + '</span>' +
+                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1><span>'  + '</span>' +
                         '<p>' + text + '</p>' + '</div>' + '</div>';
                 }
                 $('#current-research-project-id').append($reaschList);
@@ -1200,13 +1200,13 @@ $(document).ready(function () {
                     var $reaschList = '<div class="research-project-gain-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1><span>' + ajaxResponseFinshed[counterOfProjectGain].publish_time + '</span>' +
+                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1><span>'  + '</span>' +
                         '<p>' + text.substr(0, 63) + "..." + '</p>' + '</div>' + '</div>';
                 } else {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1><span>' + ajaxResponseFinshed[counterOfProjectGain].publish_time + '</span>' +
+                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1><span>' + '</span>' +
                         '<p>' + text + '</p>' + '</div>' + '</div>';
                 }
                 $('#research-project-gain-id').append($reaschList);
@@ -1358,13 +1358,14 @@ $(document).ready(function () {
             //行业精英获取信息，点击刷新的行业精英的内容
             $('#industry-elite-list-body-article-id').on('click', '.industry-elite-list-body-article-list', function () {
                 var indexOfArticle = parseInt($(this).attr('id').substr(18));
-                alert(indexOfArticle);
+               // alert(indexOfArticle);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-img').attr('style', 'background-image:url("' + ajaxResponse[indexOfArticle].avatar + '")');
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-name').text(ajaxResponse[indexOfArticle].title);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-position').text(ajaxResponse[indexOfArticle].honor);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article article').html(HTMLDecode(ajaxResponse[indexOfArticle].message));
                 $('#industry-elite-list-body-article-id').hide();
                 $('#industry-elite-personal-detail-page-id').show();
+                  $('#footer-top-id').text('');
                 //调试代码结束
             })
             //第一个人结束
