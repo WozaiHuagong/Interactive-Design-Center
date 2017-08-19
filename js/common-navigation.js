@@ -26,9 +26,9 @@ $(document).ready(function () {
         temp.innerHTML = text;
         var output = temp.innerText || temp.textContent; //如果能顺利转就取标签加内容，不能就直接取内容
         temp = null;
-        output=output.replace(/&quot;/g,'"');
-        output=output.replace(/&ldquo;/g,'');
-        output=output.replace(/&rdquo;/g,'');
+        output = output.replace(/&quot;/g, '"');
+        output = output.replace(/&ldquo;/g, '');
+        output = output.replace(/&rdquo;/g, '');
         return output;
     }
     //各个页面右上角蓝色的功能切换
@@ -191,7 +191,7 @@ $(document).ready(function () {
                         } else {
                             $p.eq(i).text(data[i].summary);
                         } //出现省略号的判断
-                        $spanPublishTime.eq(i).text(data[i].publish_time.substr(0,10));
+                        $spanPublishTime.eq(i).text(data[i].publish_time.substr(0, 10));
                     }
 
                 },
@@ -253,7 +253,7 @@ $(document).ready(function () {
                             $summary.eq(i).text(getText(HTMLDecode(data[i].message))); //短就直接显示，太长就直接截断
                         }
 
-                        $publish_time.eq(i).text(data[i].publish_time.substr(0,10));
+                        $publish_time.eq(i).text(data[i].publish_time.substr(0, 10));
                     }
                 },
                 error: function () {
@@ -506,7 +506,7 @@ $(document).ready(function () {
                         $libInfoImg.eq(i).attr('style', 'background-image:url("' + data[i].attach[0] + '");');
                         $lookInDetail.eq(i).attr('id', 'id-' + i);
                         $libInfoTitle.eq(i).text(data[i].title);
-                        $libInfoTime.eq(i).text(data[i].publish_time.substr(0,10));
+                        $libInfoTime.eq(i).text(data[i].publish_time.substr(0, 10));
                         if (data[i].summary.length > 128) {
                             $libInfoDetail.eq(i).text(data[i].summary.substring(0, 128) + '...');
                         } else {
@@ -710,7 +710,7 @@ $(document).ready(function () {
                     $libInfoImg.eq(i).attr('style', 'background-image:url("' + data[(pageNum - 1) * 5 + i].attach[0] + '");');
                     $lookInDetail.eq(i).attr('id', 'id-' + ((pageNum - 1) * 5 + i)); //注意字符串拼接问题，在这里因为前面有字符串，直接想加会使得成为字符串拼接问题
                     $libInfoTitle.eq(i).text(data[(pageNum - 1) * 5 + i].title);
-                    $libInfoTime.eq(i).text(data[(pageNum - 1) * 5 + i].publish_time.substr(0,10));
+                    $libInfoTime.eq(i).text(data[(pageNum - 1) * 5 + i].publish_time.substr(0, 10));
                     if (data[(pageNum - 1) * 5 + i].summary.length > 128) {
                         $libInfoDetail.eq(i).text(data[(pageNum - 1) * 5 + i].summary.substring(0, 128) + '...');
                     } else {
@@ -761,7 +761,7 @@ $(document).ready(function () {
                         for (var i = 0; i < (data.length > 5 ? 5 : data.length); i++) {
                             $image.eq(i).attr('style', 'background-image:url("' + data[i].attach[0] + '")'); //图片内容未定
                             $title.eq(i).text(data[i].title);
-                            $time.eq(i).text(data[i].publish_time.substr(0,10));
+                            $time.eq(i).text(data[i].publish_time.substr(0, 10));
                             $summary.eq(i).text(data[i].summary);
                             $lookInDetail.eq(i).attr('id', 'id-' + i);
                         }
@@ -835,7 +835,7 @@ $(document).ready(function () {
                         $image.eq(i).attr('style', 'background-image:url("' + data[(pageNum - 1) * 5 + i].attach[0] + '");');
                         $lookInDetail.eq(i).attr('id', 'id-' + ((pageNum - 1) * 5 + i)); //注意字符串拼接问题，在这里因为前面有字符串，直接想加会使得成为字符串拼接问题
                         $title.eq(i).text(data[(pageNum - 1) * 5 + i].title);
-                        $time.eq(i).text(data[(pageNum - 1) * 5 + i].publish_time.substr(0,10));
+                        $time.eq(i).text(data[(pageNum - 1) * 5 + i].publish_time.substr(0, 10));
                         if (data[(pageNum - 1) * 5 + i].summary.length > 128) {
                             $summary.eq(i).text(data[(pageNum - 1) * 5 + i].summary.substring(0, 128) + '...');
                         } else {
@@ -1031,7 +1031,7 @@ $(document).ready(function () {
                         $card.eq(i).attr('id', 'current-research-project-card-id-' + i);
                         $img.eq(i).attr('style', 'background-image: url("' + data[i].attach[0] + '");');
                         $title.eq(i).text(data[i].title);
-                        $time.eq(i).text(data[i].publish_time.substr(0,10));
+                        $time.eq(i).text(data[i].publish_time.substr(0, 10));
                         var text = getText(HTMLDecode(data[i].message));
                         if (text.length > 63) {
                             $summary.eq(i).text(text.substring(0, 60) + "...");
@@ -1085,7 +1085,7 @@ $(document).ready(function () {
                             $card.eq(i).attr('id', 'id-' + i);
                             $img.eq(i).attr('style', 'background-image: url("' + data[i].attach[0] + '");');
                             $title.eq(i).text(data[i].title);
-                            $time.eq(i).text(data[i].publish_time.substr(0,10));
+                            $time.eq(i).text(data[i].publish_time.substr(0, 10));
                             var text = getText(HTMLDecode(data[i].message));
                             if (text.length > 63) {
                                 $summary.eq(i).text(text.substring(0, 60) + "...");
@@ -1159,16 +1159,16 @@ $(document).ready(function () {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1>'+
+                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1>' +
                         '<p>' + text.substr(0, 63) + "..." + '</p>' +
-                        '<span class="share-time">' +ajaxResponseResearchProject[counterOfReaschProject].publish_time.substr(0,10)+ '</span>' + '</div>' + '</div>';
+                        '<span class="share-time">' + ajaxResponseResearchProject[counterOfReaschProject].publish_time.substr(0, 10) + '</span>' + '</div>' + '</div>';
                 } else {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1>'+
+                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1>' +
                         '<p>' + text + '</p>' +
-                        '<span class="share-time">' +ajaxResponseResearchProject[counterOfReaschProject].publish_time.substr(0,10)+ '</span>' + '</div>' + '</div>';
+                        '<span class="share-time">' + ajaxResponseResearchProject[counterOfReaschProject].publish_time.substr(0, 10) + '</span>' + '</div>' + '</div>';
                 }
                 $('#current-research-project-id').append($reaschList);
                 $('#current-research-project-id .current-research-project-card .example-img').eq(counterOfReaschProject).attr('style', 'background-image: url("' + ajaxResponseResearchProject[counterOfReaschProject].attach[0] + '");');
@@ -1205,14 +1205,14 @@ $(document).ready(function () {
                     var $reaschList = '<div class="research-project-gain-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1>'+
-                        '<p>' + text.substr(0, 63) + "..." + '</p>'+'<span  class="share-time">'+ajaxResponseFinshed[counterOfProjectGain].publish_time.substr(0,10) + '</span>' + '</div>' + '</div>';
+                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1>' +
+                        '<p>' + text.substr(0, 63) + "..." + '</p>' + '<span  class="share-time">' + ajaxResponseFinshed[counterOfProjectGain].publish_time.substr(0, 10) + '</span>' + '</div>' + '</div>';
                 } else {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1>'+
-                        '<p>' + text + '</p>' + '<span class="share-time">'+ajaxResponseFinshed[counterOfProjectGain].publish_time.substr(0,10) + '</span>' +'</div>' + '</div>';
+                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1>' +
+                        '<p>' + text + '</p>' + '<span class="share-time">' + ajaxResponseFinshed[counterOfProjectGain].publish_time.substr(0, 10) + '</span>' + '</div>' + '</div>';
                 }
                 $('#research-project-gain-id').append($reaschList);
                 $('#research-project-gain-id .research-project-gain-card .example-img').eq(counterOfProjectGain).attr('style', 'background-image: url("' + ajaxResponseFinshed[counterOfProjectGain].attach[0] + '");');
@@ -1399,22 +1399,59 @@ $(document).ready(function () {
         if ($joinUs != null) {}
         var $searchResult = $url.match('searchResult.html');
         if ($searchResult != null) {
+            var searchAjax="";
+            var search="";
             $.ajax({
-               url: 'http://39.108.87.54/api/search/',
+                url: 'http://39.108.87.54/api/search/type-articles__q-' + $.cookie('globalSearch'),
                 method: 'GET',
                 dataType: 'JSON',
-                type:'articles',
-                data:$.cookie('globalSearch'),
+                //   type:'articles',
+                //  data:,
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (response) {
-                    alert(response);
-                    console.log(response+"success!!!!!!!")
+                    searchAjax=response;
+                    var length = response.length;
+                    if (length) {
+                       
+                        search=$.cookie('globalSearch');
+                        $('#search-data-length').text(length + "条结果");
+                        var target=new RegExp($.cookie('globalSearch'),'g');
+                        var changeTarget='<span style="color:#c00">'+$.cookie('globalSearch')+'</span>'
+                        for (var i = 0; i < length; i++) {
+                            var text= getText(HTMLDecode(response[i].content)).replace(target, changeTarget)
+                            var $childResult = '<div class="search-data-list-one"><div class="title">'+response[i].name+'</div>'+'<span class="share-time">' + response[i].add_time.substr(0, 10) + '</span><p>' + text+'</p>' +
+                                '<div class="btn look-in-detail-search">查看详情</div>' +
+                                '</div>';
+                            $('#search-data-list-id').append($childResult);
+                        }
+                        $.cookie('globalSearch','');
+                        $('body').trigger('click');
+                    } else {
+                        $('#search-data-length').text("0" + "条结果");
+                        var stylecontent=$('#footer-top-id').attr('style');
+                        $('#footer-top-id').attr('style',stylecontent+'position:fixed;bottom:260px;');
+                    }
+
+
+
                 },
-                error:function(){
+                error: function () {
                     alert('get search information fail!!!');
                 }
+            });
+            $('#search-data-list-id').on('click','.look-in-detail-search',function(){
+                var index=$('.look-in-detail-search').index($(this));
+                var target=new RegExp(search,'g');
+                var changeTarget='<span style="color:#c00">'+search+'</span>';
+                var text= HTMLDecode(searchAjax[index].content).replace(target, changeTarget);
+                $('#info-center-detail-page-id .left-section h1').html(searchAjax[index].name);
+                $('#info-center-detail-page-id .left-section .share-time').text("发表于 "+searchAjax[index].add_time.substr(0,10));
+                $('#info-center-detail-page-id .left-section .read-times').text(searchAjax[index].detail.views+"次阅读");
+                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>"+searchAjax[index].summary);
+                $('#info-center-detail-page-id .left-section article').html(text);
+                $('.search-result-content').hide();
+                $('#info-center-detail-page-id').show();
             })
-
         }
     }
     determineTheBlueBorder();

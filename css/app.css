@@ -1203,3 +1203,41 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       background-image: url("../../assets/交互设计中心切图（3）/详情页－研究项目-assets/1004521192-0.png");
       box-shadow: 0px 0px 5px #c8c8c8;
       margin-bottom: 40px; }
+
+.search-result-content {
+  width: 956px;
+  margin: 0 auto; }
+  .search-result-content .search-data {
+    margin-top: 26px;
+    font-size: 16px;
+    color: #626878;
+    font-family: "Microsoft YaHei"; }
+  .search-result-content .search-data-list .search-data-list-one {
+    margin-top: 20px;
+    box-shadow: 0px 0px 5px #c8c8c8;
+    padding: 16px;
+    height: 200px;
+    position: relative; }
+    .search-result-content .search-data-list .search-data-list-one .title {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-family: "Microsoft YaHei"; }
+    .search-result-content .search-data-list .search-data-list-one .share-time {
+      float: right;
+      font-size: 14px;
+      font-family: "Microsoft YaHei";
+      color: #a0a0a0; }
+    .search-result-content .search-data-list .search-data-list-one p {
+      font-size: 14px;
+      color: #626878;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden; }
+    .search-result-content .search-data-list .search-data-list-one .look-in-detail-search {
+      position: absolute;
+      right: 16px;
+      bottom: 16px; }
