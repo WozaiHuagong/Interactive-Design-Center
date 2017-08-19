@@ -1447,7 +1447,7 @@ $(document).ready(function () {
                 $('#info-center-detail-page-id .left-section h1').html(searchAjax[index].name);
                 $('#info-center-detail-page-id .left-section .share-time').text("发表于 "+searchAjax[index].add_time.substr(0,10));
                 $('#info-center-detail-page-id .left-section .read-times').text(searchAjax[index].detail.views+"次阅读");
-                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>"+searchAjax[index].summary);
+                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>'+searchAjax[index].summary);
                 $('#info-center-detail-page-id .left-section article').html(text);
                 $('.search-result-content').hide();
                 $('#info-center-detail-page-id').show();

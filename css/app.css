@@ -818,7 +818,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       line-height: 2;
       padding: 16px 18px;
       min-height: 60px; }
-      .info-center-detail-page .left-section .info-center-detail-page-abstract span {
+      .info-center-detail-page .left-section .info-center-detail-page-abstract #info-center-detail-page-abstract-icon {
         width: 10px;
         height: 16px;
         background-image: url("../assets/详情页－资讯中心-assets/摘要左边标签.png");
