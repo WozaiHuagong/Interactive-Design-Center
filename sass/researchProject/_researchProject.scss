@@ -9,7 +9,7 @@
         box-shadow: 0px 0px 5px #c8c8c8;
         margin-top: 20px;
         width: 462px;
-        height: 410px;
+        height: 420px;
         cursor: pointer; //为点击时间服务，悬停鼠标变成一只手
         .example-img {
             width: 100%;
@@ -37,11 +37,17 @@
                 float: right;
             }
             p {
+                clear: both;
                 font-size: 14px;
                 color: #626878;
                 font-family: $base-font-family;
                 line-height: 2;
                 margin-top: 20px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                margin-bottom:5px;
             }
         }
     }
@@ -58,7 +64,7 @@
         box-shadow: 0px 0px 5px #c8c8c8;
         margin-top: 20px;
         width: 462px;
-        height: 410px;
+        height: 420px;
         cursor: pointer; //为点击时间服务，悬停鼠标变成一只手
         .example-img {
             width: 100%;
@@ -86,6 +92,7 @@
                 float: right;
             }
             p {
+                clear: both;
                 font-size: 14px;
                 color: #626878;
                 font-family: $base-font-family;

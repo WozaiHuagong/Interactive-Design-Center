@@ -26,6 +26,9 @@ $(document).ready(function () {
         temp.innerHTML = text;
         var output = temp.innerText || temp.textContent; //如果能顺利转就取标签加内容，不能就直接取内容
         temp = null;
+        output=output.replace(/&quot;/g,'"');
+        output=output.replace(/&ldquo;/g,'');
+        output=output.replace(/&rdquo;/g,'');
         return output;
     }
     //各个页面右上角蓝色的功能切换
@@ -188,7 +191,7 @@ $(document).ready(function () {
                         } else {
                             $p.eq(i).text(data[i].summary);
                         } //出现省略号的判断
-                        $spanPublishTime.eq(i).text(data[i].publish_time);
+                        $spanPublishTime.eq(i).text(data[i].publish_time.substr(0,10));
                     }
 
                 },
@@ -250,7 +253,7 @@ $(document).ready(function () {
                             $summary.eq(i).text(getText(HTMLDecode(data[i].message))); //短就直接显示，太长就直接截断
                         }
 
-                        $publish_time.eq(i).text(data[i].publish_time);
+                        $publish_time.eq(i).text(data[i].publish_time.substr(0,10));
                     }
                 },
                 error: function () {
@@ -503,7 +506,7 @@ $(document).ready(function () {
                         $libInfoImg.eq(i).attr('style', 'background-image:url("' + data[i].attach[0] + '");');
                         $lookInDetail.eq(i).attr('id', 'id-' + i);
                         $libInfoTitle.eq(i).text(data[i].title);
-                        $libInfoTime.eq(i).text(data[i].publish_time);
+                        $libInfoTime.eq(i).text(data[i].publish_time.substr(0,10));
                         if (data[i].summary.length > 128) {
                             $libInfoDetail.eq(i).text(data[i].summary.substring(0, 128) + '...');
                         } else {
@@ -707,7 +710,7 @@ $(document).ready(function () {
                     $libInfoImg.eq(i).attr('style', 'background-image:url("' + data[(pageNum - 1) * 5 + i].attach[0] + '");');
                     $lookInDetail.eq(i).attr('id', 'id-' + ((pageNum - 1) * 5 + i)); //注意字符串拼接问题，在这里因为前面有字符串，直接想加会使得成为字符串拼接问题
                     $libInfoTitle.eq(i).text(data[(pageNum - 1) * 5 + i].title);
-                    $libInfoTime.eq(i).text(data[(pageNum - 1) * 5 + i].publish_time);
+                    $libInfoTime.eq(i).text(data[(pageNum - 1) * 5 + i].publish_time.substr(0,10));
                     if (data[(pageNum - 1) * 5 + i].summary.length > 128) {
                         $libInfoDetail.eq(i).text(data[(pageNum - 1) * 5 + i].summary.substring(0, 128) + '...');
                     } else {
@@ -758,7 +761,7 @@ $(document).ready(function () {
                         for (var i = 0; i < (data.length > 5 ? 5 : data.length); i++) {
                             $image.eq(i).attr('style', 'background-image:url("' + data[i].attach[0] + '")'); //图片内容未定
                             $title.eq(i).text(data[i].title);
-                            $time.eq(i).text(data[i].publish_time);
+                            $time.eq(i).text(data[i].publish_time.substr(0,10));
                             $summary.eq(i).text(data[i].summary);
                             $lookInDetail.eq(i).attr('id', 'id-' + i);
                         }
@@ -832,7 +835,7 @@ $(document).ready(function () {
                         $image.eq(i).attr('style', 'background-image:url("' + data[(pageNum - 1) * 5 + i].attach[0] + '");');
                         $lookInDetail.eq(i).attr('id', 'id-' + ((pageNum - 1) * 5 + i)); //注意字符串拼接问题，在这里因为前面有字符串，直接想加会使得成为字符串拼接问题
                         $title.eq(i).text(data[(pageNum - 1) * 5 + i].title);
-                        $time.eq(i).text(data[(pageNum - 1) * 5 + i].publish_time);
+                        $time.eq(i).text(data[(pageNum - 1) * 5 + i].publish_time.substr(0,10));
                         if (data[(pageNum - 1) * 5 + i].summary.length > 128) {
                             $summary.eq(i).text(data[(pageNum - 1) * 5 + i].summary.substring(0, 128) + '...');
                         } else {
@@ -1028,7 +1031,7 @@ $(document).ready(function () {
                         $card.eq(i).attr('id', 'current-research-project-card-id-' + i);
                         $img.eq(i).attr('style', 'background-image: url("' + data[i].attach[0] + '");');
                         $title.eq(i).text(data[i].title);
-                        $time.eq(i).text(data[i].publish_time);
+                        $time.eq(i).text(data[i].publish_time.substr(0,10));
                         var text = getText(HTMLDecode(data[i].message));
                         if (text.length > 63) {
                             $summary.eq(i).text(text.substring(0, 60) + "...");
@@ -1082,7 +1085,7 @@ $(document).ready(function () {
                             $card.eq(i).attr('id', 'id-' + i);
                             $img.eq(i).attr('style', 'background-image: url("' + data[i].attach[0] + '");');
                             $title.eq(i).text(data[i].title);
-                            $time.eq(i).text(data[i].publish_time);
+                            $time.eq(i).text(data[i].publish_time.substr(0,10));
                             var text = getText(HTMLDecode(data[i].message));
                             if (text.length > 63) {
                                 $summary.eq(i).text(text.substring(0, 60) + "...");
@@ -1103,7 +1106,7 @@ $(document).ready(function () {
                 $('#current-research-project-id').hide();
                 $('#research-project-detail-page-id').hide();
                 $('#research-project-gain-id').show();
-               // $('#footer-top-id').text('');
+                // $('#footer-top-id').text('');
             });
             //研究中心点击事件查看详情方法
             $('#current-research-project-id').on('click', '.current-research-project-card', function () {
@@ -1156,14 +1159,16 @@ $(document).ready(function () {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1><span>'  + '</span>' +
-                        '<p>' + text.substr(0, 63) + "..." + '</p>' + '</div>' + '</div>';
+                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1>'+
+                        '<p>' + text.substr(0, 63) + "..." + '</p>' +
+                        '<span class="share-time">' +ajaxResponseResearchProject[counterOfReaschProject].publish_time.substr(0,10)+ '</span>' + '</div>' + '</div>';
                 } else {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1><span>'  + '</span>' +
-                        '<p>' + text + '</p>' + '</div>' + '</div>';
+                        '<h1>' + ajaxResponseResearchProject[counterOfReaschProject].title + '</h1>'+
+                        '<p>' + text + '</p>' +
+                        '<span class="share-time">' +ajaxResponseResearchProject[counterOfReaschProject].publish_time.substr(0,10)+ '</span>' + '</div>' + '</div>';
                 }
                 $('#current-research-project-id').append($reaschList);
                 $('#current-research-project-id .current-research-project-card .example-img').eq(counterOfReaschProject).attr('style', 'background-image: url("' + ajaxResponseResearchProject[counterOfReaschProject].attach[0] + '");');
@@ -1200,14 +1205,14 @@ $(document).ready(function () {
                     var $reaschList = '<div class="research-project-gain-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1><span>'  + '</span>' +
-                        '<p>' + text.substr(0, 63) + "..." + '</p>' + '</div>' + '</div>';
+                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1>'+
+                        '<p>' + text.substr(0, 63) + "..." + '</p>'+'<span  class="share-time">'+ajaxResponseFinshed[counterOfProjectGain].publish_time.substr(0,10) + '</span>' + '</div>' + '</div>';
                 } else {
                     var $reaschList = '<div class="current-research-project-card">' +
                         '<div class="example-img"></div>' +
                         '<div class="card-introduction">' +
-                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1><span>' + '</span>' +
-                        '<p>' + text + '</p>' + '</div>' + '</div>';
+                        '<h1>' + ajaxResponseFinshed[counterOfProjectGain].title + '</h1>'+
+                        '<p>' + text + '</p>' + '<span class="share-time">'+ajaxResponseFinshed[counterOfProjectGain].publish_time.substr(0,10) + '</span>' +'</div>' + '</div>';
                 }
                 $('#research-project-gain-id').append($reaschList);
                 $('#research-project-gain-id .research-project-gain-card .example-img').eq(counterOfProjectGain).attr('style', 'background-image: url("' + ajaxResponseFinshed[counterOfProjectGain].attach[0] + '");');
@@ -1296,6 +1301,7 @@ $(document).ready(function () {
                         $honor.eq(i).text(data[i].honor);
                         var text = getText(HTMLDecode(data[i].message));
                         $introduction.eq(i).text(text);
+                        console.log(text);
                     }
                 },
                 error: function () {
@@ -1358,14 +1364,14 @@ $(document).ready(function () {
             //行业精英获取信息，点击刷新的行业精英的内容
             $('#industry-elite-list-body-article-id').on('click', '.industry-elite-list-body-article-list', function () {
                 var indexOfArticle = parseInt($(this).attr('id').substr(18));
-               // alert(indexOfArticle);
+                // alert(indexOfArticle);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-img').attr('style', 'background-image:url("' + ajaxResponse[indexOfArticle].avatar + '")');
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-name').text(ajaxResponse[indexOfArticle].title);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-position').text(ajaxResponse[indexOfArticle].honor);
                 $('#industry-elite-personal-detail-page-id .industry-elite-personal-detail-article article').html(HTMLDecode(ajaxResponse[indexOfArticle].message));
                 $('#industry-elite-list-body-article-id').hide();
                 $('#industry-elite-personal-detail-page-id').show();
-                  $('#footer-top-id').text('');
+                $('#footer-top-id').text('');
                 //调试代码结束
             })
             //第一个人结束
@@ -1390,10 +1396,26 @@ $(document).ready(function () {
 
         };
         $joinUs = $url.match('joinUs');
-        if ($joinUs != null) {
+        if ($joinUs != null) {}
+        var $searchResult = $url.match('searchResult.html');
+        if ($searchResult != null) {
+            $.ajax({
+               url: 'http://39.108.87.54/api/search/',
+                method: 'GET',
+                dataType: 'JSON',
+                type:'articles',
+                data:$.cookie('globalSearch'),
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (response) {
+                    alert(response);
+                    console.log(response+"success!!!!!!!")
+                },
+                error:function(){
+                    alert('get search information fail!!!');
+                }
+            })
 
         }
-
     }
     determineTheBlueBorder();
     //URL处理结束

@@ -152,7 +152,7 @@
             height: 40px;
             margin-top: -25px;
             border-radius: 50%;
-            border: 2px solid white;
+            //border: 2px solid white;
             i {
                 font-size: 40px;
                 color: #fff;
@@ -169,8 +169,7 @@
             width: 40px;
             height: 40px;
             margin-top: -25px;
-            border-radius: 50%;
-            border: 2px solid white;
+            // border: 2px solid white;
             cursor: pointer;
             i {
                 font-size: 40px;
@@ -224,7 +223,7 @@
             font-family: $base-font-family;
             margin-top: 12px;
             margin-left: 30px;
-            line-height: 18px;
+            line-height: 20px;
             display: block;
             width: 700px;
             overflow: hidden;
@@ -422,7 +421,7 @@
             margin-top: 10px;
             .row {
                 width: 462px;
-                height: 412px;
+                height: 420px;
                 padding: 0px;
                 margin-left: 0px;
                 margin-right: 0px;
@@ -441,10 +440,10 @@
                             height: 132px;
                             padding: 0px;
                             overflow: hidden;
-                            span:nth-child(2) {
+                            span:nth-child(3) {
                                 float: right;
                                 display: block;
-                                margin-top: 22px;
+                               // margin-top: 22px;
                                 margin-right: 20px;
                                 font-size: 14px;
                                 color: #626878;
@@ -467,6 +466,7 @@
                                 font-size: 14px;
                                 font-family: $base-font-family;
                                 color: #626878;
+                                clear: both;
                             }
                         }
                     }
