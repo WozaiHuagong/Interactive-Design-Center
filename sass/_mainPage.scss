@@ -10,7 +10,10 @@
         .common-header-logo {
             height: 100%;
             display: inline-block;
-            background-image: url('../assets/common-assets/暂时logo.png');
+            background-image: url('../assets/common-assets/newLogo.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
             vertical-align: middle; //仅仅只在inline-block的元素内有作用
             height: 43px; //必须有宽高大小才能正确显示背景图片
             width: 41px; // img{
@@ -583,10 +586,13 @@
                     .common-footer-logo-img {
                         height: 100%;
                         display: inline-block;
-                        background-image: url('../assets/common-assets/暂时logo.png');
+                        background-image: url('../assets/common-assets/newLogo.png');
                         vertical-align: middle; //仅仅只在inline-block的元素内有作用
                         height: 43px; //必须有宽高大小才能正确显示背景图片
                         width: 41px;
+                        background-size: 100% 100%;
+                        background-repeat: no-repeat;
+                        background-position: center;
                     }
                     .common-footer-logo-text {
                         display: inline-block;

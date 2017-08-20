@@ -15,7 +15,10 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
     .common-header .common-header-content .common-header-logo {
       height: 100%;
       display: inline-block;
-      background-image: url("../assets/common-assets/暂时logo.png");
+      background-image: url("../assets/common-assets/newLogo.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
       vertical-align: middle;
       height: 43px;
       width: 41px; }
@@ -470,10 +473,13 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-logo .common-footer-logo-img {
             height: 100%;
             display: inline-block;
-            background-image: url("../assets/common-assets/暂时logo.png");
+            background-image: url("../assets/common-assets/newLogo.png");
             vertical-align: middle;
             height: 43px;
-            width: 41px; }
+            width: 41px;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center; }
           .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-logo .common-footer-logo-text {
             display: inline-block;
             margin-left: 10px;
