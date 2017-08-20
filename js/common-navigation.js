@@ -430,7 +430,7 @@ $(document).ready(function () {
                                     $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse[i].publish_time);
                                     $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse[i].view_num + "次阅读");
                                     // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse[indexOfArticle].source ? ajaxResponse[indexOfArticle].source : ""); //文章来源
-                                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse[i].summary);
+                                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>' + ajaxResponse[i].summary);
                                     $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse[i].message));
                                     break;
                                 }
@@ -526,7 +526,7 @@ $(document).ready(function () {
                 $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse[indexOfArticle].publish_time);
                 $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse[indexOfArticle].view_num + "次阅读");
                 // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse[indexOfArticle].source ? ajaxResponse[indexOfArticle].source : ""); //文章来源
-                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse[indexOfArticle].summary);
+                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>' + ajaxResponse[indexOfArticle].summary);
                 $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse[indexOfArticle].message));
                 //文章内容已经更新完毕
                 for (var i = 0; i < 5; i++) {
@@ -541,7 +541,7 @@ $(document).ready(function () {
                             $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse[i].publish_time);
                             $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse[i].view_num + "次阅读");
                             // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse[indexOfArticle].source ? ajaxResponse[indexOfArticle].source : ""); //文章来源
-                            $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse[i].summary);
+                            $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>'+ ajaxResponse[i].summary);
                             $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse[i].message));
                             break;
                         }
@@ -569,7 +569,7 @@ $(document).ready(function () {
                     $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse[indexOfArticle].publish_time);
                     $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse[indexOfArticle].view_num + "次阅读");
                     // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse[indexOfArticle].source ? ajaxResponse[indexOfArticle].source : ""); //文章来源
-                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse[indexOfArticle].summary);
+                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>' + ajaxResponse[indexOfArticle].summary);
                     $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse[indexOfArticle].message));
                     //文章内容已经更新完毕 
                     if (indexOfArticle > 0 && indexOfArticle < ajaxResponse.length - 1) {
@@ -590,7 +590,7 @@ $(document).ready(function () {
                     $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse[indexOfArticle].publish_time);
                     $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse[indexOfArticle].view_num + "次阅读");
                     // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse[indexOfArticle].source ? ajaxResponse[indexOfArticle].source : ""); //文章来源
-                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse[indexOfArticle].summary);
+                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>' + ajaxResponse[indexOfArticle].summary);
                     $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse[indexOfArticle].message));
                     //文章内容已经更新完毕 
                     if (indexOfArticle > 0 && indexOfArticle < ajaxResponse.length - 1) {
@@ -860,7 +860,7 @@ $(document).ready(function () {
                 $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponseOfIndustryInfo[indexOfArticle].publish_time);
                 $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponseOfIndustryInfo[indexOfArticle].view_num + "次阅读");
                 // $('#info-center-detail-page-id .left-section .article-source').text( ajaxResponseOfIndustryInfo[indexOfArticle].source ?  ajaxResponseOfIndustryInfo[indexOfArticle].source : ""); //文章来源
-                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponseOfIndustryInfo[indexOfArticle].summary);
+                $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>' + ajaxResponseOfIndustryInfo[indexOfArticle].summary);
                 $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponseOfIndustryInfo[indexOfArticle].message));
                 //文章内容已经更新完毕
                 //右方最新资讯更新
@@ -874,7 +874,7 @@ $(document).ready(function () {
                             $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponseOfIndustryInfo[i].publish_time);
                             $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponseOfIndustryInfo[i].view_num + "次阅读");
                             // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse[indexOfArticle].source ? ajaxResponse[indexOfArticle].source : ""); //文章来源
-                            $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponseOfIndustryInfo[i].summary);
+                            $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>' + ajaxResponseOfIndustryInfo[i].summary);
                             $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponseOfIndustryInfo[i].message));
                             break;
                         }
@@ -904,7 +904,7 @@ $(document).ready(function () {
                     $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse[indexOfArticle].publish_time);
                     $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse[indexOfArticle].view_num + "次阅读");
                     // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse[indexOfArticle].source ? ajaxResponse[indexOfArticle].source : ""); //文章来源
-                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse[indexOfArticle].summary);
+                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>' + ajaxResponse[indexOfArticle].summary);
                     $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse[indexOfArticle].message));
                     //文章内容已经更新完毕 
                     if (indexOfArticle > 0 && indexOfArticle < ajaxResponse.length - 1) {
@@ -925,7 +925,7 @@ $(document).ready(function () {
                     $('#info-center-detail-page-id .left-section .share-time').text("发表于 " + ajaxResponse[indexOfArticle].publish_time);
                     $('#info-center-detail-page-id .left-section .read-times').text(ajaxResponse[indexOfArticle].view_num + "次阅读");
                     // $('#info-center-detail-page-id .left-section .article-source').text(ajaxResponse[indexOfArticle].source ? ajaxResponse[indexOfArticle].source : ""); //文章来源
-                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html("<span></span>" + ajaxResponse[indexOfArticle].summary);
+                    $('#info-center-detail-page-id .left-section .info-center-detail-page-abstract').html('<span id="info-center-detail-page-abstract-icon"></span>' + ajaxResponse[indexOfArticle].summary);
                     $('#info-center-detail-page-id .left-section article').html(HTMLDecode(ajaxResponse[indexOfArticle].message));
                     //文章内容已经更新完毕 
                     if (indexOfArticle > 0 && indexOfArticle < ajaxResponse.length - 1) {
