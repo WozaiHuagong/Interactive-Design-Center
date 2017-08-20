@@ -248,7 +248,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
           margin-top: 22px;
           text-align: center;
           height: 64px;
-          padding: 0 20px; }
+          padding: 0 20px;
+          font-weight: 500; }
         .main-page-body .main-page-info-center .main-page-info-center-card .row p {
           margin-top: 22px;
           font-size: 14px;
