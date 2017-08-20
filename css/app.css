@@ -689,7 +689,11 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         color: #525765;
         font-family: "Microsoft YaHei";
         margin-top: 14px;
-        margin-left: 30px; }
+        margin-left: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 450px; }
       .info-center-article-content-first .info-center-article-list .info-center-article-abstract span {
         float: right;
         right: 0px;
@@ -1104,11 +1108,13 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         float: right; }
       .current-research-project .current-research-project-card .card-introduction p {
         clear: both;
+        height: 56px;
+        overflow: hidden;
         font-size: 14px;
         color: #626878;
         font-family: "Microsoft YaHei";
         line-height: 2;
-        margin-top: 20px;
+        margin-top: 12px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
@@ -1236,6 +1242,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
+      overflow: hidden;
+      height: 64px;
       overflow: hidden; }
     .search-result-content .search-data-list .search-data-list-one .look-in-detail-search {
       position: absolute;

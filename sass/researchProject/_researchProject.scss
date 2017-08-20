@@ -38,11 +38,13 @@
             }
             p {
                 clear: both;
+                height: 56px;
+                overflow:hidden;
                 font-size: 14px;
                 color: #626878;
                 font-family: $base-font-family;
                 line-height: 2;
-                margin-top: 20px;
+                margin-top: 12px;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;

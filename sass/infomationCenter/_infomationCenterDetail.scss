@@ -173,6 +173,10 @@
                 font-family: $base-font-family;
                 margin-top: 14px;
                 margin-left: 30px;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                width:450px;
             }
             span {
                 float: right;
