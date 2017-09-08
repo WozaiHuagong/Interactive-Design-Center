@@ -171,10 +171,15 @@ class article extends AWS_ADMIN_CONTROLLER
 		if ($__list = $this->model('article')->fetch_page('article', implode(' AND ', $__where), 'id DESC', $_GET[$prefix.'_page'], $this->per_page)){
 			$search__total = $this->model('article')->found_rows();
 		}
-
+		$url_param_filted = array();
+		foreach ($url_param as $key => $value) {
+			if (strpos($value,$prefix.'_page') !== false ) {
+				$url_param_filted[] = $value;
+			}
+		}
 		$__list = $this->articles_list_modify($__list);
 		TPL::assign($prefix.'_pagination', AWS_APP::pagination()->initialize(array(
-			'base_url' => get_js_url('/admin/article/list/') . implode('__', $url_param),
+			'base_url' => get_js_url('/admin/article/list/') . implode('__', $url_param_filted),
 			'total_rows' => $search__total,
 			'per_page' => $this->per_page,
 			'query_string_segment' => $prefix.'_page'
