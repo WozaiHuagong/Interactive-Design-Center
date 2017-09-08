@@ -173,10 +173,9 @@ class article extends AWS_ADMIN_CONTROLLER
 		}
 		$url_param_filted = array();
 		foreach ($url_param as $key => $value) {
-			if (strpos($value,$prefix.'_page') !== false ) {
+			if (strpos($value,$prefix.'_page') === false ) {
 				$url_param_filted[] = $value;
 			}
-			echo $value."  ".$prefix."_page";
 		}
 		$__list = $this->articles_list_modify($__list);
 		TPL::assign($prefix.'_pagination', AWS_APP::pagination()->initialize(array(
