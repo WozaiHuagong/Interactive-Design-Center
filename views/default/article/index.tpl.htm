@@ -38,12 +38,12 @@
             <div class="question-box">
                 <div class="title-line clearfix">
                     <h2 class="pull-left"><?php echo $this->article_info['title']; ?></h2>
-                    <div class="thank-status pull-left"><i class="icon2-coin-dollar"></i><?php echo number_format($this->article_info['shang_cash']/100,2); ?></div>
+                    <div class="thank-status pull-left" style="display: none;"><i class="icon2-coin-dollar"></i><?php echo number_format($this->article_info['shang_cash']/100,2); ?></div>
                 </div>
                 <div class="s-title clearfix">
                     <div class="date pull-left"><?php echo date_friendly($this->article_info['add_time'], 604800, 'Y-m-d'); ?></div>
                     <div class="bt-line pull-right">
-                        <div class="thank btn btn-success btn-xs pull-right">
+                        <div class="thank btn btn-success btn-xs pull-right" style="display: none;">
                             <i class="icon-thank"></i>加奖
                         </div>
                         <div class="share btn btn-xs btn-success">
