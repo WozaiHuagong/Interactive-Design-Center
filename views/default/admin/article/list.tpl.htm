@@ -194,32 +194,40 @@
                 <?php if ($_GET['action'] == 'search') { ?>
                 <div class="alert alert-info"><?php _e('找到 %s 条符合条件的内容', intval($this->articles_count)); ?></div>
                 <?php } ?>
-                <input type="hidden" id="action" name="action" value="del" />
-                <div class="table-responsive">
-                <?php if ($this->elite_list) { ?>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>编号</th>
-                                <th><?php _e('头像'); ?></th>
-                                <th><?php _e('精英名字'); ?></th>
-                                <th><?php _e('职称'); ?></th>
-                                <th><?php _e('操作'); ?></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i=0;foreach ($this->elite_list AS $key => $val) { if($val['topic_title']!="行业精英") continue;$i++;?>
-                            <tr>
-                                <td><?php echo $i;?></td>
-                                <td><img src="<?php echo $val['img'];?>"></td>
-                                <td><a href="article/<?php echo $val['id']; ?>" target="_blank"><?php echo $val['title']; ?></a></td>
-                                <td><?php echo $val['summary']; ?></td>
-                                <td><a href="publish/article/<?php echo $val['id']; ?>" target="_blank" class="icon icon-edit md-tip" title="编辑"></a></td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                <?php } ?>
+                <form id="batchs_form5" action="admin/ajax/article_manage/" method="post">
+                    <input type="hidden" id="action" name="action" value="del" />
+                    <div class="table-responsive">
+                        <?php if ($this->elite_list) { ?>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>编号</th>
+                                        <th><?php _e('头像'); ?></th>
+                                        <th><?php _e('精英名字'); ?></th>
+                                        <th><?php _e('职称'); ?></th>
+                                        <th><?php _e('操作'); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i=0;foreach ($this->elite_list AS $key => $val) { if($val['topic_title']!="行业精英") continue;$i++;?>
+                                    <tr>
+                                        <td><input type="checkbox" name="article_ids[]" value="<?php echo $val['id']; ?>"></td>
+                                        <td><?php echo $i;?></td>
+                                        <td><img src="<?php echo $val['img'];?>"></td>
+                                        <td><a href="article/<?php echo $val['id']; ?>" target="_blank"><?php echo $val['title']; ?></a></td>
+                                        <td><?php echo $val['summary']; ?></td>
+                                        <td><a href="publish/article/<?php echo $val['id']; ?>" target="_blank" class="icon icon-edit md-tip" title="编辑"></a></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+
+                            </table>
+                        <?php } ?>
+                    </div>
+                </form>
+                <div class="mod-table-foot">
+                    <a class="btn btn-danger" onclick="$('#action').val('del'); AWS.ajax_post($('#batchs_form5'));" href="javascript:;"><?php _e('删除'); ?></a>
                 </div>
             </div>
 
