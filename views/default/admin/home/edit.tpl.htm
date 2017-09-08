@@ -27,7 +27,8 @@
 						<div class="form-group">
 							<span class="col-sm-4 col-xs-3 control-label"><?php _e('图片'); ?>:</span>
 							<div class="col-sm-5 col-xs-8">
-							<img src="<?php echo $this->category['url'];?>">
+							<input type="file" class="file-input" name="file" multiple="multiple" id="file" style="width: 0px;height: 0px" onchange="var r= new FileReader();f=document.getElementById('file').files[0];r.readAsDataURL(f);r.onload=function  (e){document.getElementById('show').src=this.result;}">
+							<img id="show" src="<?php echo $this->category['url'];?>" onclick="document.getElementById('file').click();">
 							</div>
 						</div>
 					</td>
