@@ -1,0 +1,52 @@
+.about-us-organization{
+    background-image: url('../../assets/交互设计中心切图（3）/关于我们-组织架构/组织架构.png');
+    height:386px;
+    width:954px;
+    margin:0 auto;
+    margin-top:75px;
+}
+.about-us-member{
+    width:$base-width;
+    margin: 0 auto;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .about-us-member-list{
+        width:291px;
+        height:500px;
+        background-color:rgb(247,247,247);
+        border-radius:8px;
+        margin-top:30px;
+        .member-list-img{
+            height:157px;
+            width:157px;
+            margin:0 auto;
+            margin-top:16px;
+            border-radius:50%;//实现圆形边框
+        }
+        .member-list-name{
+            font-size:24px;
+            color:#525765;
+            font-family:$base-font-family;
+            display:block;
+            text-align:center;
+        }
+        .member-list-position{
+            font-size:12px;
+            color:#a0a0a0;
+            font-family:$base-font-family;
+            display:block;
+            text-align:center;
+        }
+        .member-list-introduction{
+            font-size:16px;
+            font-family:$base-font-family;
+            display:block;
+            margin-top:10px;
+            margin-left:20px;
+            margin-right:20px;
+            color:#626878;
+        }
+    }
+}

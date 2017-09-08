@@ -1,0 +1,51 @@
+.search-result-content{
+    width:$base-width;
+    margin:0 auto;
+    .search-data{
+        margin-top:26px;
+        font-size:16px;
+        color:#626878;
+        font-family:  "Microsoft YaHei";
+    }
+    .search-data-list{
+        //margin-top:16px;
+        .search-data-list-one{
+            margin-top:20px;
+         box-shadow: 0px 0px 5px #c8c8c8;
+            padding:16px;
+            height:200px;
+            position:relative;
+            .title{
+                margin:0px;
+                padding:0px;
+                display:inline-block;
+                margin-bottom:20px;
+                font-size:18px;
+                font-family: $base-font-family;
+            }
+            .share-time{
+                float: right;
+                font-size:14px;
+                font-family: $base-font-family;
+                color:#a0a0a0;
+            }
+            p{
+                font-size:14px;
+                color:#626878;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                overflow: hidden;
+                height: 64px;
+                overflow:hidden;
+            }
+            .look-in-detail-search{
+                position: absolute ;
+                right: 16px;
+                bottom:16px;
+
+            }
+        }
+    
+    }
+}

@@ -9,5 +9,6 @@ $config['master'] = array (
   'username' => 'root',
   'password' => 'imshabby',
   'dbname' => 'yesfoo',
+  'port' => 3307,
 );
 $config['slave'] = false;

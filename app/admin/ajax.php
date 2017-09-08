@@ -655,6 +655,42 @@ class ajax extends AWS_ADMIN_CONTROLLER
             H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('关联链接不是正确的http(s)链接格式')));
         }
 
+        if ($_FILES['file'] != ''){
+            AWS_APP::upload()->initialize(array(
+                'allowed_types' => get_setting('allowed_upload_types'),
+                'upload_path' => get_setting('upload_dir') . '/' . 'carousel' . '/' . gmdate('Ymd'),
+                'is_image' => True,
+                'max_size' => get_setting('upload_size_limit')
+            ));
+
+            AWS_APP::upload()->do_upload('file');
+
+            if (AWS_APP::upload()->get_error())
+            {
+                switch (AWS_APP::upload()->get_error())
+                {
+                    default:
+                        die("{'error':'错误代码: " . AWS_APP::upload()->get_error() . "'}");
+                    break;
+
+                    case 'upload_invalid_filetype':
+                        die("{'error':'文件类型无效'}");
+                    break;
+
+                    case 'upload_invalid_filesize':
+                        die("{'error':'文件尺寸过大, 最大允许尺寸为 " . get_setting('upload_size_limit') .  " KB'}");
+                    break;
+                }
+            }
+            $data = AWS_APP::upload()->data();
+
+            $full_path=str_replace(str_replace("\\", "/", get_setting('upload_dir')), "", $data['full_path']);
+            $url = "/uploads".$full_path;
+        }else{
+            $url = null;
+        }
+
+
         if ($_POST['show_index'])
         {
             $show_index = intval($_POST['show_index']);
@@ -664,7 +700,7 @@ class ajax extends AWS_ADMIN_CONTROLLER
             $show_index = end($this->model('carousel')->get_carousel_list())['show_index']+1;
         }
 
-        $category = $this->model('carousel')->update_carousel($_POST['carousel_id'],$show_index,$_POST['title'],$_POST['content'],$_POST['link_url'],$_POST['status']);
+        $category = $this->model('carousel')->update_carousel($_POST['carousel_id'],$show_index,$_POST['title'],$_POST['content'],$_POST['link_url'],$_POST['status'],$url);
 
         H::ajax_json_output(AWS_APP::RSM(array(
             'url' => get_js_url('/admin/home/list/')
