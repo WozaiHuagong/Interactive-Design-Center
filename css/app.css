@@ -1,0 +1,1258 @@
+@charset "UTF-8";
+html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, textarea, th, td, select {
+  margin: 0;
+  padding: 0; }
+
+.common-header {
+  background-color: #0893d6;
+  width: 100%;
+  height: 64px; }
+  .common-header .common-header-content {
+    width: 956px;
+    margin: 0 auto;
+    height: 64px;
+    overflow: hidden; }
+    .common-header .common-header-content .common-header-logo {
+      height: 100%;
+      display: inline-block;
+      background-image: url("../assets/common-assets/newLogo.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      vertical-align: middle;
+      height: 43px;
+      width: 41px; }
+    .common-header .common-header-content .common-header-text {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 18px;
+      height: 100%;
+      padding-top: 20px;
+      color: #ffffff;
+      font-family: "Microsoft YaHei";
+      letter-spacing: 2px; }
+    .common-header .common-header-content nav {
+      float: right;
+      width: 80px;
+      margin-top: 0px;
+      height: 30px;
+      margin-top: 20px;
+      transition: width 1.5s;
+      background-color: #0893d6; }
+      .common-header .common-header-content nav .input-field .label-icon i {
+        margin-top: -28px;
+        left: 10px; }
+      .common-header .common-header-content nav .input-field i:nth-child(3) {
+        margin-top: -15px; }
+      .common-header .common-header-content nav .input-field #search {
+        border-radius: 2px; }
+    .common-header .common-header-content #search:focus nav {
+      width: 300px !important; }
+    .common-header .common-header-content nav:hover {
+      width: 300px; }
+      .common-header .common-header-content nav:hover input {
+        background-color: #fff; }
+      .common-header .common-header-content nav:hover #search-icon {
+        color: #2d3240; }
+    .common-header .common-header-content input:focus {
+      width: 200px; }
+      .common-header .common-header-content input:focus #close-btn {
+        display: inline-block; }
+
+.common-navigation-bar {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0px 5px 5px #f0f0f0; }
+  .common-navigation-bar .common-navigation-bar-wrap {
+    position: relative;
+    width: 956px;
+    margin: 0 auto; }
+    .common-navigation-bar .common-navigation-bar-wrap .common-navigation-join-us {
+      font-size: 20px;
+      font-family: "Microsoft YaHei";
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      margin-top: 20px;
+      width: 128px;
+      letter-spacing: 0px;
+      padding: 0px;
+      background-color: #f79556; }
+    .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content {
+      width: 956px;
+      height: 64px;
+      overflow: hidden;
+      background-color: #ffffff;
+      line-height: 45px; }
+      .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        margin-top: 16px; }
+        .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content ul li a {
+          color: #626878;
+          font-size: 20px;
+          font-family: "Microsoft YaHei"; }
+        .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content ul li a:active,
+        .common-navigation-bar .common-navigation-bar-wrap .common-navigation-bar-content ul li a:hover {
+          background-color: #fff; }
+
+.main-page-body {
+  width: 956px; }
+  .main-page-body .personal-slider {
+    position: relative;
+    overflow: hidden;
+    height: 468px;
+    box-shadow: 0px 0px 5px #c8c8c8; }
+    .main-page-body .personal-slider .slider-wrap {
+      position: relative;
+      width: 3824px; }
+    .main-page-body .personal-slider .slider-block {
+      float: left;
+      height: 468px;
+      width: 956px;
+      background-color: #ad1; }
+    .main-page-body .personal-slider .slider-direction-next {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      z-index: 120;
+      width: 40px;
+      height: 40px;
+      margin-top: -25px;
+      border-radius: 50%;
+      cursor: pointer; }
+      .main-page-body .personal-slider .slider-direction-next i {
+        font-size: 40px;
+        color: #fff;
+        margin-top: -2px;
+        display: block; }
+    .main-page-body .personal-slider .slider-direction-prev {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      z-index: 120;
+      width: 40px;
+      height: 40px;
+      margin-top: -25px;
+      cursor: pointer; }
+      .main-page-body .personal-slider .slider-direction-prev i {
+        font-size: 40px;
+        color: #fff;
+        margin-top: -2px;
+        display: block;
+        margin-left: -5px; }
+    .main-page-body .personal-slider .slider-dots {
+      position: absolute;
+      bottom: 80px;
+      z-index: 120;
+      left: 50%;
+      margin-left: -40px; }
+      .main-page-body .personal-slider .slider-dots li {
+        display: inline-block;
+        width: 20px;
+        cursor: pointer; }
+        .main-page-body .personal-slider .slider-dots li i {
+          display: block;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.4);
+          font-size: 10px;
+          color: rgba(250, 250, 250, 0.8); }
+        .main-page-body .personal-slider .slider-dots li .active {
+          background-color: white; }
+    .main-page-body .personal-slider .carousel-content-text {
+      width: 956px;
+      height: 70px;
+      position: absolute;
+      bottom: 0px;
+      margin-top: -70px;
+      z-index: 121;
+      background-color: rgba(67, 67, 69, 0.7);
+      text-align: left; }
+      .main-page-body .personal-slider .carousel-content-text span:nth-child(1) {
+        margin: 0px;
+        padding: 0px;
+        font-size: 18px;
+        color: #ffffff;
+        font-family: "Microsoft YaHei";
+        margin-top: 12px;
+        margin-left: 30px;
+        line-height: 20px;
+        display: block;
+        width: 700px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+      .main-page-body .personal-slider .carousel-content-text span:nth-child(2) {
+        font-size: 14px;
+        font-family: "Microsoft YaHei";
+        color: #ffffff;
+        margin-top: 12px;
+        margin-left: 30px;
+        line-height: 18px;
+        display: inline-block;
+        width: 780px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+      .main-page-body .personal-slider .carousel-content-text .main-page-look-in-detail {
+        float: right;
+        margin-right: 20px;
+        margin-top: -12px;
+        background-color: #0893d6; }
+  .main-page-body .main-page-info-center {
+    margin-top: 30px; }
+    .main-page-body .main-page-info-center .main-page-info-center-header i {
+      font-size: 40px;
+      color: #0893d6;
+      display: inline-block;
+      vertical-align: middle; }
+    .main-page-body .main-page-info-center .main-page-info-center-header span:nth-child(2) {
+      font-size: 20px;
+      display: inline-block;
+      margin-left: 15px;
+      color: #0893d6;
+      font-family: "Microsoft YaHei"; }
+    .main-page-body .main-page-info-center .main-page-info-center-header span:nth-child(3) {
+      font-size: 18px;
+      font-family: "Microsoft YaHei";
+      color: #f79556;
+      float: right; }
+      .main-page-body .main-page-info-center .main-page-info-center-header span:nth-child(3) a {
+        text-decoration: none;
+        color: #f79556; }
+    .main-page-body .main-page-info-center .main-page-info-center-card {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; }
+      .main-page-body .main-page-info-center .main-page-info-center-card .row {
+        box-shadow: 0px 0px 5px #c8c8c8;
+        width: 300px;
+        height: 296px;
+        padding: 0px;
+        margin-left: 0px;
+        margin-right: 0px; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row h2 {
+          line-height: 18px;
+          margin: 0px;
+          padding: 0ps;
+          font-size: 18px;
+          font-family: "Microsoft YaHei";
+          color: #525765;
+          text-align: center;
+          font-weight: 600;
+          display: block;
+          line-height: 32px;
+          margin-bottom: 8px;
+          margin-top: 22px;
+          text-align: center;
+          height: 64px;
+          padding: 0 20px;
+          font-weight: 500; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row p {
+          margin-top: 22px;
+          font-size: 14px;
+          color: #626878;
+          font-family: "Microsoft YaHei";
+          height: 96px;
+          padding: 0 20px;
+          line-height: 25px;
+          overflow: hidden;
+          margin-bottom: 4px; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row span {
+          padding-left: 220px;
+          font-size: 12px;
+          color: #a0a0a0; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row hr {
+          margin: 0px;
+          margin-top: 3px;
+          height: 0px;
+          padding: 0px;
+          width: 100%;
+          border-top: 1px solid rgba(160, 160, 160, 0.2); }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row a {
+          display: block;
+          text-align: center;
+          color: #f79556;
+          font-size: 18px;
+          font-family: "Microsoft YaHei";
+          margin-top: 16px; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row .col {
+          padding: 0px; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row .card-content {
+          padding: 0px;
+          margin: 20px; }
+          .main-page-body .main-page-info-center .main-page-info-center-card .row .card-content p:nth-child(2) {
+            height: 125px; }
+          .main-page-body .main-page-info-center .main-page-info-center-card .row .card-content p:nth-child(3) {
+            padding-left: 200px;
+            font-size: 12px;
+            color: #a0a0a0; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row .card-title {
+          font-size: 18px;
+          font-family: "Microsoft YaHei";
+          color: #525765;
+          text-align: center;
+          font-weight: 600; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row p {
+          font-size: 14px;
+          color: #626878;
+          font-family: "Microsoft YaHei"; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row .card-content {
+          height: 180px;
+          margin-bottom: 10px; }
+        .main-page-body .main-page-info-center .main-page-info-center-card .row .card-action {
+          padding: 0px;
+          height: 58px;
+          text-align: center;
+          bottom: 0px; }
+          .main-page-body .main-page-info-center .main-page-info-center-card .row .card-action a {
+            line-height: 58px;
+            font-size: 18px;
+            font-family: "Microsoft YaHei";
+            color: #626878; }
+  .main-page-body .main-page-research-project {
+    margin-top: 10px; }
+    .main-page-body .main-page-research-project .main-page-research-project-header i {
+      font-size: 40px;
+      color: #0893d6;
+      display: inline-block;
+      vertical-align: middle; }
+    .main-page-body .main-page-research-project .main-page-research-project-header span:nth-child(2) {
+      font-size: 20px;
+      display: inline-block;
+      margin-left: 15px;
+      color: #0893d6;
+      font-family: "Microsoft YaHei"; }
+    .main-page-body .main-page-research-project .main-page-research-project-header span:nth-child(3) {
+      font-size: 18px;
+      font-family: "Microsoft YaHei";
+      color: #f79556;
+      float: right; }
+      .main-page-body .main-page-research-project .main-page-research-project-header span:nth-child(3) a {
+        text-decoration: none;
+        color: #f79556; }
+    .main-page-body .main-page-research-project .main-page-research-project-card {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 10px; }
+      .main-page-body .main-page-research-project .main-page-research-project-card .row {
+        width: 462px;
+        height: 420px;
+        padding: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        box-shadow: 0px 0px 5px #c8c8c8;
+        cursor: pointer; }
+        .main-page-body .main-page-research-project .main-page-research-project-card .row .col {
+          padding: 0px; }
+          .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card {
+            margin: 0px; }
+            .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-image {
+              width: 100%;
+              height: 280px; }
+            .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content {
+              width: 100%;
+              height: 132px;
+              padding: 0px;
+              overflow: hidden; }
+              .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content span:nth-child(3) {
+                float: right;
+                display: block;
+                margin-right: 20px;
+                font-size: 14px;
+                color: #626878;
+                font-family: "Microsoft YaHei"; }
+              .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content .card-article-title {
+                display: inline-block;
+                margin-left: 14px;
+                padding-top: 22px;
+                line-height: 18px;
+                font-size: 18px;
+                font-family: "Microsoft YaHei";
+                color: #525765; }
+              .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content p {
+                margin-left: 14px;
+                margin-top: 12px;
+                margin-right: 18px;
+                line-height: 25px;
+                font-size: 14px;
+                font-family: "Microsoft YaHei";
+                color: #626878;
+                clear: both; }
+  .main-page-body .main-page-industry-elite {
+    margin-top: 10px;
+    margin-bottom: 110px; }
+    .main-page-body .main-page-industry-elite .main-page-industry-elite-header i {
+      font-size: 40px;
+      color: #0893d6;
+      display: inline-block;
+      vertical-align: middle; }
+    .main-page-body .main-page-industry-elite .main-page-industry-elite-header span:nth-child(2) {
+      font-size: 20px;
+      display: inline-block;
+      margin-left: 15px;
+      color: #0893d6;
+      font-family: "Microsoft YaHei"; }
+    .main-page-body .main-page-industry-elite .main-page-industry-elite-header span:nth-child(3) {
+      font-size: 18px;
+      font-family: "Microsoft YaHei";
+      color: #f79556;
+      float: right; }
+      .main-page-body .main-page-industry-elite .main-page-industry-elite-header span:nth-child(3) a {
+        text-decoration: none;
+        color: #f79556; }
+    .main-page-body .main-page-industry-elite .main-page-industry-elite-card {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap; }
+      .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row {
+        width: 462px;
+        height: 198px;
+        margin-left: 0px;
+        margin-right: 0px;
+        box-shadow: 0px 0px 5px #c8c8c8;
+        cursor: pointer; }
+        .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col {
+          padding: 0px; }
+          .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card {
+            margin: 0px; }
+          .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-image {
+            width: 160px;
+            height: 198px;
+            overflow: hidden;
+            background-color: #0893d6; }
+          .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-content {
+            padding: 0px; }
+            .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-content span:nth-child(1) {
+              font-family: "Microsoft YaHei";
+              font-size: 18px;
+              line-height: 18px;
+              margin-top: 25px;
+              margin-left: 28px;
+              color: #525765;
+              display: block; }
+            .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-content span:nth-child(2) {
+              font-family: "Microsoft YaHei";
+              font-size: 12px;
+              line-height: 12x;
+              margin-top: 16px;
+              margin-left: 28px;
+              color: #a0a0a0;
+              display: block; }
+            .main-page-body .main-page-industry-elite .main-page-industry-elite-card .row .col .card-content p {
+              font-family: "Microsoft YaHei";
+              font-size: 14px;
+              line-height: 25px;
+              margin-top: 30px;
+              margin-left: 28px;
+              margin-right: 25px;
+              color: #626878; }
+
+.common-footer {
+  width: 100%;
+  height: 255px; }
+  .common-footer .common-footer-content {
+    background-color: #0893d6;
+    width: 100%;
+    height: 195px; }
+    .common-footer .common-footer-content .common-footer-detail {
+      width: 956px;
+      margin: 0 auto; }
+      .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left {
+        float: left; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-logo {
+          margin-top: 10px; }
+          .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-logo .common-footer-logo-img {
+            height: 100%;
+            display: inline-block;
+            background-image: url("../assets/common-assets/newLogo.png");
+            vertical-align: middle;
+            height: 43px;
+            width: 41px;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center; }
+          .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-logo .common-footer-logo-text {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 14px;
+            height: 100%;
+            padding-top: 20px;
+            color: #ffffff;
+            font-family: "Microsoft YaHei";
+            letter-spacing: 1px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-left-first-text {
+          margin-top: 25px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left .common-footer-left-second-text {
+          margin-top: 15px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-left p {
+          color: #fff;
+          font-size: 14px;
+          font-family: "Microsoft YaHei";
+          letter-spacing: 1px;
+          margin-left: 28px; }
+      .common-footer .common-footer-content .common-footer-detail .common-footer-detail-right {
+        float: right;
+        width: 200px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-right .common-footer-logo-right-text {
+          margin-top: 10px;
+          font-size: 14px;
+          height: 100%;
+          padding-top: 20px;
+          color: #ffffff;
+          font-family: "Microsoft YaHei";
+          letter-spacing: 1px; }
+        .common-footer .common-footer-content .common-footer-detail .common-footer-detail-right .common-footer-wechat {
+          height: 70px;
+          width: 70px;
+          background-image: url("../assets/common-assets/footer二维码.png");
+          margin: 0 auto;
+          margin-top: 30px; }
+  .common-footer .common-copy-right {
+    width: 100%;
+    height: 65px;
+    background-color: #0c83bd;
+    overflow: hidden; }
+    .common-footer .common-copy-right .first {
+      font-size: 14px;
+      font-family: "Microsoft YaHei";
+      width: 340px;
+      margin: 0 auto;
+      color: #fff;
+      margin-top: 10px;
+      letter-spacing: 1px; }
+    .common-footer .common-copy-right .second {
+      font-size: 14px;
+      font-family: "Microsoft YaHei";
+      width: 150px;
+      margin: 0 auto;
+      color: #fff; }
+
+.main-page-body-scrollby {
+  width: 1080px;
+  margin: 0 auto;
+  padding-left: 62px; }
+
+.scroll-spy-wrap {
+  float: right; }
+  .scroll-spy-wrap .scroll-spy {
+    font-size: 18px;
+    font-family: "Microsoft YaHei"; }
+    .scroll-spy-wrap .scroll-spy .active {
+      border-left: 5px solid #0893d6; }
+
+.info-center-detail-body {
+  width: 100%; }
+  .info-center-detail-body .info-center-detail-body-header {
+    width: 100%;
+    height: 80px;
+    background-color: #fafafa; }
+    .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content {
+      width: 956px;
+      margin: 0 auto; }
+      .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left {
+        float: left;
+        cursor: pointer; }
+        .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left i {
+          color: #0893d6;
+          font-size: 45px;
+          display: inline-block;
+          margin-top: 22px; }
+        .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-left span {
+          font-size: 23px;
+          font-family: "Microsoft YaHei";
+          color: #0893d6;
+          display: inline-block;
+          position: relative;
+          bottom: 15px;
+          margin-left: 10px; }
+      .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-right {
+        margin-top: 28px;
+        float: right; }
+        .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-right span {
+          font-size: 20px;
+          font-family: "Microsoft YaHei";
+          letter-spacing: 2px;
+          color: #626878;
+          display: inline-block;
+          padding-left: 6px;
+          cursor: pointer; }
+        .info-center-detail-body .info-center-detail-body-header .info-center-detail-body-header-content .info-center-detail-body-header-right span:first-child {
+          padding-right: 10px;
+          border-right: 1px solid black; }
+  .info-center-detail-body .info-center-article-content {
+    width: 956px;
+    margin: 0 auto;
+    position: relative; }
+    .info-center-detail-body .info-center-article-content .info-center-article {
+      margin-top: 20px;
+      border-right: 1px solid #d2d2d2;
+      width: 730px;
+      padding-right: 20px; }
+      .info-center-detail-body .info-center-article-content .info-center-article .article-level-one-title {
+        font-size: 30px;
+        font-family: "Microsoft YaHei";
+        color: #2d3240;
+        margin-top: 20px; }
+      .info-center-detail-body .info-center-article-content .info-center-article .article-pages-level-two-title {
+        margin-top: 15px; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-level-two-title .article-pages-date {
+          font-size: 14px;
+          font-family: "Microsoft YaHei";
+          color: #959595; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-level-two-title .article-pages-rede-times {
+          font-size: 14px;
+          font-family: "Microsoft YaHei";
+          color: #959595;
+          padding-left: 10px;
+          padding-right: 10px;
+          border-left: 1px solid #959595;
+          border-right: 1px solid #959595;
+          margin-right: 10px;
+          margin-left: 10px; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-level-two-title .article-pages-address {
+          font-size: 14px;
+          font-family: "Microsoft YaHei";
+          color: #959595; }
+      .info-center-detail-body .info-center-article-content .info-center-article .article-pages-abstract {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding: 20px;
+        width: 100%;
+        background-color: #f6f5f5; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-abstract .article-pages-abstract-img {
+          background-image: url("../assets/详情页－资讯中心-assets/摘要左边标签.png");
+          width: 10px;
+          height: 16px;
+          float: left;
+          margin-right: 10px; }
+        .info-center-detail-body .info-center-article-content .info-center-article .article-pages-abstract .article-pages-abstract-content {
+          font-size: 14px;
+          line-height: 25px;
+          color: #959595;
+          letter-spacing: 2px;
+          font-family: "Microsoft YaHei"; }
+    .info-center-detail-body .info-center-article-content .info-center-article-list {
+      position: absolute;
+      width: 250px;
+      top: 0px;
+      right: 0px;
+      list-style-type: disc;
+      margin-left: 16px; }
+      .info-center-detail-body .info-center-article-content .info-center-article-list ul {
+        margin-left: 16px; }
+        .info-center-detail-body .info-center-article-content .info-center-article-list ul li {
+          list-style-type: disc;
+          margin-left: 20px;
+          font-size: 12px;
+          font-family: "Microsoft YaHei";
+          color: #c8c8c8; }
+        .info-center-detail-body .info-center-article-content .info-center-article-list ul p {
+          width: 100%;
+          border-bottom: 2px solid #d2d2d2;
+          margin-left: -10px;
+          margin-bottom: 20px; }
+          .info-center-detail-body .info-center-article-content .info-center-article-list ul p span {
+            display: inline-block;
+            font-size: 15px;
+            font-family: "Microsoft YaHei";
+            padding-right: 20px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid #0893d6; }
+
+.info-center-article-content-first {
+  width: 956px;
+  margin: 0 auto; }
+  .info-center-article-content-first .info-center-article-list {
+    width: 100%;
+    height: 202px;
+    box-shadow: 0px 0px 5px #c8c8c8;
+    padding: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px; }
+    .info-center-article-content-first .info-center-article-list .info-center-article-img {
+      background-color: #0893d6;
+      height: 186px;
+      width: 286px;
+      display: inline-block; }
+    .info-center-article-content-first .info-center-article-list .info-center-article-abstract {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      width: 650px;
+      height: 100%; }
+      .info-center-article-content-first .info-center-article-list .info-center-article-abstract h1 {
+        display: inline-block;
+        margin: 0px;
+        font-size: 18px;
+        color: #525765;
+        font-family: "Microsoft YaHei";
+        margin-top: 14px;
+        margin-left: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 450px; }
+      .info-center-article-content-first .info-center-article-list .info-center-article-abstract span {
+        float: right;
+        right: 0px;
+        top: 0px;
+        font-size: 14px;
+        font-family: "Microsoft YaHei";
+        color: #a0a0a0;
+        margin-right: 6px;
+        margin-top: 14px; }
+      .info-center-article-content-first .info-center-article-list .info-center-article-abstract .look-in-detail {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        margin-bottom: 12px;
+        margin-right: 6px;
+        background-color: #626878; }
+      .info-center-article-content-first .info-center-article-list .info-center-article-abstract p {
+        font-size: 14px;
+        margin-left: 30px;
+        margin-top: 35px;
+        color: #626878;
+        font-family: "Microsoft YaHei"; }
+
+.info-center-article-content-second {
+  width: 956px;
+  margin: 0 auto; }
+  .info-center-article-content-second .info-center-article-list {
+    width: 100%;
+    height: 202px;
+    box-shadow: 0px 0px 5px #c8c8c8;
+    padding: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px; }
+    .info-center-article-content-second .info-center-article-list .info-center-article-img {
+      background-color: #0893d6;
+      height: 186px;
+      width: 286px;
+      display: inline-block; }
+    .info-center-article-content-second .info-center-article-list .info-center-article-abstract {
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      width: 650px;
+      height: 100%; }
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract h1 {
+        display: inline-block;
+        margin: 0px;
+        font-size: 18px;
+        color: #525765;
+        font-family: "Microsoft YaHei";
+        margin-top: 14px;
+        margin-left: 30px; }
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract span {
+        float: right;
+        right: 0px;
+        top: 0px;
+        font-size: 14px;
+        font-family: "Microsoft YaHei";
+        color: #a0a0a0;
+        margin-right: 6px;
+        margin-top: 14px; }
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract .look-in-detail-industry {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        margin-bottom: 12px;
+        margin-right: 6px;
+        background-color: #626878; }
+      .info-center-article-content-second .info-center-article-list .info-center-article-abstract p {
+        font-size: 14px;
+        margin-left: 30px;
+        margin-top: 35px;
+        color: #626878;
+        font-family: "Microsoft YaHei"; }
+
+.info-center-pagination {
+  width: 956px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 66px; }
+
+.info-center-detail-page {
+  width: 956px;
+  margin: 0 auto; }
+  .info-center-detail-page .left-section {
+    display: inline-block;
+    vertical-align: top;
+    width: 706px;
+    border-right: 1px solid #f0f0f0;
+    padding-right: 24px;
+    margin-top: 20px;
+    overflow: hidden; }
+    .info-center-detail-page .left-section h1 {
+      margin: 0px;
+      font-size: 30px;
+      color: #2d3240;
+      font-family: "Microsoft YaHei";
+      margin-bottom: 15px; }
+    .info-center-detail-page .left-section .share-time {
+      display: inline-block;
+      font-size: 14px;
+      color: #959595;
+      font-family: "Microsoft YaHei"; }
+    .info-center-detail-page .left-section .read-times {
+      display: inline-block;
+      font-size: 14px;
+      color: #959595;
+      font-family: "Microsoft YaHei";
+      padding: 0 10px;
+      margin: 0 10px;
+      border-left: 1px solid #959595; }
+    .info-center-detail-page .left-section .article-source {
+      display: inline-block;
+      font-size: 14px;
+      color: #959595;
+      font-family: "Microsoft YaHei"; }
+    .info-center-detail-page .left-section .info-center-detail-page-abstract {
+      background-color: #f6f5f5;
+      margin-top: 26px;
+      margin-bottom: 26px;
+      font-size: 14px;
+      color: #959595;
+      font-family: "Microsoft YaHei";
+      letter-spacing: 2px;
+      line-height: 2;
+      padding: 16px 18px;
+      min-height: 60px; }
+      .info-center-detail-page .left-section .info-center-detail-page-abstract #info-center-detail-page-abstract-icon {
+        width: 10px;
+        height: 16px;
+        background-image: url("../assets/详情页－资讯中心-assets/摘要左边标签.png");
+        float: left;
+        margin-right: 10px;
+        margin-top: 5px; }
+    .info-center-detail-page .left-section article {
+      width: 100%; }
+      .info-center-detail-page .left-section article img {
+        margin: 26px 0px; }
+      .info-center-detail-page .left-section article p {
+        text-indent: 2em;
+        font-family: "Microsoft YaHei";
+        color: #626878;
+        font-size: 18px;
+        line-height: 30px; }
+    .info-center-detail-page .left-section .pre-article {
+      float: left;
+      width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-top: 56px;
+      margin-bottom: 128px; }
+    .info-center-detail-page .left-section .next-article {
+      float: right;
+      width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-top: 56px;
+      margin-bottom: 128px; }
+  .info-center-detail-page .right-section {
+    display: inline-block;
+    font-size: 15px;
+    color: #2d3240;
+    font-family: "Microsoft YaHei";
+    margin-top: 28px;
+    margin-left: 20px; }
+    .info-center-detail-page .right-section ul {
+      padding-top: 20px;
+      width: 226px;
+      border-top: 1px solid #c8c8c8; }
+      .info-center-detail-page .right-section ul li {
+        list-style-type: disc;
+        margin-left: 20px;
+        font-size: 12px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        line-height: 2;
+        cursor: pointer; }
+      .info-center-detail-page .right-section ul li:hover {
+        color: #0893d6; }
+    .info-center-detail-page .right-section span {
+      display: inline-block;
+      border-bottom: 2px solid #0893d6; }
+
+.industry-elite-list-body {
+  width: 100%; }
+  .industry-elite-list-body .industry-elite-list-body-header {
+    width: 100%;
+    height: 80px;
+    background-color: #fafafa; }
+    .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content {
+      width: 956px;
+      margin: 0 auto; }
+      .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left {
+        float: left;
+        cursor: pointer; }
+        .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left i {
+          color: #0893d6;
+          font-size: 45px;
+          display: inline-block;
+          margin-top: 22px; }
+        .industry-elite-list-body .industry-elite-list-body-header .industry-elite-list-body-header-content .industry-elite-list-body-header-left span {
+          font-size: 23px;
+          font-family: "Microsoft YaHei";
+          color: #0893d6;
+          display: inline-block;
+          position: relative;
+          bottom: 15px;
+          margin-left: 10px; }
+  .industry-elite-list-body .industry-elite-list-body-article {
+    width: 956px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list {
+      width: 462px;
+      height: 198px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0px 0px 8px #c8c8c8; }
+      .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-left {
+        width: 160px;
+        height: 100%;
+        float: left;
+        background-color: #0893d6; }
+        .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-left i {
+          font-size: 50px;
+          color: #fff;
+          display: block;
+          margin-top: 75px;
+          margin-left: 55px; }
+      .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right {
+        cursor: pointer;
+        height: 100%;
+        width: 302px;
+        display: inline-block; }
+        .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction {
+          width: 270px;
+          height: 157px;
+          margin: auto;
+          overflow: hidden;
+          margin-top: 20px; }
+          .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-name {
+            font-size: 18px;
+            display: block;
+            font-family: "Microsoft YaHei";
+            color: #525765; }
+          .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-honor {
+            font-size: 12px;
+            color: #a0a0a0;
+            font-family: "Microsoft YaHei";
+            margin-top: 10px;
+            margin-bottom: 15px;
+            display: block; }
+          .industry-elite-list-body .industry-elite-list-body-article .industry-elite-list-body-article-list .industry-elite-list-body-article-list-right .industry-elite-introduction .industry-elite-personal-introduction {
+            font-size: 14px;
+            color: #626878;
+            font-family: "Microsoft YaHei"; }
+  .industry-elite-list-body #industry-elite-personal-detail-page-id {
+    width: 956px;
+    margin: 0 auto;
+    margin-top: 20px; }
+    .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-img {
+      height: 198px;
+      width: 160px;
+      background-color: yellow;
+      float: left;
+      top: 0px;
+      left: 0px;
+      margin-right: 30px; }
+    .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article {
+      width: 700px;
+      display: inline-block; }
+      .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-name {
+        display: block;
+        font-size: 30px;
+        font-family: "Microsoft YaHei";
+        color: #2d3240; }
+      .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-position {
+        display: block;
+        font-size: 18px;
+        color: #626878;
+        margin-top: 10px; }
+      .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article .industry-elite-personal-detail-article-title {
+        display: block;
+        padding-left: 20px;
+        border-left: 5px solid #0893d6;
+        margin-top: 30px;
+        font-size: 18px;
+        color: #626878;
+        font-family: "Microsoft YaHei"; }
+      .industry-elite-list-body #industry-elite-personal-detail-page-id .industry-elite-personal-detail-article p {
+        text-indent: 2em;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #626878;
+        font-family: "Microsoft YaHei"; }
+
+.about-us-organization {
+  background-image: url("../../assets/交互设计中心切图（3）/关于我们-组织架构/组织架构.png");
+  height: 386px;
+  width: 954px;
+  margin: 0 auto;
+  margin-top: 75px; }
+
+.about-us-member {
+  width: 956px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .about-us-member .about-us-member-list {
+    width: 291px;
+    height: 500px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin-top: 30px; }
+    .about-us-member .about-us-member-list .member-list-img {
+      height: 157px;
+      width: 157px;
+      margin: 0 auto;
+      margin-top: 16px;
+      border-radius: 50%; }
+    .about-us-member .about-us-member-list .member-list-name {
+      font-size: 24px;
+      color: #525765;
+      font-family: "Microsoft YaHei";
+      display: block;
+      text-align: center; }
+    .about-us-member .about-us-member-list .member-list-position {
+      font-size: 12px;
+      color: #a0a0a0;
+      font-family: "Microsoft YaHei";
+      display: block;
+      text-align: center; }
+    .about-us-member .about-us-member-list .member-list-introduction {
+      font-size: 16px;
+      font-family: "Microsoft YaHei";
+      display: block;
+      margin-top: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+      color: #626878; }
+
+.join-us-content {
+  width: 956px;
+  margin: 0 auto; }
+  .join-us-content .join-us-image {
+    background-image: url("../assets/交互设计中心切图（3）/加入我们-assets/VCG41542548114 (1).png");
+    height: 228px;
+    width: 667px;
+    margin: 0 auto;
+    margin-top: 30px; }
+  .join-us-content .join-us-article p {
+    text-indent: 2em;
+    font-family: "Microsoft YaHei";
+    font-size: 18px;
+    color: #626878;
+    margin-top: 20px; }
+  .join-us-content .join-us-article article h1 {
+    color: #0893d6;
+    font-size: 18px;
+    font-family: "Microsoft YaHei";
+    margin-top: 20px;
+    text-indent: 2em;
+    margin-bottom: 10px; }
+  .join-us-content .join-us-article article p {
+    margin-top: 0px; }
+
+.current-research-project {
+  width: 956px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .current-research-project .current-research-project-card {
+    box-shadow: 0px 0px 5px #c8c8c8;
+    margin-top: 20px;
+    width: 462px;
+    height: 420px;
+    cursor: pointer; }
+    .current-research-project .current-research-project-card .example-img {
+      width: 100%;
+      height: 274px;
+      background-color: #0893d6;
+      background-image: url("../切图（0726）/切图（0726）/study-program.png"); }
+    .current-research-project .current-research-project-card .card-introduction {
+      padding: 20px; }
+      .current-research-project .current-research-project-card .card-introduction h1 {
+        margin: 0px;
+        padding: 0px;
+        color: #525765;
+        font-size: 18px;
+        font-family: "Microsoft YaHei";
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .current-research-project .current-research-project-card .card-introduction span {
+        font-size: 14px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        float: right; }
+      .current-research-project .current-research-project-card .card-introduction p {
+        clear: both;
+        height: 56px;
+        overflow: hidden;
+        font-size: 14px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        line-height: 2;
+        margin-top: 12px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        margin-bottom: 5px; }
+
+.research-project-gain {
+  width: 956px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .research-project-gain .research-project-gain-card {
+    box-shadow: 0px 0px 5px #c8c8c8;
+    margin-top: 20px;
+    width: 462px;
+    height: 420px;
+    cursor: pointer; }
+    .research-project-gain .research-project-gain-card .example-img {
+      width: 100%;
+      height: 274px;
+      background-color: #0893d6;
+      background-image: url("../切图（0726）/切图（0726）/study-program.png"); }
+    .research-project-gain .research-project-gain-card .card-introduction {
+      padding: 20px; }
+      .research-project-gain .research-project-gain-card .card-introduction h1 {
+        margin: 0px;
+        padding: 0px;
+        color: #525765;
+        font-size: 18px;
+        font-family: "Microsoft YaHei";
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .research-project-gain .research-project-gain-card .card-introduction span {
+        font-size: 14px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        float: right; }
+      .research-project-gain .research-project-gain-card .card-introduction p {
+        clear: both;
+        font-size: 14px;
+        color: #626878;
+        font-family: "Microsoft YaHei";
+        line-height: 2;
+        margin-top: 12px; }
+
+#footer-top-id {
+  text-align: center;
+  color: #626878;
+  font-size: 18px;
+  font-family: "Microsoft YaHei";
+  padding-top: 30px; }
+
+.research-project-detail-page {
+  width: 956px;
+  margin: 0 auto; }
+  .research-project-detail-page h1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 30px;
+    color: #2d3240;
+    font-family: "Microsoft YaHei";
+    margin-top: 20px;
+    margin-bottom: 20px; }
+  .research-project-detail-page span {
+    font-size: 14px;
+    color: #959595;
+    font-family: "Microsoft YaHei";
+    margin-bottom: 30px;
+    display: block; }
+  .research-project-detail-page .article-section article {
+    border-right: 1px solid #f6f5f5;
+    padding-right: 10px;
+    width: 676px;
+    min-height: 600px;
+    display: inline-block; }
+    .research-project-detail-page .article-section article p {
+      font-size: 18px;
+      color: #626878;
+      font-family: "Microsoft YaHei"; }
+  .research-project-detail-page .article-section .right-image {
+    float: right;
+    width: 270px;
+    padding-left: 10px; }
+    .research-project-detail-page .article-section .right-image .img-list {
+      margin: 0 auto;
+      width: 264px;
+      height: 170px;
+      background-image: url("../../assets/交互设计中心切图（3）/详情页－研究项目-assets/1004521192-0.png");
+      box-shadow: 0px 0px 5px #c8c8c8;
+      margin-bottom: 40px; }
+
+.search-result-content {
+  width: 956px;
+  margin: 0 auto; }
+  .search-result-content .search-data {
+    margin-top: 26px;
+    font-size: 16px;
+    color: #626878;
+    font-family: "Microsoft YaHei"; }
+  .search-result-content .search-data-list .search-data-list-one {
+    margin-top: 20px;
+    box-shadow: 0px 0px 5px #c8c8c8;
+    padding: 16px;
+    height: 200px;
+    position: relative; }
+    .search-result-content .search-data-list .search-data-list-one .title {
+      margin: 0px;
+      padding: 0px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-family: "Microsoft YaHei"; }
+    .search-result-content .search-data-list .search-data-list-one .share-time {
+      float: right;
+      font-size: 14px;
+      font-family: "Microsoft YaHei";
+      color: #a0a0a0; }
+    .search-result-content .search-data-list .search-data-list-one p {
+      font-size: 14px;
+      color: #626878;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      height: 64px;
+      overflow: hidden; }
+    .search-result-content .search-data-list .search-data-list-one .look-in-detail-search {
+      position: absolute;
+      right: 16px;
+      bottom: 16px; }

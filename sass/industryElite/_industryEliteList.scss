@@ -1,0 +1,147 @@
+.industry-elite-list-body {
+    width: 100%;
+    .industry-elite-list-body-header {
+        width: 100%;
+        height: 80px;
+        background-color: rgb(250, 250, 250);
+        .industry-elite-list-body-header-content {
+            width: $base-width;
+            margin: 0 auto;
+            .industry-elite-list-body-header-left {
+                float: left;
+                cursor: pointer;
+                i {
+                    color: $base-background-color;
+                    font-size: 45px;
+                    display: inline-block;
+                    margin-top: 22px;
+                }
+                span {
+                    font-size: 23px;
+                    font-family: $base-font-family;
+                    color: $base-background-color;
+                    display: inline-block;
+                    position: relative;
+                    bottom: 15px;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+    .industry-elite-list-body-article {
+        width: $base-width;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 80px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        //ajax刷新的页面的样式结束
+        .industry-elite-list-body-article-list {
+            width: 462px;
+            height: 198px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0px 0px 8px rgb(200,200,200);
+            .industry-elite-list-body-article-list-left {
+                width: 160px;
+                height: 100%;
+                float: left;
+                background-color: $base-background-color;
+                i {
+                    font-size: 50px;
+                    color: #fff;
+                    display: block;
+                    margin-top: 75px;
+                    margin-left: 55px;
+                }
+            }
+            .industry-elite-list-body-article-list-right {
+                cursor: pointer;
+                height: 100%;
+                width: 302px;
+                display: inline-block;
+                .industry-elite-introduction {
+                    width: 270px;
+                    height: 157px;
+                    margin: auto;
+                    overflow: hidden;
+                    margin-top: 20px;
+                    .industry-elite-name {
+                        font-size: 18px;
+                        display: block;
+                        font-family: $base-font-family;
+                        color:#525765;
+                    }
+                    .industry-elite-honor {
+                        font-size: 12px;
+                        color: #a0a0a0;
+                        font-family: $base-font-family;
+                        margin-top: 10px;
+                        margin-bottom: 15px;
+                        display: block;
+                    }
+                    .industry-elite-personal-introduction {
+                        font-size: 14px;
+                        color: #626878;
+                        font-family: $base-font-family;
+                    }
+                }
+            }
+        }
+    }
+      #industry-elite-personal-detail-page-id{
+            width:$base-width;
+            margin:0 auto;
+            margin-top:20px;
+            //ajax请求完毕后页面的HTMl结构已经刷新
+            .industry-elite-personal-detail-img{
+                height:198px;
+                width:160px;
+                background-color:yellow;
+                float:left;
+                top:0px;
+                left:0px;
+                margin-right:30px;
+            }
+            .industry-elite-personal-detail-article{
+                
+                width:700px;
+                display:inline-block;
+                .industry-elite-personal-detail-article-name{
+                   //名称
+                    display:block;
+                    font-size:30px;
+                    font-family:$base-font-family;
+                    color:#2d3240;
+                }
+                .industry-elite-personal-detail-article-position{
+                    //职称
+                    display:block;
+                    font-size:18px;
+                    color:#626878;
+                    margin-top:10px;
+                }
+                .industry-elite-personal-detail-article-title{
+                    display:block;
+                    padding-left:20px;
+                    border-left:5px solid $base-background-color;
+                    margin-top:30px;
+                    font-size:18px;
+                    color:#626878;
+                    font-family:$base-font-family;
+                }
+                p{
+                    text-indent: 2em;
+                    margin-top:20px;
+                    margin-bottom:20px;
+                    font-size:18px;
+                    color:#626878;
+                    font-family:$base-font-family;
+                }
+
+            }
+
+        }
+}
