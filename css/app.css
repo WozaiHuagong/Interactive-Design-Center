@@ -355,7 +355,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
             margin: 0px; }
             .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-image {
               width: 100%;
-              height: 280px; }
+              height: 274px; }
             .main-page-body .main-page-research-project .main-page-research-project-card .row .col .card .card-content {
               width: 100%;
               height: 132px;
@@ -700,7 +700,8 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        width: 450px; }
+        width: 450px;
+        height: 22px; }
       .info-center-article-content-first .info-center-article-list .info-center-article-abstract span {
         float: right;
         right: 0px;
@@ -752,7 +753,9 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
         color: #525765;
         font-family: "Microsoft YaHei";
         margin-top: 14px;
-        margin-left: 30px; }
+        margin-left: 30px;
+        width: 450px;
+        height: 22px; }
       .info-center-article-content-second .info-center-article-list .info-center-article-abstract span {
         float: right;
         right: 0px;
@@ -772,7 +775,7 @@ html, body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input,
       .info-center-article-content-second .info-center-article-list .info-center-article-abstract p {
         font-size: 14px;
         margin-left: 30px;
-        margin-top: 35px;
+        margin-top: 20px;
         color: #626878;
         font-family: "Microsoft YaHei"; }
 
