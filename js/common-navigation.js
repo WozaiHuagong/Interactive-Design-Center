@@ -42,11 +42,15 @@ $(document).ready(function () {
     var determineTheBlueBorder = function () {
         $url = window.location.href;
         $mainPage = $url.match('index');
-        if ($mainPage != null) {
+        if ($mainPage != null||parseInt($.cookie('indexInfo'))==1) {
             //轮播图函数
             var sliderCounter = 0;
             // $(function(){
             // });
+            $.cookie('indexInfo', '0', {
+                path: '/'
+            });
+
             function sliderChange() {
                 var leftIn = -sliderCounter * 956;
                 var styleLeft = leftIn + "px";
