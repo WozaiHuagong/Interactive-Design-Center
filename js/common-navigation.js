@@ -1006,17 +1006,17 @@ $(document).ready(function () {
                         $('#research-project-detail-page-id .share-time').text(ajaxResponseResearchProject[indexOfArticle].publish_time);
                         $('#research-project-detail-page-id .article-section article').html(HTMLDecode(ajaxResponseResearchProject[indexOfArticle].message));
                         var imglist = "";
-                        for (var i = 0; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
+                        for (var i = 1; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
                            // console.log(ajaxResponseResearchProject[indexOfArticle].attach[i]);
                             imglist += '<div class="img-list">' + '</div>';
                             //' + 'style="background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i] +'")"
                         }
                         $('#research-project-detail-page-id .article-section .right-image').html(imglist);
-                        for (var i = 0; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
+                        for (var i = 1; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
                             // console.log( ajaxResponseResearchProject[indexOfArticle].attach[i] );
                             // imglist += '<div class="img-list">' + '</div>';
                             //' + 'style="background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i] +'")"
-                            $('#research-project-detail-page-id .article-section .right-image .img-list').eq(i).attr('style', 'background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i+1] + '")')
+                            $('#research-project-detail-page-id .article-section .right-image .img-list').eq(i).attr('style', 'background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i] + '")')
                         }
                         $('#footer-top-id').text("");
                         $('#current-research-project-id').hide();
@@ -1119,15 +1119,15 @@ $(document).ready(function () {
                 $('#research-project-detail-page-id .share-time').text(ajaxResponseResearchProject[indexOfArticle].publish_time);
                 $('#research-project-detail-page-id .article-section article').html(HTMLDecode(ajaxResponseResearchProject[indexOfArticle].message));
                 var imglist = "";
-                for (var i = 0; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
+                for (var i = 1; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
 
                     imglist += '<div class="img-list">' + '</div>';
 
                 }
                 $('#research-project-detail-page-id .article-section .right-image').html(imglist);
-                for (var i = 0; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
+                for (var i = 1; i < ajaxResponseResearchProject[indexOfArticle].attach.length; i++) {
 
-                    $('#research-project-detail-page-id .article-section .right-image .img-list').eq(i).attr('style', 'background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i+1] + '")')
+                    $('#research-project-detail-page-id .article-section .right-image .img-list').eq(i).attr('style', 'background-image: url("' + ajaxResponseResearchProject[indexOfArticle].attach[i] + '")')
                 }
                 $('#footer-top-id').text("");
                 $('#current-research-project-id').hide();
@@ -1140,12 +1140,12 @@ $(document).ready(function () {
                 $('#research-project-detail-page-id .share-time').text(ajaxResponseFinshed[indexOfArticle].publish_time);
                 $('#research-project-detail-page-id .article-section article').html(HTMLDecode(ajaxResponseFinshed[indexOfArticle].message));
                 var imglist = "";
-                for (var i = 0; i < ajaxResponseFinshed[indexOfArticle].attach.length; i++) {
+                for (var i = 1; i < ajaxResponseFinshed[indexOfArticle].attach.length; i++) {
                     imglist += '<div class="img-list">' + '</div>';
                 }
                 $('#research-project-detail-page-id .article-section .right-image').html(imglist);
-                for (var i = 0; i < ajaxResponseFinshed[indexOfArticle].attach.length; i++) {
-                    $('#research-project-detail-page-id .article-section .right-image .img-list').eq(i).attr('style', 'background-image: url("' + ajaxResponseFinshed[indexOfArticle].attach[i+1] + '")')
+                for (var i = 1; i < ajaxResponseFinshed[indexOfArticle].attach.length; i++) {
+                    $('#research-project-detail-page-id .article-section .right-image .img-list').eq(i).attr('style', 'background-image: url("' + ajaxResponseFinshed[indexOfArticle].attach[i] + '")')
                 }
                 $('#footer-top-id').text("");
                 $('#current-research-project-id').hide();
